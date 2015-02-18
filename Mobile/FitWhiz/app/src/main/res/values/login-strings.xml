@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="sensor_id_edit">Sensor ID</string>
+    <string name="login_btn">Login</string>
+    <string name="alert_text_view"></string>
+</resources>
