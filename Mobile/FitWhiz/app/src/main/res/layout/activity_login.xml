@@ -4,4 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cmpe.alpha.fitwhiz.controllers.LoginActivity"
+    android:background="#FFF2C1"
     tools:ignore="MergeRootFrame" />

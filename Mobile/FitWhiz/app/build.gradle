@@ -12,7 +12,8 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            //runProguard false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -25,7 +26,7 @@ dependencies {
     // You must install or update the Support Repository through the SDK manager to use this dependency.
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // You must install or update the Support Repository through the SDK manager to use this dependency.
-    compile 'com.android.support:support-v4:19.+'
     // You must install or update the Google Repository through the SDK manager to use this dependency.
-    compile 'com.google.android.gms:play-services:4.2.42'
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.google.android.gms:play-services:6.5.87'
 }

@@ -6,5 +6,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
 
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="Splash_text">FitWhizz</string>
+
 
 </resources>

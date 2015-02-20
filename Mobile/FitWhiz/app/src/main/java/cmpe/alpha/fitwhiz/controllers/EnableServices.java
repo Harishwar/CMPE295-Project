@@ -29,7 +29,8 @@ public class EnableServices
             if (!bluetoothAdapter.isEnabled())
             {
                 CustomAlert customAlert = new CustomAlert();
-                boolean result = customAlert.createAlert(context,"Enable Bluetooth","Application needs access to Bluetooth",
+                boolean result = customAlert.createAlert(context,"Enable Bluetooth",
+                        "Application needs access to Bluetooth",
                         null,null);
                 if (!result)
                 {
