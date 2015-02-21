@@ -1,15 +1,21 @@
 package cmpe.alpha.fitwhiz.controllers;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.Properties;
 
 import cmpe.alpha.fitwhiz.R;
 
@@ -49,6 +55,13 @@ public class SplashScreen extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
+
+    private static Intent alarmIntent = null;
+    private static PendingIntent pendingIntent = null;
+    private static AlarmManager alarmManager = null;
+    private PropertiesReader propertiesReader;
+    private Properties properties;
+    private int uploadInterval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +125,17 @@ public class SplashScreen extends Activity {
                 }
             }
         });
+
+        //Read properties file for uploadInterval
+        propertiesReader=new PropertiesReader(this);
+        properties=propertiesReader.getProperties("Fitwhiz.properties");
+        uploadInterval=Integer.parseInt(properties.getProperty("UploadInterval","3600"));
+
+        //Set the ScheduledDataUploadService
+        alarmIntent = new Intent(this, ScheduledDataUploadService.class);
+        pendingIntent = pendingIntent.getBroadcast(this.getApplicationContext(),0, alarmIntent,0);
+        alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, (uploadInterval*1000),(uploadInterval*1000),pendingIntent);
 
         Thread splashTread = new Thread() {
             @Override
