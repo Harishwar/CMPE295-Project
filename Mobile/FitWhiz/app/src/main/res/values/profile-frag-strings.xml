@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_name_text">Name:</string>
+    <string name="profile_age_text">Age:</string>
+    <string name="profile_gender_text">Gender:</string>
+</resources>

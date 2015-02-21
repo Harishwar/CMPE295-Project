@@ -2,8 +2,9 @@
 <resources>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_section1">Profile</string>
-    <string name="title_section2">Fitness</string>
-    <string name="title_section3">Notification Settings</string>
+    <string name="title_section2">Sensor Details</string>
+    <string name="title_section3">Sensor History</string>
+    <string name="title_section4">Doctor Recommendations</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
