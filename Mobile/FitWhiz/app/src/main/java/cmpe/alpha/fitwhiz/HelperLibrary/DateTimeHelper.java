@@ -8,9 +8,9 @@ import java.util.Locale;
  * Created by rajagopalan on 2/21/15.
  */
 public class DateTimeHelper {
-    public static String getDateTime() {
+    public static String getDateTime(String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "MM-dd-yy HH:mm:ss", Locale.getDefault());
+                format, Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }
