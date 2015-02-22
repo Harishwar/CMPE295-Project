@@ -20,4 +20,11 @@ public class DateTimeHelper {
                 format, Locale.getDefault());
         return dateFormat.format(date);
     }
+
+    public static String getDefaultFormattedDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }

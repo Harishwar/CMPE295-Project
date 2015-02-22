@@ -6,7 +6,9 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
 import cmpe.alpha.fitwhiz.R;
 
 /**
@@ -14,6 +16,8 @@ import cmpe.alpha.fitwhiz.R;
  */
 public class SensorCurrentFragment extends Fragment
 {
+    private  FitwhizApplication application;
+
     private double magnetometer=0,gyroscope=0,humidity=0,temperature=0,pressure=0,accelerometer=0;
 
     public double getMagnetometer() {
@@ -76,6 +80,14 @@ public class SensorCurrentFragment extends Fragment
     {
         // Inflate the layout for this fragment
         View sensorCurrentFragment = inflater.inflate(R.layout.fragment_sensor_current, container, false);
+        application=(FitwhizApplication)this.getActivity().getApplication();
+        TextView accelerometerView = (TextView)sensorCurrentFragment.findViewById(R.id.Accelerometer_current_val);
+        TextView humidityView = (TextView)sensorCurrentFragment.findViewById(R.id.humidity_current_val);
+        TextView temperatureView = (TextView)sensorCurrentFragment.findViewById(R.id.temperature_current_val);
+        accelerometerView.setText(application.getXVal()+"-"+application.getYVal()+"-"+application.getZVal());
+        temperatureView.setText(application.getTVal()+"");
+        humidityView.setText(application.getHVal()+"");
+
         return sensorCurrentFragment;
     }
 

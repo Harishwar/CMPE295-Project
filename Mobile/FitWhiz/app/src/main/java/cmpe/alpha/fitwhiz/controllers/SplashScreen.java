@@ -2,6 +2,7 @@ package cmpe.alpha.fitwhiz.controllers;
 
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
+import cmpe.alpha.fitwhiz.controllers.common.SensorService;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
 
 import android.annotation.TargetApi;
@@ -159,6 +160,9 @@ public class SplashScreen extends Activity {
             };
         };
         splashTread.start();
+
+        //Start Temperature service
+        this.startService(new Intent(this, SensorService.class));
     }
 
     @Override
