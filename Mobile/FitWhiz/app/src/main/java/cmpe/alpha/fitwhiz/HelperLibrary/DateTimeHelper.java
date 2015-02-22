@@ -14,4 +14,10 @@ public class DateTimeHelper {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+    public static String formatDateTime(String format, Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                format, Locale.getDefault());
+        return dateFormat.format(date);
+    }
 }

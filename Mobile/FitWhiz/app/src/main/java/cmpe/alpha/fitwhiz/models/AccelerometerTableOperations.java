@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
+
 
 /**
  * Created by rajagopalan on 2/21/15.
@@ -49,11 +51,13 @@ public class AccelerometerTableOperations extends DatabaseConnector {
     public double getAggregateForSpecifiedTimeRange(String datetimeStart, String datetimeEnd, String columnName)
     {
         try {
-            String sql = "select count(" + columnName + ") as count, SUM(" + columnName + ") as sum from " + ACCELEROMETER_TABLE + " where timestamp>" + datetimeStart + " and timestamp<" + datetimeEnd + ";";
+            String sql = "select count(*), TOTAL(" + columnName + ") from '" + ACCELEROMETER_TABLE + "' where timestamp>'" + datetimeStart + "' and timestamp<'" + datetimeEnd + "'";
+
             db = reader();
             Cursor cursor = db.rawQuery(sql, null);
-            double count = cursor.getDouble(cursor.getColumnIndex("count"));
-            double sum = cursor.getDouble(cursor.getColumnIndex("sum"));
+            cursor.moveToFirst();
+            double count = cursor.getDouble(0);
+            double sum = cursor.getDouble(1);
             return (sum / count);
         }
         catch (Exception ex)

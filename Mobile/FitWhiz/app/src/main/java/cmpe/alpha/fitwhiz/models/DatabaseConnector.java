@@ -32,9 +32,9 @@ public class DatabaseConnector extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         db.execSQL("CREATE TABLE "+USER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,sensor_id TEXT, user_type TEXT)");
-        db.execSQL("CREATE TABLE "+ACCELEROMETER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp TEXT, x_val REAL,y_val REAL,z_val REAL)");
-        db.execSQL("CREATE TABLE "+HUMIDITY_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp TEXT, h_val REAL)");
-        db.execSQL("CREATE TABLE "+TEMPERATURE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp TEXT, t_val REAL)");
+        db.execSQL("CREATE TABLE "+ACCELEROMETER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, x_val REAL,y_val REAL,z_val REAL)");
+        db.execSQL("CREATE TABLE "+HUMIDITY_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, h_val REAL)");
+        db.execSQL("CREATE TABLE "+TEMPERATURE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, t_val REAL)");
     }
 
     @Override
