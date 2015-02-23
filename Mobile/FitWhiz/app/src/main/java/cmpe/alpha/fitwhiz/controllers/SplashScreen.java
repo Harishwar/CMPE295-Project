@@ -1,6 +1,9 @@
 package cmpe.alpha.fitwhiz.controllers;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
 import cmpe.alpha.fitwhiz.controllers.common.SensorService;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
@@ -163,6 +166,14 @@ public class SplashScreen extends Activity {
 
         //Start Temperature service
         this.startService(new Intent(this, SensorService.class));
+
+        //Update Profile page
+        ProfileUpdater profileUpdater = new ProfileUpdater((FitwhizApplication)this.getApplication());
+        profileUpdater.execute(new PropertiesReader(this.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+        //Update History page
+        ResultsUpdater resultsUpdater = new ResultsUpdater((FitwhizApplication)this.getApplication());
+        resultsUpdater.execute(new PropertiesReader(this.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
     }
 
     @Override

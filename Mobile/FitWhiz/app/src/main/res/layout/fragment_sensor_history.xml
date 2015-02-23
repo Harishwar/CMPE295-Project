@@ -69,4 +69,33 @@
         android:layout_below="@+id/sensor_temp_text_his"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/historyAccelerometerValue"
+        android:layout_above="@+id/sensor_gyro_text_his"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="65dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/historyTemperatureValue"
+        android:layout_alignBottom="@+id/sensor_gyro_text_his"
+        android:layout_toStartOf="@+id/historyAccelerometerValue"
+        android:layout_below="@+id/sensor_temp_text_his" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/humidityHistoryValue"
+        android:layout_alignTop="@+id/sensor_humid_text_his"
+        android:layout_toStartOf="@+id/historyTemperatureValue" />
+
 </RelativeLayout>

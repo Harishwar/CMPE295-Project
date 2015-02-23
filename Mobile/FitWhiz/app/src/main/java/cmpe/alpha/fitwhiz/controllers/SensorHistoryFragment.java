@@ -6,7 +6,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
@@ -76,8 +79,14 @@ public class SensorHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View sensorHistoryFragment = inflater.inflate(R.layout.fragment_sensor_history, container, false);
-        ResultsUpdater resultsUpdater=new ResultsUpdater(this);
+        FitwhizApplication application=(FitwhizApplication)this.getActivity().getApplication();
+        ResultsUpdater resultsUpdater=new ResultsUpdater(application);
         resultsUpdater.execute(new PropertiesReader(sensorHistoryFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.historyTemperatureValue)).setText(application.getResult_tVal()+"");
+        ((TextView)sensorHistoryFragment.findViewById(R.id.humidityHistoryValue)).setText(application.getResult_hVal()+"");
+        ((TextView)sensorHistoryFragment.findViewById(R.id.historyAccelerometerValue)).setText(Math.ceil(application.getResult_xVal())+","+Math.ceil(application.getResult_yVal())+","+ Math.ceil(application.getResult_zVal()));
+
+
         return sensorHistoryFragment;
     }
 

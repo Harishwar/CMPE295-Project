@@ -24,10 +24,10 @@ import cmpe.alpha.fitwhiz.controllers.SensorHistoryFragment;
  * Created by rajagopalan on 2/22/15.
  */
 public class ResultsUpdater extends AsyncTask<String, String, String> {
-        private SensorHistoryFragment sensorHistoryFragment;
-        public ResultsUpdater(SensorHistoryFragment sensorHistoryFragment)
+        private FitwhizApplication fitwhizApplication;
+        public ResultsUpdater(FitwhizApplication fitwhizApplication)
         {
-            this.sensorHistoryFragment=sensorHistoryFragment;
+            this.fitwhizApplication=fitwhizApplication;
         }
 
         @Override
@@ -62,15 +62,14 @@ public class ResultsUpdater extends AsyncTask<String, String, String> {
 
         protected  void onPostExecute(String response)
         {
-            FitwhizApplication app = ((FitwhizApplication)sensorHistoryFragment.getActivity().getApplication());
             try {
                 JSONObject json = new JSONObject(response);
-                app.setResult_xVal(json.getDouble("xValue"));
-                app.setResult_yVal(json.getDouble("yValue"));
-                app.setResult_zVal(json.getDouble("zValue"));
-                app.setResult_hVal(json.getDouble("hValue"));
-                app.setResult_tVal(json.getDouble("tValue"));
-                Log.d(this.getClass().getSimpleName(),app.getXVal()+" "+app.getTVal()+" "+app.getHVal());
+                fitwhizApplication.setResult_xVal(json.getDouble("xValue"));
+                fitwhizApplication.setResult_yVal(json.getDouble("yValue"));
+                fitwhizApplication.setResult_zVal(json.getDouble("zValue"));
+                fitwhizApplication.setResult_hVal(json.getDouble("hValue"));
+                fitwhizApplication.setResult_tVal(json.getDouble("tValue"));
+                Log.d(this.getClass().getSimpleName(),fitwhizApplication.getXVal()+" "+fitwhizApplication.getTVal()+" "+fitwhizApplication.getHVal());
 
             } catch (JSONException e) {
                 Log.e(this.getClass().getSimpleName(), e.toString());

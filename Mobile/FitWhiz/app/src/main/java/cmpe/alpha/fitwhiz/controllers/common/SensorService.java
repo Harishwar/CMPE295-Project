@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
@@ -24,13 +26,16 @@ public class SensorService extends Service implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        FitwhizApplication fitwhizApplication = ((FitwhizApplication)this.getApplication());
+        ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(fitwhizApplication);
         if(sensorEvent.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE)
         {
             String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
             double t_val = sensorEvent.values[0];
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(this);
-            temperatureTableOperations.insertValue(t_val,timestamp);
-            ((FitwhizApplication)this.getApplication()).setTVal(t_val);
+            temperatureTableOperations.insertValue(t_val, timestamp);
+            fitwhizApplication.setTVal(t_val);
+            readingsAnalyzer.analyzeTemperature(t_val);
         }
 
         if(sensorEvent.sensor.getType()==Sensor.TYPE_RELATIVE_HUMIDITY)
@@ -38,8 +43,9 @@ public class SensorService extends Service implements SensorEventListener {
             String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
             double h_val = sensorEvent.values[0];
             HumidityTableOperations humidityTableOperations = new HumidityTableOperations(this);
-            humidityTableOperations.insertValue(h_val,timestamp);
-            ((FitwhizApplication)this.getApplication()).setHVal(h_val);
+            humidityTableOperations.insertValue(h_val, timestamp);
+            fitwhizApplication.setHVal(h_val);
+            readingsAnalyzer.analyzeHumidity(h_val);
         }
         if(sensorEvent.sensor.getType()==Sensor.TYPE_LINEAR_ACCELERATION)
         {
@@ -48,12 +54,12 @@ public class SensorService extends Service implements SensorEventListener {
             double y_val = Double.parseDouble(String.valueOf(sensorEvent.values[0]));
             double z_val = Double.parseDouble(String.valueOf(sensorEvent.values[0]));
             AccelerometerTableOperations accelerometerTableOperations = new AccelerometerTableOperations(this);
-            accelerometerTableOperations.insertValue(x_val,y_val,z_val,timestamp);
-            ((FitwhizApplication)this.getApplication()).setXVal(x_val);
-            ((FitwhizApplication)this.getApplication()).setYVal(y_val);
-            ((FitwhizApplication)this.getApplication()).setZVal(z_val);
+            accelerometerTableOperations.insertValue(x_val, y_val, z_val, timestamp);
+            fitwhizApplication.setXVal(x_val);
+            fitwhizApplication.setYVal(y_val);
+            fitwhizApplication.setZVal(z_val);
+            readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(x_val,y_val,z_val));
         }
-
     }
 
     public void onStart(Intent intent, int startid)

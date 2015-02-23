@@ -28,10 +28,10 @@ import cmpe.alpha.fitwhiz.controllers.ProfileFragment;
  */
 public class ProfileUpdater extends AsyncTask<String, String, String> {
     private OnTaskCompleted listener;
-    private ProfileFragment profileFragment;
-    public ProfileUpdater(ProfileFragment profileFragment)
+    private FitwhizApplication app;
+    public ProfileUpdater(FitwhizApplication fitwhizApplication)
     {
-     this.profileFragment=profileFragment;
+     this.app=fitwhizApplication;
     }
 
     @Override
@@ -66,7 +66,6 @@ public class ProfileUpdater extends AsyncTask<String, String, String> {
 
     protected  void onPostExecute(String response)
     {
-        FitwhizApplication app = ((FitwhizApplication)profileFragment.getActivity().getApplication());
         try {
             JSONObject json = new JSONObject(response);
             app.setBloodType(json.getString("BloodType"));
