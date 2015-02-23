@@ -1,12 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="cmpe.alpha.fitwhiz.controllers.ProfileFragment">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/profile_name_text"
         android:id="@+id/profile_name_text"
@@ -17,6 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/profile_age_text"
         android:id="@+id/profile_age_text"
@@ -27,6 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/profile_gender_text"
         android:id="@+id/profile_gender_text"
