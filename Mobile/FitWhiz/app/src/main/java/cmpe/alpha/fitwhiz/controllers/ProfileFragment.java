@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
+import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.R;
 
 /**
@@ -56,6 +58,9 @@ public class ProfileFragment extends Fragment {
     {
         // Inflate the layout for this fragment
         View profileFragment = inflater.inflate(R.layout.fragment_profile, container, false);
+        ProfileUpdater profileUpdater = new ProfileUpdater(this);
+        profileUpdater.execute(new PropertiesReader(profileFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
         return profileFragment;
     }
 

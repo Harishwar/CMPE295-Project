@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
 
 /**
@@ -74,6 +76,8 @@ public class SensorHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View sensorHistoryFragment = inflater.inflate(R.layout.fragment_sensor_history, container, false);
+        ResultsUpdater resultsUpdater=new ResultsUpdater(this);
+        resultsUpdater.execute(new PropertiesReader(sensorHistoryFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
         return sensorHistoryFragment;
     }
 
