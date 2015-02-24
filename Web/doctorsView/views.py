@@ -27,6 +27,7 @@ def registerUser(request):
         registration.last_name=request.POST.get('LastName')
         registration.email=request.POST.get('email')
         registration.dob=request.POST.get('dob')
+        registration.address=request.POST.get('address')
         #need to convert to a timezone as it throws an exception
         registration.date_created=datetime.datetime.now()
         registration.date_modified=datetime.datetime.now()
@@ -37,11 +38,11 @@ def registerUser(request):
         #serialized_obj = serializers.serialize('json', [ saved_details, ])
     except HTTPError:
         logger.debug("Error Handling Registration")
-        return "Error" 
-        
-    
+        return "Error"
+
+
     #return JsonResponse({"email":saved_details.email,"id":saved_details.id})
-    return HttpResponseRedirect(reverse('addSensor')+'?email='+saved_details.email) 
+    return HttpResponseRedirect(reverse('addSensor')+'?email='+saved_details.email)
 
 
 #redirect(doctorsView.views.addSensor, saved_details.email)
@@ -52,16 +53,15 @@ def addSensor(request):
     if request.method=='GET':
         return render(request,"addSensor.html");
     else:
-        sensor_details=SensorUser() 
-        email=request.POST.get('email')   
+        sensor_details=SensorUser()
+        email=request.POST.get('email')
         print email
-        user_object=User.objects.get(email=email)    
+        user_object=User.objects.get(email=email)
         sensor_details.user_id=user_object
         sensor_details.sensor_id=request.POST.get('SensorID')
         sensor_details.save()
-        return JsonResponse({"status":201,"result":"Sensor Relation Added"})  
-    
+        return JsonResponse({"status":201,"result":"Sensor Relation Added"})
+
 #Method for handling the profile view
 #def viewUser(request):
-    
- 
+
