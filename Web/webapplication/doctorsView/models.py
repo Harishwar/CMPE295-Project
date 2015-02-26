@@ -10,7 +10,7 @@ class UserType(enum.Enum):
     NURSE=3
     
 class User(models.Model):
-    #user_id=models.CharField(max_length=200)
+    user_id=models.CharField(max_length=200,default=None)
     first_name=models.CharField(max_length=100)
     last_name=models.CharField(max_length=100)
     email=models.EmailField(max_length=100)
@@ -34,8 +34,24 @@ class User(models.Model):
 class SensorUser(models.Model):
     user_id=models.ForeignKey(User,db_column="user_id")
     sensor_id=models.CharField(max_length=200)
+    date_created=models.DateTimeField()
     class Meta:
         db_table="sensor_user"
         
 
-        
+class Allergies(models.Model):
+    allergy_name=models.CharField(max_length=100)
+    allergy_desc=models.CharField(max_length=300)
+    date_created=models.DateTimeField()
+    class Meta:
+        db_table="allergies"
+    
+class UserAllergies(models.Model):
+    user_id=models.ForeignKey(User,db_column="user_id")
+    allergy_id=models.ForeignKey(Allergies,db_column="allergy_id")
+    date_created=models.DateTimeField()
+    date_modified=models.DateTimeField()
+    class Meta:
+        db_table="user_allergies"
+    
+            

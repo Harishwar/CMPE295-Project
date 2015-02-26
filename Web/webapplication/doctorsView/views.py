@@ -4,12 +4,12 @@ from urllib2 import HTTPError
 from models import User
 import logging
 import datetime
-from django.http.response import JsonResponse, HttpResponseRedirect
+from django.http.response import JsonResponse, HttpResponseRedirect,HttpResponse
 from django.core import serializers
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 import doctorsView
-from doctorsView.models import SensorUser
+from doctorsView.models import SensorUser, Allergies
 
 # Create your views here.
 
@@ -19,6 +19,9 @@ logger = logging.getLogger()
 def index(request):
     return render(request,"registerUser.html");
 
+def search(request):
+    return render(request,"search.html");
+
 def registerUser(request):
     try:
         logger.debug("Obtaining db fields")
@@ -26,6 +29,7 @@ def registerUser(request):
         registration.first_name=request.POST.get('FirstName')
         registration.last_name=request.POST.get('LastName')
         registration.email=request.POST.get('email')
+        registration.user_id=request.POST.get('email')
         registration.dob=request.POST.get('dob')
         registration.address=request.POST.get('address')
         #need to convert to a timezone as it throws an exception
@@ -59,9 +63,36 @@ def addSensor(request):
         user_object=User.objects.get(email=email)
         sensor_details.user_id=user_object
         sensor_details.sensor_id=request.POST.get('SensorID')
+        sensor_details.date_created=datetime.datetime.now()
         sensor_details.save()
         return JsonResponse({"status":201,"result":"Sensor Relation Added"})
 
 #Method for handling the profile view
-#def viewUser(request):
+#https://docs.djangoproject.com/en/1.7/topics/serialization/
+def viewUsers(request):
+    #print User.objects.all().values()
+    print serializers.serialize("json", User.objects.all(),fields=('first_name','last_name'))
+    return HttpResponse(serializers.serialize("json", User.objects.all(),fields=('first_name','last_name')));
 
+#Fetches users by lastname
+def getUserByLastName(request):
+        last_name=request.GET.get('LastName')
+        user_result=User.objects.filter(last_name=last_name)
+        print user_result
+        return HttpResponse(user_result.values())
+    
+#returns the list of allergies     
+def getAllergiesList(request):
+    print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
+    return HttpResponse(serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name')));
+
+#def insertAllergyUser(request):
+    
+#edit users
+#pushAllergyPatient
+#Add vaccinations-Patient
+#patient visit history
+#login module
+#password encryption
+#deleteUser
+#deleteVaccination
