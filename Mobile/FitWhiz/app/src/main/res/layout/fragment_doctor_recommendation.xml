@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="cmpe.alpha.fitwhiz.controllers.DoctorRecommendationFragment"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/doctor_medicine_text"
+        android:id="@+id/doctor_medicine_text"
+        android:layout_marginTop="44dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/doctor_exercises_text"
+        android:id="@+id/doctor_exercises_text"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sensor_acc_text">Accelerometer:</string>
+    <string name="sensor_gyro_text">Gyroscope:</string>
+    <string name="sensor_humid_text">Humidity:</string>
+    <string name="sensor_temp_text">Temperature:</string>
+    <string name="sensor_pressure_text">Pressure:</string>
+    <string name="sensor_mag_text">Magnet:</string>
+</resources>

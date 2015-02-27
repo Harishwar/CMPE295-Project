@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register User</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/registeruser.css'%}">
+</head>
+
+<body>
+    <header id="header" class="">
+        <div class="container">
+            <div id="banner">
+                <h1>FitWhiz<br><small class="text-center">Wearables for Improved Healthcare and Consumer Experiences</small></h1>
+            </div>
+            <nav id="navbar" class="navbar-default darkBackground" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a id="company" class="navbar-brand" rel="home" href="#">FitWhiz</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Home</a>
+                            </li>
+                            <li><a href="#" class="active">Add Patient</a>
+                            </li>
+                            <li><a href="#">View Patients</a>
+                            </li>
+                        </ul>
+                        <div class="col-sm-3 col-md-3 pull-right">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Container -->
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+    <!-- Registration Form -->
+    <br>
+    <div class="container">
+        <h1>Add New Patient</h1>
+        <form method="POST" action="registerUser" class="form-horizontal" role="form">
+            <legend></legend>
+            <div class="container">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="FirstName" class="col-xs-3 col-sm-3">First Name</label>
+                    <input type="text" class="col-xs-8 col-sm-6" name="FirstName" id="fname" class="form-control" value="" required="required" title="First Name" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="LastName" class="col-xs-3 col-sm-3">Last Name</label>
+                    <input type="text" class="col-xs-8 col-sm-6" name="LastName" id="lname" class="form-control" value="" required="required" title="Last Name" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-xs-3 col-sm-3">Email</label>
+                    <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="" required="required" title="Email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
+                    <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="" required="required" title="Date of Birth" min="2013-01-01" max="2014-12-31" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-xs-3 col-sm-3">Address</label>
+                    <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" value="" required="required" title="Address" placeholder="Address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="col-xs-3 col-sm-3">Gender</label>
+                    <input type="radio" name="gender" value="Male">&nbsp;Male&nbsp;
+                    <input type="radio" name="gender" value="Female">&nbsp;Female&nbsp;
+                    <input type="radio" name="gender" value="Other">&nbsp;Other
+                </div>
+                <div class="form-group">
+                    <label for="inputMaritalStatus" class="col-xs-3 col-sm-3">Marital Status</label>
+                    <input type="radio" name="inputMaritalStatus" value="Single">&nbsp;Single&nbsp;
+                    <input type="radio" name="inputMaritalStatus" value="Married">&nbsp;Married&nbsp;
+                </div>
+                <div class="form-group">
+                    <label for="inputHeight" class="col-xs-3 col-sm-3">Height</label>
+                    <input type="number" name="inputHeight" value="inch" placeholder="00">&nbsp;inches&nbsp;
+                </div>
+                <div class="form-group">
+                    <label for="inputWeight" class="col-xs-3 col-sm-3">Weight</label>
+                    <input type="number" name="inputWeight" value="lb" placeholder="000">&nbsp;lb&nbsp;
+                </div>
+                <div class="form-group">
+                    <label for="inputBloodType" class="col-xs-3 col-sm-3">Weight</label>
+                    <select name="inputBloodType">
+                        <option value="A-">A-</option>
+                        <option value="A+">A+</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhone" class="col-xs-3 col-sm-3">Phone</label>
+                    <input type="tel" class="col-xs-8 col-sm-6" name="inputPhone" id="inputPhone" class="form-control" value="" required="required" title="phone" placeholder="(000) 000-0000" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" maxlength="14">
+                </div>
+                <div class="text-center">
+                    <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
+                    <input type="submit" value="Register" class="btn btn-lg btn-dark">
+                </div>
+            </div>
+            <br>
+        </form>
+    </div>
+    <!-- End Registration Form -->
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; 2015 FitWhiz.
+            </p>
+
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <script src="{%static 'js/init.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+</body>
+
+</html>

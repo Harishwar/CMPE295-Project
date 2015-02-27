@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cmpe.alpha.fitwhiz.controllers.SensorCurrentFragment"
+    android:background="@drawable/background"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sensor_acc_text"
+        android:id="@+id/sensor_acc_text_live"
+        android:layout_marginTop="44dp"
+        android:layout_alignParentTop="true"
+        android:textColor="#ffffff"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sensor_gyro_text"
+        android:id="@+id/sensor_gyro_text_live"
+        android:layout_marginTop="46dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/sensor_acc_text_live"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sensor_mag_text"
+        android:id="@+id/sensor_mag_text_live"
+        android:layout_marginTop="44dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/sensor_gyro_text_live"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sensor_humid_text"
+        android:id="@+id/sensor_humid_text_live"
+        android:textColor="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sensor_temp_text"
+        android:id="@+id/sensor_temp_text_live"
+        android:layout_marginTop="48dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/sensor_humid_text_live"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sensor_pressure_text"
+        android:id="@+id/sensor_pressure_text_live"
+        android:layout_marginTop="42dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/sensor_temp_text_live"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/Accelerometer_current_val"
+        android:layout_alignTop="@+id/sensor_acc_text_live"
+        android:layout_toEndOf="@+id/sensor_acc_text_live"
+        android:textColor="#ffffff"
+        android:layout_marginStart="71dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/Gyroscope_current_val"
+        android:layout_alignBottom="@+id/sensor_gyro_text_live"
+        android:layout_alignStart="@+id/Accelerometer_current_val" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/humidity_current_val"
+        android:textColor="#ffffff"
+        android:layout_alignTop="@+id/sensor_humid_text_live"
+        android:layout_alignStart="@+id/Gyroscope_current_val" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:textColor="#ffffff"
+        android:id="@+id/temperature_current_val"
+        android:layout_alignTop="@+id/sensor_temp_text_live"
+        android:layout_toEndOf="@+id/Gyroscope_current_val" />
+
+</RelativeLayout>
