@@ -1,13 +1,5 @@
 package cmpe.alpha.fitwhiz.controllers;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
-import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
-import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
-import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
-import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
-import cmpe.alpha.fitwhiz.controllers.common.SensorService;
-import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -21,7 +13,16 @@ import android.view.View;
 
 import java.util.Properties;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
+import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
+import cmpe.alpha.fitwhiz.controllers.common.SensorService;
+import cmpe.alpha.fitwhiz.controllers.lib.NotificationPriority;
+import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -174,6 +175,11 @@ public class SplashScreen extends Activity {
         //Update History page
         ResultsUpdater resultsUpdater = new ResultsUpdater((FitwhizApplication)this.getApplication());
         resultsUpdater.execute(new PropertiesReader(this.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+        //Test Notification
+        PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(),DashboardActivity.class),0);
+        NotificationHelper helper = new NotificationHelper(getApplicationContext());
+        helper.SendNotification("FitWhiz", "BOOM", pIntent, NotificationPriority.EMERGENCY);
     }
 
     @Override
