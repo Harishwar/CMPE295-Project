@@ -53,5 +53,14 @@ class UserAllergies(models.Model):
     date_modified=models.DateTimeField()
     class Meta:
         db_table="user_allergies"
+        
+class UserVaccination(models.Model):
+    user_id=models.ForeignKey(User,db_column="user_id")
+    vaccination_desc=models.CharField(max_length=1000)
+    date_visited=models.DateTimeField()
+    date_created=models.DateTimeField()
+    date_modified=models.DateTimeField()
+    class Meta:
+        db_table="user_vaccination"
     
             

@@ -9,7 +9,7 @@ from django.core import serializers
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 import doctorsView
-from doctorsView.models import SensorUser, Allergies
+from doctorsView.models import SensorUser, Allergies,UserAllergies,UserVaccination
 
 # Create your views here.
 
@@ -20,7 +20,7 @@ def index(request):
     return render(request,"registerUser.html");
 
 def search(request):
-    return render(request,"search.html");
+    return render(request,"vaccination.html");
 
 def registerUser(request):
     try:
@@ -86,10 +86,36 @@ def getAllergiesList(request):
     print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
     return HttpResponse(serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name')));
 
-#def insertAllergyUser(request):
+def addUserAllergies(request):
+    user_object=User.objects.get(email=request.POST.get('email'))
+    print request.POST.getlist('allergy')
+    for allergy_name in request.POST.getlist('allergy'):
+        user_allergies=UserAllergies();
+        allergy_object=Allergies.objects.get(allergy_name=allergy_name)
+        user_allergies.user_id=user_object
+        user_allergies.allergy_id=allergy_object
+        user_allergies.date_created=datetime.datetime.now()
+        user_allergies.date_modified=datetime.datetime.now()
+        user_allergies.save()
+    #allergy_object=Allergies.objects.filter(allergy_name=list_allergies)
+    #for allergy in list_allergies:
+    return JsonResponse({"status":201,"result":"Allergies User Relation Added"})
+
+
+def addUserVaccination(request):
+    user_object=User.objects.get(email=request.POST.get('email'))
+    user_vaccination=UserVaccination()
+    user_vaccination.vaccination_desc=request.POST.get('vaccination')
+    user_vaccination.user_id=user_object
+    user_vaccination.date_visited=request.POST.get('date_visited')
+    user_vaccination.date_created=datetime.datetime.now()
+    user_vaccination.date_modified=datetime.datetime.now()
+    user_vaccination.save()
+    return JsonResponse({"status":201,"result":"User Vaccination Added"})
+#def updateUser(request):
+        
     
 #edit users
-#pushAllergyPatient
 #Add vaccinations-Patient
 #patient visit history
 #login module

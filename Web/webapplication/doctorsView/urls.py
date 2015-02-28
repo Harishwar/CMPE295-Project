@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'getUserByLastName$',views.getUserByLastName,name='getUserByLastName'),
     url(r'search',views.search,name='search'),
     url(r'listAllergies',views.getAllergiesList,name='getAllergiesList'),
+    url(r'addUserAllergies',views.addUserAllergies,name='addUserAllergies'),
+    url(r'addUserVaccination',views.addUserVaccination,name='createVaccination'),
     
     
 )

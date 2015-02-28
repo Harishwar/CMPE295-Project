@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+<form method="post" action="addUserAllergies">
+{% csrf_token %}
+Email:<input type="text" name="email"></input>
+<input type="checkbox" name="allergy" value="Skin">Skin 1</input>
+<input type="checkbox" name="allergy" value="Food">allergy 2</input>
+<input type="checkbox" name="allergy" value="allergy3">allergy 3</input>
+<input type="submit"/>
+</form>
+</body>
+</html>
