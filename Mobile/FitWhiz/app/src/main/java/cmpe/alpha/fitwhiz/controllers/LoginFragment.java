@@ -2,6 +2,7 @@ package cmpe.alpha.fitwhiz.controllers;
 
 
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,10 +28,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 import cmpe.alpha.fitwhiz.models.UserTableOperations;
 
 /**
@@ -133,12 +136,16 @@ public class LoginFragment extends Fragment
                     //Redirect to dashboard
                     Intent dashboardIntent = new Intent(getActivity(), DashboardActivity.class);
                     progressDialog.hide();
+                    progressDialog.dismiss();
+                    String desc = "Welcome to Fitwhiz. Your Login was successsful. Contact the developers for any assistance";
+                    new NotificationHelper(this.getActivity().getApplicationContext()).SendNotification("test", "test", PendingIntent.getActivity(this.getActivity().getApplicationContext(), 0, new Intent(this.getActivity().getApplicationContext(),DashboardActivity.class),0), NotificationPriority.HIGH,desc);
                     this.startActivity(dashboardIntent);
                     getActivity().finish();
                 }
                 else
                 {
                     progressDialog.hide();
+                    progressDialog.dismiss();
                     startActivity(new Intent(getActivity(), LoginFailureActivity.class));
                 }
             } else{
@@ -146,6 +153,7 @@ public class LoginFragment extends Fragment
                 progressDialog.setMessage("Something is wrong");
                 response.getEntity().getContent().close();
                 progressDialog.hide();
+                progressDialog.dismiss();
                 throw new IOException(statusLine.getReasonPhrase());
             }
         }

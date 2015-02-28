@@ -179,7 +179,7 @@ public class SplashScreen extends Activity {
         //Test Notification
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(),DashboardActivity.class),0);
         NotificationHelper helper = new NotificationHelper(getApplicationContext());
-        helper.SendNotification("FitWhiz", "BOOM", pIntent, NotificationPriority.EMERGENCY);
+        helper.SendNotification("FitWhiz", "BOOM", pIntent, NotificationPriority.EMERGENCY,"");
     }
 
     @Override

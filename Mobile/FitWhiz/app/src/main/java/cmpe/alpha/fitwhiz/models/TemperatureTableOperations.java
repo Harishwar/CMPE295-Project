@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-
-import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
-
 /**
  * Created by rajagopalan on 2/21/15.
  */
@@ -23,23 +19,14 @@ public class TemperatureTableOperations extends DatabaseConnector {
             super(context);
         }
 
-        public SQLiteDatabase writer()
-        {
-            return this.getWritableDatabase();
-        }
-
-        public SQLiteDatabase reader()
-        {
-            return this.getReadableDatabase();
-        }
-
         public void insertValue(double val, String timeStamp)
         {
             try {
-                db = writer();
+                SQLiteDatabase db = getWritableDatabase();
                 contentValues.put("timestamp", timeStamp);
                 contentValues.put("t_val", val);
                 db.insert(TEMPERATURE_TABLE, "id", contentValues);
+                db.close();
             }
             catch (Exception ex)
             {
@@ -52,11 +39,12 @@ public class TemperatureTableOperations extends DatabaseConnector {
             try
             {
                 String sql = "select COUNT("+columnName+"), TOTAL("+columnName+") from '"+TEMPERATURE_TABLE+"' where timestamp>'"+datetimeStart+"' and timestamp<'"+datetimeEnd+"'";
-                db=reader();
+                SQLiteDatabase db=getWritableDatabase();
                 Cursor cursor = db.rawQuery(sql,null);
                 cursor.moveToFirst();
                 double count = cursor.getDouble(0);
                 double sum = cursor.getDouble(1);
+                db.close();
                 return (sum/count);
             }
             catch (Exception ex)

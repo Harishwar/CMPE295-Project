@@ -1,9 +1,10 @@
 package cmpe.alpha.fitwhiz.HelperLibrary;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
@@ -19,14 +20,22 @@ public class NotificationHelper {
         this._context = context;
     }
 
-    public boolean SendNotification(String title, String message, PendingIntent pIntent, NotificationPriority priority)
+    public boolean SendNotification(String title, String message, PendingIntent pIntent, NotificationPriority priority, String description)
     {
         try{
-            Notification notification = new Notification.Builder(_context.getApplicationContext())
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(_context.getApplicationContext())
                     .setContentTitle(title)
-                    .setContentText(message).setSmallIcon(R.drawable.ic_launcher)
-                    .setContentIntent(pIntent).build();
-            NotificationManager notificationManager = (NotificationManager) _context.getSystemService(_context.NOTIFICATION_SERVICE);
+                    .setContentText(message).setSmallIcon(R.drawable.notification_icon)
+                    .setContentIntent(pIntent);
+            if(!description.isEmpty())
+            {
+                NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+                style.bigText(description);
+                notificationBuilder.setStyle(style);
+            }
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(_context);
+            Notification notification = notificationBuilder.build();
+
             switch (priority)
             {
                 case EMERGENCY:notification.flags |= Notification.PRIORITY_MAX;break;
@@ -36,7 +45,7 @@ public class NotificationHelper {
                     case UNKNOWN:
                     default:notification.flags |= Notification.PRIORITY_DEFAULT;break;
             }
-            notificationManager.notify(0, notification);
+            notificationManager.notify(1, notification);
             return true;
         }
         catch (Exception ex)
