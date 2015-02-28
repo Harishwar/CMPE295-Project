@@ -1,4 +1,4 @@
-package cmpe.alpha.fitwhiz.HelperLibrary;
+package cmpe.alpha.fitwhiz.lib;
 
 import android.app.Application;
 
@@ -26,6 +26,15 @@ public class FitwhizApplication extends Application{
     private String Address = "";
     private String Height = "";
 
+    public String getSensorId() {
+        return SensorId;
+    }
+
+    public void setSensorId(String sensorId) {
+        SensorId = sensorId;
+    }
+
+    protected String SensorId = "";
     public String getHeight() {
         return Height;
     }

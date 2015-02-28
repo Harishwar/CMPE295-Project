@@ -33,6 +33,7 @@ public class NotificationHelper {
                 case HIGH:notification.flags |= Notification.PRIORITY_HIGH;break;
                 case LOW:notification.flags |= Notification.PRIORITY_LOW;break;
                 case MEDIUM:
+                    case UNKNOWN:
                     default:notification.flags |= Notification.PRIORITY_DEFAULT;break;
             }
             notificationManager.notify(0, notification);

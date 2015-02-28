@@ -17,8 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 
-import cmpe.alpha.fitwhiz.controllers.ProfileFragment;
-import cmpe.alpha.fitwhiz.controllers.SensorHistoryFragment;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 
 /**
  * Created by rajagopalan on 2/22/15.
@@ -32,7 +31,12 @@ public class ResultsUpdater extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... params) {
-            String urlString = params[0]+"/v1.0/user/results/?SensorId=21B"; // URL to call
+            String sensorId = fitwhizApplication.getSensorId();
+            while(sensorId.equalsIgnoreCase(""))
+            {
+                sensorId = fitwhizApplication.getSensorId();
+            }
+            String urlString = params[0]+"/v1.0/user/results/?SensorId="+sensorId; // URL to call
             String result = "";
 
             // HTTP Get

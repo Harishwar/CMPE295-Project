@@ -13,7 +13,7 @@ import android.view.View;
 
 import java.util.Properties;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;

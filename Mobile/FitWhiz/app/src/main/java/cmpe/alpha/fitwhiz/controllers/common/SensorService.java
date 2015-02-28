@@ -8,11 +8,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
-import android.util.Log;
 import android.widget.Toast;
 
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
-import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;

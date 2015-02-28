@@ -1,6 +1,5 @@
 package cmpe.alpha.fitwhiz.HelperLibrary;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -15,13 +14,10 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.util.Objects;
 
-import cmpe.alpha.fitwhiz.controllers.ProfileFragment;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 
 /**
  * Created by rajagopalan on 2/21/15.
@@ -36,7 +32,12 @@ public class ProfileUpdater extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String urlString = params[0]+"/v1.0/user/profile/?SensorId=21B"; // URL to call
+        String sensorId = app.getSensorId();
+        while(sensorId.equalsIgnoreCase(""))
+        {
+            sensorId = app.getSensorId();
+        }
+        String urlString = params[0]+"/v1.0/user/profile/?SensorId="+sensorId; // URL to call
         String result = "";
 
         // HTTP Get
