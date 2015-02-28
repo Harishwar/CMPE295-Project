@@ -21,7 +21,7 @@ import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
 import cmpe.alpha.fitwhiz.controllers.common.SensorService;
-import cmpe.alpha.fitwhiz.controllers.lib.NotificationPriority;
+import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
 
 /**
