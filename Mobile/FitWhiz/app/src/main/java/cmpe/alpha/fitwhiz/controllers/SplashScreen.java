@@ -13,6 +13,11 @@ import android.view.View;
 
 import java.util.Properties;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.CustomAlert;
+import cmpe.alpha.fitwhiz.HelperLibrary.EnableServices;
+import cmpe.alpha.fitwhiz.HelperLibrary.SendEmail;
+import cmpe.alpha.fitwhiz.HelperLibrary.SendSMS;
+import cmpe.alpha.fitwhiz.lib.AlertType;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
@@ -180,6 +185,25 @@ public class SplashScreen extends Activity {
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(),DashboardActivity.class),0);
         NotificationHelper helper = new NotificationHelper(getApplicationContext());
         helper.SendNotification("FitWhiz", "BOOM", pIntent, NotificationPriority.EMERGENCY,"");
+
+        //Test SMS Alert
+        /*SendSMS sendSMS = new SendSMS(this.getApplicationContext());
+        sendSMS.sendSMS("5104176178","first sms alert");
+
+        //Test Email Alert
+        String a[] = {"raj_vrg@hotmail.com"};
+        SendEmail sendEmail = new SendEmail(this.getApplicationContext());
+        sendEmail.sendMail(a,"Fitwhizz alert","Alert...");
+
+        //Test internet and bluetooth connection
+        EnableServices enableServices = new EnableServices(this.getApplicationContext());
+        enableServices.checkBluetooth();
+        enableServices.checkInternet();
+        //enableServices.checkMobileData();
+
+        //Test custom Alert
+         CustomAlert customAlert = new CustomAlert();
+         customAlert.createAlert(this,"Alert","Success","+ve","-ve", AlertType.MSG);*/
     }
 
     @Override
