@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 import doctorsView
 from doctorsView.models import SensorUser, Allergies,UserAllergies,UserVaccination
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -75,13 +76,14 @@ def viewUsers(request):
     return HttpResponse(serializers.serialize("json", User.objects.all(),fields=('first_name','last_name')));
 
 #Fetches users by lastname
+@csrf_exempt
 def getUserByLastName(request):
-        last_name=request.GET.get('LastName')
-        user_result=User.objects.filter(last_name=last_name)
-        print user_result
-        return HttpResponse(user_result.values())
-    
-#returns the list of allergies     
+    last_name=request.GET.get('searchTerm')
+    user_result=User.objects.filter(last_name=last_name)
+    print user_result
+    return HttpResponse(user_result.values())
+
+#returns the list of allergies
 def getAllergiesList(request):
     print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
     return HttpResponse(serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name')));
@@ -113,8 +115,8 @@ def addUserVaccination(request):
     user_vaccination.save()
     return JsonResponse({"status":201,"result":"User Vaccination Added"})
 #def updateUser(request):
-        
-    
+
+
 #edit users
 #Add vaccinations-Patient
 #patient visit history

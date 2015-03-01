@@ -34,9 +34,9 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#">Home</a>
                             </li>
-                            <li><a href="/doctorsView" class="active">Add Patient</a>
+                            <li><a href="/doctorsView">Add Patient</a>
                             </li>
-                            <li><a href="#">View Patients</a>
+                            <li><a href="#" class="active">View Patients</a>
                             </li>
                         </ul>
                         <div class="col-sm-3 col-md-3 pull-right">
@@ -62,26 +62,10 @@
     <!-- Registration Form -->
     <br>
     <div class="container">
-        <h1>Add New Patient</h1>
-        <form method="POST" action="addSensor" class="form-horizontal" role="form">
-            <legend></legend>
-            <div class="container">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="FirstName" class="col-xs-3 col-sm-3">Sensor ID</label>
-                    <input type="text" class="col-xs-8 col-sm-6" name="SensorID" id="sensor_id" class="form-control" value="" title="Sensor ID" placeholder="Sensor ID" required>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-xs-3 col-sm-3">User Email</label>
-                    <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="" required="required" title="Email" placeholder="Email">
-                </div>
-                <div class="text-center">
-                    <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
-                    <input type="submit" value="Add Sensor" class="btn btn-lg btn-dark">
-                </div>
-            </div>
-            <br>
-        </form>
+        <h1>View Patient</h1>
+        {% for user in usersData %}
+            <li>{{ user.first_name }}</li>
+        {% endfor %}
     </div>
     <!-- End Registration Form -->
     <br>

@@ -27,12 +27,12 @@
 
         };
         /* Searchbar Expander */
-        /* $('.navbar .btn').on('mouseover', function(e) {
+        $('.nav .btn').on('mouseover', function(e) {
             e.preventDefault();
             var $this = $(this);
             var $collapse = $this.closest('.collapse-group').find('.collapse');
             $collapse.collapse('show');
-        }); */
+        });
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space

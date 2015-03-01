@@ -101,6 +101,16 @@ header .container {
         visibility: visible !important;
     }
 }
+/* Show header text for mobile devices */
+
+.navbar-header {
+    display: none;
+}
+@media(max-width:768px) {
+    .navbar-header {
+        display: block;
+    }
+}
 /* Custom Button Styles */
 
 .btn-dark {

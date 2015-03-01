@@ -12,6 +12,4 @@ urlpatterns = patterns('',
     url(r'listAllergies',views.getAllergiesList,name='getAllergiesList'),
     url(r'addUserAllergies',views.addUserAllergies,name='addUserAllergies'),
     url(r'addUserVaccination',views.addUserVaccination,name='createVaccination'),
-    
-    
 )
