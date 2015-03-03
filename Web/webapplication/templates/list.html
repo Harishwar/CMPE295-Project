@@ -9,5 +9,19 @@ Email:<input type="text" name="email"></input>
 <input type="checkbox" name="allergy" value="allergy3">allergy 3</input>
 <input type="submit"/>
 </form>
+<form method="post" action="deleteUser">
+{% csrf_token %}
+Email:<input type="text" name="email"></input>
+<input type="submit" name="delete"/>
+</form>
+
+<form method="post" action="deleteUserAllergy">
+{% csrf_token %}
+Allergy:<input type="text" name="allergy_name"></input>
+Email:<input type="text" name="email"></input>
+<input type="submit" name="update" value="update Allergy"/>
+</form>
+
+
 </body>
 </html>
