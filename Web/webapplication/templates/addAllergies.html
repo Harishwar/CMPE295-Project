@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Allergies</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/addallergies.css'%}">
+</head>
+
+<body>
+    <header id="header" class="">
+        <div class="container">
+            <div id="banner">
+                <h1>FitWhiz<br><small class="text-center">Wearable Sensors for Improved Healthcare and Consumer Experiences</small></h1>
+            </div>
+            <nav id="navbar" class="navbar-default darkBackground" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a id="company" class="navbar-brand" rel="home" href="#">FitWhiz</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Home</a>
+                            </li>
+                            <li><a href="/doctorsView">Add Patient</a>
+                            </li>
+                            <li><a href="/doctorsView/viewUsers" class="active">View Patients</a>
+                            </li>
+                        </ul>
+                        <div class="col-sm-3 col-md-3 pull-right">
+                            <div class="nav navbar-nav navbar-right">
+                                <form class="navbar-form" role="search" method="post" action="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Last Name" name="search">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Container -->
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+    <!-- Allergies -->
+    <br>
+    <div class="container">
+        <h1>Add Allergies</h1>
+        <hr>
+        <div class="allergyList">
+            <!-- List of Allergies -->
+            <div class="allergiesList" id="allergiesList" tabindex="1">
+                <ul class="allergiesList_group" id="allergiesList_group">
+                    {% for allergy in allergies %}
+                    <li class="allergiesList_option">{{ allergy.allergy_name }}</li>
+                    {% endfor %}
+                    <!--<li class="allergiesList_option">Allergy 1</li>
+                    <li class="allergiesList_option">Allergy 2</li> -->
+                </ul>
+                <br>
+                <div class="text-center allergiesList_actionbar">
+                    <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
+                    <button class="allergiesList_button btn btn-lg btn-dark">Submit</button>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- End Allergies -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; 2015 FitWhiz.
+            </p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Custom Initialization JavaScript -->
+    <script src="{%static 'js/init.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Selectonic JavaScript -->
+    <script src="{%static 'js/selectonic.min.js'%}"></script>
+    <script type="text/javascript">
+    (function($) {
+        'use strict';
+
+        var $el = $('#allergiesList'),
+            actions = $el.find('.allergiesList_actionbar'),
+            list = $el.find('.allergiesList_group');
+
+        // Attach selectonic
+        list
+            .selectonic({
+                multi: true,
+                mouseMode: "toggle",
+                keyboard: false,
+                focusBlur: false,
+                selectionBlur: false,
+
+
+                // Before any changes
+                before: function(e) {
+                    if (e.target === actions[0] || $(e.target).is('button.allergiesList_button')) {
+                        this.selectonic('cancel');
+                    }
+                },
+
+                // When one or more items selectes
+                select: function() {
+                    toggleActions(false);
+                    this.selectonic('option', 'keyboard', true);
+                },
+
+                // When all items clears selection
+                unselectAll: function() {
+                    toggleActions(true);
+                }
+            });
+
+        $el
+            .on('focusin', onFocusin)
+            .on('focusout', onFocusout);
+
+        actions.on('click', 'button', function() {
+            // Get selected items from list
+            doAction(list.selectonic('getSelected'));
+            $.ajax({
+                type: "POST",
+                url: "/doctorsView/addUserAllergies",
+                data: list.selectonic('getSelected').text()
+            });
+            console.log(list.selectonic('getSelected').text());
+        });
+
+        function onFocusin() {
+            list.selectonic('option', 'keyboard', true);
+            $el.addClass('focused');
+        }
+
+        function onFocusout() {
+            list.selectonic('option', 'keyboard', false);
+            $el.removeClass('focused');
+        }
+
+        function toggleActions(state) {
+            if (state === void 0) {
+                actions.toggleClass('disabled');
+            } else {
+                actions.toggleClass('disabled', state);
+            }
+        }
+
+        function doAction(items) {
+            items.each(function(index, el) {
+                var $el = $(el);
+                $el.addClass('animate');
+                setTimeout(function() {
+                    $el.removeClass('animate');
+                }, 300);
+            });
+        }
+
+        toggleActions(true);
+    })(jQuery);
+    // Function lo load list of allergies
+    // function getAllergiesList() {
+    //     var options = new Array("Allergy 1", "Allergy 2", "Allergy 3", "Allergy 4");
+    //     for (var i = 0; i < options.length; i++) {
+    //         $("#allergiesList_group").append('<li class="allergiesList_option">' + options[i] + '</li>');
+    //     }
+    // }
+    </script>
+</body>
+
+</html>

@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url(r'addUserAllergies',views.addUserAllergies,name='addUserAllergies'),
     url(r'addUserVaccination',views.addUserVaccination,name='createVaccination'),
     url(r'deleteUser',views.deleteUser,name='deleteUser'),
-    url(r'deleteUserAllergy',views.deleteUserAllergy,name='deleteUserAllergy'),
+    #url(r'deleteUserAllergy',views.deleteUserAllergy,name='deleteUserAllergy'),
 )

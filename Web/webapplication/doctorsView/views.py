@@ -73,7 +73,7 @@ def addSensor(request):
 def viewUsers(request):
     context={'users':User.objects.filter()}
     return render(request,'viewUsers.html',context)
-    
+
 #Fetches users by lastname
 @csrf_exempt
 def getUserByLastName(request):
@@ -81,11 +81,11 @@ def getUserByLastName(request):
     user_result=User.objects.filter(last_name=last_name)
     context={'search_term':user_result}
     return render(request,'viewUser.html',context)
-    
-#returns the list of allergies     
+
+#returns the list of allergies
 def getAllergiesList(request):
     #print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
-    context={'allergies',Allergies.objects.values('allergy_name')}
+    context={'allergies':Allergies.objects.values('allergy_name')}
     return render(request,'addAllergies.html',context)
 
 def addUserAllergies(request):
@@ -115,20 +115,20 @@ def addUserVaccination(request):
     user_vaccination.save()
     return JsonResponse({"status":201,"result":"User Vaccination Added"})
 #def updateUser(request):
-        
+
 def deleteUser(request):
     user_id=request.POST.get('email')
     User.objects.filter(email=user_id).delete();
     print user_id
     return JsonResponse({'status':204,"result":"User Deleted Successfully"})
-    
+
 '''def deleteUserAllergy(request):
     user_id=request.POST.get('email')
     allergy_name=request.POST.get('allergy_name')
     usr_id=User.objects.get(email=user_id).id
     allergy_id=Allergies.objects.get(allergy_name=allergy_name).id
     UserAllergies.objects.get(id=usr_id,allergy_id=allergy_id).delete();
-    return JsonResponse({'status':204,"result":"User Allergy Deleted Successfully"}) '''      
+    return JsonResponse({'status':204,"result":"User Allergy Deleted Successfully"}) '''
 #edit users
 #patient visit history
 #login module
