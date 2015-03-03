@@ -1,6 +1,7 @@
 package cmpe.alpha.fitwhiz.controllers;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import cmpe.alpha.fitwhiz.R;
  * A simple {@link Fragment} subclass.
  */
 public class DoctorRecommendationFragment extends Fragment {
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
     private String medications="",exercises="";
 
@@ -46,5 +49,12 @@ public class DoctorRecommendationFragment extends Fragment {
         return doctorFragment;
     }
 
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        ((DashboardActivity) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
+    }
 
 }

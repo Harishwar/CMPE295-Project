@@ -7,10 +7,9 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.R;

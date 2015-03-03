@@ -21,7 +21,11 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import cmpe.alpha.fitwhiz.HelperLibrary.CustomAlert;
+import cmpe.alpha.fitwhiz.HelperLibrary.EnableServices;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.lib.AlertType;
 
 public class DashboardActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -54,27 +58,6 @@ public class DashboardActivity extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
-
-    /*private void enableBluetooth(Context context)
-    {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Please provide permission to enable Bluetooth")
-                   .setCancelable(true)
-                   .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // if this button is clicked, enable bluetooth
-                           EnableServices enableServices = new EnableServices();
-                           enableServices.enableBluetooth();
-                       }
-                   })
-                   .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // if this button is clicked, just close
-                           // the dialog box and do nothing
-                           dialog.cancel();
-                       }
-                   });
-    }*/
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {

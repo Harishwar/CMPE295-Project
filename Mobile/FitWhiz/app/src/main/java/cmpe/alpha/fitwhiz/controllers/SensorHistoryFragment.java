@@ -1,6 +1,7 @@
 package cmpe.alpha.fitwhiz.controllers;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,8 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.FitwhizApplication;
-import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
@@ -18,6 +18,8 @@ import cmpe.alpha.fitwhiz.R;
  * A simple {@link Fragment} subclass.
  */
 public class SensorHistoryFragment extends Fragment {
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
     private double magnetometer=0,gyroscope=0,humidity=0,temperature=0,pressure=0,accelerometer=0;
 
@@ -90,5 +92,12 @@ public class SensorHistoryFragment extends Fragment {
         return sensorHistoryFragment;
     }
 
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        ((DashboardActivity) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
+    }
 
 }

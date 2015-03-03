@@ -7,14 +7,19 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <application
+        android:name=".lib.FitwhizApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".HelperLibrary.FitwhizApplication">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".controllers.LoginActivity"
             android:label="@string/title_activity_login" >
@@ -34,10 +39,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver android:name=".controllers.common.ScheduledDataUploadService" >
-            </receiver>
-        <service android:name=".controllers.common.SensorService"
-            android:enabled="true"/>
+        </receiver>
+
+        <service
+            android:name=".controllers.common.SensorService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".controllers.LoginFailureActivity"
+            android:label="@string/title_activity_login_failure" >
+        </activity>
     </application>
 
 </manifest>

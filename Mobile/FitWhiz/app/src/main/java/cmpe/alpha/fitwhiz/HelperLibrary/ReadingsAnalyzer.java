@@ -1,6 +1,6 @@
 package cmpe.alpha.fitwhiz.HelperLibrary;
 
-import cmpe.alpha.fitwhiz.controllers.SplashScreen;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 
 /**
  * Created by rajagopalan on 2/22/15.

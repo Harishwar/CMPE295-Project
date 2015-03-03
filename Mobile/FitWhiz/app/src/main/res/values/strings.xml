@@ -7,6 +7,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="Splash_text">FitWhizz</string>
+    <string name="title_activity_login_failure">LoginFailureActivity</string>
 
 
 </resources>

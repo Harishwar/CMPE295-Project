@@ -12,7 +12,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Web.Fitwhiz$Web_Fitwhiz.coverage" NAME="Web.Fitwhiz Coverage Results" MODIFIED="1424665894098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Web.Fitwhiz$Web_Fitwhiz.coverage" NAME="Web.Fitwhiz Coverage Results" MODIFIED="1425109416032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -26,19 +26,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Web.Fitwhiz.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Web.Fitwhiz.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5148771" vertical-offset="157" max-vertical-offset="930">
-              <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="1275">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1424666252000" expanded="true" signature="627:805" placeholder="SELECT first..user..." />
-                <marker date="1424666252000" expanded="true" signature="627:804" placeholder="SELECT first..user..." />
-                <marker date="1424666252000" expanded="true" signature="737:804" placeholder="select user_..sensor_user..." />
-                <marker date="1424666252000" expanded="true" signature="1339:1430" placeholder="SELECT xValu..SensorResults..." />
-                <marker date="1424666252000" expanded="true" signature="1709:1808" placeholder="SELECT xValu..SensorResults..." />
+                <marker date="1425107050000" expanded="true" signature="709:776" placeholder="select user_..sensor_user..." />
+                <marker date="1425107050000" expanded="true" signature="710:776" placeholder="SELECT * fro..user..." />
+                <marker date="1425107050000" expanded="true" signature="710:776" placeholder="select user_..sensor_user..." />
+                <marker date="1425107050000" expanded="true" signature="1384:1561" placeholder="SELECT first..user..." />
+                <marker date="1425107050000" expanded="true" signature="1384:1562" placeholder="SELECT first..user..." />
+                <marker date="1425107050000" expanded="true" signature="1494:1561" placeholder="select user_..sensor_user..." />
+                <marker date="1425107050000" expanded="true" signature="2096:2187" placeholder="SELECT xValu..SensorResults..." />
+                <marker date="1425107050000" expanded="true" signature="2466:2565" placeholder="SELECT xValu..SensorResults..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Library/Python/2.7/site-packages/flask/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="26950" max-vertical-offset="27345">
+              <caret line="1835" column="0" selection-start-line="1835" selection-start-column="0" selection-end-line="1835" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serving.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file:///Library/Python/2.7/site-packages/werkzeug/serving.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.25289574" vertical-offset="3334" max-vertical-offset="10080">
+              <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,10 +81,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
-    <option name="y" value="-671" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="-1704" />
+    <option name="y" value="-168" />
+    <option name="width" value="1280" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -115,7 +138,7 @@
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -208,9 +231,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -232,6 +252,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -309,19 +332,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="-671" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1704" y="-168" width="1280" height="773" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39980638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3703125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39914772" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22458857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22443181" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -350,38 +373,50 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/Web.Fitwhiz.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1425107050000" expanded="true" signature="709:776" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="710:776" placeholder="SELECT * fro..user..." />
+            <marker date="1425107050000" expanded="true" signature="710:776" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="1384:1561" placeholder="SELECT first..user..." />
+            <marker date="1425107050000" expanded="true" signature="1384:1562" placeholder="SELECT first..user..." />
+            <marker date="1425107050000" expanded="true" signature="1494:1561" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="2096:2187" placeholder="SELECT xValu..SensorResults..." />
+            <marker date="1425107050000" expanded="true" signature="2466:2565" placeholder="SELECT xValu..SensorResults..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="810">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1424666252000" expanded="true" signature="627:805" placeholder="SELECT first..user..." />
-            <marker date="1424666252000" expanded="true" signature="627:804" placeholder="SELECT first..user..." />
-            <marker date="1424666252000" expanded="true" signature="737:804" placeholder="select user_..sensor_user..." />
-            <marker date="1424666252000" expanded="true" signature="1339:1430" placeholder="SELECT xValu..SensorResults..." />
-            <marker date="1424666252000" expanded="true" signature="1709:1808" placeholder="SELECT xValu..SensorResults..." />
+            <marker date="1425107050000" expanded="true" signature="709:776" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="710:776" placeholder="SELECT * fro..user..." />
+            <marker date="1425107050000" expanded="true" signature="710:776" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="1384:1561" placeholder="SELECT first..user..." />
+            <marker date="1425107050000" expanded="true" signature="1384:1562" placeholder="SELECT first..user..." />
+            <marker date="1425107050000" expanded="true" signature="1494:1561" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="2096:2187" placeholder="SELECT xValu..SensorResults..." />
+            <marker date="1425107050000" expanded="true" signature="2466:2565" placeholder="SELECT xValu..SensorResults..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="26753" max-vertical-offset="27345">
-          <caret line="1835" column="0" selection-start-line="1835" selection-start-column="0" selection-end-line="1835" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/werkzeug/serving.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2743" max-vertical-offset="10080">
-          <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -403,16 +438,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5148771" vertical-offset="157" max-vertical-offset="930">
-          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="1275">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1424666252000" expanded="true" signature="627:805" placeholder="SELECT first..user..." />
-            <marker date="1424666252000" expanded="true" signature="627:804" placeholder="SELECT first..user..." />
-            <marker date="1424666252000" expanded="true" signature="737:804" placeholder="select user_..sensor_user..." />
-            <marker date="1424666252000" expanded="true" signature="1339:1430" placeholder="SELECT xValu..SensorResults..." />
-            <marker date="1424666252000" expanded="true" signature="1709:1808" placeholder="SELECT xValu..SensorResults..." />
+            <marker date="1425107050000" expanded="true" signature="709:776" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="710:776" placeholder="SELECT * fro..user..." />
+            <marker date="1425107050000" expanded="true" signature="710:776" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="1384:1561" placeholder="SELECT first..user..." />
+            <marker date="1425107050000" expanded="true" signature="1384:1562" placeholder="SELECT first..user..." />
+            <marker date="1425107050000" expanded="true" signature="1494:1561" placeholder="select user_..sensor_user..." />
+            <marker date="1425107050000" expanded="true" signature="2096:2187" placeholder="SELECT xValu..SensorResults..." />
+            <marker date="1425107050000" expanded="true" signature="2466:2565" placeholder="SELECT xValu..SensorResults..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="26950" max-vertical-offset="27345">
+          <caret line="1835" column="0" selection-start-line="1835" selection-start-column="0" selection-end-line="1835" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25289574" vertical-offset="3334" max-vertical-offset="10080">
+          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
