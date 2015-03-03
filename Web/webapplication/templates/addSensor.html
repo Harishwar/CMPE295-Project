@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Sensor</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+</head>
+
+<body>
+    <header id="header" class="">
+        <div class="container">
+            <div id="banner">
+                <h1>FitWhiz<br><small class="text-center">Wearable Sensors for Improved Healthcare and Consumer Experiences</small></h1>
+            </div>
+            <nav id="navbar" class="navbar-default darkBackground" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a id="company" class="navbar-brand" rel="home" href="#">FitWhiz</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Home</a>
+                            </li>
+                            <li><a href="/doctorsView" class="active">Add Patient</a>
+                            </li>
+                            <li><a href="/doctorsView/viewUsers">View Patients</a>
+                            </li>
+                        </ul>
+                        <div class="col-sm-3 col-md-3 pull-right">
+                            <div class="nav navbar-nav navbar-right">
+                                <form class="navbar-form" role="search" method="post" action="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Last Name" name="search">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Container -->
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+    <!-- Registration Form -->
+    <br>
+    <div class="container">
+        <h1>Add New Patient</h1>
+        <form method="POST" action="addSensor" class="form-horizontal" role="form">
+            <legend></legend>
+            <div class="container">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="FirstName" class="col-xs-3 col-sm-3">Sensor ID</label>
+                    <input type="text" class="col-xs-8 col-sm-6" name="SensorID" id="sensor_id" class="form-control" value="" title="Sensor ID" placeholder="Sensor ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-xs-3 col-sm-3">User Email</label>
+                    <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="" required="required" title="Email" placeholder="Email">
+                </div>
+                <div class="text-center">
+                    <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
+                    <input type="submit" value="Add Sensor" class="btn btn-lg btn-dark">
+                </div>
+            </div>
+            <br>
+        </form>
+    </div>
+    <!-- End Registration Form -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; 2015 FitWhiz.
+            </p>
+
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Custom Initialization JavaScript -->
+    <script src="{%static 'js/init.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+</body>
+
+</html>

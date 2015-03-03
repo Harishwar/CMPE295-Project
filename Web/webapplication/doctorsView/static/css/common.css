@@ -101,10 +101,20 @@ header .container {
         visibility: visible !important;
     }
 }
+/* Show header text for mobile devices */
+
+.navbar-header {
+    display: none;
+}
+@media(max-width:768px) {
+    .navbar-header {
+        display: block;
+    }
+}
 /* Custom Button Styles */
 
 .btn-dark {
-    border-radius: 0;
+    border-radius: 3px;
     border: 0;
     color: #fff;
     font-size: 1.5em;

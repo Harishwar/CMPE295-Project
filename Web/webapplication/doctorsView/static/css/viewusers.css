@@ -1,0 +1,40 @@
+/* Patients List Styles */
+
+.patientsList li {
+    list-style: none;
+    background: rgba(0, 150, 100, 1);
+    color: #fff;
+    height: 0;
+    line-height: 2em;
+    margin: 0;
+    padding: 0 0.5em;
+    overflow: hidden;
+    width: auto;
+}
+.patientsList li.show {
+    height: auto;
+    margin: 2px 0;
+}
+.patientsList li .glyphicon {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.patientsList li:hover {
+    background: rgba(0, 80, 50, 1);
+}
+.patientsList .slide-fade li {
+    transition: all 0.4s ease-out;
+    opacity: 0;
+}
+.patientsList .slide-fade li.show {
+    opacity: 1;
+}
+/* Modal Styles */
+
+#viewUserModal #profileName {
+    color: rgba(0, 80, 50, 1);
+}
+#viewUserModal button {
+    border: 0;
+    background-color: #FFF;
+}

@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+<form method="post" action="addUserVaccination">
+{% csrf_token %}
+Email:<input type="text" name="email"></input>
+<textarea name="vaccination"></textarea>
+<input type="date"  name="date_visited" id="date_visited" title="Date Visited"  placeholder="mm/dd/yyyy">
+
+<input type="submit"/>
+</form>
+</body>
+</html>
