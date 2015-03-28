@@ -1,38 +1,32 @@
 /* Initialize */
 (function($) {
     $(function() {
-
-        var width = $(window).width();
-        if (width > 767) {
-            /* Header Animation on Scroll */
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 108) {
-                    $("#navbar").addClass('navbar-fixed-top');
-                    $("#company").removeClass('hidden');
-                } else {
-                    $("#navbar").removeClass('navbar-fixed-top');
-                    $("#company").addClass('hidden');
-                }
-            });
-            /* Navbar Dropdown Animation */
-            $('.dropdown').hover(function() {
-                $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
-            }, function() {
-                $(this).find('.dropdown-menu').first().stop(true, true).slideUp()
-            });
-        } else if (width <= 767) {
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 110) {} else {}
-            });
-
-        };
-        /* Searchbar Expander */
-        $('.nav .btn').on('mouseover', function(e) {
-            e.preventDefault();
-            var $this = $(this);
-            var $collapse = $this.closest('.collapse-group').find('.collapse');
-            $collapse.collapse('show');
+        /* Slideout Navbar */
+        var slideout = new Slideout({
+            'panel': document.getElementById('content'),
+            'menu': document.getElementById('menu'),
+            'padding': 192,
+            'tolerance': 70
         });
-
+        document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
+            slideout.toggle();
+            if (slideout.isOpen()) {
+                $('#navbar-toggle').html('<i class="glyphicon glyphicon-remove"></i>');
+            } else {
+                $('#navbar-toggle').html('<i class="glyphicon glyphicon-menu-hamburger"></i>');
+            }
+        });
+        document.querySelector('.menu').addEventListener('click', function(eve) {
+            if (eve.target.nodeName === 'A') {
+                slideout.close();
+            }
+        });
+        $(window).on("touchend", function() {
+            if (slideout.isOpen()) {
+                $('#navbar-toggle').html('<i class="glyphicon glyphicon-remove"></i>');
+            } else {
+                $('#navbar-toggle').html('<i class="glyphicon glyphicon-menu-hamburger"></i>');
+            }
+        });
     }); // end of document ready
 })(jQuery); // end of jQuery name space

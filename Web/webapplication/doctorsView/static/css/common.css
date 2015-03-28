@@ -1,138 +1,218 @@
-html, body {
+html,
+body {
     height: 100%;
+    padding-bottom: 30px;
     background-color: #FEFEFE;
 }
+
 .lightBackground {
     background-color: rgba(0, 150, 100, 1);
 }
+
 .darkBackground {
     background-color: rgba(0, 80, 50, 1);
 }
+
+.lightGreen {
+    color: rgba(0, 150, 100, 1);
+}
+
+.darkGreen {
+    color: rgba(0, 80, 50, 1);
+}
 /* Header */
 
-header {
-    color: #FFF;
-    z-index: 1001;
-    background-color: rgba(0, 150, 100, 1);
+.panel {
+    background-color: #fff;
 }
-header.light {
-    background-color: #00548e;
-}
-header.dark {
-    background-color: #004372;
-}
-header h1 small {
-    color: #ddd;
-    font-size: .5em;
-}
-header .container {
-    border: 0;
-}
-#navbar {
-    border: 0;
-    border-radius: 0;
-    padding: 0;
-    background-color: rgba(0, 80, 50, 1);
-}
-#navbar .container {
-    background-color: #;
-}
-/*#company {
-    display: none !important;
-    visibility: hidden !important;
-}*/
 
-#company:hover {
-    color: #EEE;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+.menu {
+    background-color: #1D1F20;
+    background-image: linear-gradient(145deg, #1D1F20, #404348);
 }
-#navbar .nav > li > a {
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    color: #FFF;
-}
-#navbar .nav > li > a:hover {
-    color: #EEE;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-#navbar .nav > li > a:active, #navbar .nav > li > a:focus, #navbar .nav .active {
-    color: rgba(51, 54, 59, 1);
-    background-color: #FEFEFE;
+
+a {
+    color: #4B5;
     text-decoration: none;
 }
-#navbar .dropdown-menu > li {
-    color: #000;
-    background-color: #FFF;
+
+.menu a {
+    color: #fff;
 }
-#navbar .dropdown-menu > li > a:hover {
-    color: #FFF;
-    background-color: rgba(0, 80, 50, 1);
+
+.menu a:hover {
+    text-decoration: underline;
 }
-#navbar .navbar-header > a {
-    color: white;
+
+.menu-header {
+    border-bottom: 0px solid #2a2d2f;
+    padding: 20px 0 20px 20px;
+    background-color: #1D1F20;
 }
-.dropdown-menu li a:hover {
-    background-color: rgba(0, 80, 50, 1);
-    color: #FFF;
+
+.menu-header-title {
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0;
+    font-size: 1.5em;
+    color: rgba(0, 150, 100, 1);
 }
-#navbar .dropdown-menu .active {
-    color: #FFF;
-    background-color: rgba(0, 80, 50, 1);
+
+.menu-section {
+    margin: 25px 0;
+}
+
+.menu-section-title {
+    text-transform: uppercase;
+    color: #85888d;
+    font-weight: 200;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    margin: 0;
+}
+
+.menu-section-list {
+    padding: 0;
+    margin: 10px 10px;
+    list-style: none;
+}
+
+.menu-section-list a {
+    display: block;
+    padding: 10px 20px;
+}
+
+.menu-section-list a:hover,
+.menu-section-list a.active {
+    background-color: rgba(255, 255, 255, 0.1);
     text-decoration: none;
 }
-@media(max-width:768px) {
-    body {
-        padding-top: 50px;
-    }
-    #banner {
-        display: none;
-    }
-    #navbar {
-        position: fixed;
+
+.panel {
+    padding-top: 5px;
+    min-height: 100%;
+}
+
+.panel-header {
+    margin: 85px auto 55px;
+}
+
+@media (max-width: 768px) {
+    #header {
+        height: 50px;
         right: 0;
         left: 0;
         top: 0;
-        border-width: 0 0 1px;
         z-index: 1030;
+        position: fixed;
+        background-color: rgba(0, 80, 50, 1);
     }
-    #company {
-        color: #FFF;
-        font-weight: bold;
-        display: block !important;
-        visibility: visible !important;
+    #header #navbar-toggle,
+    #searchBar {
+        padding-top: 8px;
     }
 }
-/* Show header text for mobile devices */
+/* Searchbar */
 
-.navbar-header {
+#searchBar {
+    right: 10px;
+    position: fixed;
+}
+
+input[type=text]:focus,
+textarea:focus {
+    box-shadow: 0 0 3px rgba(0, 150, 100, 1);
+}
+
+.input-group .form-control {
+    width: auto;
+    float: right;
+}
+/* Slideout.js */
+
+.slideout-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    width: 192px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: none;
 }
-@media(max-width:768px) {
-    .navbar-header {
-        display: block;
-    }
+
+.slideout-panel {
+    position: relative;
+    z-index: 1;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+    overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+    display: block;
+}
+/* NavBar Toggle Button */
+
+#navbar-toggle {
+    border-radius: 0;
+    border: 0;
+    color: rgba(0, 150, 100, 1);
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.0);
+    position: fixed;
+    z-index: 1000;
+    padding-left: 10px;
 }
 /* Custom Button Styles */
 
 .btn-dark {
-    border-radius: 3px;
-    border: 0;
-    color: #fff;
-    font-size: 1.5em;
-    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border: 5;
+    font-size: 1.2em;
+    color: rgba(0, 150, 100, 1);
+    border-color: rgba(0, 150, 100, 1);
+    background-color: rgba(0, 150, 100, 0);
 }
-.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active {
     color: #fff;
-    background-color: rgba(0, 80, 50, 1);
+    background-color: rgba(0, 150, 100, 1);
 }
+
 .btn-light {
     border-radius: 0;
     border: 0;
-    color: #333;
+    color: grey;
     background-color: rgb(255, 255, 255);
 }
-.btn-light:hover, .btn-light:focus, .btn-light:active {
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
     color: #333;
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .btn-dark {
+        color: #FFF;
+        border-radius: 0;
+        background-color: rgba(0, 80, 50, 1);
+    }
+    .btn-dark:hover,
+    .btn-dark:focus,
+    .btn-dark:active {
+        background-color: rgba(0, 150, 100, 1);
+    }
 }
 /* Footer */
 
@@ -140,16 +220,17 @@ footer {
     color: #000;
     background-color: #EEE;
     padding-top: 10px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin-bottom: 0px;
-    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: relative;
     z-index: 1000;
 }
+
 footer a {
     color: #FFF;
 }
+
 footer a:hover {
     color: #efefef;
     text-decoration: none !important;
