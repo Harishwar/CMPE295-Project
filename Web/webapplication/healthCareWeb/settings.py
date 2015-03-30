@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 from django.conf.global_settings import EMAIL_HOST, EMAIL_PORT
 from urllib import localhost
+import doctorsView
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -27,7 +28,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 ALLOWED_HOSTS = []
-
+#AUTH_USER_MODEL='doctorsView.Users'
 
 # Application definition
 
@@ -66,7 +67,7 @@ DATABASES = {
         'NAME': 'CMPE295B',
         'ENGINE': 'mysql.connector.django',
         'USER': 'root',
-        'PASSWORD': 'passw0rd',
+        'PASSWORD': '!passw0rd',
         'OPTIONS': {
           'autocommit': True,
         },

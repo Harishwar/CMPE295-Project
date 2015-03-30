@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     url(r'deleteUser$',views.deleteUser,name='deleteUser'),
     url(r'deleteUserAllergy',views.deleteUserAllergy,name='deleteUserAllergy'),
     url(r'login',views.login_user,name='login_user'),
+    url(r'logout',views.logout_user,name='logout_user'),
 )

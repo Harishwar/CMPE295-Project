@@ -59,19 +59,23 @@ def registerUser(request):
 
 
 #Method to handle the user sensor data
+#@login_required(login_url='/doctorsView/login/')
 def addSensor(request):
-    if request.method=='GET':
-        return render(request,"addSensor.html");
+    if request.session.get('user_id'):
+        if request.method=='GET':
+            return render(request,"addSensor.html");
+        else:
+            sensor_details=SensorUser()
+            email=request.POST.get('email')
+            print email
+            user_object=Users.objects.get(email=email)
+            sensor_details.user_id=user_object
+            sensor_details.sensor_id=request.POST.get('SensorID')
+            sensor_details.date_created=datetime.datetime.now()
+            sensor_details.save()
+            return JsonResponse({"status":201,"result":"Sensor Relation Added"})
     else:
-        sensor_details=SensorUser()
-        email=request.POST.get('email')
-        print email
-        user_object=Users.objects.get(email=email)
-        sensor_details.user_id=user_object
-        sensor_details.sensor_id=request.POST.get('SensorID')
-        sensor_details.date_created=datetime.datetime.now()
-        sensor_details.save()
-        return JsonResponse({"status":201,"result":"Sensor Relation Added"})
+        return render(request,"list.html");   
 
 #Method for handling the profile view
 #https://docs.djangoproject.com/en/1.7/topics/serialization/
@@ -86,7 +90,7 @@ def getUserByLastName(request):
     last_name=request.GET.get('searchTerm')
     user_result=Users.objects.filter(last_name=last_name)
     context={'search_term':user_result}
-    return render(request,'viewUser.html',context)
+    return render(request,'viewUsers.html',context)
 
 #returns the list of allergies
 def getAllergiesList(request):
@@ -141,7 +145,7 @@ def deleteUserAllergy(request):
 
 def login_user(request):
     if(request.session.get('user_id')):
-        print request.session.get('user_id')
+        print "session"+request.session.get('user_id')
         context={'users':Users.objects.filter()}
         return render(request,'viewUsers.html',context)
     else:
@@ -156,8 +160,8 @@ def login_user(request):
             user=authenticate(username=username,password=password)
             print user
             if user is not None:
-                request.session['user_id']=user.username;
-                print request.session.get('user_id')
+                request.session['user_id']=user.email;
+                print "session"+request.session.get('user_id')
                 context={'users':Users.objects.filter()}
                 return render(request,'viewUsers.html',context)
             else:
@@ -171,7 +175,13 @@ def authenticate(username,password):
         return None 
     #print Users.objects.get(email=username,password=password)
     
-    
+
+def logout_user(request):
+    try:
+        del request.session['user_id']
+    except KeyError:
+        pass
+    return HttpResponse("You're logged out.")    
 #def updateUserProfile(request):
     
 #edit users
