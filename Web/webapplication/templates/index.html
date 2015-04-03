@@ -102,7 +102,9 @@
                 </div>
                 <div class="modal-body">
                     <!-- Login Form -->
-                    <form action="login" class="form-horizontal" method="POST" role="form">
+                    <form action="doctorsView/login" class="form-horizontal" method="POST" role="form">
+                    {% csrf_token %}
+                    
                         <input type="email" class="form-control" id="" placeholder="Email">
                         <br>
                         <input type="text" class="form-control" id="" placeholder="Password">
