@@ -15,27 +15,34 @@
 </head>
 
 <body>
-    <!-- NavBar -->
-    <nav id="menu" class="menu">
-        <header class="menu-header">
-            <span class="menu-header-title">FitWhiz</span>
-        </header>
-        <section class="menu-section">
-            <ul class="menu-section-list">
-                <li><a href="#">Home</a></li>
-            </ul>
-        </section>
-        <section class="menu-section">
-            <h3 class="menu-section-title">Patients</h3>
-            <ul class="menu-section-list">
-                <li><a href="/doctorsView">Add Patients</a></li>
-                <li><a href="/doctorsView/viewUsers" class="active">View Patients</a></li>
-            </ul>
-        </section>
-    </nav>
-    <!-- End NavBar -->
+    <section>
+        <!-- NavBar -->
+        <nav id="menu" class="menu">
+            <header class="menu-header">
+                <span class="menu-header-title">FitWhiz</span>
+            </header>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/doctorsView">Dashboard</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">Patients</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/doctorsView/addPatient">Add Patients</a></li>
+                    <li><a href="/doctorsView/viewUsers" class="active">View Patients</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/">Logout</a></li>
+                </ul>
+            </section>
+        </nav>
+        <!-- End NavBar -->
+    </section>
     <!-- Content -->
-    <div id="content" class="panel">
+    <section id="content" class="panel">
         <!-- Header -->
         <header id="header">
             <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
@@ -69,34 +76,34 @@
             </div>
         </div>
         <!-- End Registration Form -->
-        <!-- Patient Modal -->
-        <div id="viewUserModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
-                        <h3 class="modal-title text-center text-warning" id="profileName"></h3>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;
-                            <span class="glyphicon glyphicon-earphone"></span>&nbsp;
-                            <span class="glyphicon glyphicon-comment"></span>
-                            <p id="profileDesc" class="text-muted"></p>
-                        </div>
-                        <div>
-                            <button class="text-danger pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-remove"></i>
-                            </button>
-                            <button class="text-success pull-right" title="Delete Patient"><i class="glyphicon glyphicon-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <br>
+    </section>
+    <!-- Patient Modal -->
+    <div id="viewUserModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
+                    <h3 class="modal-title text-center text-warning" id="profileName"></h3>
                 </div>
+                <div class="modal-body">
+                    <div>
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;
+                        <span class="glyphicon glyphicon-earphone"></span>&nbsp;
+                        <span class="glyphicon glyphicon-comment"></span>
+                        <p id="profileDesc" class="text-muted"></p>
+                    </div>
+                    <div>
+                        <button class="text-danger pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                        <button class="text-success pull-right" title="Delete Patient"><i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                    </div>
+                </div>
+                <br>
             </div>
         </div>
-        <!-- End Patient Modal -->
     </div>
+    <!-- End Patient Modal -->
     <!-- End Content -->
     <!-- Footer -->
     <footer class="footer">

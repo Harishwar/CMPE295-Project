@@ -6,6 +6,7 @@
     border-radius: 5px;
     background: #fdfcfa;
 }
+
 .allergiesList_group {
     margin: 0;
     padding: 5px;
@@ -14,9 +15,11 @@
     max-height: 19em;
     overflow: auto;
 }
+
 .allergiesList_group:focus {
     outline: 1px solid red;
 }
+
 .allergiesList_option {
     list-style: none;
     padding: 0 1em 0 1.5em;
@@ -24,9 +27,11 @@
     line-height: 1.9;
     border-radius: 4px;
 }
+
 .allergiesList_option.j-focused {
     position: relative;
 }
+
 .allergiesList_option.j-focused:after {
     content: "";
     display: block;
@@ -39,10 +44,12 @@
     border: 1px solid #AED5A8;
     border-radius: 4px;
 }
+
 .allergiesList_option.j-selected {
     background-color: #E5F7E5;
     position: relative;
 }
+
 .allergiesList_option.j-selected+.allergiesList_option.j-selected:before {
     content: "";
     display: block;
@@ -54,7 +61,9 @@
     background-color: #E5F7E5;
     height: 6px;
 }
-.allergiesList_option.j-selected.animate, .allergiesList_option.j-selected.animate+.allergiesList_option.j-selected.animate:before {
+
+.allergiesList_option.j-selected.animate,
+.allergiesList_option.j-selected.animate+.allergiesList_option.j-selected.animate:before {
     background-color: #D1F5D1;
 }
 /* Handle */
@@ -75,9 +84,11 @@
     position: relative;
     z-index: 10;
 }
+
 .j-selected .allergiesList_handle {
     background: rgba(65, 58, 58, 0.07);
 }
+
 .handle .allergiesList_handle {
     display: inline-block;
 }
@@ -86,12 +97,15 @@
 .allergiesList:not(.focused) .allergiesList_option {
     color: #666;
 }
+
 .allergiesList:not(.focused) .allergiesList_option.j-selected {
     background-color: #FAF5F5;
 }
+
 .allergiesList:not(.focused) .allergiesList_option.j-selected+.allergiesList_option.j-selected:before {
     background-color: #FAF5F5;
 }
+
 .allergiesList:not(.focused) .allergiesList_option.j-focused:after {
     display: none;
 }
@@ -100,12 +114,15 @@
 .j-disabled .allergiesList_option {
     color: #666;
 }
+
 .j-disabled .allergiesList_option.j-selected {
     background-color: #FAF5F5;
 }
+
 .j-disabled .allergiesList_option.j-selected+.allergiesList_option.j-selected:before {
     background-color: #FAF5F5;
 }
+
 .j-disabled .allergiesList_option.j-focused:after {
     display: none;
 }

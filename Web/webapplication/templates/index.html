@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FitWhiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/index.css'%}">
+</head>
+
+<body>
+    <!-- Banner -->
+    <div id="introBanner">
+        <div class="container">
+            <!-- Center Content-->
+            <img src="{%static 'img/ti_sensortag.png'%}" id="introBannerImg" />
+            <h1 class="text-center">FitWhiz<br><small>Wearables for Improved Healthcare and Consumer Experiences</small></h1>
+            <!-- End Center Content-->
+            <div class="loginButton">
+                <button id="loginButton" class="btn btn-primary btn-dark" href="#login">Login</button>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+    <!-- Quotes Container -->
+    <div id="quotes">
+        <div class="container">
+            <!-- Quotes -->
+            <div class="col-sm-12">
+                <div class="carousel slide" data-ride="carousel" id="testimonials-carousel">
+                    <!-- Carousel Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#testimonials-carousel" data-slide-to="1"></li>
+                        <li data-target="#testimonials-carousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Carousel Testimonials -->
+                    <div class="carousel-inner">
+                        <!-- Quote 1 -->
+                        <div class="item active text-justify">
+                            <blockquote>
+                                <div class="row">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                    <p>Doctors can be replaced by software – 80% of them can. I’d much rather have a good machine learning system diagnose my disease than the median or average doctor.</p>
+                                    <small>Vinod Khosla – Rock Health Innovation Summit – August, 2012</small>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 2 -->
+                        <div class="item text-justify">
+                            <blockquote>
+                                <div class="row">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                    <p>The biggest innovations in the world will come from the intersection of bio & tech.....The biggest innovations in the world will come from the intersection of bio & tech</p>
+                                    <small>Susan Desmond-Hellmann – UCSF Chancellor</small>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 3 -->
+                        <div class="item text-justify">
+                            <blockquote>
+                                <div class="row">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                    <p>By definition, big data cannot yield complicated descriptions of causality. Especially in healthcare. Almost all of our diseases occur in the intersections of systems in the body.
+                                        <!-- For example, there is a drug that is marketed by Elan BioNeurology called TYSABRI. It was developed for MS [multiple sclerosis]. It turns out that of the people who have MS a proportion respond magnificently to TYSABRI. And others don’t. So what do you conclude from this? Is it just a mediocre drug? No. It is that there is one disease but it manifests itself in different ways. How does big data figure out what is the core of what is going on?-->
+                                    </p>
+                                    <small>Clayton Christensen</small>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <!-- Carousel Buttons Next/Prev -->
+                    <a data-slide="prev" href="#testimonials-carousel" class="left carousel-control"></a>
+                    <a data-slide="next" href="#testimonials-carousel" class="right carousel-control"></a>
+                </div>
+                <br>
+            </div>
+            <!-- End Testimonials -->
+        </div>
+    </div>
+    <!-- End Quotes Container -->
+    <!-- Big Data Container -->
+    <div id="bigdata">
+        <div class="container">
+            <!-- <h1 class="text-center">Over time, it gets better and better</h1> -->
+        </div>
+    </div>
+    <!-- End Big Data Container -->
+    <!-- Login Modal -->
+    <section id="login" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
+                    <h3 class="modal-title text-center lightGreen" id="profileName">Login</h3>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Form -->
+                    <form action="login" class="form-horizontal" method="POST" role="form">
+                        <input type="email" class="form-control" id="" placeholder="Email">
+                        <br>
+                        <input type="text" class="form-control" id="" placeholder="Password">
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
+                        <a href="#">Forgot Password?</a>
+                        <br>
+                    </form>
+                    <!-- End Login Form -->
+                </div>
+                <br>
+            </div>
+        </div>
+    </section>
+    <!-- End Login Modal -->
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script type="text/javascript">
+    $(function() {
+        $("#loginButton").click(function() {
+            $("#login").modal('show');
+        });
+
+    });
+    </script>
+</body>
+
+</html>

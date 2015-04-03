@@ -98,6 +98,11 @@ EMAIL_PORT = 587
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+)
+
 #Logging enabled
 #refered from http://stackoverflow.com/questions/1598823/elegant-setup-of-python-logging-in-django
 LOGGING = {

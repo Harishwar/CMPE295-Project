@@ -14,26 +14,33 @@
 </head>
 
 <body>
-    <!-- NavBar -->
-    <nav id="menu" class="menu">
-        <header class="menu-header">
-            <span class="menu-header-title">FitWhiz</span>
-        </header>
-        <section class="menu-section">
-            <ul class="menu-section-list">
-                <li><a href="#">Home</a></li>
-            </ul>
-        </section>
-        <section class="menu-section">
-            <h3 class="menu-section-title">Patients</h3>
-            <ul class="menu-section-list">
-                <li><a href="/doctorsView" class="active">Add Patients</a></li>
-                <li><a href="/doctorsView/viewUsers">View Patients</a></li>
-            </ul>
-        </section>
-    </nav>
-    <!-- End NavBar -->
-    <div id="content" class="panel">
+    <section>
+        <!-- NavBar -->
+        <nav id="menu" class="menu">
+            <header class="menu-header">
+                <span class="menu-header-title">FitWhiz</span>
+            </header>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/doctorsView">Dashboard</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">Patients</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/doctorsView/addPatient" class="active">Add Patients</a></li>
+                    <li><a href="/doctorsView/viewUsers">View Patients</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/">Logout</a></li>
+                </ul>
+            </section>
+        </nav>
+        <!-- End NavBar -->
+    </section>
+    <section id="content" class="panel">
         <!-- Header -->
         <header id="header">
             <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
@@ -74,7 +81,7 @@
             </form>
         </div>
         <!-- End Registration Form -->
-    </div>
+    </section>
     <!-- End Content -->
     <!-- Footer -->
     <footer class="footer">

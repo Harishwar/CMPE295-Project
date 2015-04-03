@@ -21,11 +21,13 @@ logger = logging.getLogger()
 
 #first view to show the index
 def index(request):
-    return render(request,"registerUser.html");
-
+    return render(request,"dashboard.html");
 
 def search(request):
     return render(request,"list.html");
+
+def addPatient(request):
+    return render(request,"registerUser.html");
 
 def registerUser(request):
     try:
@@ -75,7 +77,7 @@ def addSensor(request):
             sensor_details.save()
             return JsonResponse({"status":201,"result":"Sensor Relation Added"})
     else:
-        return render(request,"list.html");   
+        return render(request,"list.html");
 
 #Method for handling the profile view
 #https://docs.djangoproject.com/en/1.7/topics/serialization/
@@ -151,7 +153,7 @@ def login_user(request):
     else:
         if request.method=='GET':
             return render(request,"list.html");
-        
+
         else:
             username=request.POST['email']
             print username
@@ -172,18 +174,18 @@ def authenticate(username,password):
     try:
         return Users.objects.get(email=username,password=password)
     except Users.DoesNotExist:
-        return None 
+        return None
     #print Users.objects.get(email=username,password=password)
-    
+
 
 def logout_user(request):
     try:
         del request.session['user_id']
     except KeyError:
         pass
-    return HttpResponse("You're logged out.")    
+    return HttpResponse("You're logged out.")
 #def updateUserProfile(request):
-    
+
 #edit users
 #patient visit history
 #login module
