@@ -12,9 +12,15 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/addallergies.css'%}">
+    <script>
+    function getLocalUserName(){
+    document.getElementById('email').value=localStorage.getItem('patient_email');
+    }
+    </script>
+    
 </head>
 
-<body>
+<body onload=getLocalUserName()>
     <!-- NavBar -->
     <nav id="menu" class="menu">
         <header class="menu-header">
@@ -71,6 +77,10 @@
                         {% endfor %}
                     </ul>
                     <br>
+                    <div class="form-group">
+                        <label for="email" class="col-xs-3 col-sm-3">User Email</label>
+                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" title="Email" placeholder="Email">
+                    </div>
                     <div class="text-center allergiesList_actionbar">
                         <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
                         <button class="allergiesList_button btn btn-lg btn-dark">Submit</button>
@@ -101,7 +111,12 @@
     <script src="{%static 'js/init.js'%}"></script>
     <!-- Selectonic JavaScript -->
     <script src="{%static 'js/selectonic.min.js'%}"></script>
+    <script>
+  
+    </script>
     <script type="text/javascript">
+ 
+	
     (function($) {
         'use strict';
         var $el = $('#allergiesList'),
@@ -139,11 +154,20 @@
         actions.on('click', 'button', function() {
             // Get selected items from list
             doAction(list.selectonic('getSelected'));
+            //csrf_token = "{{ csrf_token }}";
             $.ajax({
                 type: "POST",
                 url: "/doctorsView/addUserAllergies",
-                data: list.selectonic('getSelected').text()
+                data: {'allergy': list.selectonic('getSelected').text(),'email':document.getElementById('email').value},
+            	success: function(res){
+            	alert(res);
+            	location.href='/doctorsView/addUserVaccination' ;
+            	},
+            	error: function(err){
+            	console.log(err);
+            	}
             });
+            
             console.log(list.selectonic('getSelected').text());
         });
 

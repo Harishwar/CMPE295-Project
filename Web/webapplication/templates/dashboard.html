@@ -11,10 +11,50 @@
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/demo.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/registeruser.css'%}">
-</head>
 
-<body>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<script>
+	$(document).ready(function() {
+
+    var options = {
+        chart: {
+            renderTo: 'container_graph',
+            type: 'spline'
+        },
+        series: [{}]
+    };
+
+    $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
+		console.log(data);
+        options.series[0].data = data;
+        var chart = new Highcharts.Chart(options);
+    });
+
+});
+	
+    function testData() {
+//        $.ajax({
+//            url: "/doctorsView/getData?email=test1@test1.com",
+//            type: "GET",
+//            data: "",
+//            success: function(data) {
+//                alert(JSON.stringify(data));
+//                
+//            },
+//            error: function(err) {
+//                alert(JSON.stringify(err));
+//            }
+//        });
+		
+		
+    }
+</script>
+
+ <!--<body onload="testData()"> -->
+	<body>
     <section>
         <!-- NavBar -->
         <nav id="menu" class="menu">
@@ -23,19 +63,23 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView" class="active">Dashboard</a></li>
+                    <li><a href="/doctorsView" class="active">Dashboard</a>
+                    </li>
                 </ul>
             </section>
             <section class="menu-section">
                 <h3 class="menu-section-title">Patients</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/addPatient">Add Patients</a></li>
-                    <li><a href="/doctorsView/viewUsers">View Patients</a></li>
+                    <li><a href="/doctorsView/addPatient">Add Patients</a>
+                    </li>
+                    <li><a href="/doctorsView/viewUsers">View Patients</a>
+                    </li>
                 </ul>
             </section>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/">Logout</a></li>
+                    <li><a href="doctorsView/logout">Logout</a>
+                    </li>
                 </ul>
             </section>
         </nav>
@@ -45,7 +89,8 @@
     <section id="content" class="panel">
         <!-- Header -->
         <header id="header">
-            <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+            <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i>
+            </button>
             <div id="menuBar">
                 <div>
                     <form role="search" method="get" action="getUserByLastName">
@@ -71,17 +116,27 @@
         <div class="container">
             <h1 class="lightGreen"><center>Charts</center></h1>
         </div>
+        <div id="container_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         <!-- End Charts -->
     </section>
     <!-- End Content -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+
     <!-- Bootstrap JavaScript -->
     <script src="{%static 'js/bootstrap.min.js'%}"></script>
     <!-- Slideout.js -->
     <script src="{%static 'js/slideout.min.js'%}"></script>
     <!-- Custom Initialization Script -->
     <script src="{%static 'js/init.js'%}"></script>
+
+    <script src="{%static 'js/highcharts.js'%}"></script>
+    <script src="{%static 'js/data.js'%}"></script>
+    <script src="{%static 'js/exporting.js'%}"></script>
+
+    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide-full.min.js"></script>
+    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide.config.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />
 </body>
 
 </html>

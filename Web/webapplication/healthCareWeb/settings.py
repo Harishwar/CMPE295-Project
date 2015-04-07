@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.global_settings import EMAIL_HOST, EMAIL_PORT
+from django.conf.global_settings import EMAIL_HOST, EMAIL_PORT, LOGIN_URL,\
+    LOGIN_REDIRECT_URL
 from urllib import localhost
 import doctorsView
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -92,6 +93,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
+LOGIN_URL='/doctorsView/login'
+#LOGOUT_URL='/doctorsView/logout'
+#LOGIN_REDIRECT_URL='/doctorsView/*'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

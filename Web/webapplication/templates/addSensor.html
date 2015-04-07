@@ -11,6 +11,12 @@
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <script>
+    function test()
+    {
+    	localStorage.setItem('patient_email',document.getElementById('email').value);
+    }
+    </script>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
             </section>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/">Logout</a></li>
+                    <li><a href="/doctorsView/logout">Logout</a></li>
                 </ul>
             </section>
         </nav>
@@ -65,7 +71,7 @@
                 <div class="container">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="FirstName" class="col-xs-3 col-sm-3">Sensor ID</label>
+                        <label for="SensorId" class="col-xs-3 col-sm-3">Sensor ID</label>
                         <input type="text" class="col-xs-8 col-sm-6" name="SensorID" id="sensor_id" class="form-control" value="" title="Sensor ID" placeholder="Sensor ID" required>
                     </div>
                     <div class="form-group">
@@ -74,7 +80,7 @@
                     </div>
                     <div class="text-center">
                         <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
-                        <input type="submit" value="Add Sensor" class="btn btn-lg btn-dark">
+                        <input type="submit" value="Add Sensor" class="btn btn-lg btn-dark" onclick=test()>
                     </div>
                 </div>
                 <br>
