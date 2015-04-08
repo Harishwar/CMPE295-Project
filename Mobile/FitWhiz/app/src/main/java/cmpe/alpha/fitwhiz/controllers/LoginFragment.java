@@ -35,6 +35,7 @@ import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 import cmpe.alpha.fitwhiz.models.UserTableOperations;
+import cmpe.alpha.fitwhiz.sensortag.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,6 +51,7 @@ public class LoginFragment extends Fragment
     private ProgressDialog progressDialog = null;
     private View loginFragment;
     private FitwhizApplication application;
+    private Button buttonSensorTag;
 
     public LoginFragment()
     {
@@ -89,6 +91,18 @@ public class LoginFragment extends Fragment
         sensorIdEdit = (EditText)loginFragment.findViewById(R.id.sensor_id_edit);
         //Initialize progressDialog
         progressDialog = new ProgressDialog(loginFragment.getContext());
+        buttonSensorTag = (Button)loginFragment.findViewById(R.id.button_sensor_tag);
+        buttonSensorTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                if(i.resolveActivity(getActivity().getPackageManager())!=null)
+                {
+                    startActivity(i);
+                }
+            }
+        });
         return loginFragment;
     }
 
