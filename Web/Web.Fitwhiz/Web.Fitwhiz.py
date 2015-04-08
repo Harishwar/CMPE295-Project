@@ -2,7 +2,9 @@ import os
 import MySQLdb
 from flask import Flask, request, url_for
 import json
+import datetime
 from werkzeug.utils import secure_filename, redirect
+from pprint import pprint
 
 #C:\Users\RKGampa\Documents\GitHub\CMPE295-Project\Web\uploads
 
@@ -14,6 +16,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="*******", db="CMPE295B")
 db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="CMPE295B")
+results_db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="SensorResults")
+
 
 def allowed_file(filename):
     result = '.' in filename and \
@@ -35,15 +39,16 @@ def check_user():
         cursor = db.cursor()
         if sensor_id != 0:
             try:
-                cursor.execute("""select user_id from sensor_user where sensor_id='"""+sensor_id+"""'""")
+                cursor.execute("""select user_id from sensor_user where sensor_id='"""+str(sensor_id)+"""'""")
                 db.commit()
                 count = cursor.rowcount
                 if(count!=0):
                     return "Success"
                 else:
                     return "Error"
-            except Exception:
-                 print "exception"
+            except Exception,e:
+                print e.message
+                print "exception"
 
 
 @app.route("/v1.0/user/profile/",methods=['GET'])
@@ -57,14 +62,15 @@ def get_user():
         cursor = db.cursor()
         if sensor_id != 0:
             try:
-                cursor.execute("""SELECT first_name, last_name, height, weight, blood_type, gender, address, phone_number from user where id = (select user_id from sensor_user where sensor_id='"""+sensor_id+"""')""")
+                cursor.execute("""SELECT first_name, last_name, height, weight, blood_type, gender, address, phone_number from users where id = (select user_id from sensor_user where sensor_id='"""+str(sensor_id)+"""')""")
                 db.commit()
                 for (first_name, last_name, height, weight, blood_type, gender, address, phone_number) in cursor:
                     response ={'FirstName':first_name,'LastName':last_name,'Height':height,'Weight':weight,'BloodType':blood_type, 'Gender':gender, 'Address':address,'PhoneNumber':phone_number}
                     print response
                     print json.dumps(response)
                     return json.dumps(response)
-            except Exception:
+            except Exception, e:
+                print e.message
                 print "exception"
     return True
 
@@ -79,35 +85,44 @@ def get_user_results():
         cursor = db.cursor()
         if sensor_id != 0:
             try:
-                cursor.execute("""SELECT xValue, yValue, zValue, hValue, tValue from SensorResults where SensorId='"""+sensor_id+"""'""")
+                cursor.execute("""SELECT xValue, yValue, zValue, hValue, tValue from SensorResults where SensorId='"""+str(sensor_id)+"""'""")
                 db.commit()
                 for (xValue, yValue, zValue, hValue, tValue) in cursor:
                     print xValue, yValue, zValue, hValue, tValue
                     response ={'xValue':xValue,'yValue':yValue,'zValue':zValue,'hValue':hValue,'tValue':tValue}
                     return json.dumps(response)
-            except Exception:
+            except Exception,e:
+                print e.message
                 print "exception"
 
 # TODO: Test whether the file is extracted and saved.
 @app.route("/v1.0/user/sensor_details",methods=['POST'])
-def get_sensor_data():
+def analyze_sensor_data():
     """
     For a given sensor ID and file with sensor details extract the details
     :return: json result
     """
     if request.method == 'POST':
-        file = request.files['file'];
-        x = allowed_file(file)
-        if file and allowed_file(file.filename):
+        json=request.json
+        sensorId=json.get('SensorId')
+        xVal=json.get('x_val')
+        yVal=json.get('y_val')
+        zVal=json.get('z_val')
+        hVal=json.get('h_val')
+        tVal=json.get('t_val')
+        StepCount=json.get('StepCount')
+        cursor = db.cursor()
+        if sensorId != 0:
             try:
-                filename = secure_filename(file.filename)
-                completeName = os.path.join(app.config['UPLOAD_FOLDER'],filename)
-                file.save(completeName)
-                #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                return redirect(url_for('uploaded_file',
-                                    filename=filename))
-            except Exception:
-                print "exception "+Exception.message
+                cursor.execute("""select user_id from sensor_user where sensor_id='"""+str(sensorId)+"""'""")
+                db.commit()
+                for user_id in cursor:
+                    csr = results_db.cursor()
+                    csr.execute("""INSERT INTO SensorData (user_id,temperature,humidity,acc_x,acc_y,acc_z,date_logged,step_count) VALUES ("""+str(user_id[0])+""","""+str(tVal)+""","""+str(hVal)+""","""+str(xVal)+""","""+str(yVal)+""","""+str(zVal)+""",'"""+str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+"""',"""+str(StepCount)+""")""")
+                    results_db.commit()
+            except Exception,e:
+                print e.message
+                print "exception"
 
 # GET all the allergies of a particular user
 @app.route("/v1.0/user/allergies",methods= ['GET'])

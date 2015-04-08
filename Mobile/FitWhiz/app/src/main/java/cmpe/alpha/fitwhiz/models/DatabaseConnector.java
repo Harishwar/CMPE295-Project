@@ -14,6 +14,7 @@ public class DatabaseConnector extends SQLiteOpenHelper
     protected static final String ACCELEROMETER_TABLE = "accelerometer_table";
     protected static final String HUMIDITY_TABLE = "humidity_table";
     protected static final String TEMPERATURE_TABLE = "temperature_table";
+    protected static final String COUNT_TABLE = "count_table";
     protected static SQLiteDatabase db;
 
 
@@ -34,6 +35,7 @@ public class DatabaseConnector extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE "+ACCELEROMETER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, x_val REAL,y_val REAL,z_val REAL)");
         db.execSQL("CREATE TABLE "+HUMIDITY_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, h_val REAL)");
         db.execSQL("CREATE TABLE "+TEMPERATURE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, t_val REAL)");
+        db.execSQL("CREATE TABLE "+COUNT_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, count REAL)");
     }
 
     @Override

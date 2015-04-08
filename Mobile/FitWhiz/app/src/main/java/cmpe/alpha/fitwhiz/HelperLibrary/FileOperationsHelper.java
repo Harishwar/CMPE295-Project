@@ -13,15 +13,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Date;
 import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import cmpe.alpha.fitwhiz.controllers.LoginActivity;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
+import cmpe.alpha.fitwhiz.models.CountTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
 
@@ -34,9 +34,11 @@ public class FileOperationsHelper {
     PropertiesReader propertiesReader;
     Properties properties;
     private int BUFFER = 1000;
+    private FitwhizApplication app;
     public FileOperationsHelper(Context context)
     {
         this.context = context;
+        app = (FitwhizApplication)context.getApplicationContext();
     }
     public String WriteDBToFile()
     {
@@ -57,6 +59,7 @@ public class FileOperationsHelper {
             AccelerometerTableOperations accelerometerTableOperations = new AccelerometerTableOperations(context);
             HumidityTableOperations humidityTableOperations = new HumidityTableOperations(context);
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(context);
+            CountTableOperations countTableOperations = new CountTableOperations(context);
             long end = System.currentTimeMillis();
 
             //To get 1 hour period
@@ -66,19 +69,44 @@ public class FileOperationsHelper {
             accelerometerTableOperations.insertValue(1.0,2.0,3.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
             humidityTableOperations.insertValue(33.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
             temperatureTableOperations.insertValue(37.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
+            String sensorId = app.getSensorId();
             double xVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "x_val");
             double yVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "y_val");
             double zVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
             double hVal = humidityTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"h_val");
             double tVal = temperatureTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"t_val");
+            double stepCount = countTableOperations.getMaxCountForSpecifiedTimeRange(startDate,endTime,"count") - countTableOperations.getMinCountForSpecifiedTimeRange(startDate,endTime,"count");
+            //Temporarily prepare JSON
+            String json = "{\n" +
+                    "  \"x_val\": "+xVal+",\n" +
+                    "  \"y_val\": "+yVal+",\n" +
+                    "  \"z_val\": "+zVal+",\n" +
+                    "  \"h_val\": "+hVal+",\n" +
+                    "  \"t_val\": "+tVal+",\n" +
+                    "  \"SensorId\": "+sensorId+",\n" +
+                    "  \"StepCount\": "+stepCount+"\n" +
+                    "}";
+            UpdateDataHelper helper = new UpdateDataHelper(app);
+            helper.execute(json,new PropertiesReader(this.context).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
 
             //Write to the file
-            writer.append("SensorId=123");
-            writer.append("x_val="+xVal);
-            writer.append("y_val="+yVal);
-            writer.append("z_val="+zVal);
-            writer.append("h_val="+hVal);
-            writer.append("t_val="+tVal);
+            writer.append("{");
+            writer.write("\n");
+            writer.append("'SensorId':'" + sensorId + "',");
+            writer.write("\n");
+            writer.append("x_val:'" + xVal+"',");
+            writer.write("\n");
+            writer.append("y_val:'" + yVal+"',");
+            writer.write("\n");
+            writer.append("z_val:'" + zVal+"',");
+            writer.write("\n");
+            writer.append("h_val:'" + hVal+"',");
+            writer.write("\n");
+            writer.append("t_val:'" + tVal+"',");
+            writer.write("\n");
+            writer.append("StepCount:'"+stepCount+"',");
+            writer.write("\n");
+            writer.write("}");
             writer.close();
 
             return fileLocation+filename;

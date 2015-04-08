@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.CountHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
@@ -23,9 +24,10 @@ import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
  */
 public class SensorService extends Service implements SensorEventListener {
 
+    private FitwhizApplication fitwhizApplication;
+    CountHelper countHelper;
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        FitwhizApplication fitwhizApplication = ((FitwhizApplication)this.getApplication());
         ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(fitwhizApplication);
         if(sensorEvent.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE)
         {
@@ -58,12 +60,14 @@ public class SensorService extends Service implements SensorEventListener {
             fitwhizApplication.setYVal(y_val);
             fitwhizApplication.setZVal(z_val);
             readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(x_val,y_val,z_val));
+            countHelper.AnalyzeValues(x_val,y_val,z_val);
         }
     }
 
     public void onStart(Intent intent, int startid)
     {
-
+        fitwhizApplication = (FitwhizApplication) this.getApplication();
+        countHelper = new CountHelper(fitwhizApplication,getApplicationContext());
         //Getting count and accelerometer sensors
         SensorManager sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
         Sensor temperatureSensor=sm.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);

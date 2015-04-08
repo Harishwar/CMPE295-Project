@@ -38,7 +38,7 @@ public class HumidityTableOperations extends DatabaseConnector {
     {
         try
         {
-            String sql = "select COUNT("+columnName+"), TOTAL("+columnName+") from "+HUMIDITY_TABLE+" where timestamp>'"+datetimeStart+"' and timestamp<'"+datetimeEnd+"'";
+            String sql = "select COUNT("+columnName+"), TOTAL("+columnName+") from "+HUMIDITY_TABLE+" where timestamp>'"+datetimeStart+"' and timestamp<='"+datetimeEnd+"'";
 
             SQLiteDatabase db=getReadableDatabase();
             Cursor cursor = db.rawQuery(sql,null);

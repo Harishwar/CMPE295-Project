@@ -40,7 +40,7 @@ public class AccelerometerTableOperations extends DatabaseConnector {
     public double getAggregateForSpecifiedTimeRange(String datetimeStart, String datetimeEnd, String columnName)
     {
         try {
-            String sql = "select count(*), TOTAL(" + columnName + ") from '" + ACCELEROMETER_TABLE + "' where timestamp>'" + datetimeStart + "' and timestamp<'" + datetimeEnd + "'";
+            String sql = "select count(*), TOTAL(" + columnName + ") from '" + ACCELEROMETER_TABLE + "' where timestamp>'" + datetimeStart + "' and timestamp<='" + datetimeEnd + "'";
 
             SQLiteDatabase db = getReadableDatabase();
             Cursor cursor = db.rawQuery(sql, null);

@@ -13,21 +13,17 @@ import android.view.View;
 
 import java.util.Properties;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.CustomAlert;
-import cmpe.alpha.fitwhiz.HelperLibrary.EnableServices;
-import cmpe.alpha.fitwhiz.HelperLibrary.SendEmail;
-import cmpe.alpha.fitwhiz.HelperLibrary.SendSMS;
-import cmpe.alpha.fitwhiz.lib.AlertType;
-import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.controllers.common.ScheduledCountUpdateService;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
 import cmpe.alpha.fitwhiz.controllers.common.SensorService;
-import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
+import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -66,12 +62,12 @@ public class SplashScreen extends Activity {
      */
     private SystemUiHider mSystemUiHider;
 
-    private static Intent alarmIntent = null;
-    private static PendingIntent pendingIntent = null;
+    private static Intent alarmIntent = null,countIntent = null;
+    private static PendingIntent pendingIntent = null,pendingIntent_count=null;
     private static AlarmManager alarmManager = null;
     private PropertiesReader propertiesReader;
     private Properties properties;
-    private int uploadInterval;
+    private int uploadInterval, countUpdateInterval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +141,7 @@ public class SplashScreen extends Activity {
         alarmIntent = new Intent(this, ScheduledDataUploadService.class);
         pendingIntent = pendingIntent.getBroadcast(this.getApplicationContext(),0, alarmIntent,0);
         alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, (uploadInterval*1000),(uploadInterval*1000),pendingIntent);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, (uploadInterval*60*1000),(uploadInterval*60*1000),pendingIntent);
 
         Thread splashTread = new Thread() {
             @Override
@@ -186,24 +182,11 @@ public class SplashScreen extends Activity {
         NotificationHelper helper = new NotificationHelper(getApplicationContext());
         helper.SendNotification("FitWhiz", "BOOM", pIntent, NotificationPriority.EMERGENCY,"");
 
-        //Test SMS Alert
-        /*SendSMS sendSMS = new SendSMS(this.getApplicationContext());
-        sendSMS.sendSMS("5104176178","first sms alert");
-
-        //Test Email Alert
-        String a[] = {"raj_vrg@hotmail.com"};
-        SendEmail sendEmail = new SendEmail(this.getApplicationContext());
-        sendEmail.sendMail(a,"Fitwhizz alert","Alert...");
-
-        //Test internet and bluetooth connection
-        EnableServices enableServices = new EnableServices(this.getApplicationContext());
-        enableServices.checkBluetooth();
-        enableServices.checkInternet();
-        //enableServices.checkMobileData();
-
-        //Test custom Alert
-         CustomAlert customAlert = new CustomAlert();
-         customAlert.createAlert(this,"Alert","Success","+ve","-ve", AlertType.MSG);*/
+        //Set the ScheduledCountUpdateService
+        countUpdateInterval=Integer.parseInt(properties.getProperty("CountUpdateInterval","3600"));
+        countIntent = new Intent(this, ScheduledCountUpdateService.class);
+        pendingIntent_count = pendingIntent_count.getBroadcast(this.getApplicationContext(),0, countIntent,0);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, (countUpdateInterval*60*1000),(countUpdateInterval*60*1000),pendingIntent_count);
     }
 
     @Override
