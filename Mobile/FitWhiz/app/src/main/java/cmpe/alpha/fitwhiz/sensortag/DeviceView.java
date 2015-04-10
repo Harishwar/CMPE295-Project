@@ -65,10 +65,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.ti.util.Point3D;
-
 import java.text.DecimalFormat;
-
 import cmpe.alpha.fitwhiz.R;
 
 // Fragment for Device View
@@ -102,6 +99,9 @@ public class DeviceView extends Fragment {
 	private ImageView mRelay;
 	private TableRow mMagPanel;
 	private TableRow mBarPanel;
+    private TextView accVal;
+    private TextView tVal;
+    private TextView hVal;
 
 	// House-keeping
 	private DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
@@ -115,6 +115,7 @@ public class DeviceView extends Fragment {
 	    Bundle savedInstanceState) {
 		mInstance = this;
 		mActivity = (DeviceActivity) getActivity();
+        /*
 		mIsSensorTag2 = mActivity.isSensorTag2();
 
 		// The last two arguments ensure LayoutParams are inflated properly.
@@ -132,9 +133,11 @@ public class DeviceView extends Fragment {
 			mMagValue = (TextView) view.findViewById(R.id.magnetometerTxt);
 			mMagPanel = (TableRow) view.findViewById(R.id.magPanel);
 			mRelay = null;
-		}
+		}*/
+        View view = inflater.inflate(R.layout.fragment_sensor_current,container,false);
 
 		// UI widgets
+        /*
 		mAccValue = (TextView) view.findViewById(R.id.accelerometerTxt);
 		mGyrValue = (TextView) view.findViewById(R.id.gyroscopeTxt);
 		mObjValue = (TextView) view.findViewById(R.id.objTemperatureText);
@@ -142,8 +145,13 @@ public class DeviceView extends Fragment {
 		mHumValue = (TextView) view.findViewById(R.id.humidityTxt);
 		mBarValue = (TextView) view.findViewById(R.id.barometerTxt);
 		mButton = (ImageView) view.findViewById(R.id.buttons);
+		*/
+        accVal = (TextView) view.findViewById(R.id.Accelerometer_current_val);
+        tVal = (TextView) view.findViewById(R.id.temperature_current_val);
+        hVal = (TextView) view.findViewById(R.id.humidity_current_val);
 
-		// Support for calibration
+
+        // Support for calibration
 		mBarPanel = (TableRow) view.findViewById(R.id.barPanel);
 		OnClickListener cl = new OnClickListener() {
 			public void onClick(View v) {
@@ -191,27 +199,28 @@ public class DeviceView extends Fragment {
 			v = Sensor.ACCELEROMETER.convert(rawValue);
 			msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
 			    + decimal.format(v.z) + "\n";
-			mAccValue.setText(msg);
+            accVal.setText(msg);
 		}
 
 		if (uuidStr.equals(SensorTagGatt.UUID_MAG_DATA.toString())) {
+            /*
 			v = Sensor.MAGNETOMETER.convert(rawValue);
 			msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
 			    + decimal.format(v.z) + "\n";
-			mMagValue.setText(msg);
+			mMagValue.setText(msg);*/
 		}
 
-		if (uuidStr.equals(SensorTagGatt.UUID_OPT_DATA.toString())) {
+		if (uuidStr.equals(SensorTagGatt.UUID_OPT_DATA.toString())) {/*
 			v = Sensor.LUXOMETER.convert(rawValue);
 			msg = decimal.format(v.x) + "\n";
-			mLuxValue.setText(msg);
+			mLuxValue.setText(msg);*/
 		}
 
-		if (uuidStr.equals(SensorTagGatt.UUID_GYR_DATA.toString())) {
+		if (uuidStr.equals(SensorTagGatt.UUID_GYR_DATA.toString())) {/*
 			v = Sensor.GYROSCOPE.convert(rawValue);
 			msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
 			    + decimal.format(v.z) + "\n";
-			mGyrValue.setText(msg);
+			mGyrValue.setText(msg);*/
 		}
 
 		if (uuidStr.equals(SensorTagGatt.UUID_IRT_DATA.toString())) {
@@ -219,23 +228,23 @@ public class DeviceView extends Fragment {
 			msg = decimal.format(v.x) + "\n";
 			mAmbValue.setText(msg);
 			msg = decimal.format(v.y) + "\n";
-			mObjValue.setText(msg);
+            tVal.setText(msg);
 		}
 
 		if (uuidStr.equals(SensorTagGatt.UUID_HUM_DATA.toString())) {
 			v = Sensor.HUMIDITY.convert(rawValue);
 			msg = decimal.format(v.x) + "\n";
-			mHumValue.setText(msg);
+            hVal.setText(msg);
 		}
 
-		if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {
+		if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {/*
 			v = Sensor.BAROMETER.convert(rawValue);
 			
 			double h = (v.x - BarometerCalibrationCoefficients.INSTANCE.heightCalibration)
 			    / PA_PER_METER;
 			h = (double) Math.round(-h * 10.0) / 10.0;
 			msg = decimal.format(v.x / 100.0f) + "\n" + h;
-			mBarValue.setText(msg);
+			mBarValue.setText(msg);*/
 		}
 
 		if (uuidStr.equals(SensorTagGatt.UUID_KEY_DATA.toString())) {
