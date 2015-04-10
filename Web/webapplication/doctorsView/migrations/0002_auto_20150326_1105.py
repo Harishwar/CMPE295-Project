@@ -7,12 +7,12 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('doctorsView', '0006_uservaccination'),
+        ('doctorsView', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterModelTable(
-            name='uservaccination',
-            table='user_vaccination',
+            name='users',
+            table='users',
         ),
     ]

@@ -11,21 +11,31 @@
     overflow: hidden;
     width: auto;
 }
+
+.patientsList li:nth-child(odd) {
+    color: #000;
+    background: #EEE;
+}
+
 .patientsList li.show {
     height: auto;
     margin: 2px 0;
 }
+
 .patientsList li .glyphicon {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .patientsList li:hover {
     background: rgba(0, 80, 50, 1);
 }
+
 .patientsList .slide-fade li {
     transition: all 0.4s ease-out;
     opacity: 0;
 }
+
 .patientsList .slide-fade li.show {
     opacity: 1;
 }
@@ -34,6 +44,7 @@
 #viewUserModal #profileName {
     color: rgba(0, 80, 50, 1);
 }
+
 #viewUserModal button {
     border: 0;
     background-color: #FFF;

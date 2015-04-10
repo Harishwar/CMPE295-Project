@@ -23,5 +23,19 @@ Email:<input type="text" name="email"></input>
 </form>
 
 
+<form method="post" action="login">
+{% csrf_token %}
+Email:<input type="text" name="email"></input>
+password:<input type="text" name="password"></input>
+<input type="submit" name="Login" value="Login"/>
+
+</form>
+
+<form method="post" action="logout">
+{% csrf_token %}
+<input type="submit" name="Logout" value="Logout"/>
+
+</form>
+
 </body>
 </html>

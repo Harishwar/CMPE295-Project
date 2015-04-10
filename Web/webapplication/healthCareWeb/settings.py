@@ -10,8 +10,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.global_settings import EMAIL_HOST, EMAIL_PORT
+from django.conf.global_settings import EMAIL_HOST, EMAIL_PORT, LOGIN_URL,\
+    LOGIN_REDIRECT_URL
 from urllib import localhost
+import doctorsView
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -27,7 +29,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 ALLOWED_HOSTS = []
-
+#AUTH_USER_MODEL='doctorsView.Users'
 
 # Application definition
 
@@ -66,7 +68,7 @@ DATABASES = {
         'NAME': 'CMPE295B',
         'ENGINE': 'mysql.connector.django',
         'USER': 'root',
-        'PASSWORD': 'passw0rd',
+        'PASSWORD': '!passw0rd',
         'OPTIONS': {
           'autocommit': True,
         },
@@ -91,11 +93,19 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
+LOGIN_URL='/doctorsView/login'
+#LOGOUT_URL='/doctorsView/logout'
+#LOGIN_REDIRECT_URL='/doctorsView/*'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+)
 
 #Logging enabled
 #refered from http://stackoverflow.com/questions/1598823/elegant-setup-of-python-logging-in-django
