@@ -7,7 +7,6 @@ import android.content.Intent;
 import java.util.Properties;
 
 import cmpe.alpha.fitwhiz.HelperLibrary.FileOperationsHelper;
-import cmpe.alpha.fitwhiz.HelperLibrary.FileUploadHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 
 /**
@@ -24,6 +23,7 @@ public class ScheduledDataUploadService extends BroadcastReceiver {
         //Write the sensor data to a file
         FileOperationsHelper fileOperationsHelper = new FileOperationsHelper(context);
         String result = fileOperationsHelper.WriteDBToFile();
+        /*
         if(!result.equalsIgnoreCase("Exception"))
         {
             //Compress the file
@@ -37,6 +37,6 @@ public class ScheduledDataUploadService extends BroadcastReceiver {
                 FileUploadHelper fileUploadHelper = new FileUploadHelper();
                 fileUploadHelper.execute(serverUrl,zipFileLocation);
             }
-        }
+        }*/
     }
 }

@@ -14,6 +14,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
     <application
         android:name=".lib.FitwhizApplication"
         android:allowBackup="true"
@@ -39,7 +43,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <receiver android:name=".controllers.common.ScheduledDataUploadService" >
         </receiver>
 
@@ -51,6 +54,38 @@
             android:name=".controllers.LoginFailureActivity"
             android:label="@string/title_activity_login_failure" >
         </activity>
+
+        <!--Sensor Tag-->
+        <service
+            android:name="com.example.ti.ble.common.BluetoothLeService"
+            android:enabled="true" />
+
+        <activity
+            android:name="cmpe.alpha.fitwhiz.sensortag.MainActivity"
+            android:label="@string/sensortag_title"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
+            android:name="cmpe.alpha.fitwhiz.sensortag.DeviceActivity"
+            android:parentActivityName=".sensortag.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="cmpe.alpha.fitwhiz.sensortag.FwUpdateActivity"
+            android:parentActivityName=".sensortag.DeviceActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="cmpe.alpha.fitwhiz.sensortag.FileActivity"
+            android:parentActivityName=".sensortag.FwUpdateActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="cmpe.alpha.fitwhiz.sensortag.PreferencesActivity"
+            android:parentActivityName=".sensortag.DeviceActivity"
+            android:screenOrientation="portrait"
+            android:label="Preferences"/>
     </application>
 
 </manifest>

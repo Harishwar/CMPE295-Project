@@ -25,6 +25,17 @@ public class FitwhizApplication extends Application{
     private String LastName = "";
     private String Address = "";
     private String Height = "";
+    public double count;
+
+    public double getCount()
+    {
+        return this.count;
+    }
+    public void setCount(double d)
+    {
+        this.count=d;
+
+    }
 
     public String getSensorId() {
         return SensorId;

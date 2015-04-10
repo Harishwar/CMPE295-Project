@@ -38,7 +38,7 @@ public class TemperatureTableOperations extends DatabaseConnector {
         {
             try
             {
-                String sql = "select COUNT("+columnName+"), TOTAL("+columnName+") from '"+TEMPERATURE_TABLE+"' where timestamp>'"+datetimeStart+"' and timestamp<'"+datetimeEnd+"'";
+                String sql = "select COUNT("+columnName+"), TOTAL("+columnName+") from '"+TEMPERATURE_TABLE+"' where timestamp>'"+datetimeStart+"' and timestamp<='"+datetimeEnd+"'";
                 SQLiteDatabase db=getWritableDatabase();
                 Cursor cursor = db.rawQuery(sql,null);
                 cursor.moveToFirst();
