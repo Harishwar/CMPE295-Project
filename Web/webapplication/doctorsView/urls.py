@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'deleteUserAllergy',views.deleteUserAllergy,name='deleteUserAllergy'),
     url(r'login',views.login_user,name='login_user'),
     url(r'logout',views.logout_user,name='logout_user'),
-    url(r'getData',views.dashboard_req,name='graph_load')
-    
+    url(r'getData',views.dashboard_req,name='graph_load'),
+    url(r'dashboard',views.dashboard,name='dashboard'),
+
 )

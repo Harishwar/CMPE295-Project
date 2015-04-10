@@ -24,12 +24,24 @@
             renderTo: 'container_graph',
             type: 'spline'
         },
+		xAxis: {
+            type: 'datetime'
+        },
+		
         series: [{}]
     };
 
     $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
-		console.log(data);
-        options.series[0].data = data;
+		var jsonRes=JSON.parse(data);
+		console.log(jsonRes.length);
+		console.log(jsonRes);
+		data=[];
+		for(i=0; i<jsonRes.length;i++){
+			data.push([jsonRes[i].x,parseInt(jsonRes[i].y)]);					   
+		
+		}
+		options.series[0].data =data;
+        
         var chart = new Highcharts.Chart(options);
     });
 
@@ -63,7 +75,7 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView" class="active">Dashboard</a>
+                    <li><a href="/doctorsView/dashboard.html	" class="active">Dashboard</a>
                     </li>
                 </ul>
             </section>

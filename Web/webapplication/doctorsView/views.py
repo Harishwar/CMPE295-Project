@@ -13,7 +13,10 @@ from doctorsView.models import SensorUser, Allergies,UserAllergies,UserVaccinati
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-
+from django.db import transaction, connection
+import collections
+import json
+from email import email
 
 # Create your views here.
 
@@ -26,31 +29,37 @@ def index(request):
 def search(request):
     return render(request,"list.html");
 
-def addPatient(request):
-    return render(request,"registerUser.html");
+def dashboard(request):
+    return render(request,"dashboard.html");
+# def addPatient(request):
+#     return render(request,"registerUser.html");
 
-def registerUser(request):
-    try:
-        logger.debug("Obtaining db fields")
-        registration=Users()
-        registration.first_name=request.POST.get('FirstName')
-        registration.last_name=request.POST.get('LastName')
-        registration.email=request.POST.get('email')
-        registration.user_id=request.POST.get('email')
-        registration.dob=request.POST.get('dob')
-        registration.address=request.POST.get('address')
-        registration.password="test"
-        #need to convert to a timezone as it throws an exception
-        registration.date_created=datetime.datetime.now()
-        registration.date_modified=datetime.datetime.now()
-        registration.save()
-        saved_details=Users.objects.get(id=registration.id)
-        send_mail('HealthCareWeb registration', 'Hi,\n You have successfully registered for Enhanced Health Care Web.Please find below the username:'+saved_details.email+' \n password:', 'saninnovator@gmail.com',[saved_details.email], fail_silently=True)
-        #saved_details=User.objects.filter(id=created_id).values()
-        #serialized_obj = serializers.serialize('json', [ saved_details, ])
-    except HTTPError:
-        logger.debug("Error Handling Registration")
-        return "Error"
+def addPatient(request):
+    if request.method=="GET":
+        return render(request,"registerUser.html");
+    else:
+    
+        try:
+            logger.debug("Obtaining db fields")
+            registration=Users()
+            registration.first_name=request.POST.get('FirstName')
+            registration.last_name=request.POST.get('LastName')
+            registration.email=request.POST.get('email')
+            registration.user_id=request.POST.get('email')
+            registration.dob=request.POST.get('dob')
+            registration.address=request.POST.get('address')
+            registration.password="test"
+            #need to convert to a timezone as it throws an exception
+            registration.date_created=datetime.datetime.now()
+            registration.date_modified=datetime.datetime.now()
+            registration.save()
+            saved_details=Users.objects.get(id=registration.id)
+            send_mail('HealthCareWeb registration', 'Hi,\n You have successfully registered for Enhanced Health Care Web.Please find below the username:'+saved_details.email+' \n password:', 'saninnovator@gmail.com',[saved_details.email], fail_silently=True)
+            #saved_details=User.objects.filter(id=created_id).values()
+            #serialized_obj = serializers.serialize('json', [ saved_details, ])
+        except HTTPError:
+            logger.debug("Error Handling Registration")
+            return "Error"
 
 
     #return JsonResponse({"email":saved_details.email,"id":saved_details.id})
@@ -62,7 +71,7 @@ def registerUser(request):
 
 #Method to handle the user sensor data
 #@login_required(login_url='/doctorsView/login/')
-def addSensor(request):
+def addSensor(request): 
     if request.session.get('user_id'):
         if request.method=='GET':
             return render(request,"addSensor.html");
@@ -75,7 +84,8 @@ def addSensor(request):
             sensor_details.sensor_id=request.POST.get('SensorID')
             sensor_details.date_created=datetime.datetime.now()
             sensor_details.save()
-            return JsonResponse({"status":201,"result":"Sensor Relation Added"})
+            #return JsonResponse({"status":201,"result":"Sensor Relation Added"})
+            return getAllergiesList(request)    
     else:
         return render(request,"list.html");
 
@@ -91,7 +101,7 @@ def viewUsers(request):
 def getUserByLastName(request):
     last_name=request.GET.get('searchTerm')
     user_result=Users.objects.filter(last_name=last_name)
-    context={'search_term':user_result}
+    context={'users':user_result}
     return render(request,'viewUsers.html',context)
 
 #returns the list of allergies
@@ -100,11 +110,16 @@ def getAllergiesList(request):
     context={'allergies':Allergies.objects.values('allergy_name')}
     return render(request,'addAllergies.html',context)
 
+@csrf_exempt
 def addUserAllergies(request):
-    user_object=Users.objects.get(email=request.POST.get('email'))
+    print request.POST.get('email')
+    email=request.POST.get('email')
+    user_object=Users.objects.get(email=email)
+    print "db",user_object.email
     print request.POST.getlist('allergy')
     for allergy_name in request.POST.getlist('allergy'):
         user_allergies=UserAllergies();
+        print Allergies.objects.get(allergy_name=allergy_name)
         allergy_object=Allergies.objects.get(allergy_name=allergy_name)
         user_allergies.user_id=user_object
         user_allergies.allergy_id=allergy_object
@@ -117,15 +132,19 @@ def addUserAllergies(request):
 
 
 def addUserVaccination(request):
-    user_object=Users.objects.get(email=request.POST.get('email'))
-    user_vaccination=UserVaccination()
-    user_vaccination.vaccination_desc=request.POST.get('vaccination')
-    user_vaccination.user_id=user_object
-    user_vaccination.date_visited=request.POST.get('date_visited')
-    user_vaccination.date_created=datetime.datetime.now()
-    user_vaccination.date_modified=datetime.datetime.now()
-    user_vaccination.save()
-    return JsonResponse({"status":201,"result":"User Vaccination Added"})
+    if request.method=="GET":
+        return render(request,'vaccination.html')
+    else:
+        user_object=Users.objects.get(email=request.POST.get('email'))
+        print 'email from add sensor',request.POST.get('email')
+        user_vaccination=UserVaccination()
+        user_vaccination.vaccination_desc=request.POST.get('vaccination')
+        user_vaccination.user_id=user_object
+        user_vaccination.date_visited=request.POST.get('date_visited')
+        user_vaccination.date_created=datetime.datetime.now()
+        user_vaccination.date_modified=datetime.datetime.now()
+        user_vaccination.save()
+        return JsonResponse({"status":201,"result":"User Vaccination Added"})
 #def updateUser(request):
 
 def deleteUser(request):
@@ -165,7 +184,7 @@ def login_user(request):
                 request.session['user_id']=user.email;
                 print "session"+request.session.get('user_id')
                 context={'users':Users.objects.filter()}
-                return render(request,'viewUsers.html',context)
+                return render(request,'dashboard.html',context)
             else:
                 return HttpResponse("Invalid user");
 
@@ -184,6 +203,29 @@ def logout_user(request):
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
+
+def dashboard_req(request):
+    
+    email=request.GET.get('email')
+    print '-------->'
+    print load_user_data(email)
+    return JsonResponse(load_user_data(email),safe=False)
+
+def load_user_data(email):
+    cursor=connection.cursor()
+    cursor.execute("select * from SensorResults.crunched_results where user_id=%s",[email])
+    rows=cursor.fetchall()
+    rowsList=[]
+    for row in rows:
+        graph_obj=collections.OrderedDict()
+        if isinstance(row[1], datetime.datetime):
+            dateVal= row[1].isoformat()
+        graph_obj['x']=dateVal
+        graph_obj['y']=row[2]
+        graph_obj['user_id']=row[0]
+        rowsList.append(graph_obj)
+        print row
+    return json.dumps(rowsList)
 #def updateUserProfile(request):
 
 #edit users
