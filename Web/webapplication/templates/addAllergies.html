@@ -13,11 +13,10 @@
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/addallergies.css'%}">
     <script>
-    function getLocalUserName(){
-    document.getElementById('email').value=localStorage.getItem('patient_email');
+    function getLocalUserName() {
+        document.getElementById('email').value = localStorage.getItem('patient_email');
     }
     </script>
-    
 </head>
 
 <body onload=getLocalUserName()>
@@ -92,15 +91,6 @@
         <!-- End Allergies -->
     </div>
     <!-- End Content -->
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>
-                &copy; 2015 FitWhiz.
-            </p>
-        </div>
-    </footer>
-    <!-- End Footer -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
     <!-- Bootstrap JavaScript -->
@@ -112,11 +102,8 @@
     <!-- Selectonic JavaScript -->
     <script src="{%static 'js/selectonic.min.js'%}"></script>
     <script>
-  
     </script>
     <script type="text/javascript">
- 
-	
     (function($) {
         'use strict';
         var $el = $('#allergiesList'),
@@ -158,14 +145,17 @@
             $.ajax({
                 type: "POST",
                 url: "/doctorsView/addUserAllergies",
-                data: {'allergy': list.selectonic('getSelected').text(),'email':document.getElementById('email').value},
-            	success: function(res){
-            	alert(res);
-            	location.href='/doctorsView/addUserVaccination' ;
-            	},
-            	error: function(err){
-            	console.log(err);
-            	}
+                data: {
+                    'allergy': list.selectonic('getSelected').text(),
+                    'email': document.getElementById('email').value
+                },
+                success: function(res) {
+                    alert(res);
+                    location.href = '/doctorsView/addUserVaccination';
+                },
+                error: function(err) {
+                    console.log(err);
+                }
             });
             //console.log(data);
             console.log(list.selectonic('getSelected').text());
