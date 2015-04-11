@@ -91,6 +91,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.controllers.DashboardActivity;
 
 // import android.util.Log;
 
@@ -175,7 +176,7 @@ public class MainActivity extends ViewPagerActivity {
 		// Create the fragments and add them to the view pager and tabs
 		mScanView = new ScanView();
 		mSectionsPagerAdapter.addSection(mScanView, "BLE Device List");
-		
+
 		HelpView hw = new HelpView();
 		hw.setParameters("help_scan.html", R.layout.fragment_help, R.id.webpage);
 		mSectionsPagerAdapter.addSection(hw, "Help");
@@ -193,14 +194,14 @@ public class MainActivity extends ViewPagerActivity {
 		if (mBluetoothLeService != null) {
 			if (mScanning)
 				scanLeDevice(false);
-			unregisterReceiver(mReceiver);
-			unbindService(mServiceConnection);
-			mBluetoothLeService.close();
-			mBluetoothLeService = null;
+			//unregisterReceiver(mReceiver);
+			//unbindService(mServiceConnection);
+			//mBluetoothLeService.close();
+			//mBluetoothLeService = null;
 		}
 		
 		mBtAdapter = null;
-		
+
 		// Clear cache
 		File cache = getCacheDir();
 		String path = cache.getPath();
@@ -278,12 +279,12 @@ public class MainActivity extends ViewPagerActivity {
 		// Initial state of widgets
 		updateGuiState();
 
-		// License popup on first run
+		/* License popup on first run
 		if (prefs.getBoolean("firstrun", true)) {
 			onLicense();
 			prefs.edit().putBoolean("firstrun", false).commit();
 		}
-
+*/
 		if (!mInitialised) {
 			// Broadcast receiver
 			registerReceiver(mReceiver, mFilter);
@@ -357,9 +358,10 @@ public class MainActivity extends ViewPagerActivity {
 	}
 
 	private void startDeviceActivity() {
-		mDeviceIntent = new Intent(this, DeviceActivity.class);
-		mDeviceIntent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
-		startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
+		mDeviceIntent = new Intent(this, DashboardActivity.class);
+		mDeviceIntent.putExtra(DashboardActivity.EXTRA_DEVICE, mBluetoothDevice);
+		//startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
+        startActivity(mDeviceIntent);
 	}
 
 	private void stopDeviceActivity() {

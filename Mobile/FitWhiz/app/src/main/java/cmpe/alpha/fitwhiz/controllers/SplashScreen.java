@@ -20,7 +20,6 @@ import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledCountUpdateService;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
-import cmpe.alpha.fitwhiz.controllers.common.SensorService;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
@@ -167,7 +166,7 @@ public class SplashScreen extends Activity {
         splashTread.start();
 
         //Start Temperature service
-        this.startService(new Intent(this, SensorService.class));
+        //this.startService(new Intent(this, SensorService.class));
 
         //Update Profile page
         ProfileUpdater profileUpdater = new ProfileUpdater((FitwhizApplication)this.getApplication());

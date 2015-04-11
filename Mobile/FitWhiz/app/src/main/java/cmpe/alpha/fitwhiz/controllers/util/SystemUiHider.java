@@ -52,17 +52,26 @@ public abstract class SystemUiHider {
      * but cannot be hidden, show and hide will toggle low profile mode.
      */
     public static final int FLAG_HIDE_NAVIGATION = FLAG_FULLSCREEN | 0x4;
-
+    /**
+     * A dummy no-op callback for use when there is no other listener set.
+     */
+    private static OnVisibilityChangeListener sDummyListener = new OnVisibilityChangeListener() {
+        @Override
+        public void onVisibilityChange(boolean visible) {
+        }
+    };
+    /**
+     * The current visibility callback.
+     */
+    protected OnVisibilityChangeListener mOnVisibilityChangeListener = sDummyListener;
     /**
      * The activity associated with this UI hider object.
      */
     protected Activity mActivity;
-
     /**
      * The view on which {@link View#setSystemUiVisibility(int)} will be called.
      */
     protected View mAnchorView;
-
     /**
      * The current UI hider flags.
      *
@@ -72,10 +81,11 @@ public abstract class SystemUiHider {
      */
     protected int mFlags;
 
-    /**
-     * The current visibility callback.
-     */
-    protected OnVisibilityChangeListener mOnVisibilityChangeListener = sDummyListener;
+    protected SystemUiHider(Activity activity, View anchorView, int flags) {
+        mActivity = activity;
+        mAnchorView = anchorView;
+        mFlags = flags;
+    }
 
     /**
      * Creates and returns an instance of {@link SystemUiHider} that is
@@ -97,12 +107,6 @@ public abstract class SystemUiHider {
         } else {
             return new SystemUiHiderBase(activity, anchorView, flags);
         }
-    }
-
-    protected SystemUiHider(Activity activity, View anchorView, int flags) {
-        mActivity = activity;
-        mAnchorView = anchorView;
-        mFlags = flags;
     }
 
     /**
@@ -148,15 +152,6 @@ public abstract class SystemUiHider {
 
         mOnVisibilityChangeListener = listener;
     }
-
-    /**
-     * A dummy no-op callback for use when there is no other listener set.
-     */
-    private static OnVisibilityChangeListener sDummyListener = new OnVisibilityChangeListener() {
-        @Override
-        public void onVisibilityChange(boolean visible) {
-        }
-    };
 
     /**
      * A callback interface used to listen for system UI visibility changes.

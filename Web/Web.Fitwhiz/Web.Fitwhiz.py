@@ -1,12 +1,6 @@
-import os
 import MySQLdb
-from flask import Flask, request, url_for
-import json
+from flask import Flask, request, make_response, jsonify
 import datetime
-from werkzeug.utils import secure_filename, redirect
-from pprint import pprint
-
-#C:\Users\RKGampa\Documents\GitHub\CMPE295-Project\Web\uploads
 
 UPLOAD_FOLDER = '\uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','zip','tar','rar'])
@@ -35,6 +29,7 @@ def check_user():
     :return json result:
     """
     if request.method == 'GET':
+        '''
         sensor_id = request.args.get('SensorId',0)
         cursor = db.cursor()
         if sensor_id != 0:
@@ -43,12 +38,14 @@ def check_user():
                 db.commit()
                 count = cursor.rowcount
                 if(count!=0):
-                    return "Success"
+                    for user_id in cursor:
+                        return make_response(jsonify(result="success",user_id=user_id),200)
                 else:
-                    return "Error"
+                    return user_not_found_response()
             except Exception,e:
-                print e.message
-                print "exception"
+                return error_response(e.message)
+                '''
+        make_response(200)
 
 
 @app.route("/v1.0/user/profile/",methods=['GET'])
@@ -64,15 +61,16 @@ def get_user():
             try:
                 cursor.execute("""SELECT first_name, last_name, height, weight, blood_type, gender, address, phone_number from users where id = (select user_id from sensor_user where sensor_id='"""+str(sensor_id)+"""')""")
                 db.commit()
-                for (first_name, last_name, height, weight, blood_type, gender, address, phone_number) in cursor:
-                    response ={'FirstName':first_name,'LastName':last_name,'Height':height,'Weight':weight,'BloodType':blood_type, 'Gender':gender, 'Address':address,'PhoneNumber':phone_number}
-                    print response
-                    print json.dumps(response)
-                    return json.dumps(response)
+                if(cursor.rowcount!=0):
+                    for (first_name, last_name, height, weight, blood_type, gender, address, phone_number) in cursor:
+                        response ={'FirstName':first_name,'LastName':last_name,'Height':height,'Weight':weight,'BloodType':blood_type, 'Gender':gender, 'Address':address,'PhoneNumber':phone_number}
+                        return make_response(jsonify(response),200)
+                else:
+                    return user_not_found_response()
             except Exception, e:
-                print e.message
-                print "exception"
-    return True
+                return error_response(e.message)
+        else:
+            return error_response("")
 
 @app.route("/v1.0/user/results/",methods=['GET'])
 def get_user_results():
@@ -82,24 +80,23 @@ def get_user_results():
     """
     if request.method == 'GET':
         sensor_id = request.args.get('SensorId',0)
-        cursor = db.cursor()
+        cursor = results_db.cursor()
         if sensor_id != 0:
             try:
-                cursor.execute("""SELECT xValue, yValue, zValue, hValue, tValue from SensorResults where SensorId='"""+str(sensor_id)+"""'""")
+                cursor.execute("""SELECT xValue, yValue, zValue, hValue, tValue from crunched_results where SensorId='"""+str(sensor_id)+"""'""")
                 db.commit()
                 for (xValue, yValue, zValue, hValue, tValue) in cursor:
                     print xValue, yValue, zValue, hValue, tValue
                     response ={'xValue':xValue,'yValue':yValue,'zValue':zValue,'hValue':hValue,'tValue':tValue}
-                    return json.dumps(response)
+                    return make_response(jsonify(response),200)
             except Exception,e:
-                print e.message
-                print "exception"
+                return error_response(e.message)
 
 # TODO: Test whether the file is extracted and saved.
 @app.route("/v1.0/user/sensor_details",methods=['POST'])
 def analyze_sensor_data():
     """
-    For a given sensor ID and file with sensor details extract the details
+    For a given sensor ID and json with sensor details extract the details
     :return: json result
     """
     if request.method == 'POST':
@@ -120,9 +117,9 @@ def analyze_sensor_data():
                     csr = results_db.cursor()
                     csr.execute("""INSERT INTO SensorData (user_id,temperature,humidity,acc_x,acc_y,acc_z,date_logged,step_count) VALUES ("""+str(user_id[0])+""","""+str(tVal)+""","""+str(hVal)+""","""+str(xVal)+""","""+str(yVal)+""","""+str(zVal)+""",'"""+str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+"""',"""+str(StepCount)+""")""")
                     results_db.commit()
+                    return make_response(201)
             except Exception,e:
-                print e.message
-                print "exception"
+                return error_response(e.message)
 
 # GET all the allergies of a particular user
 @app.route("/v1.0/user/allergies",methods= ['GET'])
@@ -147,9 +144,9 @@ def get_allergies():
                     print allergy_name,len(allergy_name),type(allergy_name)
                     result.append(allergy_name[0])
                 response ={'allergies':result}
-                return json.dumps(response)
+                return make_response(jsonify(response),200)
             except Exception:
-                print "exception "+Exception
+                return Exception.message
 
 # GET all the vaccinations of a particular user
 @app.route("/v1.0/user/vaccinations",methods= ['GET'])
@@ -169,9 +166,19 @@ def get_vaccines():
                 for (vaccination_desc) in cursor:
                     print vaccination_desc
                     response ={'vaccination_desc':vaccination_desc}
-                    return json.dumps(response)
+                    return make_response(jsonify(response),200)
             except Exception:
-                print "exception "+Exception
+                return Exception.message
+
+def error_response(msg):
+    if msg is not None and len(msg) > 0:
+        return make_response(jsonify(result="error",error=msg),400)
+    else:
+        return make_response(jsonify(result="error",error="Invalid request"),400)
+
+
+def user_not_found_response():
+    return make_response(jsonify(result="error",error="User not found"),401)
 
 if __name__ == '__main__':
     app.run()

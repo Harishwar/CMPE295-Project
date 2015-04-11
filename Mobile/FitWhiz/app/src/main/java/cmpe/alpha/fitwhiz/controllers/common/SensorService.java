@@ -26,11 +26,11 @@ public class SensorService extends Service implements SensorEventListener {
 
     private FitwhizApplication fitwhizApplication;
     CountHelper countHelper;
+
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(fitwhizApplication);
-        if(sensorEvent.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE)
-        {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
             String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
             double t_val = sensorEvent.values[0];
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(this);
@@ -39,8 +39,7 @@ public class SensorService extends Service implements SensorEventListener {
             readingsAnalyzer.analyzeTemperature(t_val);
         }
 
-        if(sensorEvent.sensor.getType()==Sensor.TYPE_RELATIVE_HUMIDITY)
-        {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
             String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
             double h_val = sensorEvent.values[0];
             HumidityTableOperations humidityTableOperations = new HumidityTableOperations(this);
@@ -48,8 +47,7 @@ public class SensorService extends Service implements SensorEventListener {
             fitwhizApplication.setHVal(h_val);
             readingsAnalyzer.analyzeHumidity(h_val);
         }
-        if(sensorEvent.sensor.getType()==Sensor.TYPE_LINEAR_ACCELERATION)
-        {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
             String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
             double x_val = Double.parseDouble(String.valueOf(sensorEvent.values[0]));
             double y_val = Double.parseDouble(String.valueOf(sensorEvent.values[0]));
@@ -59,32 +57,28 @@ public class SensorService extends Service implements SensorEventListener {
             fitwhizApplication.setXVal(x_val);
             fitwhizApplication.setYVal(y_val);
             fitwhizApplication.setZVal(z_val);
-            readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(x_val,y_val,z_val));
-            countHelper.AnalyzeValues(x_val,y_val,z_val);
+            readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(x_val, y_val, z_val));
+            countHelper.AnalyzeValues(x_val, y_val, z_val);
         }
     }
 
-    public void onStart(Intent intent, int startid)
-    {
+    public void onStart(Intent intent, int startid) {
         fitwhizApplication = (FitwhizApplication) this.getApplication();
-        countHelper = new CountHelper(fitwhizApplication,getApplicationContext());
+        countHelper = new CountHelper(fitwhizApplication, getApplicationContext());
         //Getting count and accelerometer sensors
-        SensorManager sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
-        Sensor temperatureSensor=sm.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        SensorManager sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        Sensor temperatureSensor = sm.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
         Sensor humiditySensor = sm.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         Sensor accelerometerSensor = sm.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        if(temperatureSensor!=null)
-        {
+        if (temperatureSensor != null) {
             Toast.makeText(this, "Temperature sensor available", Toast.LENGTH_SHORT).show();
             sm.registerListener(this, temperatureSensor, SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
         }
-        if(humiditySensor!=null)
-        {
+        if (humiditySensor != null) {
             Toast.makeText(this, "Humidity Sensor is available", Toast.LENGTH_SHORT).show();
             sm.registerListener(this, humiditySensor, SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
         }
-        if(accelerometerSensor!=null)
-        {
+        if (accelerometerSensor != null) {
             Toast.makeText(this, "Accelerometer Sensor is available", Toast.LENGTH_SHORT).show();
             sm.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }

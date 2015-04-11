@@ -22,7 +22,9 @@ import java.util.zip.ZipOutputStream;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
 import cmpe.alpha.fitwhiz.models.CountTableOperations;
+import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
+import cmpe.alpha.fitwhiz.models.MagnetometerTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
 
 /**
@@ -60,6 +62,8 @@ public class FileOperationsHelper {
             HumidityTableOperations humidityTableOperations = new HumidityTableOperations(context);
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(context);
             CountTableOperations countTableOperations = new CountTableOperations(context);
+            MagnetometerTableOperations magnetometerTableOperations = new MagnetometerTableOperations(context);
+            GyroscopeTableOperations gyroscopeTableOperations = new GyroscopeTableOperations(context);
             long end = System.currentTimeMillis();
 
             //To get 1 hour period
@@ -75,12 +79,24 @@ public class FileOperationsHelper {
             double zVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
             double hVal = humidityTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"h_val");
             double tVal = temperatureTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"t_val");
+            double m_xVal = magnetometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "x_val");
+            double m_yVal = magnetometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "y_val");
+            double m_zVal = magnetometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
+            double g_xVal = gyroscopeTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "x_val");
+            double g_yVal = gyroscopeTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "y_val");
+            double g_zVal = gyroscopeTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
             double stepCount = countTableOperations.getMaxCountForSpecifiedTimeRange(startDate,endTime,"count") - countTableOperations.getMinCountForSpecifiedTimeRange(startDate,endTime,"count");
             //Temporarily prepare JSON
             String json = "{\n" +
                     "  \"x_val\": "+xVal+",\n" +
                     "  \"y_val\": "+yVal+",\n" +
                     "  \"z_val\": "+zVal+",\n" +
+                    "  \"m_xVal\": "+m_xVal+",\n" +
+                    "  \"m_yVal\": "+m_yVal+",\n" +
+                    "  \"m_zVal\": "+m_zVal+",\n" +
+                    "  \"g_xVal\": "+g_xVal+",\n" +
+                    "  \"g_yVal\": "+g_yVal+",\n" +
+                    "  \"g_zVal\": "+g_zVal+",\n" +
                     "  \"h_val\": "+hVal+",\n" +
                     "  \"t_val\": "+tVal+",\n" +
                     "  \"SensorId\": "+sensorId+",\n" +
@@ -99,6 +115,18 @@ public class FileOperationsHelper {
             writer.append("y_val:'" + yVal+"',");
             writer.write("\n");
             writer.append("z_val:'" + zVal+"',");
+            writer.write("\n");
+            writer.append("m_xVal:'" + m_xVal+"',");
+            writer.write("\n");
+            writer.append("m_yVal:'" + m_yVal+"',");
+            writer.write("\n");
+            writer.append("m_zVal:'" + m_zVal+"',");
+            writer.write("\n");
+            writer.append("g_xVal:'" + g_xVal+"',");
+            writer.write("\n");
+            writer.append("g_yVal:'" + g_yVal+"',");
+            writer.write("\n");
+            writer.append("g_zVal:'" + g_zVal+"',");
             writer.write("\n");
             writer.append("h_val:'" + hVal+"',");
             writer.write("\n");

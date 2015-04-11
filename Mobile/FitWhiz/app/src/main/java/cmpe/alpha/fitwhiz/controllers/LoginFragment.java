@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.ti.ble.common.BluetoothLeService;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -30,9 +32,9 @@ import java.net.URISyntaxException;
 
 import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
-import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 import cmpe.alpha.fitwhiz.models.UserTableOperations;
 import cmpe.alpha.fitwhiz.sensortag.MainActivity;
@@ -91,18 +93,6 @@ public class LoginFragment extends Fragment
         sensorIdEdit = (EditText)loginFragment.findViewById(R.id.sensor_id_edit);
         //Initialize progressDialog
         progressDialog = new ProgressDialog(loginFragment.getContext());
-        buttonSensorTag = (Button)loginFragment.findViewById(R.id.button_sensor_tag);
-        buttonSensorTag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                Intent i = new Intent(getActivity(), MainActivity.class);
-                if(i.resolveActivity(getActivity().getPackageManager())!=null)
-                {
-                    startActivity(i);
-                }
-            }
-        });
         return loginFragment;
     }
 
@@ -153,7 +143,18 @@ public class LoginFragment extends Fragment
                     progressDialog.dismiss();
                     String desc = "Welcome to Fitwhiz. Your Login was successsful. Contact the developers for any assistance";
                     new NotificationHelper(this.getActivity().getApplicationContext()).SendNotification("test", "test", PendingIntent.getActivity(this.getActivity().getApplicationContext(), 0, new Intent(this.getActivity().getApplicationContext(),DashboardActivity.class),0), NotificationPriority.HIGH,desc);
-                    this.startActivity(dashboardIntent);
+                    if(BluetoothLeService.getInstance() == null)
+                    {
+                        Intent i = new Intent(getActivity(), MainActivity.class);
+                        if(i.resolveActivity(getActivity().getPackageManager())!=null)
+                        {
+                            startActivity(i);
+                        }
+                    }
+                    else
+                    {
+                        this.startActivity(dashboardIntent);
+                    }
                     getActivity().finish();
                 }
                 else
@@ -176,7 +177,6 @@ public class LoginFragment extends Fragment
             //Login Failure
             Log.e(this.getClass().getSimpleName(), ex.getMessage().toString());
             startActivity(new Intent(this.getActivity(),this.getActivity().getClass()));
-
         }
     }
 

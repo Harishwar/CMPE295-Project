@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context="cmpe.alpha.fitwhiz.controllers.SensorCurrentFragment"
     android:background="@drawable/background"
-    >
+    android:id="@+id/fragment_sensor_current">
 
 
     <TextView
@@ -111,5 +111,25 @@
         android:id="@+id/temperature_current_val"
         android:layout_alignTop="@+id/sensor_temp_text_live"
         android:layout_toEndOf="@+id/Gyroscope_current_val" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:id="@+id/magnet_current"
+        android:layout_below="@+id/sensor_mag_text_live"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:id="@+id/pressure_current"
+        android:layout_alignBottom="@+id/sensor_pressure_text_live"
+        android:layout_alignStart="@+id/humidity_current_val" />
 
 </RelativeLayout>

@@ -30,7 +30,10 @@
         android:textColorHint="#FFFFFF"
         android:layout_above="@+id/login_btn"
         android:textColor="#ffffff"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:inputType="textCapCharacters"
+        android:maxLines="1"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,13 +44,5 @@
         android:id="@+id/alert_text_view"
         android:layout_marginTop="68dp"
         android:layout_below="@+id/login_btn"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sensor Tag"
-        android:id="@+id/button_sensor_tag"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

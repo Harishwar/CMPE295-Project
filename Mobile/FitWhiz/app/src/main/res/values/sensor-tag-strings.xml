@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="sensortag_title">SensorTag</string>
+    <string name="sensortag_title">Fitwhiz</string>
     <string name="button_scan">Scan</string>
     <string name="connect">Connect</string>
     <string name="title_device_list">Device List</string>

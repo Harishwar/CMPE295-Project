@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="1_tible">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/tible.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

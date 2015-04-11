@@ -20,6 +20,6 @@ public class ScheduledCountUpdateService extends BroadcastReceiver {
         double count = fitwhizApplication.getCount();
         String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
         CountTableOperations countTableOperations = new CountTableOperations(context);
-        countTableOperations.insertValue(count,timestamp);
+        countTableOperations.insertValue(count, timestamp);
     }
 }

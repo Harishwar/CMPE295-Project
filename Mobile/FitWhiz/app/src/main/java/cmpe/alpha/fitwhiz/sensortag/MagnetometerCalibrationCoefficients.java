@@ -62,5 +62,5 @@ import com.example.ti.util.Point3D;
  */
 public enum MagnetometerCalibrationCoefficients {
   INSTANCE;
-  Point3D val = new Point3D(0.0,0.0,0.0);
+  public Point3D val = new Point3D(0.0,0.0,0.0);
 }

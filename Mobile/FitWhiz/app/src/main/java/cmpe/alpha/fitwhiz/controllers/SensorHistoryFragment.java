@@ -84,11 +84,11 @@ public class SensorHistoryFragment extends Fragment {
         FitwhizApplication application=(FitwhizApplication)this.getActivity().getApplication();
         ResultsUpdater resultsUpdater=new ResultsUpdater(application);
         resultsUpdater.execute(new PropertiesReader(sensorHistoryFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
-        ((TextView)sensorHistoryFragment.findViewById(R.id.historyTemperatureValue)).setText(application.getResult_tVal()+"");
-        ((TextView)sensorHistoryFragment.findViewById(R.id.humidityHistoryValue)).setText(application.getResult_hVal()+"");
-        ((TextView)sensorHistoryFragment.findViewById(R.id.historyAccelerometerValue)).setText(Math.ceil(application.getResult_xVal())+","+Math.ceil(application.getResult_yVal())+","+ Math.ceil(application.getResult_zVal()));
-
-
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_temp)).setText(application.getResult_tVal()+"");
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_humidity)).setText(application.getResult_hVal()+"");
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_temp)).setText(Math.ceil(application.getResult_xVal())+","+Math.ceil(application.getResult_yVal())+","+ Math.ceil(application.getResult_zVal()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_magnet)).setText(Math.ceil(application.getResult_mXVal())+","+Math.ceil(application.getResult_mYVal())+","+ Math.ceil(application.getResult_mZVal()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_gyr)).setText(Math.ceil(application.getResult_gXVal())+","+Math.ceil(application.getResult_gYVal())+","+ Math.ceil(application.getResult_gZVal()));
         return sensorHistoryFragment;
     }
 

@@ -1,26 +1,17 @@
 package cmpe.alpha.fitwhiz.controllers;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 
 import cmpe.alpha.fitwhiz.R;
-import cmpe.alpha.fitwhiz.models.DatabaseConnector;
-import cmpe.alpha.fitwhiz.models.UserTableOperations;
+import cmpe.alpha.fitwhiz.sensortag.LicenseDialog;
 
 public class LoginActivity extends Activity
 {
@@ -29,6 +20,11 @@ public class LoginActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("firstrun", true)) {
+            onLicense();
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
         if(checkLogin())
         {
             Intent dashboardIntent = new Intent(this, DashboardActivity.class);
@@ -42,7 +38,10 @@ public class LoginActivity extends Activity
                     .commit();
         }
     }
-
+    private void onLicense() {
+        final Dialog dialog = new LicenseDialog(this);
+        dialog.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -64,6 +63,23 @@ public class LoginActivity extends Activity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+        else {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_VISIBLE);
+        }
     }
 
     public boolean checkLogin()
