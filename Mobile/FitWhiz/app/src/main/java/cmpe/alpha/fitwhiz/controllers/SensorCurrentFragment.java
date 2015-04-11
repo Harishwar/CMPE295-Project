@@ -18,7 +18,9 @@ import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
+import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
+import cmpe.alpha.fitwhiz.models.MagnetometerTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
 import cmpe.alpha.fitwhiz.sensortag.Sensor;
 import cmpe.alpha.fitwhiz.sensortag.SensorTagGatt;
@@ -166,6 +168,9 @@ public class SensorCurrentFragment extends Fragment
            application.setM_xVal(v.x);
             application.setM_yVal(v.y);
             application.setM_zVal(v.z);
+            Activity activity = thisActivity;
+            MagnetometerTableOperations magnetometerTableOperations = new MagnetometerTableOperations(activity.getApplicationContext());
+            magnetometerTableOperations.insertValue(v.x, v.y, v.z, DateTimeHelper.getDefaultFormattedDateTime());
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_OPT_DATA.toString())) {
@@ -182,6 +187,9 @@ public class SensorCurrentFragment extends Fragment
             application.setG_xVal(v.x);
             application.setG_yVal(v.y);
             application.setG_zVal(v.z);
+            Activity activity = thisActivity;
+            GyroscopeTableOperations gyroscopeTableOperations = new GyroscopeTableOperations(activity.getApplicationContext());
+            gyroscopeTableOperations.insertValue(v.x, v.y, v.z, DateTimeHelper.getDefaultFormattedDateTime());
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_IRT_DATA.toString())) {
