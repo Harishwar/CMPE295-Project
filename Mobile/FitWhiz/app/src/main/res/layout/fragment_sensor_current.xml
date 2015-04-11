@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cmpe.alpha.fitwhiz.controllers.SensorCurrentFragment"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:id="@+id/fragment_sensor_current">
 
 
     <TextView

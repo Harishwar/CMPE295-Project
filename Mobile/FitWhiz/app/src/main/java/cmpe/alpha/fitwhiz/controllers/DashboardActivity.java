@@ -79,6 +79,8 @@ public class DashboardActivity extends Activity
     private boolean mIsSensorTag2;
     private String mFwRev;
 
+    private View view;
+
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */

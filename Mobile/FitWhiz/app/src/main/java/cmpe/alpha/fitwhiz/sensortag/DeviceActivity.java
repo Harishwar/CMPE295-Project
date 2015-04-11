@@ -77,7 +77,6 @@ import android.widget.Toast;
 
 import com.example.ti.ble.common.BluetoothLeService;
 import com.example.ti.ble.common.GattInfo;
-import com.example.ti.ble.common.HelpView;
 import com.example.ti.util.Point3D;
 
 import java.util.ArrayList;
@@ -150,10 +149,10 @@ public class DeviceActivity extends ViewPagerActivity {
 
 		// GUI
 		mDeviceView = new DeviceView();
-		mSectionsPagerAdapter.addSection(mDeviceView, "Sensors");
+		/*mSectionsPagerAdapter.addSection(mDeviceView, "Sensors");
 		HelpView hw = new HelpView();
 		hw.setParameters("help_device.html", R.layout.fragment_help, R.id.webpage);
-		mSectionsPagerAdapter.addSection(hw, "Help");
+		mSectionsPagerAdapter.addSection(hw, "Help");*/
 
 		// GATT database
 		Resources res = getResources();

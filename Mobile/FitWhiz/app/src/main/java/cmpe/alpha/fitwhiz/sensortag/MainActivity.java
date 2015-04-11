@@ -82,7 +82,6 @@ import android.widget.Toast;
 
 import com.example.ti.ble.common.BleDeviceInfo;
 import com.example.ti.ble.common.BluetoothLeService;
-import com.example.ti.ble.common.HelpView;
 import com.example.ti.util.CustomToast;
 
 import java.io.File;
@@ -176,11 +175,12 @@ public class MainActivity extends ViewPagerActivity {
 		// Create the fragments and add them to the view pager and tabs
 		mScanView = new ScanView();
 		mSectionsPagerAdapter.addSection(mScanView, "BLE Device List");
-		
+		        /*
+
 		HelpView hw = new HelpView();
 		hw.setParameters("help_scan.html", R.layout.fragment_help, R.id.webpage);
 		mSectionsPagerAdapter.addSection(hw, "Help");
-
+        */
 		// Register the BroadcastReceiver
 		mFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 		mFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);

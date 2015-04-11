@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,18 @@ public class SensorCurrentFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Nullable
+    @Override
+    public View getView() {
+        return view;
+    }
+
+    public void setView(View view) {
+        this.view = view;
+    }
+
+    private View view;
+
     public void setActivity(Activity act) {
         thisActivity = act;
     }
@@ -141,6 +154,7 @@ public class SensorCurrentFragment extends Fragment {
         Point3D v;
         String msg;
         ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(this.application);
+//        SensorCurrentFragment fragment = (SensorCurrentFragment)this.getFragmentManager().findFragmentById(R.id.fragment_sensor_current);
 
 
         if (uuidStr.equals(SensorTagGatt.UUID_ACC_DATA.toString())) {
@@ -156,6 +170,7 @@ public class SensorCurrentFragment extends Fragment {
             System.out.println(application.getXVal() + " " + application.getYVal() + " " + application.getZVal());
             readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(v.x, v.y, v.z));
             CountHelperThread cht = new CountHelperThread(v.x,v.y,v.z,application,thisActivity.getApplicationContext());
+       ///     ( (TextView)fragment.getActivity().findViewById(R.id.Accelerometer_current_val)).setText(new DecimalFormat("00.00").format(v.x));
             cht.run();
         }
 
