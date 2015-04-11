@@ -29,6 +29,7 @@ def check_user():
     :return json result:
     """
     if request.method == 'GET':
+        '''
         sensor_id = request.args.get('SensorId',0)
         cursor = db.cursor()
         if sensor_id != 0:
@@ -43,6 +44,8 @@ def check_user():
                     return user_not_found_response()
             except Exception,e:
                 return error_response(e.message)
+                '''
+        make_response(200)
 
 
 @app.route("/v1.0/user/profile/",methods=['GET'])
