@@ -73,6 +73,12 @@ public class ResultsUpdater extends AsyncTask<String, String, String> {
                 fitwhizApplication.setResult_zVal(json.getDouble("zValue"));
                 fitwhizApplication.setResult_hVal(json.getDouble("hValue"));
                 fitwhizApplication.setResult_tVal(json.getDouble("tValue"));
+                fitwhizApplication.setResult_gXVal(json.getDouble("gXValue"));
+                fitwhizApplication.setResult_gYVal(json.getDouble("gYValue"));
+                fitwhizApplication.setResult_gZVal(json.getDouble("gZValue"));
+                fitwhizApplication.setResult_mXVal(json.getDouble("mXValue"));
+                fitwhizApplication.setResult_mYVal(json.getDouble("mYValue"));
+                fitwhizApplication.setResult_mZVal(json.getDouble("mZValue"));
                 Log.d(this.getClass().getSimpleName(),fitwhizApplication.getXVal()+" "+fitwhizApplication.getTVal()+" "+fitwhizApplication.getHVal());
 
             } catch (JSONException e) {

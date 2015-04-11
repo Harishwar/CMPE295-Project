@@ -17,6 +17,61 @@ public class FitwhizApplication extends Application{
     private double result_hVal = 0.0;
     private double result_tVal = 0.0;
     private double result_xVal = 0.0;
+    private double result_gZVal = 0.0;
+
+    public double getResult_gZVal() {
+        return result_gZVal;
+    }
+
+    public void setResult_gZVal(double result_gZVal) {
+        this.result_gZVal = result_gZVal;
+    }
+
+    public double getResult_gYVal() {
+        return result_gYVal;
+    }
+
+    public void setResult_gYVal(double result_gYVal) {
+        this.result_gYVal = result_gYVal;
+    }
+
+    public double getResult_gXVal() {
+        return result_gXVal;
+    }
+
+    public void setResult_gXVal(double result_gXVal) {
+        this.result_gXVal = result_gXVal;
+    }
+
+    public double getResult_mXVal() {
+        return result_mXVal;
+    }
+
+    public void setResult_mXVal(double result_mXVal) {
+        this.result_mXVal = result_mXVal;
+    }
+
+    public double getResult_mYVal() {
+        return result_mYVal;
+    }
+
+    public void setResult_mYVal(double result_mYVal) {
+        this.result_mYVal = result_mYVal;
+    }
+
+    public double getResult_mZVal() {
+        return result_mZVal;
+    }
+
+    public void setResult_mZVal(double result_mZVal) {
+        this.result_mZVal = result_mZVal;
+    }
+
+    private double result_gYVal = 0.0;
+    private double result_gXVal = 0.0;
+    private double result_mXVal = 0.0;
+    private double result_mYVal = 0.0;
+    private double result_mZVal = 0.0;
     private String BloodType = "";
     private String PhoneNumber = "";
     private String Weight = "";
@@ -86,23 +141,6 @@ public class FitwhizApplication extends Application{
 
     private double ambTemp;
 
-    public double getBodyTemp() {
-        return bodyTemp;
-    }
-
-    public void setBodyTemp(double bodyTemp) {
-        this.bodyTemp = bodyTemp;
-    }
-
-    public double getAmbTemp() {
-        return ambTemp;
-    }
-
-    public void setAmbTemp(double ambTemp) {
-        this.ambTemp = ambTemp;
-    }
-
-    private double bodyTemp;
 
     public double getCount()
     {
