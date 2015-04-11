@@ -3,15 +3,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fadingEdge="horizontal|vertical"
-    android:orientation="vertical" >
+    android:background="#F0F0F0"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/buttonOK"
+        android:textColor="#ffffff"
+        android:background="#00ff00"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
         android:text="@string/agree" />
-    
     <WebView
         android:id="@+id/webpage_license"
         android:layout_width="wrap_content"

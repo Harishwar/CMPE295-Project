@@ -279,12 +279,12 @@ public class MainActivity extends ViewPagerActivity {
 		// Initial state of widgets
 		updateGuiState();
 
-		// License popup on first run
+		/* License popup on first run
 		if (prefs.getBoolean("firstrun", true)) {
 			onLicense();
 			prefs.edit().putBoolean("firstrun", false).commit();
 		}
-
+*/
 		if (!mInitialised) {
 			// Broadcast receiver
 			registerReceiver(mReceiver, mFilter);
