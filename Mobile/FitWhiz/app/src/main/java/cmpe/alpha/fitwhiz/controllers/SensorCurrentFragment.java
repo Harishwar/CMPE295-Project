@@ -28,11 +28,10 @@ import cmpe.alpha.fitwhiz.sensortag.SensorTagGatt;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SensorCurrentFragment extends Fragment
-{
+public class SensorCurrentFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private  FitwhizApplication application;
+    private FitwhizApplication application;
     private DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
 
     private Activity thisActivity;
@@ -42,7 +41,7 @@ public class SensorCurrentFragment extends Fragment
     private TextView hVal;
 
 
-    private double magnetometer=0,gyroscope=0,humidity=0,temperature=0,pressure=0,accelerometer=0;
+    private double magnetometer = 0, gyroscope = 0, humidity = 0, temperature = 0, pressure = 0, accelerometer = 0;
 
     public double getMagnetometer() {
         return magnetometer;
@@ -92,45 +91,40 @@ public class SensorCurrentFragment extends Fragment
         this.accelerometer = accelerometer;
     }
 
-    public SensorCurrentFragment()
-    {
+    public SensorCurrentFragment() {
         // Required empty public constructor
     }
 
-    public void setActivity(Activity act)
-    {
+    public void setActivity(Activity act) {
         thisActivity = act;
     }
 
-    public void setApplication(FitwhizApplication app)
-    {
+    public void setApplication(FitwhizApplication app) {
         application = app;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View sensorCurrentFragment = inflater.inflate(R.layout.fragment_sensor_current, container, false);
         application = (FitwhizApplication) this.getActivity().getApplication();
-        TextView accelerometerView = (TextView)sensorCurrentFragment.findViewById(R.id.Accelerometer_current_val);
-        TextView humidityView = (TextView)sensorCurrentFragment.findViewById(R.id.humidity_current_val);
-        TextView magView = (TextView)sensorCurrentFragment.findViewById(R.id.magnet_current);
-        TextView gyroView = (TextView)sensorCurrentFragment.findViewById(R.id.sensor_gyro_text_live);
+        TextView accelerometerView = (TextView) sensorCurrentFragment.findViewById(R.id.Accelerometer_current_val);
+        TextView humidityView = (TextView) sensorCurrentFragment.findViewById(R.id.humidity_current_val);
+        TextView magView = (TextView) sensorCurrentFragment.findViewById(R.id.magnet_current);
+        TextView gyroView = (TextView) sensorCurrentFragment.findViewById(R.id.sensor_gyro_text_live);
 
-        TextView temperatureView = (TextView)sensorCurrentFragment.findViewById(R.id.temperature_current_val);
-        accelerometerView.setText(application.getXVal()+"-"+application.getYVal()+"-"+application.getZVal());
-        temperatureView.setText(application.getAmbTemp()+"");
-        humidityView.setText(application.getHVal()+"");
-        gyroView.setText(application.getG_xVal()+"-"+application.getG_yVal()+"-"+application.getG_zVal());
-        magView.setText(application.getM_xVal()+"-"+application.getM_yVal()+"-"+application.getM_zVal());
+        TextView temperatureView = (TextView) sensorCurrentFragment.findViewById(R.id.temperature_current_val);
+        accelerometerView.setText(application.getXVal() + "-" + application.getYVal() + "-" + application.getZVal());
+        temperatureView.setText(application.getAmbTemp() + "");
+        humidityView.setText(application.getHVal() + "");
+        gyroView.setText(application.getG_xVal() + "-" + application.getG_yVal() + "-" + application.getG_zVal());
+        magView.setText(application.getM_xVal() + "-" + application.getM_yVal() + "-" + application.getM_zVal());
         return sensorCurrentFragment;
     }
 
     @Override
-    public void onAttach(Activity activity)
-    {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         ((DashboardActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
@@ -139,7 +133,7 @@ public class SensorCurrentFragment extends Fragment
 
     /**
      * Handle changes in sensor values
-     * */
+     */
     public void onCharacteristicChanged(String uuidStr, byte[] rawValue) {
         Point3D v;
         String msg;
@@ -156,16 +150,16 @@ public class SensorCurrentFragment extends Fragment
             application.setXVal(v.x);
             application.setYVal(v.y);
             application.setZVal(v.z);
-            System.out.println(application.getXVal()+" "+application.getYVal()+" "+application.getZVal());
+            System.out.println(application.getXVal() + " " + application.getYVal() + " " + application.getZVal());
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_MAG_DATA.toString())) {
 
-			v = Sensor.MAGNETOMETER.convert(rawValue);
-			msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
-			    + decimal.format(v.z) + "\n";
-			//mMagValue.setText(msg);*/
-           application.setM_xVal(v.x);
+            v = Sensor.MAGNETOMETER.convert(rawValue);
+            msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
+                    + decimal.format(v.z) + "\n";
+            //mMagValue.setText(msg);*/
+            application.setM_xVal(v.x);
             application.setM_yVal(v.y);
             application.setM_zVal(v.z);
             Activity activity = thisActivity;
@@ -174,16 +168,16 @@ public class SensorCurrentFragment extends Fragment
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_OPT_DATA.toString())) {
-			v = Sensor.LUXOMETER.convert(rawValue);
-			msg = decimal.format(v.x) + "\n";
-			//mLuxValue.setText(msg);*/
+            v = Sensor.LUXOMETER.convert(rawValue);
+            msg = decimal.format(v.x) + "\n";
+            //mLuxValue.setText(msg);*/
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_GYR_DATA.toString())) {
-			v = Sensor.GYROSCOPE.convert(rawValue);
-			msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
-			    + decimal.format(v.z) + "\n";
-			//mGyrValue.setText(msg);*/
+            v = Sensor.GYROSCOPE.convert(rawValue);
+            msg = decimal.format(v.x) + "\n" + decimal.format(v.y) + "\n"
+                    + decimal.format(v.z) + "\n";
+            //mGyrValue.setText(msg);*/
             application.setG_xVal(v.x);
             application.setG_yVal(v.y);
             application.setG_zVal(v.z);
@@ -217,7 +211,7 @@ public class SensorCurrentFragment extends Fragment
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {/*
-			v = Sensor.BAROMETER.convert(rawValue);
+            v = Sensor.BAROMETER.convert(rawValue);
 
 			double h = (v.x - BarometerCalibrationCoefficients.INSTANCE.heightCalibration)
 			    / PA_PER_METER;

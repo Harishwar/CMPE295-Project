@@ -5,8 +5,10 @@ import android.app.Application;
 /**
  * Created by rajagopalan on 2/22/15.
  */
-public class FitwhizApplication extends Application{
+public class FitwhizApplication extends Application {
 
+    public double count;
+    protected String SensorId = "";
     private double x_val = 0.0;
     private double y_val = 0.0;
     private double z_val = 0.0;
@@ -18,6 +20,27 @@ public class FitwhizApplication extends Application{
     private double result_tVal = 0.0;
     private double result_xVal = 0.0;
     private double result_gZVal = 0.0;
+    private double result_gYVal = 0.0;
+    private double result_gXVal = 0.0;
+    private double result_mXVal = 0.0;
+    private double result_mYVal = 0.0;
+    private double result_mZVal = 0.0;
+    private String BloodType = "";
+    private String PhoneNumber = "";
+    private String Weight = "";
+    private String FirstName = "";
+    private String Gender = "";
+    private String LastName = "";
+    private String Address = "";
+    private String Height = "";
+    private double m_xVal;
+    private double g_xVal;
+    private double g_yVal;
+    private double g_zVal;
+    private double m_yVal;
+    private double m_zVal;
+    private double ambTemp;
+    private double bodyTemp;
 
     public double getResult_gZVal() {
         return result_gZVal;
@@ -67,22 +90,6 @@ public class FitwhizApplication extends Application{
         this.result_mZVal = result_mZVal;
     }
 
-    private double result_gYVal = 0.0;
-    private double result_gXVal = 0.0;
-    private double result_mXVal = 0.0;
-    private double result_mYVal = 0.0;
-    private double result_mZVal = 0.0;
-    private String BloodType = "";
-    private String PhoneNumber = "";
-    private String Weight = "";
-    private String FirstName = "";
-    private String Gender = "";
-    private String LastName = "";
-    private String Address = "";
-    private String Height = "";
-    public double count;
-    private double m_xVal;
-
     public double getM_xVal() {
         return m_xVal;
     }
@@ -106,8 +113,6 @@ public class FitwhizApplication extends Application{
     public void setM_zVal(double m_zVal) {
         this.m_zVal = m_zVal;
     }
-
-    private double g_xVal;
 
     public double getG_xVal() {
         return g_xVal;
@@ -133,23 +138,29 @@ public class FitwhizApplication extends Application{
         this.g_zVal = g_zVal;
     }
 
-    private double g_yVal;
-    private double g_zVal;
+    public double getAmbTemp() {
+        return ambTemp;
+    }
 
-    private double m_yVal;
-    private double m_zVal;
+    public void setAmbTemp(double ambTemp) {
+        this.ambTemp = ambTemp;
+    }
 
-    private double ambTemp;
-
-
-    public double getCount()
-    {
+    public double getCount() {
         return this.count;
     }
-    public void setCount(double d)
-    {
-        this.count=d;
 
+    public void setCount(double d) {
+        this.count = d;
+
+    }
+
+    public double getBodyTemp() {
+        return bodyTemp;
+    }
+
+    public void setBodyTemp(double bodyTemp) {
+        this.bodyTemp = bodyTemp;
     }
 
     public String getSensorId() {
@@ -160,7 +171,6 @@ public class FitwhizApplication extends Application{
         SensorId = sensorId;
     }
 
-    protected String SensorId = "";
     public String getHeight() {
         return Height;
     }
@@ -266,45 +276,44 @@ public class FitwhizApplication extends Application{
         this.result_tVal = result_tVal;
     }
 
-    public double getXVal()
-    {
+    public double getXVal() {
         return this.x_val;
     }
-    public void setXVal(double val)
-    {
-        this.x_val=val;
+
+    public void setXVal(double val) {
+        this.x_val = val;
     }
-    public double getYVal()
-    {
+
+    public double getYVal() {
         return this.y_val;
     }
-    public void setYVal(double val)
-    {
-        this.y_val=val;
+
+    public void setYVal(double val) {
+        this.y_val = val;
     }
-    public double getZVal()
-    {
+
+    public double getZVal() {
         return this.z_val;
     }
-    public void setZVal(double val)
-    {
-        this.z_val=val;
+
+    public void setZVal(double val) {
+        this.z_val = val;
     }
-    public double getHVal()
-    {
+
+    public double getHVal() {
         return this.h_val;
     }
-    public void setHVal(double val)
-    {
-        this.h_val=val;
+
+    public void setHVal(double val) {
+        this.h_val = val;
     }
-    public double getTVal()
-    {
+
+    public double getTVal() {
         return this.t_val;
     }
-    public void setTVal(double val)
-    {
-        this.t_val=val;
+
+    public void setTVal(double val) {
+        this.t_val = val;
     }
 
 

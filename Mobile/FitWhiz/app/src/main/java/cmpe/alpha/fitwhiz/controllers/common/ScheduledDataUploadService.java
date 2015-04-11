@@ -18,11 +18,13 @@ public class ScheduledDataUploadService extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //Read Properties file
         PropertiesReader propertiesReader = new PropertiesReader(context);
-        Properties properties= propertiesReader.getProperties("Fitwhiz.properties");
+        Properties properties = propertiesReader.getProperties("Fitwhiz.properties");
         String serverUrl = properties.getProperty("FileUploadUrl");
         //Write the sensor data to a file
         FileOperationsHelper fileOperationsHelper = new FileOperationsHelper(context);
         String result = fileOperationsHelper.WriteDBToFile();
+        //Temporarily not writing to file
+        //Instead POSTing Json data
         /*
         if(!result.equalsIgnoreCase("Exception"))
         {
