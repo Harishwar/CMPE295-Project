@@ -42,6 +42,24 @@ public class FitwhizApplication extends Application {
     private double ambTemp;
     private double bodyTemp;
 
+    public double getP_Hval() {
+        return p_Hval;
+    }
+
+    public void setP_Hval(double p_Hval) {
+        this.p_Hval = p_Hval;
+    }
+
+    public double getP_val() {
+        return p_val;
+    }
+
+    public void setP_val(double p_val) {
+        this.p_val = p_val;
+    }
+
+    private double p_Hval;
+    private double p_val;
     public double getResult_gZVal() {
         return result_gZVal;
     }

@@ -3,7 +3,9 @@ package cmpe.alpha.fitwhiz.controllers;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -18,16 +20,20 @@ import java.text.DecimalFormat;
 import cmpe.alpha.fitwhiz.HelperLibrary.CountHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
+import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
 import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
 import cmpe.alpha.fitwhiz.models.MagnetometerTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
+import cmpe.alpha.fitwhiz.sensortag.BarometerCalibrationCoefficients;
 import cmpe.alpha.fitwhiz.sensortag.Sensor;
 import cmpe.alpha.fitwhiz.sensortag.SensorTagGatt;
+import cmpe.alpha.fitwhiz.sensortag.SimpleKeysStatus;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -111,6 +117,8 @@ public class SensorCurrentFragment extends Fragment {
 
     private View view;
 
+    private static final double PA_PER_METER = 12.0;
+
     public void setActivity(Activity act) {
         thisActivity = act;
     }
@@ -129,13 +137,14 @@ public class SensorCurrentFragment extends Fragment {
         TextView humidityView = (TextView) sensorCurrentFragment.findViewById(R.id.humidity_current_val);
         TextView magView = (TextView) sensorCurrentFragment.findViewById(R.id.magnet_current);
         TextView gyroView = (TextView) sensorCurrentFragment.findViewById(R.id.sensor_gyro_text_live);
-
+        TextView pressureView = (TextView) sensorCurrentFragment.findViewById(R.id.pressure_current);
         TextView temperatureView = (TextView) sensorCurrentFragment.findViewById(R.id.temperature_current_val);
         accelerometerView.setText(application.getXVal() + "-" + application.getYVal() + "-" + application.getZVal());
         temperatureView.setText(application.getAmbTemp() + "");
         humidityView.setText(application.getHVal() + "");
         gyroView.setText(application.getG_xVal() + "-" + application.getG_yVal() + "-" + application.getG_zVal());
         magView.setText(application.getM_xVal() + "-" + application.getM_yVal() + "-" + application.getM_zVal());
+        pressureView.setText(application.getP_val()+" at h: "+application.getP_val());
         return sensorCurrentFragment;
     }
 
@@ -231,14 +240,16 @@ public class SensorCurrentFragment extends Fragment {
             readingsAnalyzer.analyzeHumidity(Double.parseDouble(msg));
         }
 
-        if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {/*
+        if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {
             v = Sensor.BAROMETER.convert(rawValue);
 
 			double h = (v.x - BarometerCalibrationCoefficients.INSTANCE.heightCalibration)
 			    / PA_PER_METER;
 			h = (double) Math.round(-h * 10.0) / 10.0;
 			msg = decimal.format(v.x / 100.0f) + "\n" + h;
-			mBarValue.setText(msg);
+			//mBarValue.setText(msg);
+            application.setP_Hval(h);
+            application.setP_val(Double.parseDouble(decimal.format(v.x/100.0f)));
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_KEY_DATA.toString())) {
@@ -246,21 +257,26 @@ public class SensorCurrentFragment extends Fragment {
             SimpleKeysStatus s;
             final int imgBtn;
             s = Sensor.SIMPLE_KEYS.convertKeys((byte) (keys&3));
-
+            PendingIntent pIntent = PendingIntent.getActivity(thisActivity.getApplicationContext(), 0, new Intent(thisActivity.getApplicationContext(),DashboardActivity.class),0);
+            NotificationHelper helper = new NotificationHelper(thisActivity.getApplicationContext());
             switch (s) {
                 case OFF_ON:
-                    imgBtn = R.drawable.buttonsoffon;
+                   // imgBtn = R.drawable.buttonsoffon;
+                    helper.SendNotification("Right", "Right Button pressed", pIntent, NotificationPriority.LOW,"");
                     break;
                 case ON_OFF:
-                    imgBtn = R.drawable.buttonsonoff;
+                    //imgBtn = R.drawable.buttonsonoff;
+                    helper.SendNotification("Left", "Left Button pressed", pIntent, NotificationPriority.LOW,"");
                     break;
                 case ON_ON:
-                    imgBtn = R.drawable.buttonsonon;
+                  //  imgBtn = R.drawable.buttonsonon;
+                    helper.SendNotification("Both", "Both Buttons pressed", pIntent, NotificationPriority.LOW,"");
                     break;
                 default:
-                    imgBtn = R.drawable.buttonsoffoff;
+                  //  imgBtn = R.drawable.buttonsoffoff;
+                    //helper.SendNotification("Both", "Both Buttons pressed", pIntent, NotificationPriority.LOW,"");
                     break;
-            }*/
+            }
         }
     }
 
