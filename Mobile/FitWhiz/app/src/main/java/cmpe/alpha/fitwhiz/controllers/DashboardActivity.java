@@ -356,13 +356,18 @@ public class DashboardActivity extends Activity
                 break;
         }
     }
+
     @Override
     protected void onResume() {
         // Log.d(TAG, "onResume");
         super.onResume();
-        if (!mIsReceiving) {
-            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
-            mIsReceiving = true;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!prefs.getBoolean("registered",false)) {
+            //if (!mIsReceiving) {
+                //registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+                prefs.edit().putBoolean("registered",true);
+                //mIsReceiving = true;
+           // }
         }
     }
 
@@ -444,10 +449,10 @@ public class DashboardActivity extends Activity
     protected void onPause() {
         // Log.d(TAG, "onPause");
         super.onPause();
-        if (mIsReceiving) {
+        /*if (mIsReceiving) {
             unregisterReceiver(mGattUpdateReceiver);
             mIsReceiving = false;
-        }
+        }*/
     }
 
     private void onCharacteristicsRead(String uuidStr, byte[] value, int status) {
@@ -540,6 +545,7 @@ public class DashboardActivity extends Activity
 
         // Initialize sensor list
         updateSensorList();
+        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
     }
 
     @Override
