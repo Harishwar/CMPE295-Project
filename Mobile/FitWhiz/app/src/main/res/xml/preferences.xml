@@ -29,25 +29,25 @@
         <CheckBoxPreference
             android:key="pref_gyroscope_on"
             android:summary="Turn the Gyroscope service on or off."
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:persistent="true"
             android:title="Gyroscope" />
         <CheckBoxPreference
             android:key="pref_ir_temperature_on"
             android:summary="Turn the IR and Ambient Temperature service on or off."
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:persistent="true"
             android:title="IR and Ambient Temperature" />
         <CheckBoxPreference
             android:key="pref_humidity_on"
             android:summary="Turn the Humidity service on or off."
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:persistent="true"
             android:title="Humidity" />
         <CheckBoxPreference
             android:key="pref_barometer_on"
             android:summary="Turn the Barometer service on or off."
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:persistent="true"
             android:title="Barometer" />
     </PreferenceCategory>

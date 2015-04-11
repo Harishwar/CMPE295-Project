@@ -146,9 +146,9 @@ public enum Sensor {
   		 * The z value is multiplied with -1 to coincide with how we have arbitrarily defined the positive y direction. (illustrated by the apps accelerometer
   		 * image)
   		 */
-			DeviceActivity da = DeviceActivity.getInstance();
-
-			if (da.isSensorTag2()) {
+			//DeviceActivity da = DeviceActivity.getInstance();
+        //DashboardActivity da = DashboardActivity.getInstance();
+		/*	if (da.isSensorTag2()) {
   			// Range 8G
   			final float SCALE = (float) 4096.0;
   			
@@ -156,24 +156,25 @@ public enum Sensor {
   			int y = (value[2]<<8) + value[3];
   			int z = (value[4]<<8) + value[5]; 
   			return new Point3D(x / SCALE, y / SCALE, z / SCALE);
-  		} else {
-  			Point3D v;
+  		/*} else {
+  		*/	Point3D v;
   			Integer x = (int) value[0];
   			Integer y = (int) value[1];
   			Integer z = (int) value[2] * -1;
   			
-  			if (da.firmwareRevision().contains("1.5"))
-  			{
+  		//	if (da.firmwareRevision().contains("1.5"))
+  		//	{
   				// Range 8G
     			final float SCALE = (float) 64.0;
   				v = new Point3D(x / SCALE, y / SCALE, z / SCALE);
-  			} else {
+  		//	} else {
   				// Range 2G
-    			final float SCALE = (float) 16.0;
-  				v = new Point3D(x / SCALE, y / SCALE, z / SCALE);
-  			}
+    			final float SCALE1 = (float) 16.0;
+
+        Point3D v1 = new Point3D(x / SCALE1, y / SCALE1, z / SCALE1);
+  		//	}
   			return v;
-  		}
+  		//}*/
 
   	}
   },
@@ -238,7 +239,7 @@ public enum Sensor {
     @Override
     public Point3D convert(final byte [] value) {
 
-    	if (DeviceActivity.getInstance().isSensorTag2()) {
+    	/*if (DeviceActivity.getInstance().isSensorTag2()) {
         int mantissa;
         int exponent;
         Integer sfloat= shortUnsignedAtOffset(value, 2);
@@ -251,7 +252,7 @@ public enum Sensor {
         output = (mantissa * magnitude);
 
   			return new Point3D(output / 100.0f, 0, 0);
-    	} else {
+    	} else {*/
     		List<Integer> barometerCalibrationCoefficients = BarometerCalibrationCoefficients.INSTANCE.barometerCalibrationCoefficients;
     		if (barometerCalibrationCoefficients == null) {
     			// Log.w("Sensor", "Data notification arrived for barometer before it was calibrated.");
@@ -278,7 +279,7 @@ public enum Sensor {
     		p_a = (S * p_r + O) / pow(2, 14);
 
     		return new Point3D(p_a,0,0);
-    	}
+    	//}
     }
   },
 
@@ -291,20 +292,20 @@ public enum Sensor {
   		 * 2 - side key
   		 */
       int keys = (int) value;
-    	if (DeviceActivity.getInstance().isSensorTag2()) {
+    	/*if (DeviceActivity.getInstance().isSensorTag2()) {
     		/* Key mapping for SensorTagGatt 2:
     		 * 0 - left key
     		 * 1 - right key
     		 * 2 - reed relay
     		 */
-    		int t = keys;
+    		/*int t = keys;
     		keys = t & 0x04;
     		// Swapped keys compared to first SensorTagGatt
     		if ( (t & 1) == 1)
     			keys |= 2;
     		if ( (t & 2) == 2 )
     			keys |= 1;
-    	}
+    	}*/
 
       return SimpleKeysStatus.values()[keys & 7];
     }

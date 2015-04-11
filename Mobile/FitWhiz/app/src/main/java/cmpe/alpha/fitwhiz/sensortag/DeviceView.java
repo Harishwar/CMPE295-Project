@@ -65,7 +65,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.ti.util.Point3D;
+
 import java.text.DecimalFormat;
+
 import cmpe.alpha.fitwhiz.R;
 
 // Fragment for Device View
@@ -169,7 +172,7 @@ public class DeviceView extends Fragment {
 
 		if (mMagPanel != null)
 			mMagPanel.setOnClickListener(cl);
-		mBarPanel.setOnClickListener(cl);
+//		mBarPanel.setOnClickListener(cl);
 
 		// Notify activity that UI has been inflated
 		mActivity.onViewInflated(view);

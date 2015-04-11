@@ -114,7 +114,6 @@ public class ScanView extends Fragment {
     mDeviceListView = (ListView) view.findViewById(R.id.device_list);
     mDeviceListView.setClickable(true);
     mDeviceListView.setOnItemClickListener(mDeviceClickListener);
-    mEmptyMsg = (TextView)view.findViewById(R.id.no_device);
     mBusy = false;
     
     // Alert parent activity
@@ -153,11 +152,11 @@ public class ScanView extends Fragment {
 		}
 		mDeviceListView.setAdapter(mDeviceAdapter);
 		mDeviceAdapter.notifyDataSetChanged();
-		if (deviceList.size() > 0) {
+		/*if (deviceList.size() > 0) {
 			mEmptyMsg.setVisibility(View.GONE);
 		} else {
 			mEmptyMsg.setVisibility(View.VISIBLE);			
-		}
+		}*/
 	}
 
 	void setBusy(boolean f) {
@@ -185,14 +184,14 @@ public class ScanView extends Fragment {
       mBtnScan.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_cancel, 0);
       mStatus.setTextAppearance(mContext, R.style.statusStyle_Busy);
       mStatus.setText("Scanning...");
-      mEmptyMsg.setText(R.string.nodevice);
+      //mEmptyMsg.setText(R.string.nodevice);
       mActivity.updateGuiState();
     } else {
       // Indicate that scanning has stopped
       mStatus.setTextAppearance(mContext, R.style.statusStyle_Success);
       mBtnScan.setText("Scan");
       mBtnScan.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_refresh, 0);
-      mEmptyMsg.setText(R.string.scan_advice);
+      //mEmptyMsg.setText(R.string.scan_advice);
       mActivity.setProgressBarIndeterminateVisibility(false);
       mDeviceAdapter.notifyDataSetChanged();
     }

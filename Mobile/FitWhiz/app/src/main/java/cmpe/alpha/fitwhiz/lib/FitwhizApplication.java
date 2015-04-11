@@ -26,6 +26,83 @@ public class FitwhizApplication extends Application{
     private String Address = "";
     private String Height = "";
     public double count;
+    private double m_xVal;
+
+    public double getM_xVal() {
+        return m_xVal;
+    }
+
+    public void setM_xVal(double m_xVal) {
+        this.m_xVal = m_xVal;
+    }
+
+    public double getM_yVal() {
+        return m_yVal;
+    }
+
+    public void setM_yVal(double m_yVal) {
+        this.m_yVal = m_yVal;
+    }
+
+    public double getM_zVal() {
+        return m_zVal;
+    }
+
+    public void setM_zVal(double m_zVal) {
+        this.m_zVal = m_zVal;
+    }
+
+    private double g_xVal;
+
+    public double getG_xVal() {
+        return g_xVal;
+    }
+
+    public void setG_xVal(double g_xVal) {
+        this.g_xVal = g_xVal;
+    }
+
+    public double getG_yVal() {
+        return g_yVal;
+    }
+
+    public void setG_yVal(double g_yVal) {
+        this.g_yVal = g_yVal;
+    }
+
+    public double getG_zVal() {
+        return g_zVal;
+    }
+
+    public void setG_zVal(double g_zVal) {
+        this.g_zVal = g_zVal;
+    }
+
+    private double g_yVal;
+    private double g_zVal;
+
+    private double m_yVal;
+    private double m_zVal;
+
+    private double ambTemp;
+
+    public double getBodyTemp() {
+        return bodyTemp;
+    }
+
+    public void setBodyTemp(double bodyTemp) {
+        this.bodyTemp = bodyTemp;
+    }
+
+    public double getAmbTemp() {
+        return ambTemp;
+    }
+
+    public void setAmbTemp(double ambTemp) {
+        this.ambTemp = ambTemp;
+    }
+
+    private double bodyTemp;
 
     public double getCount()
     {

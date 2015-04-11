@@ -91,6 +91,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.controllers.DashboardActivity;
 
 // import android.util.Log;
 
@@ -357,9 +358,10 @@ public class MainActivity extends ViewPagerActivity {
 	}
 
 	private void startDeviceActivity() {
-		mDeviceIntent = new Intent(this, DeviceActivity.class);
-		mDeviceIntent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
-		startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
+		mDeviceIntent = new Intent(this, DashboardActivity.class);
+		mDeviceIntent.putExtra(DashboardActivity.EXTRA_DEVICE, mBluetoothDevice);
+		//startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
+        startActivity(mDeviceIntent);
 	}
 
 	private void stopDeviceActivity() {
