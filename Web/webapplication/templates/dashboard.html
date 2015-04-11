@@ -19,6 +19,7 @@
 <script>
 	$(document).ready(function() {
 
+    setInterval(function(){
     var options = {
         chart: {
             renderTo: 'container_graph',
@@ -30,20 +31,67 @@
 		
         series: [{}]
     };
-
+	
     $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
 		var jsonRes=JSON.parse(data);
 		console.log(jsonRes.length);
 		console.log(jsonRes);
 		data=[];
 		for(i=0; i<jsonRes.length;i++){
-			data.push([jsonRes[i].x,parseInt(jsonRes[i].y)]);					   
-		
+			//console.log(jsonRes[i].x);
+			data.push([Date.parse(jsonRes[i].x),parseInt(jsonRes[i].y)]);					   
+			data.sort();
 		}
 		options.series[0].data =data;
         
         var chart = new Highcharts.Chart(options);
     });
+    
+	  var options1 = {
+        chart: {
+            renderTo: 'container_graph1',
+            type: 'line'
+        },
+		xAxis: {
+            type: 'datetime'
+        },
+		
+        //series: [{name:'',data:[]}]
+    };
+
+    $.getJSON('doctorsView/getUsersData', function(data) {
+		var jsonRes=JSON.parse(data);
+		var chart1;
+		console.log(jsonRes.length);
+		//console.log(jsonRes);
+		data1=[];
+		var c=0;
+		u_series=[];
+		for(i=0;i<jsonRes.length;i++){
+			if(u_series.indexOf(jsonRes[i].user_id)==-1){
+				u_series.push(jsonRes[i].user_id);
+				//count++;
+			}
+		}
+		console.log("users count",u_series.length);
+		chart1 = new Highcharts.Chart(options1);
+		for(j=0;j<u_series.length;j++){
+		data1=[];
+		for(i=0; i<jsonRes.length;i++){
+			if(u_series[j]==jsonRes[i].user_id){
+				console.log(jsonRes[i].x);
+				data1.push([Date.parse(jsonRes[i].x),parseInt(jsonRes[i].y)]);					   
+				data1.sort();
+			}
+		}
+        chart1.addSeries({
+        name:u_series[j],
+        data:data1
+        },false);
+        }
+        chart1.redraw();
+    });
+	},5000);
 
 });
 	
@@ -129,6 +177,7 @@
             <h1 class="lightGreen"><center>Charts</center></h1>
         </div>
         <div id="container_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container_graph1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         <!-- End Charts -->
     </section>
     <!-- End Content -->
