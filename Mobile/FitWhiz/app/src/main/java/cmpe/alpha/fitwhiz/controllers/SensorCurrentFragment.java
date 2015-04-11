@@ -3,6 +3,7 @@ package cmpe.alpha.fitwhiz.controllers;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import com.example.ti.util.Point3D;
 
 import java.text.DecimalFormat;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.CountHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
@@ -151,6 +154,9 @@ public class SensorCurrentFragment extends Fragment {
             application.setYVal(v.y);
             application.setZVal(v.z);
             System.out.println(application.getXVal() + " " + application.getYVal() + " " + application.getZVal());
+            readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(v.x, v.y, v.z));
+            CountHelperThread cht = new CountHelperThread(v.x,v.y,v.z,application,thisActivity.getApplicationContext());
+            cht.run();
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_MAG_DATA.toString())) {
@@ -240,6 +246,26 @@ public class SensorCurrentFragment extends Fragment {
                     imgBtn = R.drawable.buttonsoffoff;
                     break;
             }*/
+        }
+    }
+
+    public class CountHelperThread implements Runnable{
+        private double x, y, z;
+        private FitwhizApplication app;
+        private Context context;
+        public CountHelperThread(double x, double y, double z, FitwhizApplication app, Context context)
+        {
+            this.app=app;
+            this.context = context;
+            this.x=x;
+            this.y=y;
+            this.z=z;
+        }
+
+        public void run()
+        {
+            CountHelper ch = new CountHelper(app,context);
+            ch.AnalyzeValues(x,y,z);
         }
     }
 
