@@ -126,4 +126,21 @@
         android:layout_alignBottom="@+id/sensor_pressure_text_live"
         android:layout_alignStart="@+id/humidity_current_val" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Step Count"
+        android:id="@+id/step_count_label"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/sensor_pressure_text_live"
+        android:layout_alignEnd="@+id/sensor_mag_text_live" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/stepCountValue"
+        android:layout_alignTop="@+id/step_count_label"
+        android:layout_alignEnd="@+id/pressure_current" />
+
 </RelativeLayout>

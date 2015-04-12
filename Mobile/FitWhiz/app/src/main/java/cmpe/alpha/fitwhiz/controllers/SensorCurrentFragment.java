@@ -193,6 +193,16 @@ public class SensorCurrentFragment extends Fragment {
     private static TextView irt_amb;
     private static TextView irt_body;
 
+    public static TextView getStepCount() {
+        return stepCount;
+    }
+
+    public static void setStepCount(TextView stepCount) {
+        SensorCurrentFragment.stepCount = stepCount;
+    }
+
+    private static TextView stepCount;
+
 
 
 
@@ -218,6 +228,7 @@ public class SensorCurrentFragment extends Fragment {
         TextView gyroView = (TextView) sensorCurrentFragment.findViewById(R.id.Gyroscope_current_val);
         TextView pressureView = (TextView) sensorCurrentFragment.findViewById(R.id.pressure_current);
         TextView temperatureView = (TextView) sensorCurrentFragment.findViewById(R.id.temperature_current_val);
+        TextView stepCountView = (TextView) sensorCurrentFragment.findViewById(R.id.stepCountValue);
         accelerometerView.setText(application.getXVal() + "-" + application.getYVal() + "-" + application.getZVal());
         temperatureView.setText(application.getAmbTemp() + "");
         humidityView.setText(application.getHVal() + "");
@@ -231,6 +242,8 @@ public class SensorCurrentFragment extends Fragment {
         setPressure(pressureView);
         setHum(humidityView);
         setIrt_amb(temperatureView);
+        setStepCount(stepCountView);
+        getStepCount().setText(application.getCount()+"");
         return sensorCurrentFragment;
     }
 
@@ -296,6 +309,12 @@ public class SensorCurrentFragment extends Fragment {
                     getGyro().setText(value);
                 }
                 return true;
+            case STEPCOUNT:
+                if(getStepCount()!=null)
+                {
+                    getStepCount().setText(value);
+                }
+                return true;
             default:
                 return false;
         }
@@ -321,12 +340,12 @@ public class SensorCurrentFragment extends Fragment {
             application.setXVal(v.x);
             application.setYVal(v.y);
             application.setZVal(v.z);
-            System.out.println(application.getXVal() + " " + application.getYVal() + " " + application.getZVal());
             readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(v.x, v.y, v.z));
             setValues(TextViewType.ACCELEROMETER,msg.replace('\n',','));
             CountHelperThread cht = new CountHelperThread(v.x,v.y,v.z,application,thisActivity.getApplicationContext());
        ///     ( (TextView)fragment.getActivity().findViewById(R.id.Accelerometer_current_val)).setText(new DecimalFormat("00.00").format(v.x));
             cht.run();
+            setValues(TextViewType.STEPCOUNT,application.getCount()+"");
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_MAG_DATA.toString())) {

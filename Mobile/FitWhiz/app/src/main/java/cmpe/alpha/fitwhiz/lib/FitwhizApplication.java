@@ -334,5 +334,79 @@ public class FitwhizApplication extends Application {
         this.t_val = val;
     }
 
+    private float   mLimit = 0.5f; //Change
+    private double   mLastValues[] = new double[3*2];
+    private float   mScale[] = new float[2];
+    private float   mYOffset;
+
+    private float   mLastDirections[] = new float[3*2];
+    private double   mLastExtremes[][] = { new double[3*2], new double[3*2] };
+    private double   mLastDiff[] = new double[3*2];
+
+    public int getmLastMatch() {
+        return mLastMatch;
+    }
+
+    public void setmLastMatch(int mLastMatch) {
+        this.mLastMatch = mLastMatch;
+    }
+
+    public double[] getmLastDiff() {
+        return mLastDiff;
+    }
+
+    public void setmLastDiff(double[] mLastDiff) {
+        this.mLastDiff = mLastDiff;
+    }
+
+    public double[][] getmLastExtremes() {
+        return mLastExtremes;
+    }
+
+    public void setmLastExtremes(double[][] mLastExtremes) {
+        this.mLastExtremes = mLastExtremes;
+    }
+
+    public float[] getmLastDirections() {
+        return mLastDirections;
+    }
+
+    public void setmLastDirections(float[] mLastDirections) {
+        this.mLastDirections = mLastDirections;
+    }
+
+    public float getmYOffset() {
+        return mYOffset;
+    }
+
+    public void setmYOffset(float mYOffset) {
+        this.mYOffset = mYOffset;
+    }
+
+    public float[] getmScale() {
+        return mScale;
+    }
+
+    public void setmScale(float[] mScale) {
+        this.mScale = mScale;
+    }
+
+    public double[] getmLastValues() {
+        return mLastValues;
+    }
+
+    public void setmLastValues(double[] mLastValues) {
+        this.mLastValues = mLastValues;
+    }
+
+    public float getmLimit() {
+        return mLimit;
+    }
+
+    public void setmLimit(float mLimit) {
+        this.mLimit = mLimit;
+    }
+
+    private int     mLastMatch = -1;
 
 }
