@@ -125,7 +125,7 @@ public class MainActivity extends ViewPagerActivity {
 	private static BluetoothManager mBluetoothManager;
 	private BluetoothAdapter mBtAdapter = null;
 	private BluetoothDevice mBluetoothDevice = null;
-	private cmpe.alpha.fitwhiz.controllers.common.BluetoothLeService mBluetoothLeService = null;
+	private BluetoothLeService mBluetoothLeService = null;
 	private IntentFilter mFilter;
 	private String[] mDeviceFilter = null;
 
@@ -510,11 +510,11 @@ public class MainActivity extends ViewPagerActivity {
 
 		Intent bindIntent = new Intent(this, BluetoothLeService.class);
 		startService(bindIntent);
-		/*f = bindService(bindIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
+		f = bindService(bindIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
 		if (!f) {
 			CustomToast.middleBottom(this, "Bind to BluetoothLeService failed");
 			finish();
-		}*/
+		}
 	}
 
 	// Activity result handling
@@ -609,8 +609,7 @@ public class MainActivity extends ViewPagerActivity {
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
 		public void onServiceConnected(ComponentName componentName, IBinder service) {
-			mBluetoothLeService = ((cmpe.alpha.fitwhiz.controllers.common.BluetoothLeService) service)
-			    .getService();
+            mBluetoothLeService = ((BluetoothLeService.LocalBinder) service).getService();
 			if (!mBluetoothLeService.initialize()) {
 				Toast.makeText(mThis, "Unable to initialize BluetoothLeService", Toast.LENGTH_SHORT).show();
 				finish();
