@@ -85,6 +85,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="MPAndroidChart-v2.0.9" level="project" />
     <orderEntry type="library" exported="" name="tible" level="project" />
     <orderEntry type="library" exported="" name="1_tible" level="project" />
     <orderEntry type="library" exported="" name="play-services-6.5.87" level="project" />

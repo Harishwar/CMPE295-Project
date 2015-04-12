@@ -192,11 +192,11 @@ public class BleUpdatesReceiver extends BroadcastReceiver {
 
                 if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                     if (status == BluetoothGatt.GATT_SUCCESS) {
-                        setStatus("Service discovery complete");
-                        displayServices();
+                        //setStatus("Service discovery complete");
+                        //displayServices();
                         //checkOad();
-                        enableDataCollection(true);
-                        getFirmwareRevison();
+                        //enableDataCollection(true);
+                        //getFirmwareRevison();
                     } else {
                         Toast.makeText(context, "Service discovery failed",
                                 Toast.LENGTH_LONG).show();

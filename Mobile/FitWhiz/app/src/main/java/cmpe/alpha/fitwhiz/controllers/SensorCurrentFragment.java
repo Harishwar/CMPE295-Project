@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ti.util.Point3D;
+import com.github.mikephil.charting.charts.LineChart;
 
 import java.text.DecimalFormat;
 
@@ -46,6 +47,7 @@ public class SensorCurrentFragment extends Fragment {
     private DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
 
     private Activity thisActivity;
+    private LineChart mChart;
 
     private TextView accVal;
     private TextView tVal;

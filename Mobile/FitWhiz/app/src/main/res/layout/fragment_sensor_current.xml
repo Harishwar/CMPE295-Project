@@ -141,6 +141,16 @@
         android:text=""
         android:id="@+id/stepCountValue"
         android:layout_alignTop="@+id/step_count_label"
-        android:layout_alignEnd="@+id/pressure_current" />
+        android:layout_alignEnd="@+id/pressure_current"
+        />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/sensor_gyro_text_live" />
+
 
 </RelativeLayout>

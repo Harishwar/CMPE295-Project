@@ -32,3 +32,11 @@ dependencies {
     compile files('/libs/tible.jar')
     compile files('/Users/rajagopalan/Documents/Github/CMPE295-Project_new/Mobile/FitWhiz/libs/tible.jar')
 }
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
+}
