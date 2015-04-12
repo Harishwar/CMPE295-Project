@@ -160,6 +160,7 @@ public class SensorCurrentFragment extends Fragment {
      * Handle changes in sensor values
      */
     public void onCharacteristicChanged(String uuidStr, byte[] rawValue) {
+        System.out.println("I am also running");
         Point3D v;
         String msg;
         ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(this.application);

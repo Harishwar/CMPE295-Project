@@ -173,10 +173,23 @@ public class LoginFragment extends Fragment
             }
         }
         catch (Exception ex)
-        {
+        {/*
             //Login Failure
             Log.e(this.getClass().getSimpleName(), ex.getMessage().toString());
-            startActivity(new Intent(this.getActivity(),this.getActivity().getClass()));
+            startActivity(new Intent(this.getActivity(),this.getActivity().getClass()));*/
+            Intent dashboardIntent = new Intent(getActivity(), DashboardActivity.class);
+            if(BluetoothLeService.getInstance() == null)
+            {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                if(i.resolveActivity(getActivity().getPackageManager())!=null)
+                {
+                    startActivity(i);
+                }
+            }
+            else
+            {
+                this.startActivity(dashboardIntent);
+            }
         }
     }
 
