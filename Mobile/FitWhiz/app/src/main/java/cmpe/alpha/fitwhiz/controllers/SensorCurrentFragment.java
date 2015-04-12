@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,8 +16,12 @@ import android.widget.TextView;
 
 import com.example.ti.util.Point3D;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import cmpe.alpha.fitwhiz.HelperLibrary.CountHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
@@ -26,6 +31,7 @@ import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
+import cmpe.alpha.fitwhiz.lib.SensorType;
 import cmpe.alpha.fitwhiz.lib.TextViewType;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
 import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
@@ -47,12 +53,19 @@ public class SensorCurrentFragment extends Fragment {
     private DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
 
     private Activity thisActivity;
-    private LineChart mChart;
-
     private TextView accVal;
     private TextView tVal;
     private TextView hVal;
 
+    public static LineChart getmChart() {
+        return mChart;
+    }
+
+    public static void setmChart(LineChart mChart) {
+        SensorCurrentFragment.mChart = mChart;
+    }
+
+    private static LineChart mChart;
     /*
 
         private double magnetometer = 0, gyroscope = 0, humidity = 0, temperature = 0, pressure = 0, accelerometer = 0;
@@ -104,6 +117,95 @@ public class SensorCurrentFragment extends Fragment {
             this.accelerometer = accelerometer;
         }
     */
+
+    public boolean setValues(SensorType key)
+    {
+        switch (key)
+        {
+            case ACCELEROMETER:
+                LineChart mChart =getmChart();
+                if(mChart==null)
+                {
+                    return false;
+                }
+
+                // no description text
+                mChart.setDescription("");
+                mChart.setNoDataTextDescription("You need to provide data for the chart.");
+
+                // enable value highlighting
+                mChart.setHighlightEnabled(true);
+
+                // enable touch gestures
+                mChart.setTouchEnabled(true);
+
+                // enable scaling and dragging
+                mChart.setDragEnabled(true);
+                mChart.setScaleEnabled(true);
+                mChart.setPinchZoom(true);
+
+                mChart.setHighlightIndicatorEnabled(false);
+                String[] x= new String[2];
+                x[0] = "Average";
+                x[1] = "current";
+                double[] y = new double[2];
+                if(application.getResult_hVal()==0)
+                {
+                    y[0] = 1000;
+                }
+                else {
+                    y[0] = application.getResult_hVal();
+                }
+                y[1] = application.getHVal();
+                // add data
+                setData(x, y);
+                return true;
+        }
+        return false;
+    }
+
+    private void setData(String[] x, double[] y) {
+
+        ArrayList<String> xVals = new ArrayList<String>();
+        for (int i = 0; i < x.length; i++) {
+            xVals.add(x[i]);
+        }
+
+        ArrayList<Entry> yVals = new ArrayList<Entry>();
+
+        for (int i = 0; i < y.length; i++) {
+            yVals.add(new Entry(Float.parseFloat(y[i]+""), i));
+        }
+
+        // create a dataset and give it a type
+        LineDataSet set1 = new LineDataSet(yVals, "Humidity");
+        // set1.setFillAlpha(110);
+        // set1.setFillColor(Color.RED);
+
+        // set the line to be drawn like this "- - - - - -"
+        set1.enableDashedLine(10f, 5f, 0f);
+        set1.setColor(Color.RED);
+        set1.setCircleColor(Color.GREEN);
+        set1.setLineWidth(1f);
+        set1.setCircleSize(3f);
+        set1.setDrawCircleHole(false);
+        set1.setValueTextSize(9f);
+        //set1.setFillAlpha(65);
+        //set1.setFillColor(Color.BLACK);
+//        set1.setDrawFilled(true);
+        // set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
+        // Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
+
+        ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+        dataSets.add(set1); // add the datasets
+
+        // create a data object with the datasets
+        LineData data = new LineData(xVals, dataSets);
+
+        // set data
+        getmChart().setData(data);
+    }
+
     public SensorCurrentFragment() {
         // Required empty public constructor
     }
@@ -231,6 +333,7 @@ public class SensorCurrentFragment extends Fragment {
         TextView pressureView = (TextView) sensorCurrentFragment.findViewById(R.id.pressure_current);
         TextView temperatureView = (TextView) sensorCurrentFragment.findViewById(R.id.temperature_current_val);
         TextView stepCountView = (TextView) sensorCurrentFragment.findViewById(R.id.stepCountValue);
+        mChart = (LineChart) sensorCurrentFragment.findViewById(R.id.chart1);
         accelerometerView.setText(application.getXVal() + "-" + application.getYVal() + "-" + application.getZVal());
         temperatureView.setText(application.getAmbTemp() + "");
         humidityView.setText(application.getHVal() + "");
@@ -246,6 +349,7 @@ public class SensorCurrentFragment extends Fragment {
         setIrt_amb(temperatureView);
         setStepCount(stepCountView);
         getStepCount().setText(application.getCount()+"");
+        setValues(SensorType.ACCELEROMETER);
         return sensorCurrentFragment;
     }
 
