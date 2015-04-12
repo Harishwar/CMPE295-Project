@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     url(r'logout',views.logout_user,name='logout_user'),
     url(r'getData',views.dashboard_req,name='graph_load'),
     url(r'dashboard',views.dashboard,name='dashboard'),
-    url(r'getUsersData',views.dashboard_doc_req,name='graph_load_all'),
+
 )
