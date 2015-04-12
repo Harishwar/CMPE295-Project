@@ -83,6 +83,7 @@ def addSensor(request):
             sensor_details = SensorUser()
             email=request.POST.get('email')
             print email
+            print'Entered Here'
             user_object=Users.objects.get(email=email)
             sensor_details.user_id=user_object
             sensor_details.sensor_id=request.POST.get('SensorID')
@@ -124,12 +125,10 @@ def getUserByLastName(request):
 #returns the list of allergies
 def getAllergiesList(request):
     try:
-        if request.method=='GET' and request.session.get('user_id'):
             #print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
-            context={'allergies':Allergies.objects.values('allergy_name')}
-            return render(request,'addAllergies.html',context)
-        else:
-            return render(request,'index.html')
+        context={'allergies':Allergies.objects.values('allergy_name')}
+        print 'allergies'
+        return render(request,'addAllergies.html',context)
     except:
         return HttpResponse("Service Error!!!")
 
