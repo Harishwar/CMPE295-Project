@@ -45,7 +45,6 @@
         </activity>
         <receiver android:name=".controllers.common.ScheduledDataUploadService" >
         </receiver>
-        <!--<receiver android:name=".controllers.common.BleUpdatesReceiver"></receiver>-->
 
         <!--For Mobile Sensors-->
         <!--<service
