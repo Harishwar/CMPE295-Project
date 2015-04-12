@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ti.ble.common.BluetoothLeService;
@@ -80,6 +81,17 @@ public class DashboardActivity extends Activity
     private String mFwRev;
 
     private View view;
+
+    public static TextView getAcc() {
+        return acc;
+    }
+
+    public static void setAcc(TextView a) {
+        acc = a;
+    }
+
+    //Access to TextView variables
+    static TextView acc;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -546,7 +558,12 @@ public class DashboardActivity extends Activity
         // Initialize sensor list
         updateSensorList();
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+
+        //Set TextViews
+        setAcc((TextView)findViewById(R.id.Accelerometer_current_val));
     }
+
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {

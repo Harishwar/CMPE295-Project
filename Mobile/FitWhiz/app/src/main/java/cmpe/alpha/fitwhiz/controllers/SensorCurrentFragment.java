@@ -25,6 +25,7 @@ import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
+import cmpe.alpha.fitwhiz.lib.TextViewType;
 import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
 import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
@@ -50,57 +51,57 @@ public class SensorCurrentFragment extends Fragment {
     private TextView tVal;
     private TextView hVal;
 
+    /*
 
-    private double magnetometer = 0, gyroscope = 0, humidity = 0, temperature = 0, pressure = 0, accelerometer = 0;
+        private double magnetometer = 0, gyroscope = 0, humidity = 0, temperature = 0, pressure = 0, accelerometer = 0;
+        public double getMagnetometer() {
+            return magnetometer;
+        }
 
-    public double getMagnetometer() {
-        return magnetometer;
-    }
+        public void setMagnetometer(double magnetometer) {
+            this.magnetometer = magnetometer;
+        }
 
-    public void setMagnetometer(double magnetometer) {
-        this.magnetometer = magnetometer;
-    }
+        public double getGyroscope() {
+            return gyroscope;
+        }
 
-    public double getGyroscope() {
-        return gyroscope;
-    }
+        public void setGyroscope(double gyroscope) {
+            this.gyroscope = gyroscope;
+        }
 
-    public void setGyroscope(double gyroscope) {
-        this.gyroscope = gyroscope;
-    }
+        public double getHumidity() {
+            return humidity;
+        }
 
-    public double getHumidity() {
-        return humidity;
-    }
+        public void setHumidity(double humidity) {
+            this.humidity = humidity;
+        }
 
-    public void setHumidity(double humidity) {
-        this.humidity = humidity;
-    }
+        public double getTemperature() {
+            return temperature;
+        }
 
-    public double getTemperature() {
-        return temperature;
-    }
+        public void setTemperature(double temperature) {
+            this.temperature = temperature;
+        }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
+        public double getPressure() {
+            return pressure;
+        }
 
-    public double getPressure() {
-        return pressure;
-    }
+        public void setPressure(double pressure) {
+            this.pressure = pressure;
+        }
 
-    public void setPressure(double pressure) {
-        this.pressure = pressure;
-    }
+        public double getAccelerometer() {
+            return accelerometer;
+        }
 
-    public double getAccelerometer() {
-        return accelerometer;
-    }
-
-    public void setAccelerometer(double accelerometer) {
-        this.accelerometer = accelerometer;
-    }
-
+        public void setAccelerometer(double accelerometer) {
+            this.accelerometer = accelerometer;
+        }
+    */
     public SensorCurrentFragment() {
         // Required empty public constructor
     }
@@ -116,6 +117,84 @@ public class SensorCurrentFragment extends Fragment {
     }
 
     private View view;
+
+    public TextView getAcc() {
+        return this.acc;
+    }
+
+    public static void setAcc(TextView a) {
+        acc = a;
+    }
+
+    private static TextView acc;
+
+    public static TextView getMag() {
+        return mag;
+    }
+
+    public static void setMag(TextView mag) {
+        SensorCurrentFragment.mag = mag;
+    }
+
+    public static TextView getHum() {
+        return hum;
+    }
+
+    public static void setHum(TextView hum) {
+        SensorCurrentFragment.hum = hum;
+    }
+
+    public static void setPressure(TextView pressure) {
+        SensorCurrentFragment.pressure = pressure;
+    }
+
+    public static TextView getGyro() {
+        return gyro;
+    }
+
+    public static void setGyro(TextView gyro) {
+        SensorCurrentFragment.gyro = gyro;
+    }
+
+    public static TextView getLux() {
+        return lux;
+    }
+
+    public static void setLux(TextView lux) {
+        SensorCurrentFragment.lux = lux;
+    }
+
+    public static TextView getIrt_amb() {
+        return irt_amb;
+    }
+
+    public static void setIrt_amb(TextView irt_amb) {
+        SensorCurrentFragment.irt_amb = irt_amb;
+    }
+
+    public static TextView getIrt_body() {
+        return irt_body;
+    }
+
+    public static void setIrt_body(TextView irt_body) {
+        SensorCurrentFragment.irt_body = irt_body;
+    }
+
+    private static TextView mag;
+    private static TextView hum;
+
+    public static TextView getPressure() {
+        return pressure;
+    }
+
+    private static TextView pressure;
+    private static TextView gyro;
+    private static TextView lux;
+    private static TextView irt_amb;
+    private static TextView irt_body;
+
+
+
 
     private static final double PA_PER_METER = 12.0;
 
@@ -136,15 +215,22 @@ public class SensorCurrentFragment extends Fragment {
         TextView accelerometerView = (TextView) sensorCurrentFragment.findViewById(R.id.Accelerometer_current_val);
         TextView humidityView = (TextView) sensorCurrentFragment.findViewById(R.id.humidity_current_val);
         TextView magView = (TextView) sensorCurrentFragment.findViewById(R.id.magnet_current);
-        TextView gyroView = (TextView) sensorCurrentFragment.findViewById(R.id.sensor_gyro_text_live);
+        TextView gyroView = (TextView) sensorCurrentFragment.findViewById(R.id.Gyroscope_current_val);
         TextView pressureView = (TextView) sensorCurrentFragment.findViewById(R.id.pressure_current);
         TextView temperatureView = (TextView) sensorCurrentFragment.findViewById(R.id.temperature_current_val);
         accelerometerView.setText(application.getXVal() + "-" + application.getYVal() + "-" + application.getZVal());
         temperatureView.setText(application.getAmbTemp() + "");
         humidityView.setText(application.getHVal() + "");
         gyroView.setText(application.getG_xVal() + "-" + application.getG_yVal() + "-" + application.getG_zVal());
-        magView.setText(application.getM_xVal() + "-" + application.getM_yVal() + "-" + application.getM_zVal());
+        magView.setText(decimal.format(application.getM_xVal()) + "," + decimal.format(application.getM_yVal()) + "," + decimal.format(application.getM_zVal()));
         pressureView.setText(application.getP_val()+" at h: "+application.getP_val());
+        setAcc(accelerometerView);
+        setGyro(gyroView);
+        setMag(magView);
+        setIrt_body(temperatureView);
+        setPressure(pressureView);
+        setHum(humidityView);
+        setIrt_amb(temperatureView);
         return sensorCurrentFragment;
     }
 
@@ -156,11 +242,69 @@ public class SensorCurrentFragment extends Fragment {
         thisActivity = activity;
     }
 
+
+    public boolean setValues(TextViewType key,String value)
+    {
+        switch (key)
+        {
+            case ACCELEROMETER:
+                if(getAcc() != null)
+                {
+                    getAcc().setText(value);
+                }
+                return true;
+            case HUMIDITY:
+                if(getHum()!=null)
+                {
+                    getHum().setText(value);
+                }
+                return true;
+            case MAGNETOMETER:
+                if(getMag() != null)
+                {
+                    getMag().setText(value);
+                }
+                return true;
+            case PRESSURE:
+                if(getPressure()!=null)
+                {
+                    getPressure().setText(value);
+                }
+                return true;
+            case IRT_AMBIENT:
+                if(getIrt_amb() != null)
+                {
+                    getIrt_amb().setText(value);
+                }
+                return true;
+            case IRT_BODY:
+                if(getIrt_amb()!=null)
+                {
+                    getIrt_body().setText(value);
+                }
+                return true;
+            case LUXOMETER:
+
+                if(getLux() != null)
+                {
+                    getLux().setText(value);
+                }
+                return true;
+            case GYROSCOPE:
+                if(getGyro()!=null)
+                {
+                    getGyro().setText(value);
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
+
     /**
      * Handle changes in sensor values
      */
     public void onCharacteristicChanged(String uuidStr, byte[] rawValue) {
-        System.out.println("I am also running");
         Point3D v;
         String msg;
         ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(this.application);
@@ -179,6 +323,7 @@ public class SensorCurrentFragment extends Fragment {
             application.setZVal(v.z);
             System.out.println(application.getXVal() + " " + application.getYVal() + " " + application.getZVal());
             readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(v.x, v.y, v.z));
+            setValues(TextViewType.ACCELEROMETER,msg.replace('\n',','));
             CountHelperThread cht = new CountHelperThread(v.x,v.y,v.z,application,thisActivity.getApplicationContext());
        ///     ( (TextView)fragment.getActivity().findViewById(R.id.Accelerometer_current_val)).setText(new DecimalFormat("00.00").format(v.x));
             cht.run();
@@ -196,11 +341,13 @@ public class SensorCurrentFragment extends Fragment {
             Activity activity = thisActivity;
             MagnetometerTableOperations magnetometerTableOperations = new MagnetometerTableOperations(activity.getApplicationContext());
             magnetometerTableOperations.insertValue(v.x, v.y, v.z, DateTimeHelper.getDefaultFormattedDateTime());
+            setValues(TextViewType.MAGNETOMETER,msg.replace('\n',','));
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_OPT_DATA.toString())) {
             v = Sensor.LUXOMETER.convert(rawValue);
-            msg = decimal.format(v.x) + "\n";
+            msg = decimal.format(v.x) + "";
+            setValues(TextViewType.LUXOMETER,msg);
             //mLuxValue.setText(msg);*/
         }
 
@@ -215,6 +362,7 @@ public class SensorCurrentFragment extends Fragment {
             Activity activity = thisActivity;
             GyroscopeTableOperations gyroscopeTableOperations = new GyroscopeTableOperations(activity.getApplicationContext());
             gyroscopeTableOperations.insertValue(v.x, v.y, v.z, DateTimeHelper.getDefaultFormattedDateTime());
+            setValues(TextViewType.GYROSCOPE,msg.replace("\n",","));
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_IRT_DATA.toString())) {
@@ -229,6 +377,9 @@ public class SensorCurrentFragment extends Fragment {
             application.setAmbTemp(v.x);
             application.setBodyTemp(v.y);
             readingsAnalyzer.analyzeTemperature(Double.parseDouble(msg));
+            //setValues(TextViewType.IRT_BODY,decimal.format(v.y));
+            setValues(TextViewType.IRT_AMBIENT,decimal.format(v.x));
+
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_HUM_DATA.toString())) {
@@ -239,6 +390,7 @@ public class SensorCurrentFragment extends Fragment {
             humidityTableOperations.insertValue(Double.parseDouble(msg), DateTimeHelper.getDefaultFormattedDateTime());
             application.setHVal(Double.parseDouble(msg));
             readingsAnalyzer.analyzeHumidity(Double.parseDouble(msg));
+            setValues(TextViewType.HUMIDITY,msg);
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {
@@ -251,6 +403,7 @@ public class SensorCurrentFragment extends Fragment {
 			//mBarValue.setText(msg);
             application.setP_Hval(h);
             application.setP_val(Double.parseDouble(decimal.format(v.x/100.0f)));
+            setValues(TextViewType.PRESSURE,msg);
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_KEY_DATA.toString())) {
@@ -299,6 +452,13 @@ public class SensorCurrentFragment extends Fragment {
             CountHelper ch = new CountHelper(app,context);
             ch.AnalyzeValues(x,y,z);
         }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle b)
+    {
+        super.onActivityCreated(b);
+        System.out.println("I am created");
     }
 
 }

@@ -74,8 +74,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text=""
         android:id="@+id/Accelerometer_current_val"
         android:layout_alignTop="@+id/sensor_acc_text_live"
         android:layout_toEndOf="@+id/sensor_acc_text_live"
@@ -86,8 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text=""
         android:id="@+id/Gyroscope_current_val"
         android:layout_alignBottom="@+id/sensor_gyro_text_live"
         android:layout_alignStart="@+id/Accelerometer_current_val" />
@@ -95,8 +93,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text=""
         android:id="@+id/humidity_current_val"
         android:textColor="#ffffff"
         android:layout_alignTop="@+id/sensor_humid_text_live"
@@ -105,28 +102,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text=""
         android:textColor="#ffffff"
         android:id="@+id/temperature_current_val"
-        android:layout_alignTop="@+id/sensor_temp_text_live"
-        android:layout_toEndOf="@+id/Gyroscope_current_val" />
+        android:layout_above="@+id/sensor_pressure_text_live"
+        android:layout_alignStart="@+id/pressure_current" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
         android:textColor="#ffffff"
         android:id="@+id/magnet_current"
-        android:layout_below="@+id/sensor_mag_text_live"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/sensor_mag_text_live"
+        android:layout_alignStart="@+id/humidity_current_val" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
         android:textColor="#ffffff"
         android:id="@+id/pressure_current"
         android:layout_alignBottom="@+id/sensor_pressure_text_live"
