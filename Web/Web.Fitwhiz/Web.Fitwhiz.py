@@ -8,9 +8,11 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','zip','tar',
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-#db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="*******", db="CMPE295B")
-db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="CMPE295B")
-results_db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="SensorResults")
+db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="********", db="CMPE295B")
+#db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="CMPE295B")
+results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="********", db="SensorResults")
+
+#results_db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="SensorResults")
 
 
 def allowed_file(filename):
@@ -83,11 +85,12 @@ def get_user_results():
         cursor = results_db.cursor()
         if sensor_id != 0:
             try:
-                cursor.execute("""SELECT xValue, yValue, zValue, hValue, tValue from crunched_results where SensorId='"""+str(sensor_id)+"""'""")
-                db.commit()
-                for (xValue, yValue, zValue, hValue, tValue) in cursor:
-                    print xValue, yValue, zValue, hValue, tValue
-                    response ={'xValue':xValue,'yValue':yValue,'zValue':zValue,'hValue':hValue,'tValue':tValue}
+                sql = """SELECT user_id, date_logged,irt_ambient_avg,humidity_avg, irt_body_avg,acc_x_avg,acc_y_avg,acc_z_avg,mag_x_avg,mag_y_avg,mag_z_avg,gyro_x_avg,gyro_y_avg,gyro_z_avg,pressure_avg,sensor_id  from crunched_results where sensor_id='"""+str(sensor_id)+"""' order by date_logged desc"""
+                print sql
+                cursor.execute(sql)
+                results_db.commit()
+                for (user_id, date_logged,irt_ambient_avg,humidity_avg, irt_body_avg,acc_x_avg,acc_y_avg,acc_z_avg,mag_x_avg,mag_y_avg,mag_z_avg,gyro_x_avg,gyro_y_avg,gyro_z_avg,pressure_avg,sensor_id) in cursor:
+                    response ={'user_id':user_id, 'date_logged':date_logged,'irt_ambient_avg':irt_ambient_avg,'humidity_avg':humidity_avg, 'irt_body_avg':irt_body_avg,'acc_x_avg':acc_x_avg,'acc_y_avg':acc_y_avg,'acc_z_avg':acc_z_avg,'mag_x_avg':mag_x_avg,'mag_y_avg':mag_y_avg,'mag_z_avg':mag_z_avg,'gyro_x_avg':gyro_x_avg,'gyro_y_avg':gyro_y_avg,'gyro_z_avg':gyro_z_avg,'pressure_avg':pressure_avg,'sensor_id':sensor_id}
                     return make_response(jsonify(response),200)
             except Exception,e:
                 return error_response(e.message)
@@ -101,13 +104,22 @@ def analyze_sensor_data():
     """
     if request.method == 'POST':
         json=request.json
-        sensorId=json.get('SensorId')
-        xVal=json.get('x_val')
-        yVal=json.get('y_val')
-        zVal=json.get('z_val')
-        hVal=json.get('h_val')
-        tVal=json.get('t_val')
-        StepCount=json.get('StepCount')
+        sensorId=str(json.get('SensorId'))
+        acc_xVal=str(json.get('acc_x'))
+        acc_yVal=str(json.get('acc_y'))
+        acc_zVal=str(json.get('acc_z'))
+        hVal=str(json.get('h_val'))
+        body_tVal=str(json.get('irt_body_val'))
+        amb_tVal=str(json.get('irt_ambient_val'))
+        mag_xVal=str(json.get('mag_x'))
+        mag_yVal=str(json.get('mag_x'))
+        mag_zVal=str(json.get('mag_x'))
+        gyro_xVal=str(json.get('gyro_x'))
+        gyro_yVal=str(json.get('gyro_x'))
+        gyro_zVal=str(json.get('gyro_x'))
+        pressure_val=str(json.get('pressure_x'))
+
+        StepCount=str(json.get('StepCount'))
         cursor = db.cursor()
         if sensorId != 0:
             try:
@@ -115,7 +127,8 @@ def analyze_sensor_data():
                 db.commit()
                 for user_id in cursor:
                     csr = results_db.cursor()
-                    csr.execute("""INSERT INTO SensorData (user_id,temperature,humidity,acc_x,acc_y,acc_z,date_logged,step_count) VALUES ("""+str(user_id[0])+""","""+str(tVal)+""","""+str(hVal)+""","""+str(xVal)+""","""+str(yVal)+""","""+str(zVal)+""",'"""+str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+"""',"""+str(StepCount)+""")""")
+                    csr.execute("""INSERT INTO SensorData (sensor_id, user_id, acc_x, acc_y,acc_z,step_count,irt_body, irt_ambient,gyro_x,gyro_y,gyro_z ,mag_x,mag_y,mag_z, pressure, date_logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                                sensorId,user_id[0],acc_xVal,acc_yVal,acc_zVal,StepCount,body_tVal,amb_tVal,gyro_xVal,gyro_yVal,gyro_zVal,mag_xVal,mag_yVal,mag_zVal,pressure_val,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                     results_db.commit()
                     return make_response(201)
             except Exception,e:
