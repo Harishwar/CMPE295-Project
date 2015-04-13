@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sensor_acc_text">Accelerometer:</string>
-    <string name="sensor_gyro_text">Gyroscope:</string>
-    <string name="sensor_humid_text">Humidity:</string>
-    <string name="sensor_temp_text">Temperature:</string>
-    <string name="sensor_pressure_text">Pressure:</string>
-    <string name="sensor_mag_text">Magnet:</string>
+    <string name="sensor_acc_text">Accelerometer</string>
+    <string name="sensor_gyro_text">Gyroscope</string>
+    <string name="sensor_humid_text">Humidity</string>
+    <string name="sensor_temp_text">Temperature</string>
+    <string name="sensor_body_text">Body</string>
+    <string name="sensor_ambient_text">Ambient</string>
+    <string name="sensor_pressure_text">Pressure</string>
+    <string name="sensor_mag_text">Magnet</string>
+    <string name="sensor_lumen_text">Lumen</string>
+    <!-- strings to specify units of each sensor-->
+    <string name="accelerometer_units">G</string>
+    <string name="gyroscope_units"></string>
+    <string name="temperature_units">°C</string>
+    <string name="humidity_units">%rH</string>
+    <string name="lumen_units"></string>
+    <string name="pressure_units">m</string>
+    <string name="magnetometer_units"></string>
+    <string name="steps_units">steps</string>
 </resources>

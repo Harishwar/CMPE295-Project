@@ -82,16 +82,36 @@ public class DashboardActivity extends Activity
 
     private View view;
 
-    public static TextView getAcc() {
-        return acc;
-    }
-
-    public static void setAcc(TextView a) {
-        acc = a;
-    }
 
     //Access to TextView variables
-    static TextView acc;
+    static TextView acc_x;
+
+    public static TextView getAcc_y() {
+        return acc_y;
+    }
+
+    public static void setAcc_y(TextView acc_y) {
+        DashboardActivity.acc_y = acc_y;
+    }
+
+    public static TextView getAcc_x() {
+        return acc_x;
+    }
+
+    public static void setAcc_x(TextView acc_x) {
+        DashboardActivity.acc_x = acc_x;
+    }
+
+    public static TextView getAcc_z() {
+        return acc_z;
+    }
+
+    public static void setAcc_z(TextView acc_z) {
+        DashboardActivity.acc_z = acc_z;
+    }
+
+    static TextView acc_y;
+    static TextView acc_z;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -560,7 +580,9 @@ public class DashboardActivity extends Activity
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
 
         //Set TextViews
-        setAcc((TextView)findViewById(R.id.Accelerometer_current_val));
+        setAcc_x((TextView)findViewById(R.id.accelerometer_current_val_x));
+        setAcc_y((TextView)findViewById(R.id.accelerometer_current_val_y));
+        setAcc_z((TextView)findViewById(R.id.accelerometer_current_val_z));
     }
 
 

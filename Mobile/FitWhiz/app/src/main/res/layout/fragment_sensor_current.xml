@@ -1,156 +1,697 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cmpe.alpha.fitwhiz.controllers.SensorCurrentFragment"
-    android:background="@drawable/background"
-    android:id="@+id/fragment_sensor_current">
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context="cmpe.alpha.fitwhiz.controllers.SensorCurrentFragment"-->
+    <!--android:background="@drawable/background"-->
+    <!--android:id="@+id/fragment_sensor_current">-->
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sensor_acc_text"
-        android:id="@+id/sensor_acc_text_live"
-        android:layout_marginTop="44dp"
-        android:layout_alignParentTop="true"
-        android:textColor="#ffffff"
-        android:layout_alignParentStart="true" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/sensor_acc_text"-->
+        <!--android:id="@+id/sensor_acc_text_live"-->
+        <!--android:layout_marginTop="33dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sensor_gyro_text"
-        android:id="@+id/sensor_gyro_text_live"
-        android:layout_marginTop="46dp"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/sensor_acc_text_live"
-        android:layout_alignParentStart="true" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/sensor_gyro_text"-->
+        <!--android:id="@+id/sensor_gyro_text_live"-->
+        <!--android:layout_marginTop="36dp"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_below="@+id/sensor_acc_text_live"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sensor_mag_text"
-        android:id="@+id/sensor_mag_text_live"
-        android:layout_marginTop="44dp"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/sensor_gyro_text_live"
-        android:layout_alignParentStart="true" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/sensor_mag_text"-->
+        <!--android:id="@+id/sensor_mag_text_live"-->
+        <!--android:layout_marginTop="33dp"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_below="@+id/sensor_gyro_text_live"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sensor_humid_text"
-        android:id="@+id/sensor_humid_text_live"
-        android:textColor="#ffffff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/sensor_humid_text"-->
+        <!--android:id="@+id/sensor_humid_text_live"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sensor_temp_text"
-        android:id="@+id/sensor_temp_text_live"
-        android:layout_marginTop="48dp"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/sensor_humid_text_live"
-        android:layout_alignParentStart="true" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/sensor_temp_text"-->
+        <!--android:id="@+id/sensor_temp_text_live"-->
+        <!--android:layout_marginTop="38dp"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_below="@+id/sensor_humid_text_live"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sensor_pressure_text"
-        android:id="@+id/sensor_pressure_text_live"
-        android:layout_marginTop="42dp"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/sensor_temp_text_live"
-        android:layout_alignParentStart="true" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/sensor_pressure_text"-->
+        <!--android:id="@+id/sensor_pressure_text_live"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_below="@+id/sensor_temp_text_live"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/Accelerometer_current_val"
-        android:layout_alignTop="@+id/sensor_acc_text_live"
-        android:layout_toEndOf="@+id/sensor_acc_text_live"
-        android:textColor="#ffffff"
-        android:layout_marginStart="71dp" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:id="@+id/Accelerometer_current_val"-->
+        <!--android:layout_alignTop="@+id/sensor_acc_text_live"-->
+        <!--android:layout_toEndOf="@+id/sensor_acc_text_live"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_marginStart="71dp" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:text=""
-        android:id="@+id/Gyroscope_current_val"
-        android:layout_alignBottom="@+id/sensor_gyro_text_live"
-        android:layout_alignStart="@+id/Accelerometer_current_val" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:text=""-->
+        <!--android:id="@+id/Gyroscope_current_val"-->
+        <!--android:layout_alignBottom="@+id/sensor_gyro_text_live"-->
+        <!--android:layout_alignStart="@+id/Accelerometer_current_val" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/humidity_current_val"
-        android:textColor="#ffffff"
-        android:layout_alignTop="@+id/sensor_humid_text_live"
-        android:layout_alignStart="@+id/Gyroscope_current_val" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:id="@+id/humidity_current_val"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_alignTop="@+id/sensor_humid_text_live"-->
+        <!--android:layout_alignStart="@+id/Gyroscope_current_val" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#ffffff"
-        android:id="@+id/temperature_current_val"
-        android:layout_above="@+id/sensor_pressure_text_live"
-        android:layout_alignStart="@+id/pressure_current" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:id="@+id/temperature_current_val"-->
+        <!--android:layout_above="@+id/sensor_pressure_text_live"-->
+        <!--android:layout_alignStart="@+id/pressure_current" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#ffffff"
-        android:id="@+id/magnet_current"
-        android:layout_alignTop="@+id/sensor_mag_text_live"
-        android:layout_alignStart="@+id/humidity_current_val" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:id="@+id/magnet_current"-->
+        <!--android:layout_alignTop="@+id/sensor_mag_text_live"-->
+        <!--android:layout_alignStart="@+id/humidity_current_val" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#ffffff"
-        android:id="@+id/pressure_current"
-        android:layout_alignBottom="@+id/sensor_pressure_text_live"
-        android:layout_alignStart="@+id/humidity_current_val" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:id="@+id/pressure_current"-->
+        <!--android:layout_alignBottom="@+id/sensor_pressure_text_live"-->
+        <!--android:layout_alignStart="@+id/humidity_current_val" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Step Count"
-        android:id="@+id/step_count_label"
-        android:layout_marginTop="46dp"
-        android:layout_below="@+id/sensor_pressure_text_live"
-        android:layout_alignEnd="@+id/sensor_mag_text_live" />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Step Count"-->
+        <!--android:id="@+id/step_count_label"-->
+        <!--android:layout_marginTop="36dp"-->
+        <!--android:layout_below="@+id/sensor_pressure_text_live"-->
+        <!--android:layout_alignEnd="@+id/sensor_mag_text_live" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/stepCountValue"
-        android:layout_alignTop="@+id/step_count_label"
-        android:layout_alignEnd="@+id/pressure_current"
-        />
+    <!--<TextView android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:id="@+id/stepCountValue"-->
+        <!--android:layout_alignTop="@+id/step_count_label"-->
+        <!--android:layout_alignEnd="@+id/pressure_current"-->
+        <!--/>-->
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart1"
+    <!--<com.github.mikephil.charting.charts.LineChart-->
+        <!--android:id="@+id/chart1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_above="@+id/sensor_gyro_text_live" />-->
+
+<!--</RelativeLayout>-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="cmpe.alpha.fitwhiz.controllers.SensorCurrentFragment"
+android:background="@drawable/background">
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/sensor_gyro_text_live" />
+        android:id="@+id/fragment_sensor_current"
+        android:stretchColumns="*">
 
+        <View style="@style/Divider"/>
 
-</RelativeLayout>
+        <!--accelerometer-->
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_acc_text"
+                android:id="@+id/sensor_acc_text_live"
+                android:textColor="#ffffff"
+                android:layout_marginEnd="5dp"
+                android:textSize="@dimen/sensor_title_dimen"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_x"
+                android:id="@+id/sensor_acc_text_live_x"
+                android:layout_column="1"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:layout_column="2"
+                android:id="@+id/accelerometer_current_val_x"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/accelerometer_units"
+                android:layout_column="3"
+                android:id="@+id/accelerometer_units_x"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_y"
+                android:id="@+id/sensor_acc_text_live_y"
+                android:layout_column="1"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:layout_column="2"
+                android:id="@+id/accelerometer_current_val_y"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/accelerometer_units"
+                android:layout_column="3"
+                android:id="@+id/accelerometer_units_y"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_z"
+                android:id="@+id/sensor_acc_text_live_z"
+                android:layout_column="1"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:layout_column="2"
+                android:id="@+id/accelerometer_current_val_z"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/accelerometer_units"
+                android:layout_column="3"
+                android:id="@+id/accelerometer_units_z"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!--Gyroscope-->
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_gyro_text"
+                android:id="@+id/sensor_gyro_text_live"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_x"
+                android:id="@+id/sensor_gyro_text_live_x"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/gyroscope_current_val_x"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/gyroscope_units"
+                android:layout_column="3"
+                android:id="@+id/gyroscope_units_x"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_y"
+                android:id="@+id/sensor_gyro_text_live_y"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/gyroscope_current_val_y"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/gyroscope_units"
+                android:layout_column="3"
+                android:id="@+id/gyroscope_units_y"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_z"
+                android:id="@+id/sensor_gyro_text_live_z"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/gyroscope_current_val_z"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/gyroscope_units"
+                android:layout_column="3"
+                android:id="@+id/gyroscope_units_z"/>
+        </TableRow>
+        <TableRow>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart1"
+                android:layout_span="3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!--Magnetometer-->
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_mag_text"
+                android:id="@+id/sensor_mag_text_live"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_x"
+                android:id="@+id/sensor_mag_text_live_x"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/magnet_current_x"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/magnetometer_units"
+                android:layout_column="3"
+                android:id="@+id/magnetometer_units_x"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_y"
+                android:id="@+id/sensor_mag_text_live_y"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/magnet_current_y"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/magnetometer_units"
+                android:layout_column="3"
+                android:id="@+id/magnetometer_units_y"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_z"
+                android:id="@+id/sensor_mag_text_live_z"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/magnet_current_z"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/magnetometer_units"
+                android:layout_column="3"
+                android:id="@+id/magnetometer_units_z"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!--    Temperature:Body and Ambient    -->
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_temp_text"
+                android:id="@+id/sensor_temp_text_live"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sensor_body_text"
+                android:id="@+id/sensor_temp_body_text_live"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/temp_current_body"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/temperature_units"
+                android:layout_column="3"
+                android:id="@+id/temperature_body_units"/>
+        </TableRow>
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sensor_ambient_text"
+                android:id="@+id/sensor_temp_ambient_text_live"
+                android:textColor="#ffffff"
+                android:layout_column="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/temp_current_ambient"
+                android:textColor="#ffffff"
+                android:layout_column="2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/temperature_units"
+                android:layout_column="3"
+                android:id="@+id/temperature_ambient_units"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!--Humidity-->
+        <TableRow android:layout_weight="2" android:background="@color/black_overlay"
+            android:layout_width="0dip" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_humid_text"
+                android:id="@+id/sensor_humid_text_live"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/default_string_result"
+                android:id="@+id/humidity_current_val"
+                android:layout_column="2"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/humidity_units"
+                android:layout_column="3"
+                android:id="@+id/humidity_units"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!--Pressure-->
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_pressure_text"
+                android:id="@+id/sensor_pressure_text_live"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_string_result"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:layout_column="2"
+                android:id="@+id/pressure_current"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/pressure_units"
+                android:layout_column="3"
+                android:id="@+id/pressure_units"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!--Lumen-->
+        <TableRow android:layout_width="0dip" android:background="@color/black_overlay"
+            android:layout_weight="2" android:layout_height="fill_parent">
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/sensor_lumen_text"
+                android:id="@+id/sensor_lumen_text_live"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_string_result"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:layout_column="2"
+                android:id="@+id/lumen_current"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/lumen_units"
+                android:layout_column="3"
+                android:id="@+id/lumen_units"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+        <!-- Steps -->
+        <TableRow >
+            <TextView
+                android:gravity="left"
+                android:background="@color/black_overlay"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sensor_title_dimen"
+                android:text="Step Count"
+                android:id="@+id/step_count_label" />
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:id="@+id/stepCountValue"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:text="@string/steps_units"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:id="@+id/stepCountUnits"/>
+        </TableRow>
+
+        <View style="@style/Divider"/>
+
+    </TableLayout>
+</ScrollView>

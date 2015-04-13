@@ -8,6 +8,10 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="Splash_text">FitWhizz</string>
     <string name="title_activity_login_failure">LoginFailureActivity</string>
-
+    <string name="default_string_result">0.00</string>
+    <string name="default_string_single_value">Value:</string>
+    <string name="title_x">X</string>
+    <string name="title_y">Y</string>
+    <string name="title_z">Z</string>
 
 </resources>

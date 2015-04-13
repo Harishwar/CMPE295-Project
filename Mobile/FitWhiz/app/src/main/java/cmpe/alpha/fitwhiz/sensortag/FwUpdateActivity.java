@@ -133,7 +133,7 @@ public class FwUpdateActivity extends Activity {
   private BluetoothGattCharacteristic mCharIdentify = null;
   private BluetoothGattCharacteristic mCharBlock = null;
   private BluetoothGattCharacteristic mCharConnReq = null;
-  private DeviceActivity mDeviceActivity = null;
+//  private DeviceActivity mDeviceActivity = null;
   private BluetoothLeService mLeService;
 
   // Programming
@@ -152,14 +152,14 @@ public class FwUpdateActivity extends Activity {
 
 
   public FwUpdateActivity() {
-    mDeviceActivity = DeviceActivity.getInstance();
+//    mDeviceActivity = DeviceActivity.getInstance();
 
     // BLE Gatt Service
     mLeService = BluetoothLeService.getInstance();
 
     // Service information
-    mOadService = mDeviceActivity.getOadService();
-    mConnControlService = mDeviceActivity.getConnControlService();
+//    mOadService = mDeviceActivity.getOadService();
+//    mConnControlService = mDeviceActivity.getConnControlService();
 
     // Characteristics list
     mCharListOad = mOadService.getCharacteristics();

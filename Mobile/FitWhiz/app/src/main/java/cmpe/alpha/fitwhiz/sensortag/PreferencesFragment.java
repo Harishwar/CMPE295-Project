@@ -62,8 +62,6 @@ import android.util.Log;
 
 import java.util.Locale;
 
-import cmpe.alpha.fitwhiz.R;
-
 public class PreferencesFragment extends PreferenceFragment  {
   
   private static final String TAG = "PreferencesFragment";
@@ -73,10 +71,10 @@ public class PreferencesFragment extends PreferenceFragment  {
   public void onCreate(Bundle savedInstanceState) {
   	Log.i(TAG,"created");
     super.onCreate(savedInstanceState);
-    if (DeviceActivity.getInstance().isSensorTag2())
-    	addPreferencesFromResource(R.xml.preferences2);
-    else
-    	addPreferencesFromResource(R.xml.preferences);
+//    if (DeviceActivity.getInstance().isSensorTag2())
+//    	addPreferencesFromResource(R.xml.preferences2);
+//    else
+//    	addPreferencesFromResource(R.xml.preferences);
     	
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
     preferencesListener = new PreferencesListener(getActivity(), prefs, this);
