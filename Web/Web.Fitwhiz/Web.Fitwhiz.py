@@ -196,7 +196,7 @@ def insert_alerts():
         cursor = results_db.cursor()
         if sensorId != 0:
             try:
-                cursor.execute("INSERT into Alerts (SensorId,message) VALUES (%s,%s)",sensorId,msg)
+                cursor.execute("INSERT into Alerts (SensorId,message,datetime_logged) VALUES (%s,%s,%s)",sensorId,msg,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                 results_db.commit()
                 make_response(201)
 
