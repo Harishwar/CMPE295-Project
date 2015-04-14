@@ -7,9 +7,13 @@ import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
  */
 public class ReadingsAnalyzer {
     private FitwhizApplication application;
+    AlertRaiser alertRaiser;
+    String url;
     public ReadingsAnalyzer(FitwhizApplication application)
     {
-       this.application=application;
+        this.application=application;
+        alertRaiser = new AlertRaiser(application);
+        url = new PropertiesReader(application.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl");
     }
     public void analyzeValues(double x, double y, double z, double h, double t)
     {
@@ -32,6 +36,8 @@ public class ReadingsAnalyzer {
         //TODO Decide the threshold
         if(currentValue>avg+5)
         {
+            String msg = String.format("ABnormal humidity. H is %f",currentValue);
+            alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }
     }
@@ -41,6 +47,8 @@ public class ReadingsAnalyzer {
         //TODO Decide the threshold
         if(currentValue>avg+2)
         {
+            String msg = String.format("ABnormal Ambient temperature. Temp is %f",currentValue);
+            alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }
     }
@@ -50,6 +58,8 @@ public class ReadingsAnalyzer {
         //TODO Decide the threshold
         if(currentValue>avg+2)
         {
+            String msg = String.format("ABnormal Body temperature. Temp is %f",currentValue);
+            alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }
     }
@@ -60,6 +70,8 @@ public class ReadingsAnalyzer {
         //TODO Decide the threshold
         if(currentValue>pMax || currentValue<pMin)
         {
+            String msg = String.format("ABnormal pressure. Pressure is %f",currentValue);
+            alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }
     }
