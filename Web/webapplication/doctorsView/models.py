@@ -25,7 +25,7 @@ class Users(models.Model):
     height=models.CharField(max_length=20)
     weight=models.CharField(max_length=20)
     blood_type=models.CharField(max_length=20)
-    role_type=enum.EnumField(UserType,default=UserType.DOCTOR)
+    role_type=enum.EnumField(UserType,default=UserType.PATIENT)
     date_created=models.DateTimeField()
     date_modified=models.DateTimeField()
     ##http://stackoverflow.com/questions/19130942/whats-the-best-way-to-store-phone-number-in-django-model

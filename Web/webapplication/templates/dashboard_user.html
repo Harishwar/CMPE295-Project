@@ -19,7 +19,7 @@
 <script>
 	$(document).ready(function() {
 
-    setInterval(function(){
+   // setInterval(function(){
     var options = {
         chart: {
             renderTo: 'container_graph',
@@ -32,7 +32,8 @@
         series: [{}]
     };
 	
-    $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
+    $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
+		//console.log("user object",{{user}});
 		var jsonRes=JSON.parse(data);
 		console.log(jsonRes.length);
 		console.log(jsonRes);
@@ -47,51 +48,8 @@
         var chart = new Highcharts.Chart(options);
     });
     
-	  var options1 = {
-        chart: {
-            renderTo: 'container_graph1',
-            type: 'line'
-        },
-		xAxis: {
-            type: 'datetime'
-        },
-		
-        //series: [{name:'',data:[]}]
-    };
-
-    $.getJSON('doctorsView/getUsersData', function(data) {
-		var jsonRes=JSON.parse(data);
-		var chart1;
-		console.log(jsonRes.length);
-		//console.log(jsonRes);
-		data1=[];
-		var c=0;
-		u_series=[];
-		for(i=0;i<jsonRes.length;i++){
-			if(u_series.indexOf(jsonRes[i].user_id)==-1){
-				u_series.push(jsonRes[i].user_id);
-				//count++;
-			}
-		}
-		console.log("users count",u_series.length);
-		chart1 = new Highcharts.Chart(options1);
-		for(j=0;j<u_series.length;j++){
-		data1=[];
-		for(i=0; i<jsonRes.length;i++){
-			if(u_series[j]==jsonRes[i].user_id){
-				console.log(jsonRes[i].x);
-				data1.push([Date.parse(jsonRes[i].x),parseInt(jsonRes[i].y)]);					   
-				data1.sort();
-			}
-		}
-        chart1.addSeries({
-        name:u_series[j],
-        data:data1
-        },false);
-        }
-        chart1.redraw();
-    });
-	},1000);
+	  
+	//},1000);
 
 });
 	
@@ -123,22 +81,23 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/dashboard.html	" class="active">Dashboard</a>
+                    <li><a href="/usersView/viewDashBoard" class="active">Dashboard</a>
                     </li>
                 </ul>
             </section>
             <section class="menu-section">
-                <h3 class="menu-section-title">Patients</h3>
+                <h3 class="menu-section-title">USER</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/addPatient">Add Patients</a>
+                    <li><a href="/usersView/viewProfile?email={{user.email}}">View Profile</a>
                     </li>
-                    <li><a href="/doctorsView/viewUsers">View Patients</a>
+                    <li><a href="/usersView/editUserProfile">Edit Profile</a>
                     </li>
                 </ul>
+				
             </section>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="doctorsView/logout">Logout</a>
+                    <li><a href="usersView/logout">Logout</a>
                     </li>
                 </ul>
             </section>
