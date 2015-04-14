@@ -13,9 +13,9 @@ public class ReadingsAnalyzer {
     }
     public void analyzeValues(double x, double y, double z, double h, double t)
     {
-        analyzeAcceleration(MathHelper.getResultantAcceleration(x,y,z));
-        analyzeTemperature(t);
-        analyzeHumidity(h);
+        //analyzeAcceleration(MathHelper.getResultantAcceleration(x,y,z));
+        //analyzeTemperature(t);
+        //analyzeHumidity(h);
     }
     public void analyzeAcceleration(double acceleration)
     {
@@ -35,11 +35,30 @@ public class ReadingsAnalyzer {
             //Give the details to the NotificationsHelper class
         }
     }
-    public void analyzeTemperature(double currentValue)
+    public void analyzeAmbientTemperature(double currentValue)
     {
         double avg = application.getResult_tVal();
         //TODO Decide the threshold
         if(currentValue>avg+2)
+        {
+            //Give the details to the NotificationsHelper class
+        }
+    }
+    public void analyzeBodyTemperature(double currentValue)
+    {
+        double avg = application.getResult_tVal();
+        //TODO Decide the threshold
+        if(currentValue>avg+2)
+        {
+            //Give the details to the NotificationsHelper class
+        }
+    }
+    public void analyzePressure(double currentValue)
+    {
+        double pMin = 0;
+        double pMax = 1;
+        //TODO Decide the threshold
+        if(currentValue>pMax || currentValue<pMin)
         {
             //Give the details to the NotificationsHelper class
         }

@@ -4,7 +4,6 @@ package cmpe.alpha.fitwhiz.controllers;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,11 +22,13 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.CountHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.AmbientTemparatureAnalyzerHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.BodyTemperatureAnalyzerHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.CountHelperThread;
 import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
-import cmpe.alpha.fitwhiz.HelperLibrary.MathHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.HumidityAnalyzerHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
-import cmpe.alpha.fitwhiz.HelperLibrary.ReadingsAnalyzer;
+import cmpe.alpha.fitwhiz.HelperLibrary.PressureAnalyzerHelper;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
@@ -579,8 +580,6 @@ public class SensorCurrentFragment extends Fragment {
     public void onCharacteristicChanged(String uuidStr, byte[] rawValue) {
         Point3D v;
         String msg;
-        ReadingsAnalyzer readingsAnalyzer = new ReadingsAnalyzer(this.application);
-//        SensorCurrentFragment fragment = (SensorCurrentFragment)this.getFragmentManager().findFragmentById(R.id.fragment_sensor_current);
 
 
         if (uuidStr.equals(SensorTagGatt.UUID_ACC_DATA.toString())) {
@@ -593,12 +592,10 @@ public class SensorCurrentFragment extends Fragment {
             application.setXVal(v.x);
             application.setYVal(v.y);
             application.setZVal(v.z);
-            readingsAnalyzer.analyzeAcceleration(MathHelper.getResultantAcceleration(v.x, v.y, v.z));
             setValues(TextViewType.ACCELEROMETER_X,decimal.format(v.x));
             setValues(TextViewType.ACCELEROMETER_Y,decimal.format(v.y));
             setValues(TextViewType.ACCELEROMETER_Z,decimal.format(v.z));
             CountHelperThread cht = new CountHelperThread(v.x,v.y,v.z,application,thisActivity.getApplicationContext());
-       ///     ( (TextView)fragment.getActivity().findViewById(R.id.Accelerometer_current_val)).setText(new DecimalFormat("00.00").format(v.x));
             cht.run();
             setValues(TextViewType.STEPCOUNT,application.getCount()+"");
         }
@@ -656,10 +653,12 @@ public class SensorCurrentFragment extends Fragment {
             application.setTVal(Double.parseDouble(msg));
             application.setAmbTemp(v.x);
             application.setBodyTemp(v.y);
-            readingsAnalyzer.analyzeTemperature(Double.parseDouble(msg));
-            //setValues(TextViewType.IRT_BODY,decimal.format(v.y));
             setValues(TextViewType.IRT_AMBIENT,decimal.format(v.x));
             setValues(TextViewType.IRT_BODY,decimal.format(v.y));
+            AmbientTemparatureAnalyzerHelper ah = new AmbientTemparatureAnalyzerHelper(v.x,application,thisActivity.getApplicationContext());
+            BodyTemperatureAnalyzerHelper bh = new BodyTemperatureAnalyzerHelper(v.x,application,thisActivity.getApplicationContext());
+            ah.run();
+            bh.run();
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_HUM_DATA.toString())) {
@@ -669,8 +668,9 @@ public class SensorCurrentFragment extends Fragment {
             HumidityTableOperations humidityTableOperations = new HumidityTableOperations(activity.getApplicationContext());
             humidityTableOperations.insertValue(Double.parseDouble(msg), DateTimeHelper.getDefaultFormattedDateTime());
             application.setHVal(Double.parseDouble(msg));
-            readingsAnalyzer.analyzeHumidity(Double.parseDouble(msg));
             setValues(TextViewType.HUMIDITY,msg);
+            HumidityAnalyzerHelper h = new HumidityAnalyzerHelper(v.x,application,thisActivity.getApplicationContext());
+            h.run();
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_BAR_DATA.toString())) {
@@ -684,6 +684,8 @@ public class SensorCurrentFragment extends Fragment {
             application.setP_Hval(h);
             application.setP_val(Double.parseDouble(decimal.format(v.x/100.0f)));
             setValues(TextViewType.PRESSURE,msg);
+            PressureAnalyzerHelper p = new PressureAnalyzerHelper(v.x/100.0f,application,thisActivity.getApplicationContext());
+            p.run();
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_KEY_DATA.toString())) {
@@ -711,26 +713,6 @@ public class SensorCurrentFragment extends Fragment {
                     //helper.SendNotification("Both", "Both Buttons pressed", pIntent, NotificationPriority.LOW,"");
                     break;
             }
-        }
-    }
-
-    public class CountHelperThread implements Runnable{
-        private double x, y, z;
-        private FitwhizApplication app;
-        private Context context;
-        public CountHelperThread(double x, double y, double z, FitwhizApplication app, Context context)
-        {
-            this.app=app;
-            this.context = context;
-            this.x=x;
-            this.y=y;
-            this.z=z;
-        }
-
-        public void run()
-        {
-            CountHelper ch = new CountHelper(app,context);
-            ch.AnalyzeValues(x,y,z);
         }
     }
 

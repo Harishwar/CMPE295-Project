@@ -25,6 +25,34 @@ public class FitwhizApplication extends Application {
     private double result_mXVal = 0.0;
     private double result_mYVal = 0.0;
     private double result_mZVal = 0.0;
+
+    public double getResult_pVal() {
+        return result_pVal;
+    }
+
+    public void setResult_pVal(double result_pVal) {
+        this.result_pVal = result_pVal;
+    }
+
+    public double getResult_tAmb() {
+        return result_tAmb;
+    }
+
+    public void setResult_tAmb(double result_tAmb) {
+        this.result_tAmb = result_tAmb;
+    }
+
+    public double getResult_tBody() {
+        return result_tBody;
+    }
+
+    public void setResult_tBody(double result_tBody) {
+        this.result_tBody = result_tBody;
+    }
+
+    private double result_pVal = 0.0;
+    private double result_tAmb = 0.0;
+    private double result_tBody = 0.0;
     private String BloodType = "";
     private String PhoneNumber = "";
     private String Weight = "";
