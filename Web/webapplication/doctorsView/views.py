@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.core.context_processors import request
 from urllib2 import HTTPError
 from models import Users
+from django.shortcuts import redirect
+
 import logging
 import datetime
 from django.http.response import JsonResponse, HttpResponseRedirect,HttpResponse
@@ -17,6 +19,7 @@ from django.db import transaction, connection
 import collections
 import json
 from email import email
+from httplib import HTTPResponse
 
 # Create your views here.
 
@@ -215,13 +218,17 @@ def login_user(request):
             password=request.POST['password']
             print password
             user=authenticate(username=username,password=password)
-            print user
-            if user is not None:
+            print user.role_type
+            if user is not None and user.role_type==1:
                 request.session['user_id']=user.email;
                 print "session"+request.session.get('user_id')
                 context={'users':Users.objects.filter()}
                 return render(request,'dashboard.html',context)
-            else:
+            elif user is not None and user.role_type==2:
+                request.session['user_id']=user.email;
+                context={'user':Users.objects.get(email=user.email)}
+                return redirect('/usersView/viewDashBoard',context)
+            else:    
                 return HttpResponse("Invalid user");
 
 
@@ -241,18 +248,21 @@ def logout_user(request):
     return HttpResponse("You're logged out.")
 
 def dashboard_req(request):
+    print 'dashboard_req'
     if request.method=='GET' and request.session.get('user_id'):
         email=request.GET.get('email')
         print '-------->'
         print load_user_data(email)
+        #return HTTPResponse("hiii")
         return JsonResponse(load_user_data(email),safe=False)
 
-
+@csrf_exempt
 def dashboard_doc_req(request):
     if request.method=='GET' and request.session.get('user_id'):
         print '-------->'
         print"Hiiii"
         print load_all_users_data()
+        
         return JsonResponse(load_all_users_data(),safe=False)
 
 def load_user_data(email):
