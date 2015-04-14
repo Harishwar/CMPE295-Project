@@ -13,108 +13,104 @@
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/demo.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/registeruser.css'%}">
-
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 </head>
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
 
-    setInterval(function(){
-    var options = {
-        chart: {
-            renderTo: 'container_graph',
-            type: 'spline'
-        },
-		xAxis: {
-            type: 'datetime'
-        },
-		
-        series: [{}]
-    };
-	
-    $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
-		var jsonRes=JSON.parse(data);
-		console.log(jsonRes.length);
-		console.log(jsonRes);
-		data=[];
-		for(i=0; i<jsonRes.length;i++){
-			//console.log(jsonRes[i].x);
-			data.push([Date.parse(jsonRes[i].x),parseInt(jsonRes[i].y)]);					   
-			data.sort();
-		}
-		options.series[0].data =data;
-        
-        var chart = new Highcharts.Chart(options);
-    });
-    
-	  var options1 = {
-        chart: {
-            renderTo: 'container_graph1',
-            type: 'line'
-        },
-		xAxis: {
-            type: 'datetime'
-        },
-		
-        //series: [{name:'',data:[]}]
-    };
+    setInterval(function() {
+        var options = {
+            chart: {
+                renderTo: 'container_graph',
+                type: 'spline'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
 
-    $.getJSON('doctorsView/getUsersData', function(data) {
-		var jsonRes=JSON.parse(data);
-		var chart1;
-		console.log(jsonRes.length);
-		//console.log(jsonRes);
-		data1=[];
-		var c=0;
-		u_series=[];
-		for(i=0;i<jsonRes.length;i++){
-			if(u_series.indexOf(jsonRes[i].user_id)==-1){
-				u_series.push(jsonRes[i].user_id);
-				//count++;
-			}
-		}
-		console.log("users count",u_series.length);
-		chart1 = new Highcharts.Chart(options1);
-		for(j=0;j<u_series.length;j++){
-		data1=[];
-		for(i=0; i<jsonRes.length;i++){
-			if(u_series[j]==jsonRes[i].user_id){
-				console.log(jsonRes[i].x);
-				data1.push([Date.parse(jsonRes[i].x),parseInt(jsonRes[i].y)]);					   
-				data1.sort();
-			}
-		}
-        chart1.addSeries({
-        name:u_series[j],
-        data:data1
-        },false);
-        }
-        chart1.redraw();
-    });
-	},5000);
+            series: [{}]
+        };
+
+        $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
+            var jsonRes = JSON.parse(data);
+            console.log(jsonRes.length);
+            console.log(jsonRes);
+            data = [];
+            for (i = 0; i < jsonRes.length; i++) {
+                //console.log(jsonRes[i].x);
+                data.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
+                data.sort();
+            }
+            options.series[0].data = data;
+
+            var chart = new Highcharts.Chart(options);
+        });
+
+        var options1 = {
+            chart: {
+                renderTo: 'container_graph1',
+                type: 'line'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            //series: [{name:'',data:[]}]
+        };
+
+        $.getJSON('doctorsView/getUsersData', function(data) {
+            var jsonRes = JSON.parse(data);
+            var chart1;
+            console.log(jsonRes.length);
+            //console.log(jsonRes);
+            data1 = [];
+            var c = 0;
+            u_series = [];
+            for (i = 0; i < jsonRes.length; i++) {
+                if (u_series.indexOf(jsonRes[i].user_id) == -1) {
+                    u_series.push(jsonRes[i].user_id);
+                    //count++;
+                }
+            }
+            console.log("users count", u_series.length);
+            chart1 = new Highcharts.Chart(options1);
+            for (j = 0; j < u_series.length; j++) {
+                data1 = [];
+                for (i = 0; i < jsonRes.length; i++) {
+                    if (u_series[j] == jsonRes[i].user_id) {
+                        console.log(jsonRes[i].x);
+                        data1.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
+                        data1.sort();
+                    }
+                }
+                chart1.addSeries({
+                    name: u_series[j],
+                    data: data1
+                }, false);
+            }
+            chart1.redraw();
+        });
+    }, 5000);
 
 });
-	
-    function testData() {
-//        $.ajax({
-//            url: "/doctorsView/getData?email=test1@test1.com",
-//            type: "GET",
-//            data: "",
-//            success: function(data) {
-//                alert(JSON.stringify(data));
-//                
-//            },
-//            error: function(err) {
-//                alert(JSON.stringify(err));
-//            }
-//        });
-		
-		
-    }
-</script>
 
- <!--<body onload="testData()"> -->
-	<body>
+function testData() {
+    //        $.ajax({
+    //            url: "/doctorsView/getData?email=test1@test1.com",
+    //            type: "GET",
+    //            data: "",
+    //            success: function(data) {
+    //                alert(JSON.stringify(data));
+    //
+    //            },
+    //            error: function(err) {
+    //                alert(JSON.stringify(err));
+    //            }
+    //        });
+}
+</script>
+<!--<body onload="testData()"> -->
+
+<body>
     <section>
         <!-- NavBar -->
         <nav id="menu" class="menu">
@@ -123,7 +119,7 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/dashboard.html	" class="active">Dashboard</a>
+                    <li><a href="/doctorsView/dashboard.html    " class="active">Dashboard</a>
                     </li>
                 </ul>
             </section>
@@ -183,18 +179,15 @@
     <!-- End Content -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-
     <!-- Bootstrap JavaScript -->
     <script src="{%static 'js/bootstrap.min.js'%}"></script>
     <!-- Slideout.js -->
     <script src="{%static 'js/slideout.min.js'%}"></script>
     <!-- Custom Initialization Script -->
     <script src="{%static 'js/init.js'%}"></script>
-
     <script src="{%static 'js/highcharts.js'%}"></script>
     <script src="{%static 'js/data.js'%}"></script>
     <script src="{%static 'js/exporting.js'%}"></script>
-
     <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide-full.min.js"></script>
     <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide.config.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />

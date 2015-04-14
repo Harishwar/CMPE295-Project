@@ -63,19 +63,19 @@ def addPatient(request):
             return HttpResponseRedirect(reverse('addSensor')+'?email='+saved_details.email)
         else:
             return render(request, 'index.html')
-            
+
     except HTTPError:
                 logger.debug("Error Handling Registration")
-                return "Error"        
+                return "Error"
 
-    
+
 
 #redirect(doctorsView.views.addSensor, saved_details.email)
 
 
 #Method to handle the user sensor data
 #@login_required(login_url='/doctorsView/login/')
-def addSensor(request): 
+def addSensor(request):
     try:
         if request.method =='GET' and request.session.get('user_id'):
             return render(request,"addSensor.html");
@@ -90,12 +90,12 @@ def addSensor(request):
             sensor_details.date_created=datetime.datetime.now()
             sensor_details.save()
             #return JsonResponse({"status":201,"result":"Sensor Relation Added"})
-            return getAllergiesList(request)    
+            return getAllergiesList(request)
         else:
             return render(request,"index.html");
     except:
             return HttpResponse("Service Error!!!")
-    
+
 #Method for handling the profile view
 #https://docs.djangoproject.com/en/1.7/topics/serialization/
 #@login_required(login_url='/doctorsView/login/')
@@ -106,7 +106,7 @@ def viewUsers(request):
             return render(request,'viewUsers.html',context)
         else:
             return render(request,'index.html')
-        
+
     except:
         return HttpResponse("Service Error!!!")
 #Fetches users by lastname
@@ -140,8 +140,8 @@ def addUserAllergies(request):
             email=request.POST.get('email')
             user_object=Users.objects.get(email=email)
             print "db",user_object.email
-            print request.POST.getlist('allergy')
-            for allergy_name in request.POST.getlist('allergy'):
+            print request.POST.getlist('allergy[]')
+            for allergy_name in request.POST.getlist('allergy[]'):
                 user_allergies=UserAllergies();
                 print Allergies.objects.get(allergy_name=allergy_name)
                 allergy_object=Allergies.objects.get(allergy_name=allergy_name)
@@ -187,7 +187,7 @@ def deleteUser(request):
         return JsonResponse({'status':204,"result":"User Deleted Successfully"})
     except:
         return HttpResponse("Service Error!!!")
-        
+
 
 def deleteUserAllergy(request):
     user_id=request.POST.get('email')
@@ -204,7 +204,7 @@ def login_user(request):
     if(request.session.get('user_id')):
         print "session"+request.session.get('user_id')
         context={'users':Users.objects.filter()}
-        return render(request,'viewUsers.html',context)
+        return render(request,'dashboard.html',context)
     else:
         if request.method=='GET':
             return render(request,"list.html");
@@ -254,7 +254,7 @@ def dashboard_doc_req(request):
         print"Hiiii"
         print load_all_users_data()
         return JsonResponse(load_all_users_data(),safe=False)
-    
+
 def load_user_data(email):
     try:
         cursor=connection.cursor()
@@ -270,11 +270,11 @@ def load_user_data(email):
             graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
             print row
-        connection.close()    
+        connection.close()
         return json.dumps(rowsList)
     except:
         return "Could not process"
-    
+
 def load_all_users_data():
     try:
         print "entered load users"
