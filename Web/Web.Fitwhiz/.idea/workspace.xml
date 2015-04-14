@@ -29,27 +29,22 @@
       <file leaf-file-name="Web.Fitwhiz.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45454547" vertical-offset="0" max-vertical-offset="3015">
-              <caret line="12" column="116" selection-start-line="12" selection-start-column="116" selection-end-line="12" selection-end-column="116" />
+            <state vertical-scroll-proportion="0.1402715" vertical-offset="2667" max-vertical-offset="3330">
+              <caret line="186" column="17" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="17" />
               <folding>
-                <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-                <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-                <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-                <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-                <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-                <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-                <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-                <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-                <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-                <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+                <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+                <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+                <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+                <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+                <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+                <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+                <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+                <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+                <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+                <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+                <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+                <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+                <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
               </folding>
             </state>
           </provider>
@@ -58,7 +53,7 @@
       <file leaf-file-name="app.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file:///Library/Python/2.7/site-packages/flask/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="26948" max-vertical-offset="27345">
+            <state vertical-scroll-proportion="0.0" vertical-offset="27525" max-vertical-offset="27720">
               <caret line="1835" column="0" selection-start-line="1835" selection-start-column="0" selection-end-line="1835" selection-end-column="0" />
               <folding />
             </state>
@@ -68,7 +63,7 @@
       <file leaf-file-name="serving.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file:///Library/Python/2.7/site-packages/werkzeug/serving.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2808" max-vertical-offset="10080">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3030" max-vertical-offset="10170">
               <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
               <folding />
             </state>
@@ -78,7 +73,7 @@
       <file leaf-file-name="BaseHTTPServer.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/BaseHTTPServer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4908" max-vertical-offset="9090">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5085" max-vertical-offset="9135">
               <caret line="339" column="0" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
               <folding />
             </state>
@@ -254,6 +249,9 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -275,9 +273,6 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -367,18 +362,18 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14453125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3963068" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3963068" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58664775" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -427,27 +422,68 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3015">
+          <caret line="12" column="116" selection-start-line="12" selection-start-column="116" selection-end-line="12" selection-end-column="116" />
+          <folding>
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="27525" max-vertical-offset="27720">
+          <caret line="1835" column="0" selection-start-line="1835" selection-start-column="0" selection-end-line="1835" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3030" max-vertical-offset="10170">
+          <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/BaseHTTPServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5085" max-vertical-offset="9135">
+          <caret line="339" column="0" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="2820">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -457,24 +493,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="2850">
           <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -499,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3555" max-vertical-offset="11055">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -516,24 +546,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2745">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -558,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3555" max-vertical-offset="11055">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -575,24 +599,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1651" max-vertical-offset="2745">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -617,7 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3555" max-vertical-offset="11055">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -634,24 +652,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1302" max-vertical-offset="2580">
           <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -676,7 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3555" max-vertical-offset="11055">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -693,24 +705,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="2520">
           <caret line="94" column="30" selection-start-line="94" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -720,24 +727,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
           <caret line="103" column="36" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -747,24 +749,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
           <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -774,24 +771,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="2669">
           <caret line="87" column="37" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="37" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -801,24 +793,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="2618">
           <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -828,24 +815,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2618">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -855,24 +837,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
           <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -882,24 +859,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="1496">
           <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -909,24 +881,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="1411">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -936,24 +903,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1445">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -963,24 +925,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
           <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -990,24 +947,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="810">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>
@@ -1016,7 +968,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3297" max-vertical-offset="10995">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,27 +997,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Web.Fitwhiz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45454547" vertical-offset="0" max-vertical-offset="3015">
-          <caret line="12" column="116" selection-start-line="12" selection-start-column="116" selection-end-line="12" selection-end-column="116" />
+        <state vertical-scroll-proportion="0.1402715" vertical-offset="2667" max-vertical-offset="3330">
+          <caret line="186" column="17" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="17" />
           <folding>
-            <marker date="1428893753000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
-            <marker date="1428893753000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
-            <marker date="1428893753000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
-            <marker date="1428893753000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
-            <marker date="1428893753000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
-            <marker date="1428893753000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
-            <marker date="1428893753000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="1289:1361" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="2148:2332" placeholder="SELECT first..users..." />
+            <marker date="1428978969000" expanded="true" signature="2259:2331" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="3350:3626" placeholder="SELECT user_..crunched_results..." />
+            <marker date="1428978969000" expanded="true" signature="5566:5637" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6249" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="5790:6006" placeholder="INSERT INTO ..." />
+            <marker date="1428978969000" expanded="true" signature="6832:7031" placeholder="SELECT aller..allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6880:7030" placeholder="SELECT aller..user_allergies..." />
+            <marker date="1428978969000" expanded="true" signature="6965:7029" placeholder="SELECT user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="7969:8131" placeholder="SELECT vacci..user_vaccination..." />
+            <marker date="1428978969000" expanded="true" signature="8067:8130" placeholder="select user_..sensor_user..." />
+            <marker date="1428978969000" expanded="true" signature="8903:8955" placeholder="INSERT into ..." />
           </folding>
         </state>
       </provider>

@@ -183,6 +183,27 @@ def get_vaccines():
             except Exception:
                 return Exception.message
 
+@app.route("/v1.0/user/alerts",methods=['POST'])
+def insert_alerts():
+    """
+    For a given sensor ID and json with sensor details extract the details
+    :return: json result
+    """
+    if request.method == 'POST':
+        sensorId = request.args.get("SensorId",0)
+        json=request.json
+        msg=str(json.get('message'))
+        cursor = results_db.cursor()
+        if sensorId != 0:
+            try:
+                cursor.execute("INSERT into Alerts (SensorId,message) VALUES (%s,%s)",sensorId,msg)
+                results_db.commit()
+                make_response(201)
+
+            except Exception,e:
+                make_response(error_response(e.message),500)
+
+
 def error_response(msg):
     if msg is not None and len(msg) > 0:
         return make_response(jsonify(result="error",error=msg),400)
