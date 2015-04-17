@@ -13,16 +13,11 @@ import android.view.View;
 
 import java.util.Properties;
 
-import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
-import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
-import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledCountUpdateService;
 import cmpe.alpha.fitwhiz.controllers.common.ScheduledDataUploadService;
 import cmpe.alpha.fitwhiz.controllers.util.SystemUiHider;
-import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
-import cmpe.alpha.fitwhiz.lib.NotificationPriority;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -165,10 +160,9 @@ public class SplashScreen extends Activity {
         };
         splashTread.start();
 
-        //Start Temperature service
+        //Start service for capturing sensor data
         //this.startService(new Intent(this, SensorService.class));
-
-        //Update Profile page
+/*        //Update Profile page
         ProfileUpdater profileUpdater = new ProfileUpdater((FitwhizApplication)this.getApplication());
         profileUpdater.execute(new PropertiesReader(this.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
 
@@ -180,7 +174,7 @@ public class SplashScreen extends Activity {
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(),DashboardActivity.class),0);
         NotificationHelper helper = new NotificationHelper(getApplicationContext());
         helper.SendNotification("FitWhiz", "BOOM", pIntent, NotificationPriority.EMERGENCY,"");
-
+*/
         //Set the ScheduledCountUpdateService
         countUpdateInterval=Integer.parseInt(properties.getProperty("CountUpdateInterval","3600"));
         countIntent = new Intent(this, ScheduledCountUpdateService.class);

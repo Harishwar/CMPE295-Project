@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
 import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
@@ -81,14 +83,17 @@ public class SensorHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View sensorHistoryFragment = inflater.inflate(R.layout.fragment_sensor_history, container, false);
+        DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
+
         FitwhizApplication application=(FitwhizApplication)this.getActivity().getApplication();
         ResultsUpdater resultsUpdater=new ResultsUpdater(application);
         resultsUpdater.execute(new PropertiesReader(sensorHistoryFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
-        ((TextView)sensorHistoryFragment.findViewById(R.id.result_temp)).setText(application.getResult_tVal()+"");
-        ((TextView)sensorHistoryFragment.findViewById(R.id.result_humidity)).setText(application.getResult_hVal()+"");
-        ((TextView)sensorHistoryFragment.findViewById(R.id.result_temp)).setText(Math.ceil(application.getResult_xVal())+","+Math.ceil(application.getResult_yVal())+","+ Math.ceil(application.getResult_zVal()));
-        ((TextView)sensorHistoryFragment.findViewById(R.id.result_magnet)).setText(Math.ceil(application.getResult_mXVal())+","+Math.ceil(application.getResult_mYVal())+","+ Math.ceil(application.getResult_mZVal()));
-        ((TextView)sensorHistoryFragment.findViewById(R.id.result_gyr)).setText(Math.ceil(application.getResult_gXVal())+","+Math.ceil(application.getResult_gYVal())+","+ Math.ceil(application.getResult_gZVal()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_temp)).setText("Room: "+decimal.format(application.getResult_tAmb())+"\n Body: "+decimal.format(application.getResult_tBody()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_humidity)).setText(decimal.format(application.getResult_hVal())+"");
+        ((TextView)sensorHistoryFragment.findViewById(R.id.acc_result)).setText(decimal.format(application.getResult_xVal())+","+decimal.format(application.getResult_yVal())+","+ decimal.format(application.getResult_zVal()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_magnet)).setText(decimal.format(application.getResult_mXVal())+","+decimal.format(application.getResult_mYVal())+","+ decimal.format(application.getResult_mZVal()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_gyr)).setText(decimal.format(application.getResult_gXVal())+","+decimal.format(application.getResult_gYVal())+","+ decimal.format(application.getResult_gZVal()));
+        ((TextView)sensorHistoryFragment.findViewById(R.id.result_pres)).setText(decimal.format(application.getResult_pVal())+"");
         return sensorHistoryFragment;
     }
 

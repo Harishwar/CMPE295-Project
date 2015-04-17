@@ -68,17 +68,19 @@ public class ResultsUpdater extends AsyncTask<String, String, String> {
         {
             try {
                 JSONObject json = new JSONObject(response);
-                fitwhizApplication.setResult_xVal(json.getDouble("xValue"));
-                fitwhizApplication.setResult_yVal(json.getDouble("yValue"));
-                fitwhizApplication.setResult_zVal(json.getDouble("zValue"));
-                fitwhizApplication.setResult_hVal(json.getDouble("hValue"));
-                fitwhizApplication.setResult_tVal(json.getDouble("tValue"));
-                fitwhizApplication.setResult_gXVal(json.getDouble("gXValue"));
-                fitwhizApplication.setResult_gYVal(json.getDouble("gYValue"));
-                fitwhizApplication.setResult_gZVal(json.getDouble("gZValue"));
-                fitwhizApplication.setResult_mXVal(json.getDouble("mXValue"));
-                fitwhizApplication.setResult_mYVal(json.getDouble("mYValue"));
-                fitwhizApplication.setResult_mZVal(json.getDouble("mZValue"));
+                fitwhizApplication.setResult_xVal(json.getDouble("acc_x_avg"));
+                fitwhizApplication.setResult_yVal(json.getDouble("acc_y_avg"));
+                fitwhizApplication.setResult_zVal(json.getDouble("acc_z_avg"));
+                fitwhizApplication.setResult_gXVal(json.getDouble("gyro_x_avg"));
+                fitwhizApplication.setResult_gYVal(json.getDouble("gyro_y_avg"));
+                fitwhizApplication.setResult_gZVal(json.getDouble("gyro_z_avg"));
+                fitwhizApplication.setResult_mXVal(json.getDouble("mag_x_avg"));
+                fitwhizApplication.setResult_mYVal(json.getDouble("mag_y_avg"));
+                fitwhizApplication.setResult_mZVal(json.getDouble("mag_z_avg"));
+                fitwhizApplication.setResult_tAmb(json.getDouble("irt_ambient_avg"));
+                fitwhizApplication.setResult_tBody(json.getDouble("irt_body_avg"));
+                fitwhizApplication.setResult_hVal(json.getDouble("humidity_avg"));
+                fitwhizApplication.setResult_pVal(json.getDouble("pressure_avg"));
                 Log.d(this.getClass().getSimpleName(),fitwhizApplication.getXVal()+" "+fitwhizApplication.getTVal()+" "+fitwhizApplication.getHVal());
 
             } catch (JSONException e) {

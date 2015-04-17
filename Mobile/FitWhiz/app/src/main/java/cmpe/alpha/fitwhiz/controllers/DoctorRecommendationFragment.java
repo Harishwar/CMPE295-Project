@@ -7,8 +7,13 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.AllergiesHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.HelperLibrary.RecommendationsHelper;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +51,13 @@ public class DoctorRecommendationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View doctorFragment = inflater.inflate(R.layout.fragment_doctor_recommendation, container, false);
+        FitwhizApplication application=(FitwhizApplication)this.getActivity().getApplication();
+        RecommendationsHelper rh = new RecommendationsHelper(application);
+        rh.execute(new PropertiesReader(doctorFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+        AllergiesHelper ah = new AllergiesHelper(application);
+        ah.execute(new PropertiesReader(doctorFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+                ((TextView) doctorFragment.findViewById(R.id.vaccinations_val)).setText(application.getVaccinations());
+        ((TextView) doctorFragment.findViewById(R.id.allergies_val)).setText(application.getAllergies());
         return doctorFragment;
     }
 

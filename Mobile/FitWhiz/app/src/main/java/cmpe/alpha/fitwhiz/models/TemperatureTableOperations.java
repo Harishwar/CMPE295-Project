@@ -19,12 +19,13 @@ public class TemperatureTableOperations extends DatabaseConnector {
             super(context);
         }
 
-        public void insertValue(double val, String timeStamp)
+        public void insertValue(double amb, double body, String timeStamp)
         {
             try {
                 SQLiteDatabase db = getWritableDatabase();
                 contentValues.put("timestamp", timeStamp);
-                contentValues.put("t_val", val);
+                contentValues.put("amb_val", amb);
+                contentValues.put("body_val", body);
                 db.insert(TEMPERATURE_TABLE, "id", contentValues);
                 db.close();
             }

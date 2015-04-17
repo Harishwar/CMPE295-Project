@@ -34,9 +34,9 @@ public class SensorService extends Service implements SensorEventListener {
             String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
             double t_val = sensorEvent.values[0];
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(this);
-            temperatureTableOperations.insertValue(t_val, timestamp);
+            temperatureTableOperations.insertValue(t_val,0, timestamp);
             fitwhizApplication.setTVal(t_val);
-            readingsAnalyzer.analyzeTemperature(t_val);
+            //readingsAnalyzer.analyzeTemperature(t_val);
         }
 
         if (sensorEvent.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
@@ -82,6 +82,7 @@ public class SensorService extends Service implements SensorEventListener {
             Toast.makeText(this, "Accelerometer Sensor is available", Toast.LENGTH_SHORT).show();
             sm.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
+        ((FitwhizApplication)(getApplicationContext())).setSensorId("008822840");
     }
 
     @Override

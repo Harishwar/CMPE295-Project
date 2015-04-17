@@ -24,15 +24,19 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.AllergiesHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.NotificationHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.HelperLibrary.RecommendationsHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.lib.NotificationPriority;
@@ -124,8 +128,18 @@ public class LoginFragment extends Fragment
                 response.getEntity().writeTo(out);
                 responseString = out.toString();
                 out.close();
-                if(responseString.equalsIgnoreCase("Success"))
+                JSONObject json = new JSONObject(responseString);
+                String message;
+                try{
+                    message = json.getString("result");
+                }
+                catch (Exception ex)
                 {
+                    message = "Exception";
+                }
+                if(message.equalsIgnoreCase("Success"))
+                {
+                    application.setUserId(json.getString("user_id"));
                     progressDialog.setMessage("Loading your dashboard");
                     //Login Successful
                     //Set Shared Pref
@@ -137,6 +151,16 @@ public class LoginFragment extends Fragment
                     //Call Profile Updater
                     ProfileUpdater profileUpdater = new ProfileUpdater(application);
                     profileUpdater.execute(new PropertiesReader(loginFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+                    RecommendationsHelper rh = new RecommendationsHelper(application);
+                    rh.execute(new PropertiesReader(loginFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+                    AllergiesHelper ah = new AllergiesHelper(application);
+                    ah.execute(new PropertiesReader(loginFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+                    ResultsUpdater resultsUpdater=new ResultsUpdater(application);
+                    resultsUpdater.execute(new PropertiesReader(loginFragment.getContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
                     //Redirect to dashboard
                     Intent dashboardIntent = new Intent(getActivity(), DashboardActivity.class);
                     progressDialog.hide();
@@ -173,10 +197,11 @@ public class LoginFragment extends Fragment
             }
         }
         catch (Exception ex)
-        {/*
+        {
             //Login Failure
             Log.e(this.getClass().getSimpleName(), ex.getMessage().toString());
-            startActivity(new Intent(this.getActivity(),this.getActivity().getClass()));*/
+            startActivity(new Intent(this.getActivity(),this.getActivity().getClass()));/*
+            //For debug purpose, to skip login
             Intent dashboardIntent = new Intent(getActivity(), DashboardActivity.class);
             if(BluetoothLeService.getInstance() == null)
             {
@@ -189,7 +214,7 @@ public class LoginFragment extends Fragment
             else
             {
                 this.startActivity(dashboardIntent);
-            }
+            }*/
         }
     }
 

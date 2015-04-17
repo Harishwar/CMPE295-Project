@@ -17,6 +17,7 @@ public class DatabaseConnector extends SQLiteOpenHelper
     protected static final String COUNT_TABLE = "count_table";
     protected static final String GYROSCOPE_TABLE = "gyroscope_table";
     protected static final String MAGNETOMETER_TABLE = "magnetometer_table";
+    protected static final String PRESSURE_TABLE = "pressure_table";
     protected static SQLiteDatabase db;
 
 
@@ -36,10 +37,11 @@ public class DatabaseConnector extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE "+USER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,sensor_id TEXT, user_type TEXT)");
         db.execSQL("CREATE TABLE "+ACCELEROMETER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, x_val REAL,y_val REAL,z_val REAL)");
         db.execSQL("CREATE TABLE "+HUMIDITY_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, h_val REAL)");
-        db.execSQL("CREATE TABLE "+TEMPERATURE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, t_val REAL)");
+        db.execSQL("CREATE TABLE "+TEMPERATURE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, amb_val REAL, body_val REAL)");
         db.execSQL("CREATE TABLE "+COUNT_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, count REAL)");
         db.execSQL("CREATE TABLE "+MAGNETOMETER_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, x_val REAL,y_val REAL,z_val REAL)");
         db.execSQL("CREATE TABLE "+GYROSCOPE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, x_val REAL,y_val REAL,z_val REAL)");
+        db.execSQL("CREATE TABLE "+PRESSURE_TABLE+"(id INTEGER PRIMARY KEY AUTOINCREMENT,timestamp date, p_val REAL)");
     }
 
     @Override

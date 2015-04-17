@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/doctor_medicine_text"
-        android:id="@+id/doctor_medicine_text"
+        android:text="@string/allergies"
+        android:id="@+id/allergies"
         android:layout_marginTop="44dp"
         android:textColor="#FFFFFF"
         android:background="?android:attr/selectableItemBackground"
@@ -23,11 +23,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/doctor_exercises_text"
-        android:id="@+id/doctor_exercises_text"
+        android:text="@string/vaccinations"
+        android:id="@+id/vaccinations"
         android:layout_centerVertical="true"
         android:textColor="#FFFFFF"
         android:background="?android:attr/selectableItemBackground"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/allergies_val"
+        android:layout_below="@+id/allergies"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/vaccinations_val"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/vaccinations" />
 
 </RelativeLayout>

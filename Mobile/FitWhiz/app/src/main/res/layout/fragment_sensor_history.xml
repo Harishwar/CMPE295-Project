@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text="accelerometer"
         android:id="@+id/acc_result"
         android:layout_above="@+id/sensor_gyro_text_his"
         android:layout_alignEnd="@+id/historyAccelerometerValue" />
@@ -113,17 +113,17 @@
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text="gyroscope"
         android:id="@+id/result_gyr"
-        android:layout_above="@+id/sensor_mag_text_his"
-        android:layout_alignEnd="@+id/historyAccelerometerValue" />
+        android:layout_alignBottom="@+id/sensor_gyro_text_his"
+        android:layout_alignStart="@+id/acc_result" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text="magnetometer"
         android:id="@+id/result_magnet"
         android:layout_alignTop="@+id/sensor_mag_text_his"
         android:layout_alignEnd="@+id/humidityHistoryValue" />
@@ -133,29 +133,29 @@
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text="humidity"
         android:id="@+id/result_humidity"
         android:layout_alignBottom="@+id/humidityHistoryValue"
-        android:layout_alignEnd="@+id/humidityHistoryValue" />
+        android:layout_alignStart="@+id/acc_result" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text="temperature"
         android:id="@+id/result_temp"
         android:layout_above="@+id/historyTemperatureValue"
-        android:layout_toStartOf="@+id/historyTemperatureValue" />
+        android:layout_alignStart="@+id/result_pres" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
+        android:text="press"
         android:id="@+id/result_pres"
-        android:layout_below="@+id/sensor_pressure_text_his"
-        android:layout_toStartOf="@+id/historyTemperatureValue" />
+        android:layout_alignTop="@+id/sensor_pressure_text_his"
+        android:layout_alignStart="@+id/result_magnet" />
 
 </RelativeLayout>

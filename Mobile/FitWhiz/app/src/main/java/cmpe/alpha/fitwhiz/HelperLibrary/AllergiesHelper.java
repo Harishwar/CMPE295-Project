@@ -20,26 +20,29 @@ import java.net.URL;
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 
 /**
+ * Created by rajagopalan on 4/17/15.
+ */
+
+/**
  * Created by rajagopalan on 2/21/15.
  */
-public class ProfileUpdater extends AsyncTask<String, String, String> {
+public class AllergiesHelper extends AsyncTask<String, String, String> {
     private OnTaskCompleted listener;
     private FitwhizApplication app;
-    public ProfileUpdater(FitwhizApplication fitwhizApplication)
+    public AllergiesHelper(FitwhizApplication fitwhizApplication)
     {
-     this.app=fitwhizApplication;
+        this.app=fitwhizApplication;
     }
 
     @Override
     protected String doInBackground(String... params) {
-        //String sensorId = app.getSensorId();
-        String sensorId = "Az1234567";
+        String sensorId = app.getSensorId();
         while(sensorId.equalsIgnoreCase(""))
         {
             //sensorId = app.getSensorId();
             return "Exception";
         }
-        String urlString = params[0]+"/v1.0/user/profile/?SensorId="+sensorId; // URL to call
+        String urlString = params[0]+"/v1.0/user/allergies?SensorId="+sensorId; // URL to call
         String result = "";
 
         // HTTP Get
@@ -71,15 +74,8 @@ public class ProfileUpdater extends AsyncTask<String, String, String> {
     {
         try {
             JSONObject json = new JSONObject(response);
-            app.setBloodType(json.getString("BloodType"));
-            app.setPhoneNumber(json.getString("PhoneNumber"));
-            app.setWeight(json.getString("Weight"));
-            app.setFirstName(json.getString("FirstName"));
-            app.setGender(json.getString("Gender"));
-            app.setLastName(json.getString("LastName"));
-            app.setAddress(json.getString("Address"));
-            app.setHeight(json.getString("Height"));
-            Log.d(this.getClass().getSimpleName(),app.getFirstName()+" "+app.getLastName());
+            app.setAllergies(json.getString("allergies"));
+            Log.d(this.getClass().getSimpleName(), app.getFirstName() + " " + app.getLastName());
 
         } catch (JSONException e) {
             Log.e(this.getClass().getSimpleName(),e.toString());

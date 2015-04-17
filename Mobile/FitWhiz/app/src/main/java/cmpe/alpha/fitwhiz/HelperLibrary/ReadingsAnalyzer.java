@@ -13,7 +13,8 @@ public class ReadingsAnalyzer {
     {
         this.application=application;
         alertRaiser = new AlertRaiser(application);
-        url = new PropertiesReader(application.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl");
+        url = new PropertiesReader(application.getApplicationContext()).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl")+"/v1.0/user/alerts";
+        System.out.println(url);
     }
     public void analyzeValues(double x, double y, double z, double h, double t)
     {
@@ -43,34 +44,38 @@ public class ReadingsAnalyzer {
     }
     public void analyzeAmbientTemperature(double currentValue)
     {
-        double avg = application.getResult_tVal();
+       // double avg = application.getResult_tVal();
+        double tMin = 21;
+        double tMax = 26;
         //TODO Decide the threshold
-        if(currentValue>avg+2)
+        if(currentValue>tMax || currentValue<tMin)
         {
-            String msg = String.format("ABnormal Ambient temperature. Temp is %f",currentValue);
+            String msg = String.format("Abnormal Ambient temperature. Temp is %f",currentValue);
             alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }
     }
     public void analyzeBodyTemperature(double currentValue)
     {
-        double avg = application.getResult_tVal();
+        //double avg = application.getResult_tVal();
+        double tMin = 36.5;
+        double tMax = 37.5;
         //TODO Decide the threshold
-        if(currentValue>avg+2)
+        if(currentValue>tMax || currentValue<tMin)
         {
-            String msg = String.format("ABnormal Body temperature. Temp is %f",currentValue);
+            String msg = String.format("Abnormal Body temperature. Temp is %f",currentValue);
             alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }
     }
     public void analyzePressure(double currentValue)
     {
-        double pMin = 0;
-        double pMax = 1;
+        double pMin = 980;
+        double pMax = 1050;
         //TODO Decide the threshold
         if(currentValue>pMax || currentValue<pMin)
         {
-            String msg = String.format("ABnormal pressure. Pressure is %f",currentValue);
+            String msg = String.format("Abnormal pressure. Pressure is %f",currentValue);
             alertRaiser.execute(url,msg);
             //Give the details to the NotificationsHelper class
         }

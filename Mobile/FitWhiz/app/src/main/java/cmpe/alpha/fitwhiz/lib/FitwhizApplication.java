@@ -7,6 +7,7 @@ import android.app.Application;
  */
 public class FitwhizApplication extends Application {
 
+    private double result_stepCount = 0.0;
     public double count;
     protected String SensorId = "";
     private double x_val = 0.0;
@@ -26,6 +27,24 @@ public class FitwhizApplication extends Application {
     private double result_mYVal = 0.0;
     private double result_mZVal = 0.0;
 
+    public String getVaccinations() {
+        return vaccinations;
+    }
+
+    public void setVaccinations(String vaccinations) {
+        this.vaccinations = vaccinations;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    private String allergies = "";
+    private String vaccinations = "";
     public double getResult_pVal() {
         return result_pVal;
     }
@@ -50,6 +69,15 @@ public class FitwhizApplication extends Application {
         this.result_tBody = result_tBody;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    private String userId = "";
     private double result_pVal = 0.0;
     private double result_tAmb = 0.0;
     private double result_tBody = 0.0;

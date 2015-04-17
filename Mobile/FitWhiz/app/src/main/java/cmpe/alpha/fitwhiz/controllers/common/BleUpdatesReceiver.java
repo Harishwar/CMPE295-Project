@@ -342,11 +342,13 @@ private void onCharacteristicChanged(String uuidStr, byte[] value) {
             //mAmbValue.setText(msg);
             //msg = decimal.format(v.y) + "\n";
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(context);
-            temperatureTableOperations.insertValue(Double.parseDouble(msg), DateTimeHelper.getDefaultFormattedDateTime());
+            temperatureTableOperations.insertValue(v.x,v.y, DateTimeHelper.getDefaultFormattedDateTime());
             application.setTVal(Double.parseDouble(msg));
             application.setAmbTemp(v.x);
             application.setBodyTemp(v.y);
-            readingsAnalyzer.analyzeTemperature(Double.parseDouble(msg));
+            //readingsAnalyzer.analyzeTemperature(Double.parseDouble(msg));
+            readingsAnalyzer.analyzeBodyTemperature(v.y);
+            readingsAnalyzer.analyzeAmbientTemperature(v.x);
         }
 
         if (uuidStr.equals(SensorTagGatt.UUID_HUM_DATA.toString())) {

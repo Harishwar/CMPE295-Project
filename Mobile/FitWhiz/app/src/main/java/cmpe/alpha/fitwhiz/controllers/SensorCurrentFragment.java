@@ -649,7 +649,7 @@ public class SensorCurrentFragment extends Fragment {
             //msg = decimal.format(v.y) + "\n";
             Activity activity = thisActivity;
             TemperatureTableOperations temperatureTableOperations = new TemperatureTableOperations(activity.getApplicationContext());
-            temperatureTableOperations.insertValue(Double.parseDouble(msg), DateTimeHelper.getDefaultFormattedDateTime());
+            temperatureTableOperations.insertValue(v.x,v.y, DateTimeHelper.getDefaultFormattedDateTime());
             application.setTVal(Double.parseDouble(msg));
             application.setAmbTemp(v.x);
             application.setBodyTemp(v.y);

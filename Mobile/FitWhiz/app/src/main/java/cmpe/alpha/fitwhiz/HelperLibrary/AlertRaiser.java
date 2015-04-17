@@ -32,9 +32,6 @@ public class AlertRaiser extends AsyncTask<String,String,String > {
         String msg = strings[1];
         String sensorId = app.getSensorId();
 
-
-            sensorId = app.getSensorId();
-
         String url = strings[0]+"?SensorId="+sensorId;
 
         JSONObject obj = new JSONObject();

@@ -35,7 +35,6 @@ public class UpdateDataHelper extends AsyncTask<String, String, String> {
         String urlString = params[1]+"/v1.0/user/sensor_details"; // URL to call
 
         try {
-
             JSONObject jsonObject = new JSONObject(json);
 
             HttpClient httpclient = new DefaultHttpClient();

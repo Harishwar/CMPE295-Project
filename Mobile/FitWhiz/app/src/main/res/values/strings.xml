@@ -13,5 +13,7 @@
     <string name="title_x">X</string>
     <string name="title_y">Y</string>
     <string name="title_z">Z</string>
+    <string name="vaccinations">Vaccinations</string>
+    <string name="allergies">Allergies</string>
 
 </resources>

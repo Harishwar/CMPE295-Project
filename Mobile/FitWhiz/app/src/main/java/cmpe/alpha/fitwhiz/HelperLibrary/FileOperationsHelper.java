@@ -6,14 +6,11 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.Date;
 import java.util.Properties;
 import java.util.zip.ZipEntry;
@@ -25,6 +22,7 @@ import cmpe.alpha.fitwhiz.models.CountTableOperations;
 import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
 import cmpe.alpha.fitwhiz.models.MagnetometerTableOperations;
+import cmpe.alpha.fitwhiz.models.PressureTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
 
 /**
@@ -52,11 +50,12 @@ public class FileOperationsHelper {
         //fileLocation = properties.getProperty("UploadFileLocation")
         fileLocation = Environment.getExternalStorageDirectory()+ "/Fitwhiz/";
         try {
+            /*
             File file = new File(fileLocation);
             file.mkdirs();
             File newFile = new File(fileLocation,filename);
             Writer writer = new BufferedWriter(new FileWriter(newFile));
-
+*/
             //Get Data from DB
             AccelerometerTableOperations accelerometerTableOperations = new AccelerometerTableOperations(context);
             HumidityTableOperations humidityTableOperations = new HumidityTableOperations(context);
@@ -64,47 +63,52 @@ public class FileOperationsHelper {
             CountTableOperations countTableOperations = new CountTableOperations(context);
             MagnetometerTableOperations magnetometerTableOperations = new MagnetometerTableOperations(context);
             GyroscopeTableOperations gyroscopeTableOperations = new GyroscopeTableOperations(context);
+            PressureTableOperations pressureTableOperations = new PressureTableOperations(context);
             long end = System.currentTimeMillis();
 
             //To get 1 hour period
             long start = end - 3600000;
             String startDate = DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss",new Date(start));
             String endTime = DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss",new Date(end));
-            accelerometerTableOperations.insertValue(1.0,2.0,3.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
-            humidityTableOperations.insertValue(33.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
-            temperatureTableOperations.insertValue(37.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
+            //accelerometerTableOperations.insertValue(1.0,2.0,3.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
+            //humidityTableOperations.insertValue(33.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
+            //temperatureTableOperations.insertValue(37.0, DateTimeHelper.formatDateTime("yyyy-MM-dd HH:mm:ss", new Date(start+1000)));
             String sensorId = app.getSensorId();
             double xVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "x_val");
             double yVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "y_val");
             double zVal = accelerometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
             double hVal = humidityTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"h_val");
-            double tVal = temperatureTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"t_val");
+            double ambVal = temperatureTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"amb_val");
+            double bodyVal = temperatureTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"body_val");
             double m_xVal = magnetometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "x_val");
             double m_yVal = magnetometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "y_val");
             double m_zVal = magnetometerTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
             double g_xVal = gyroscopeTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "x_val");
             double g_yVal = gyroscopeTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "y_val");
             double g_zVal = gyroscopeTableOperations.getAggregateForSpecifiedTimeRange(startDate, endTime, "z_val");
+            double pVal = pressureTableOperations.getAggregateForSpecifiedTimeRange(startDate,endTime,"p_val");
             double stepCount = countTableOperations.getMaxCountForSpecifiedTimeRange(startDate,endTime,"count") - countTableOperations.getMinCountForSpecifiedTimeRange(startDate,endTime,"count");
             //Temporarily prepare JSON
-            String json = "{\n" +
-                    "  \"x_val\": "+xVal+",\n" +
-                    "  \"y_val\": "+yVal+",\n" +
-                    "  \"z_val\": "+zVal+",\n" +
-                    "  \"m_xVal\": "+m_xVal+",\n" +
-                    "  \"m_yVal\": "+m_yVal+",\n" +
-                    "  \"m_zVal\": "+m_zVal+",\n" +
-                    "  \"g_xVal\": "+g_xVal+",\n" +
-                    "  \"g_yVal\": "+g_yVal+",\n" +
-                    "  \"g_zVal\": "+g_zVal+",\n" +
-                    "  \"h_val\": "+hVal+",\n" +
-                    "  \"t_val\": "+tVal+",\n" +
-                    "  \"SensorId\": "+sensorId+",\n" +
-                    "  \"StepCount\": "+stepCount+"\n" +
+            String json = "{  \n" +
+                    "   \"SensorId\":\""+sensorId +"\",\n" +
+                    "   \"acc_x\":"+xVal+",\n" +
+                    "   \"acc_y\":"+yVal+",\n" +
+                    "   \"acc_z\":"+zVal+",\n" +
+                    "   \"h_val\":"+hVal+",\n" +
+                    "   \"irt_body_val\":"+bodyVal+",\n" +
+                    "   \"irt_ambient_val\":"+ambVal+",\n" +
+                    "   \"mag_x\":"+m_xVal+",\n" +
+                    "   \"mag_y\":"+m_yVal+",\n" +
+                    "   \"mag_z\":"+m_zVal+",\n" +
+                    "   \"gyro_x\":"+g_xVal+",\n" +
+                    "   \"gyro_y\":"+g_yVal+",\n" +
+                    "   \"gyro_z\":"+g_zVal+",\n" +
+                    "   \"pressure\":"+pVal+",\n" +
+                    "   \"StepCount\":"+stepCount+"\n" +
                     "}";
             UpdateDataHelper helper = new UpdateDataHelper(app);
             helper.execute(json,new PropertiesReader(this.context).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
-
+/*
             //Write to the file
             writer.append("{");
             writer.write("\n");
@@ -136,14 +140,20 @@ public class FileOperationsHelper {
             writer.write("\n");
             writer.write("}");
             writer.close();
-
+*/
             return fileLocation+filename;
-
+/*
         } catch (FileNotFoundException e) {
             Log.e("FileWriteHelper",e.toString());
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
         }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
         return "Exception";
     }
     public String CompressFile(String zipFileLocation, String normalFileLocation)
