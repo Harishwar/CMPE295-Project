@@ -8,9 +8,9 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','zip','tar',
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="********", db="CMPE295B")
+db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="!passw0rd", db="CMPE295B")
 #db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="CMPE295B")
-results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="********", db="SensorResults")
+results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="!passw0rd", db="SensorResults")
 
 #results_db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="SensorResults")
 
@@ -115,7 +115,7 @@ def analyze_sensor_data():
         gyro_xVal=str(json.get('gyro_x'))
         gyro_yVal=str(json.get('gyro_x'))
         gyro_zVal=str(json.get('gyro_x'))
-        pressure_val=str(json.get('pressure_x'))
+        pressure_val=str(json.get('pressure'))
 
         StepCount=str(json.get('StepCount'))
         cursor = db.cursor()
@@ -125,10 +125,13 @@ def analyze_sensor_data():
                 db.commit()
                 for user_id in cursor:
                     csr = results_db.cursor()
-                    csr.execute("""INSERT INTO SensorData (sensor_id, user_id, acc_x, acc_y,acc_z,step_count,irt_body, irt_ambient,gyro_x,gyro_y,gyro_z ,mag_x,mag_y,mag_z, pressure, date_logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                    query = str.format("""INSERT INTO SensorData (sensor_id, user_id, acc_x, acc_y,acc_z,step_count,irt_body, irt_ambient,gyro_x,gyro_y,gyro_z ,mag_x,mag_y,mag_z, pressure, date_logged) VALUES (\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\",\"{15}\")""",
                                 sensorId,user_id[0],acc_xVal,acc_yVal,acc_zVal,StepCount,body_tVal,amb_tVal,gyro_xVal,gyro_yVal,gyro_zVal,mag_xVal,mag_yVal,mag_zVal,pressure_val,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                    csr.execute(query)
                     results_db.commit()
-                    return make_response(201)
+                    resp = make_response()
+                    resp.status_code = 201
+                    return resp
             except Exception,e:
                 return error_response(e.message)
 
@@ -140,7 +143,7 @@ def get_allergies():
     :return: json result (the list of allergies suggested by the doctor)
     """
     if request.method == 'GET':
-        sensor_id = request.args.get('sensor_id',0)
+        sensor_id = request.args.get('SensorId',0)
         cursor = db.cursor()
         if sensor_id != 0:
             try:
@@ -167,7 +170,7 @@ def get_vaccines():
     :return: json result (the list of vaccines suggested by the doctor)
     """
     if request.method == 'GET':
-        sensor_id = request.args.get('sensor_id',0)
+        sensor_id = request.args.get('SensorId',0)
         cursor = db.cursor()
         if sensor_id != 0:
             try:
@@ -194,12 +197,16 @@ def insert_alerts():
         cursor = results_db.cursor()
         if sensorId != 0:
             try:
-                cursor.execute("INSERT into Alerts (SensorId,message,datetime_logged) VALUES (%s,%s,%s)",sensorId,msg,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                query = str.format("""INSERT into Alerts (SensorId,message,datetime_logged) VALUES (\"{0}\",\"{1}\",\"{2}\")""",sensorId,msg,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                print query
+                cursor.execute(query)
                 results_db.commit()
-                make_response(201)
+                resp = make_response()
+                resp.status_code = 201
+                return resp
 
             except Exception,e:
-                make_response(error_response(e.message),500)
+                return make_response(error_response(e.message),500)
 
 
 def error_response(msg):
