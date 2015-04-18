@@ -4,6 +4,7 @@ from healthCareWeb import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
+    url(r'^password/', views.password, name='password'),
     url(r'^doctorsView/', include('doctorsView.urls')),
     url(r'^usersView/', include('usersView.urls')),
     url(r'^admin/', include(admin.site.urls)),

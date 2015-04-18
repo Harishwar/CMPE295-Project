@@ -68,8 +68,10 @@
                 <section class="slide-fade">
                     {% for user in users %}
                     <li class="show" data-toggle="modal" data-id={{user.last_name}}>
-                        <p><i class="glyphicon glyphicon-user">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
-                        </p>
+                        <i class="glyphicon glyphicon-user">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
+                        <a class="show pull-right" data-toggle="modal" data-id={{user.email}}>
+                            <i class="glyphicon glyphicon-send"></i>
+                        </a>
                     </li>
                     {% endfor %}
                 </section>
@@ -104,6 +106,31 @@
         </div>
     </div>
     <!-- End Patient Modal -->
+    <!-- Alert Modal -->
+    <section id="alert" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
+                    <!-- Alert Message -->
+                    <form action="doctorsView/login" class="form-horizontal" method="POST" role="form">
+                        {% csrf_token %}
+                        <input type="email" class="form-control" name="email" id="modalEmail" placeholder="Email" value="" disabled="true">
+                        <br>
+                        <div class="form-group">
+                            <label for="message" class="col-xs-3 col-sm-3">Message</label>
+                            <textarea rows="4" class="col-xs-8 col-sm-6" name="message" id="message" class="form-control" value="" title="message" placeholder="Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-dark pull-right" value="">Send Alert</button>
+                        <br>
+                    </form>
+                    <!-- End Alert Message -->
+                </div>
+                <br>
+            </div>
+        </div>
+    </section>
+    <!-- End Alert Modal -->
     <!-- End Content -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
@@ -122,6 +149,14 @@
                 $('#profileDesc').text('Patient Details.')
             })
             $("#viewUserModal").modal('show');
+        });
+
+        $("li a").click(function() {
+            $('#alert').on('show.bs.modal', function(e) {
+                var email = $(event.target).closest('a').data('id');
+                $("#modalEmail").val(email);
+            })
+            $("#alert").modal('show');
         });
 
     });

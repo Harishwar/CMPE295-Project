@@ -104,13 +104,13 @@
                     <!-- Login Form -->
                     <form action="doctorsView/login" class="form-horizontal" method="POST" role="form">
                     {% csrf_token %}
-                    
+
                         <input type="email" class="form-control" name="email" placeholder="Email">
                         <br>
                         <input type="password" class="form-control" name="password" placeholder="Password">
                         <br>
                         <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
-                        <a href="#">Forgot Password?</a>
+                        <a href="/password">Forgot Password?</a>
                         <br>
                     </form>
                     <!-- End Login Form -->

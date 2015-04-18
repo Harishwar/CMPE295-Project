@@ -27,8 +27,28 @@
     padding-bottom: 10px;
 }
 
-.patientsList li:hover {
+.patientsList li:nth-child(odd):hover {
+    background: #BBB;
+}
+
+.patientsList li:nth-child(even):hover {
     background: rgba(0, 80, 50, 1);
+}
+
+.patientsList li a .glyphicon {
+    font-size: 1.5em;
+}
+
+.patientsList li:nth-child(even) a .glyphicon {
+    color: #FFF;
+}
+
+.patientsList li:nth-child(odd) a .glyphicon {
+    color: #000;
+}
+
+.patientsList li a .glyphicon:hover {
+    color: rgba(0, 150, 100, 1);
 }
 
 .patientsList .slide-fade li {
