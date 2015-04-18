@@ -26,7 +26,7 @@ logger = logging.getLogger()
 
 #first view to show the index
 def index(request):
-    return render(request,"dashboard.html");
+    return render(request,"doctorsView/dashboard.html");
 
 def search(request):
     return render(request,"list.html");
@@ -163,7 +163,7 @@ def addUserAllergies(request):
 def addUserVaccination(request):
     try:
         if request.method=="GET" and request.session.get('user_id'):
-            return render(request,'vaccination.html')
+            return render(request,'doctorsView/vaccination.html')
         elif(request.method=='POST' and request.session.get('user_id')):
             user_object=Users.objects.get(email=request.POST.get('email'))
             print 'email from add sensor',request.POST.get('email')
@@ -222,7 +222,7 @@ def login_user(request):
                 request.session['user_id']=user.email;
                 print "session"+request.session.get('user_id')
                 context={'users':Users.objects.filter()}
-                return render(request,'dashboard.html',context)
+                return render(request,'doctorsView/dashboard.html',context)
             elif user is not None and user.role_type==2:
                 request.session['user_id']=user.email;
                 context={'user':Users.objects.get(email=user.email)}
