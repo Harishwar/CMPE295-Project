@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sensor History</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+</head>
+
+<body>
+    <section>
+        <!-- NavBar -->
+        <nav id="menu" class="menu">
+            <header class="menu-header">
+                <span class="menu-header-title">FitWhiz</span>
+            </header>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewDashBoard">Dashboard</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">User</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewProfile?email={{users.email}}">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{users.email}}">Edit Profile</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">Sensor</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/sensorHistory" class="active">History</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/logout">Logout</a></li>
+                </ul>
+            </section>
+        </nav>
+    </section>
+    <!-- End NavBar -->
+    <!-- Content -->
+    <section id="content" class="panel">
+        <!-- Header -->
+        <header id="header">
+            <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+        </header>
+        <!-- End Header -->
+        <!-- Content -->
+        <br>
+        <div class="container">
+            <br>
+            <h1 class="lightGreen"><center>Sensor History</center></h1>
+            <hr>
+
+        </div>
+        <!-- End Content -->
+    </section>
+    <!-- End Content -->
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
+</body>
+
+</html>

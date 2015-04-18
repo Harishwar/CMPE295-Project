@@ -11,7 +11,6 @@
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
-    <link rel="stylesheet" type="text/css" href="{%static 'css/usersView/viewUser.css'%}">
 </head>
 
 <body>
@@ -30,7 +29,13 @@
                 <h3 class="menu-section-title">User</h3>
                 <ul class="menu-section-list">
                     <li><a href="/usersView/viewProfile?email={{users.email}}">View Profile</a></li>
-                    <li><a href="/usersView/editProfile?email={{users.email}}">Edit Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{users.email}}" class="active">Edit Profile</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">Sensor</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/sensorHistory">History</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -71,19 +76,21 @@
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
-                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="{{users.dob}}" title="Date of Birth" min="2013-01-01" max="2014-12-31" placeholder="mm/dd/yyyy" required>
+                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="{{users.dob}}" title="Date of Birth" min="1950-01-01" max="2015-12-31" placeholder="mm/dd/yyyy" required>
                     </div>
                     <div class="form-group">
                         <label for="address" class="col-xs-3 col-sm-3">Address</label>
-                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" value="{{users.address}}" title="Address" placeholder="Address"></textarea>
+                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" title="Address" placeholder="Address">{{users.address}}</textarea>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" id="gender" value="{{users.gender}}">
                         <label for="gender" class="col-xs-3 col-sm-3">Gender</label>
                         <input type="radio" name="gender" value="Male">&nbsp;Male&nbsp;
                         <input type="radio" name="gender" value="Female">&nbsp;Female&nbsp;
                         <input type="radio" name="gender" value="Other">&nbsp;Other
                     </div>
                     <div class="form-group">
+                        <input type="hidden" id="maritalStatus" value="{{users.marital_status}}">
                         <label for="inputMaritalStatus" class="col-xs-3 col-sm-3">Marital Status</label>
                         <input type="radio" name="inputMaritalStatus" value="Single">&nbsp;Single&nbsp;
                         <input type="radio" name="inputMaritalStatus" value="Married">&nbsp;Married&nbsp;
@@ -97,6 +104,7 @@
                         <input type="number" name="inputWeight" value="{{users.weight}}" placeholder="000">&nbsp;lb&nbsp;
                     </div>
                     <div class="form-group">
+                        <input type="hidden" id="bloodType" value="{{users.blood_type}}">
                         <label for="inputBloodType" class="col-xs-3 col-sm-3">Blood Group</label>
                         <select name="inputBloodType">
                             <option value="A-">A-</option>
@@ -131,6 +139,34 @@
     <script src="{%static 'js/slideout.min.js'%}"></script>
     <!-- Custom Initialization Script -->
     <script src="{%static 'js/init.js'%}"></script>
+    <script>
+    $(document).ready(function() {
+        // Select Gender
+        gender = $('#gender').val();
+        if (gender == "M") {
+            $('input:radio[name="gender"][value="Male"]').prop('checked', true);
+        } else if (gender == "F") {
+            $('input:radio[name="gender"][value="Female"]').prop('checked', true);
+        } else if (gender == " ") {
+            $('input:radio[name="gender"][value="Other"]').prop('checked', true);
+        }
+
+        // Select Marital Status
+        maritalStatus = $('#maritalStatus').val();
+        if (maritalStatus == "Single") {
+            $('input:radio[name="inputMaritalStatus"][value="Single"]').prop('checked', true);
+        } else if (maritalStatus == "Married") {
+            $('input:radio[name="inputMaritalStatus"][value="Married"]').prop('checked', true);
+        }
+
+        // Select Blood Group
+        $(function() {
+            $('[name=inputBloodType] option').filter(function() {
+                return ($(this).text() == $('#bloodType').val()); //To select Blue
+            }).prop('selected', true);
+        })
+    });
+    </script>
 </body>
 
 </html>

@@ -34,6 +34,9 @@ def editUserProfile(request):
     else:
         return render(request,'index.html')
 
+def sensorHistory(request):
+        return render(request,'usersView/sensorHistory.html')
+
 # def dashboard_req(request):
 #         print request.method
 #         print request.session.get('user_id')

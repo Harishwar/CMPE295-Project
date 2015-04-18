@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     url(r'load_graph',doctorsView.views.dashboard_req),
     url(r'viewProfile',views.viewUserProfile,name='viewUserProfile'),
     url(r'editProfile',views.editUserProfile,name='editUserProfile'),
+    url(r'sensorHistory',views.sensorHistory,name='sensorHistory'),
     url(r'logout',doctorsView.views.logout_user,name='logout_user'),
     )
