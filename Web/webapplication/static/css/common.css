@@ -99,18 +99,10 @@ a {
 }
 
 @media (max-width: 768px) {
-    #header {
-        height: 50px;
-        right: 0;
-        left: 0;
-        top: 0;
-        z-index: 1030;
-        position: fixed;
-        background-color: rgba(0, 80, 50, 1);
-    }
-    #header #navbar-toggle,
+    #header,
     #menuBar {
-        padding-top: 8px;
+        padding-top: 4px;
+        padding-right: 4px;
     }
 }
 /* Searchbar */
@@ -200,19 +192,6 @@ textarea:focus {
 .btn-light:active {
     color: #333;
     background-color: rgba(255, 255, 255, 0.8);
-}
-
-@media (max-width: 768px) {
-    .btn-dark {
-        color: #FFF;
-        border-radius: 0;
-        background-color: rgba(0, 80, 50, 1);
-    }
-    .btn-dark:hover,
-    .btn-dark:focus,
-    .btn-dark:active {
-        background-color: rgba(0, 150, 100, 1);
-    }
 }
 /* Footer */
 
