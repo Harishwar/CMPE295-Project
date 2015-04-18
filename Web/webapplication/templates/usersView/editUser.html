@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Patient</title>
+    <title>Edit Profile</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
-    <link rel="stylesheet" type="text/css" href="{%static 'css/registeruser.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/usersView/viewUser.css'%}">
 </head>
 
 <body>
@@ -23,19 +23,19 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/dashboard.html">Dashboard</a></li>
+                    <li><a href="/usersView/viewDashBoard">Dashboard</a></li>
                 </ul>
             </section>
             <section class="menu-section">
-                <h3 class="menu-section-title">Patients</h3>
+                <h3 class="menu-section-title">User</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/addPatient" class="active">Add Patients</a></li>
-                    <li><a href="/doctorsView/viewUsers">View Patients</a></li>
+                    <li><a href="/usersView/viewProfile?email={{users.email}}">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{users.email}}">Edit Profile</a></li>
                 </ul>
             </section>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/logout">Logout</a></li>
+                    <li><a href="/usersView/logout">Logout</a></li>
                 </ul>
             </section>
         </nav>
@@ -46,52 +46,36 @@
         <!-- Header -->
         <header id="header">
             <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
-            <div id="searchBar">
-                <form role="search" method="get" action="getUserByLastName">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Last Name" name="searchTerm">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- <div id="banner">
-                <center>
-                    <h1>FitWhiz<br><small class="text-center">Wearables for Improved Healthcare and Consumer Experiences</small></h1>
-                </center>
-            </div> -->
         </header>
         <!-- End Header -->
-        <!-- Registration Form -->
+        <!-- Edit Profile Form -->
         <br>
         <div class="container">
             <br>
-            <h1 class="lightGreen"><center>Add New Patient</center></h1>
-            <form method="POST" action="registerUser" class="form-horizontal" role="form">
+            <h1 class="lightGreen"><center>Edit Profile</center></h1>
+            <form method="POST" action="" class="form-horizontal" role="form">
                 <legend></legend>
                 <div class="container">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="FirstName" class="col-xs-3 col-sm-3">First Name</label>
-                        <input type="text" class="col-xs-8 col-sm-6" name="FirstName" id="fname" class="form-control" value="" title="First Name" placeholder="First Name">
+                        <input type="text" class="col-xs-8 col-sm-6" name="FirstName" id="fname" class="form-control" value="{{users.first_name}}" title="First Name" placeholder="First Name">
                     </div>
                     <div class="form-group">
                         <label for="LastName" class="col-xs-3 col-sm-3">Last Name</label>
-                        <input type="text" class="col-xs-8 col-sm-6" name="LastName" id="lname" class="form-control" value="" title="Last Name" placeholder="Last Name">
+                        <input type="text" class="col-xs-8 col-sm-6" name="LastName" id="lname" class="form-control" value="{{users.last_name}}" title="Last Name" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-xs-3 col-sm-3">Email</label>
-                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="" required="required" title="Email" placeholder="Email">
+                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="{{users.email}}" required="required" title="Email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
-                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="" title="Date of Birth" min="2013-01-01" max="2014-12-31" placeholder="mm/dd/yyyy" required>
+                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="{{users.dob}}" title="Date of Birth" min="2013-01-01" max="2014-12-31" placeholder="mm/dd/yyyy" required>
                     </div>
                     <div class="form-group">
                         <label for="address" class="col-xs-3 col-sm-3">Address</label>
-                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" value="" title="Address" placeholder="Address"></textarea>
+                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" value="{{users.address}}" title="Address" placeholder="Address"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="gender" class="col-xs-3 col-sm-3">Gender</label>
@@ -106,11 +90,11 @@
                     </div>
                     <div class="form-group">
                         <label for="inputHeight" class="col-xs-3 col-sm-3">Height</label>
-                        <input type="number" name="inputHeight" value="inch" placeholder="00">&nbsp;inches&nbsp;
+                        <input type="number" name="inputHeight" value="{{users.height}}" placeholder="00">&nbsp;inches&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputWeight" class="col-xs-3 col-sm-3">Weight</label>
-                        <input type="number" name="inputWeight" value="lb" placeholder="000">&nbsp;lb&nbsp;
+                        <input type="number" name="inputWeight" value="{{users.weight}}" placeholder="000">&nbsp;lb&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputBloodType" class="col-xs-3 col-sm-3">Blood Group</label>
@@ -127,28 +111,18 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPhone" class="col-xs-3 col-sm-3">Phone</label>
-                        <input type="tel" class="col-xs-8 col-sm-6" name="inputPhone" id="inputPhone" class="form-control" value="" title="phone" placeholder="(000) 000-0000" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" maxlength="14">
+                        <input type="tel" class="col-xs-8 col-sm-6" name="inputPhone" id="inputPhone" class="form-control" value="{{users.phone_number}}" title="phone" placeholder="(000) 000-0000" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" maxlength="14">
                     </div>
                     <div class="text-center">
-                        <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
-                        <input type="submit" value="Register" class="btn btn-lg btn-dark">
+                        <input type="submit" value="Update" class="btn btn-lg btn-dark">
                     </div>
                 </div>
                 <br>
             </form>
         </div>
-        <!-- End Registration Form -->
+        <!-- End Edit Profile Form -->
     </section>
     <!-- End Content -->
-    <!-- Footer -->
-    <!-- <footer class="footer">
-        <div class="container">
-            <p>
-                &copy; 2015 FitWhiz.
-            </p>
-        </div>
-    </footer> -->
-    <!-- End Footer -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
     <!-- Bootstrap JavaScript -->

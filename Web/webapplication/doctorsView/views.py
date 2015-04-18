@@ -3,7 +3,6 @@ from django.core.context_processors import request
 from urllib2 import HTTPError
 from models import Users
 from django.shortcuts import redirect
-
 import logging
 import datetime
 from django.http.response import JsonResponse, HttpResponseRedirect,HttpResponse
@@ -34,7 +33,7 @@ def search(request):
 
 def dashboard(request):
     if request.method=="GET" and request.session.get('user_id'):
-        return render(request,"dashboard.html")
+        return render(request,"doctorsView/dashboard.html")
     else:
         return render(request,'index.html')
 # def addPatient(request):
@@ -43,7 +42,7 @@ def dashboard(request):
 def addPatient(request):
     try:
         if request.method=="GET" and request.session.get('user_id'):
-            return render(request,"registerUser.html");
+            return render(request,"doctorsView/registerUser.html");
         elif request.method=="POST" and request.session.get('user_id'):
             logger.debug("Obtaining db fields")
             registration = Users()
@@ -63,7 +62,7 @@ def addPatient(request):
                 #saved_details=User.objects.filter(id=created_id).values()
                 #serialized_obj = serializers.serialize('json', [ saved_details, ])
             #return JsonResponse({"email":saved_details.email,"id":saved_details.id})
-            return HttpResponseRedirect(reverse('addSensor')+'?email='+saved_details.email)
+            return HttpResponseRedirect(reverse('doctorsView/addSensor')+'?email='+saved_details.email)
         else:
             return render(request, 'index.html')
 
@@ -81,7 +80,7 @@ def addPatient(request):
 def addSensor(request):
     try:
         if request.method =='GET' and request.session.get('user_id'):
-            return render(request,"addSensor.html");
+            return render(request,"doctorsView/addSensor.html");
         elif request.method=='POST' and request.session.get('user_id'):
             sensor_details = SensorUser()
             email=request.POST.get('email')
@@ -106,7 +105,7 @@ def viewUsers(request):
     try:
         if request.method=='GET' and request.session.get('user_id'):
             context={'users':Users.objects.filter()}
-            return render(request,'viewUsers.html',context)
+            return render(request,'doctorsView/viewUsers.html',context)
         else:
             return render(request,'index.html')
 
@@ -120,7 +119,7 @@ def getUserByLastName(request):
             last_name=request.GET.get('searchTerm')
             user_result=Users.objects.filter(last_name=last_name)
             context={'users':user_result}
-            return render(request,'viewUsers.html',context)
+            return render(request,'doctorsView/viewUsers.html',context)
         else:
             return render(request,'index.html')
     except:
@@ -131,7 +130,7 @@ def getAllergiesList(request):
             #print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
         context={'allergies':Allergies.objects.values('allergy_name')}
         print 'allergies'
-        return render(request,'addAllergies.html',context)
+        return render(request,'doctorsView/addAllergies.html',context)
     except:
         return HttpResponse("Service Error!!!")
 
@@ -207,7 +206,7 @@ def login_user(request):
     if(request.session.get('user_id')):
         print "session"+request.session.get('user_id')
         context={'users':Users.objects.filter()}
-        return render(request,'dashboard.html',context)
+        return render(request,'doctorsView/dashboard.html',context)
     else:
         if request.method=='GET':
             return render(request,"list.html");
@@ -228,7 +227,7 @@ def login_user(request):
                 request.session['user_id']=user.email;
                 context={'user':Users.objects.get(email=user.email)}
                 return redirect('/usersView/viewDashBoard',context)
-            else:    
+            else:
                 return HttpResponse("Invalid user");
 
 
@@ -262,7 +261,7 @@ def dashboard_doc_req(request):
         print '-------->'
         print"Hiiii"
         print load_all_users_data()
-        
+
         return JsonResponse(load_all_users_data(),safe=False)
 
 def load_user_data(email):
@@ -313,5 +312,3 @@ def load_all_users_data():
 #patient visit history
 #login module
 #password encryption
-
-

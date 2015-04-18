@@ -6,14 +6,10 @@ import datetime
 import json
 from django.http.response import JsonResponse,HttpResponse
 
-
-# Create your views here.
-
 def viewDashBoard(request):
     print request.session.get('user_id')
     context={'user':Users.objects.get(email=request.session.get('user_id'))}
-    return render(request,'dashboard_user.html',context)
-
+    return render(request,'usersView/dashboard.html',context)
 
 def viewUserProfile(request):
     user_email =request.GET.get('email')
@@ -23,13 +19,20 @@ def viewUserProfile(request):
         print context
         print "context obj"
         #return JsonResponse(context);
-        
-        return render(request,'viewUser.html',context)
+        return render(request,'usersView/viewUser.html',context)
     else:
         return render(request,'index.html')
-        
+
 #     except:
 #         return HttpResponse("Service Error!!!")
+
+def editUserProfile(request):
+    user_email =request.GET.get('email')
+    if request.method=='GET' and request.session.get('user_id'):
+        context={'users':Users.objects.get(email=request.GET.get('email'))}
+        return render(request,'usersView/editUser.html',context)
+    else:
+        return render(request,'index.html')
 
 # def dashboard_req(request):
 #         print request.method
@@ -38,7 +41,7 @@ def viewUserProfile(request):
 #         print '-------->'
 #         print load_user_data(email)
 #         return JsonResponse(load_user_data(email),safe=False)
-#     
+#
 # def load_user_data(email):
 #     try:
 #         cursor=connection.cursor()
@@ -54,7 +57,7 @@ def viewUserProfile(request):
 #             graph_obj['user_id']=row[0]
 #             rowsList.append(graph_obj)
 #             print row
-#         connection.close()    
+#         connection.close()
 #         return json.dumps(rowsList)
 #     except:
 #         return "Could not process"

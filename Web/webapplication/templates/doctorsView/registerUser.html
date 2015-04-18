@@ -23,19 +23,19 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewDashBoard">Dashboard</a></li>
+                    <li><a href="/doctorsView/dashboard.html">Dashboard</a></li>
                 </ul>
             </section>
             <section class="menu-section">
-                <h3 class="menu-section-title">Users</h3>
+                <h3 class="menu-section-title">Patients</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/editUserProfile">Edit Profile</a></li>
-                    <li><a href="/usersView/viewProfile?email={{users.email}}">View Profile</a></li>
+                    <li><a href="/doctorsView/addPatient" class="active">Add Patients</a></li>
+                    <li><a href="/doctorsView/viewUsers">View Patients</a></li>
                 </ul>
             </section>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/logout">Logout</a></li>
+                    <li><a href="/doctorsView/logout">Logout</a></li>
                 </ul>
             </section>
         </nav>
@@ -68,58 +68,71 @@
         <br>
         <div class="container">
             <br>
-            <h1 class="lightGreen"><center>View User Profile</center></h1>
+            <h1 class="lightGreen"><center>Add New Patient</center></h1>
             <form method="POST" action="registerUser" class="form-horizontal" role="form">
-                <legend></legend> 
+                <legend></legend>
                 <div class="container">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="FirstName" class="col-xs-3 col-sm-3">First Name</label>
-                        {{users.first_name}}
+                        <input type="text" class="col-xs-8 col-sm-6" name="FirstName" id="fname" class="form-control" value="" title="First Name" placeholder="First Name">
                     </div>
                     <div class="form-group">
                         <label for="LastName" class="col-xs-3 col-sm-3">Last Name</label>
-                        {{users.last_name}}
+                        <input type="text" class="col-xs-8 col-sm-6" name="LastName" id="lname" class="form-control" value="" title="Last Name" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-xs-3 col-sm-3">Email</label>
-                        {{users.email}}
+                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="" required="required" title="Email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
-                        {{users.dob}}
+                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="" title="Date of Birth" min="2013-01-01" max="2014-12-31" placeholder="mm/dd/yyyy" required>
                     </div>
                     <div class="form-group">
                         <label for="address" class="col-xs-3 col-sm-3">Address</label>
-                       {{users.address}}
+                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" value="" title="Address" placeholder="Address"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="gender" class="col-xs-3 col-sm-3">Gender</label>
-                        {{users.gender}}
+                        <input type="radio" name="gender" value="Male">&nbsp;Male&nbsp;
+                        <input type="radio" name="gender" value="Female">&nbsp;Female&nbsp;
+                        <input type="radio" name="gender" value="Other">&nbsp;Other
                     </div>
                     <div class="form-group">
                         <label for="inputMaritalStatus" class="col-xs-3 col-sm-3">Marital Status</label>
-                        {{users.marital_status}}
+                        <input type="radio" name="inputMaritalStatus" value="Single">&nbsp;Single&nbsp;
+                        <input type="radio" name="inputMaritalStatus" value="Married">&nbsp;Married&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputHeight" class="col-xs-3 col-sm-3">Height</label>
-                        {{users.height}}
-						                        
+                        <input type="number" name="inputHeight" value="inch" placeholder="00">&nbsp;inches&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputWeight" class="col-xs-3 col-sm-3">Weight</label>
-                        {{users.weight}}
+                        <input type="number" name="inputWeight" value="lb" placeholder="000">&nbsp;lb&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputBloodType" class="col-xs-3 col-sm-3">Blood Group</label>
-                       {{users.blood_type}}
+                        <select name="inputBloodType">
+                            <option value="A-">A-</option>
+                            <option value="A+">A+</option>
+                            <option value="B-">B-</option>
+                            <option value="B+">B+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O-">O-</option>
+                            <option value="O+">O+</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="inputPhone" class="col-xs-3 col-sm-3">Phone</label>
-                       {{users.phone_number}}
-						                        
+                        <input type="tel" class="col-xs-8 col-sm-6" name="inputPhone" id="inputPhone" class="form-control" value="" title="phone" placeholder="(000) 000-0000" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" maxlength="14">
                     </div>
-                
+                    <div class="text-center">
+                        <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
+                        <input type="submit" value="Register" class="btn btn-lg btn-dark">
+                    </div>
                 </div>
                 <br>
             </form>
@@ -127,15 +140,6 @@
         <!-- End Registration Form -->
     </section>
     <!-- End Content -->
-    <!-- Footer -->
-    <!-- <footer class="footer">
-        <div class="container">
-            <p>
-                &copy; 2015 FitWhiz.
-            </p>
-        </div>
-    </footer> -->
-    <!-- End Footer -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
     <!-- Bootstrap JavaScript -->
