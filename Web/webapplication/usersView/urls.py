@@ -10,6 +10,6 @@ urlpatterns = patterns('',
     url(r'viewProfile',views.viewUserProfile,name='viewUserProfile'),
     url(r'editProfile',views.editUserProfile,name='editUserProfile'),
     url(r'sensorHistory',views.sensorHistory,name='sensorHistory'),
-    url(r'loadSensorHistory',doctorsView.views.loadSensorHistory,name='loadSensorHistory'),
+    url(r'loadSensorHistory',views.loadSensorHistory,name='loadSensorHistory'),
     url(r'logout',doctorsView.views.logout_user,name='logout_user'),
     )

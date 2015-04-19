@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from doctorsView.models import Users
-from django.db import transaction, connection
+from django.db import transaction, connection,connections
 import collections
 import datetime
 import json
@@ -44,6 +44,36 @@ def sensorHistory(request):
         return render(request,'usersView/sensorHistory.html', context)
     else:
         return render(request,'index.html')
+    
+def loadSensorHistory(request):
+    #try:
+        #print "entered load users"
+        email = request.GET.get('email')
+        date_logged = request.GET.get('date')+'%'
+        print email
+        print date_logged
+        print "select date_logged, irt_body, humidity from SensorResults.SensorData where user_id=%s and date_logged like %s",[email,date_logged]
+        cursor=connection.cursor()
+        cursor.execute("select date_logged, humidity,irt_body from SensorResults.SensorData where user_id=%s and date_logged like %s",[email,date_logged])
+        rows=cursor.fetchall()
+        ##print rows
+        rowsList=[]
+        for row in rows:
+            #print row
+            sensor_obj=collections.OrderedDict()
+            if isinstance(row[0], datetime.datetime):
+                dateVal= str(row[0].time())       
+            sensor_obj['time']=dateVal
+            sensor_obj['humidity']=row[1]
+            sensor_obj['irt_body']=row[2]
+#             print graph_obj
+            rowsList.append(sensor_obj)
+            ##print row
+        return JsonResponse(rowsList,safe=False)
+        
+    #except:
+     #   return HttpResponse("test1")
+
 
 # def dashboard_req(request):
 #         #print request.method

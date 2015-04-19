@@ -338,9 +338,7 @@ def sendAlert(request):
     except:
         return JsonResponse({"status":400,"result":"No such rows"})
 
-def loadSensorHistory(request):
-    print request.GET.get('email')
-    print request.GET.get('date')
+
 
 #def updateUserProfile(request):
 

@@ -63,19 +63,14 @@
             <input type="hidden" id="userEmail" value="{{user.email}}">
             <h1 class="lightGreen"><center>Sensor History</center></h1>
             <hr>
-            <table class="table table-hover">
+            <table class="table table-hover" id="tblSensorData">
                 <thead>
-                    <tr>
+                	<tr>
                         <th id="datepicker"></th>
                         <th>Humidity</th>
                         <th>Temperature</th>
-                    </tr>
+                    <tr>
                 </thead>
-                <tr>
-                    <td>5:00 PM</td>
-                    <td>35</td>
-                    <td>35</td>
-                </tr>
             </table>
         </div>
         <!-- End Content -->
@@ -100,14 +95,22 @@
         maxDate: yesterday,
         field: $('#datepicker')[0],
         onSelect: function(date) {
-            $('#datepicker').text(date.toISOString().slice(0, 10));
-            $.getJSON('/usersView/loadSensorHistory?email={{user.email}}&date=' + date.toISOString().slice(0, 10), function(data) {
-                var jsonRes = JSON.parse(data);
-                // To-Do
-            });
-
+            getSensorData(date);
         }
     });
+    function getSensorData(date){
+    	$('#datepicker').text(date.toISOString().slice(0, 10));
+        $.getJSON('/usersView/loadSensorHistory?email={{user.email}}&date=' + date.toISOString().slice(0, 10), function(data) {
+        	var jsonRes = JSON.parse(JSON.stringify(data));
+        	console.log(JSON.stringify(jsonRes)); 
+			$("#tblSensorData").find("tr:gt(0)").remove();
+            for(var i=0; i<jsonRes.length;i++){ 	
+            	var dataAppend ='<tr><td>'+jsonRes[i].time+'</td><td>'+jsonRes[i].humidity+'</td><td>'+jsonRes[i].irt_body+'</td></tr>'; 
+            	$('#tblSensorData tr:last').after(dataAppend);
+           	}
+      	});
+    }
+    getSensorData(yesterday);
     </script>
 </body>
 
