@@ -73,6 +73,17 @@ DATABASES = {
         'OPTIONS': {
           'autocommit': True,
         },
+    },
+    'sensors': {
+        'HOST':'cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com',
+        'PORT':'3306',
+        'NAME': 'SensorResults',
+        'ENGINE': 'mysql.connector.django',
+        'USER': 'root',
+        'PASSWORD': '!passw0rd',
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
 
