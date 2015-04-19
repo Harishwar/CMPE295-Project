@@ -69,3 +69,11 @@
     border: 0;
     background-color: #FFF;
 }
+
+.text-group {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 1em;
+    line-height: 1.5;
+    border-radius: 3px;
+}

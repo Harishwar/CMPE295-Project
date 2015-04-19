@@ -28,8 +28,8 @@
             <section class="menu-section">
                 <h3 class="menu-section-title">User</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewProfile?email={{users.email}}">View Profile</a></li>
-                    <li><a href="/usersView/editProfile?email={{users.email}}" class="active">Edit Profile</a></li>
+                    <li><a href="/usersView/viewProfile?email={{user.email}}">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{user.email}}" class="active">Edit Profile</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -64,47 +64,47 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="FirstName" class="col-xs-3 col-sm-3">First Name</label>
-                        <input type="text" class="col-xs-8 col-sm-6" name="FirstName" id="fname" class="form-control" value="{{users.first_name}}" title="First Name" placeholder="First Name">
+                        <input type="text" class="col-xs-8 col-sm-6" name="FirstName" id="fname" class="form-control" value="{{user.first_name}}" title="First Name" placeholder="First Name">
                     </div>
                     <div class="form-group">
                         <label for="LastName" class="col-xs-3 col-sm-3">Last Name</label>
-                        <input type="text" class="col-xs-8 col-sm-6" name="LastName" id="lname" class="form-control" value="{{users.last_name}}" title="Last Name" placeholder="Last Name">
+                        <input type="text" class="col-xs-8 col-sm-6" name="LastName" id="lname" class="form-control" value="{{user.last_name}}" title="Last Name" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-xs-3 col-sm-3">Email</label>
-                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="{{users.email}}" required="required" title="Email" placeholder="Email">
+                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="{{user.email}}" required="required" title="Email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
-                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="{{users.dob}}" title="Date of Birth" min="1950-01-01" max="2015-12-31" placeholder="mm/dd/yyyy" required>
+                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="{{user.dob}}" title="Date of Birth" min="1950-01-01" max="2015-12-31" placeholder="mm/dd/yyyy" required>
                     </div>
                     <div class="form-group">
                         <label for="address" class="col-xs-3 col-sm-3">Address</label>
-                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" title="Address" placeholder="Address">{{users.address}}</textarea>
+                        <textarea rows="4" class="col-xs-8 col-sm-6" name="address" id="address" class="form-control" title="Address" placeholder="Address">{{user.address}}</textarea>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" id="gender" value="{{users.gender}}">
+                        <input type="hidden" id="gender" value="{{user.gender}}">
                         <label for="gender" class="col-xs-3 col-sm-3">Gender</label>
                         <input type="radio" name="gender" value="Male">&nbsp;Male&nbsp;
                         <input type="radio" name="gender" value="Female">&nbsp;Female&nbsp;
                         <input type="radio" name="gender" value="Other">&nbsp;Other
                     </div>
                     <div class="form-group">
-                        <input type="hidden" id="maritalStatus" value="{{users.marital_status}}">
+                        <input type="hidden" id="maritalStatus" value="{{user.marital_status}}">
                         <label for="inputMaritalStatus" class="col-xs-3 col-sm-3">Marital Status</label>
                         <input type="radio" name="inputMaritalStatus" value="Single">&nbsp;Single&nbsp;
                         <input type="radio" name="inputMaritalStatus" value="Married">&nbsp;Married&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputHeight" class="col-xs-3 col-sm-3">Height</label>
-                        <input type="number" name="inputHeight" value="{{users.height}}" placeholder="00">&nbsp;inches&nbsp;
+                        <input type="number" name="inputHeight" value="{{user.height}}" placeholder="00">&nbsp;inches&nbsp;
                     </div>
                     <div class="form-group">
                         <label for="inputWeight" class="col-xs-3 col-sm-3">Weight</label>
-                        <input type="number" name="inputWeight" value="{{users.weight}}" placeholder="000">&nbsp;lb&nbsp;
+                        <input type="number" name="inputWeight" value="{{user.weight}}" placeholder="000">&nbsp;lb&nbsp;
                     </div>
                     <div class="form-group">
-                        <input type="hidden" id="bloodType" value="{{users.blood_type}}">
+                        <input type="hidden" id="bloodType" value="{{user.blood_type}}">
                         <label for="inputBloodType" class="col-xs-3 col-sm-3">Blood Group</label>
                         <select name="inputBloodType">
                             <option value="A-">A-</option>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPhone" class="col-xs-3 col-sm-3">Phone</label>
-                        <input type="tel" class="col-xs-8 col-sm-6" name="inputPhone" id="inputPhone" class="form-control" value="{{users.phone_number}}" title="phone" placeholder="(000) 000-0000" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" maxlength="14">
+                        <input type="tel" class="col-xs-8 col-sm-6" name="inputPhone" id="inputPhone" class="form-control" value="{{user.phone_number}}" title="phone" placeholder="(000) 000-0000" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" maxlength="14">
                     </div>
                     <div class="text-center">
                         <input type="submit" value="Update" class="btn btn-lg btn-dark">

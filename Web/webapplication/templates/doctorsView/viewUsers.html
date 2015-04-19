@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" ztype="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/viewusers.css'%}">
 </head>
 
@@ -68,7 +68,7 @@
                 <section class="slide-fade">
                     {% for user in users %}
                     <li class="show" data-id={{user.email}}>
-                        <a class="profileName" data-toggle="modal" data-id={{user.last_name}}>
+                        <a class="profileName" data-toggle="modal" data-firstname={{user.first_name}}&nbsp; data-lastname={{user.last_name}}&nbsp; data-dob={{user.dob}}&nbsp; data-address={{user.address}}&nbsp; data-gender={{user.gender}}&nbsp; data-maritalstatus={{user.marital_status}}&nbsp; data-height={{user.height}}&nbsp; data-weight={{user.weight}}&nbsp; data-bloodtype={{user.blood_type}}&nbsp; data-phone={{user.phone_number}}&nbsp;>
                             <i class="glyphicon glyphicon-user">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
                         </a>
                         <a class="alertEmail show pull-right" data-toggle="modal">
@@ -90,16 +90,56 @@
                     <h3 class="modal-title text-center text-warning" id="profileName"></h3>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <span class="glyphicon glyphicon-user"></span>&nbsp;
-                        <span class="glyphicon glyphicon-earphone"></span>&nbsp;
-                        <span class="glyphicon glyphicon-comment"></span>
-                        <p id="profileDesc" class="text-muted"></p>
+                    <div class="container">
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">First Name</label>
+                            <text id="profileFirstName"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Last Name</label>
+                            <text id="profileLastName"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Email</label>
+                            <text id="profileEmail"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">D.O.B</label>
+                            <text id="profileDOB"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Address</label>
+                            <text id="profileAddress"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Gender</label>
+                            <text id="profileGender"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Marital Status</label>
+                            <text id="profileMaritalStatus"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Height</label>
+                            <text id="profileHeight"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Weight</label>
+                            <text id="profileWeight"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Blood Group</label>
+                            <text id="profileBloodType"></text>
+                        </p>
+                        <p class="text-group">
+                            <label class="col-xs-3 col-sm-3">Phone</label>
+                            <text id="profilePhone"></text>
+                        </p>
                     </div>
                     <div>
-                        <button class="text-danger pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-remove"></i>
+                        <button class="text-danger pull-right" title="Delete Patient"><i class="glyphicon glyphicon-remove"></i>
                         </button>
-                        <button class="text-success pull-right" title="Delete Patient"><i class="glyphicon glyphicon-pencil"></i>
+                        <button class="text-success pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil"></i>
                         </button>
                     </div>
                 </div>
@@ -148,9 +188,20 @@
             e.stopPropagation();
         }).on('click', '.profileName', function(e) {
             $('#viewUserModal').on('show.bs.modal', function(e) {
-                var lastName = $(event.target).closest('li').data('id');
-                $('#profileName').text(lastName);
-                $('#profileDesc').text('Patient Details.')
+                var email = $(event.target).closest('li').data('id');
+                var profile = $(event.target).closest('a');
+                $('#profileName').text(profile.data('lastname')+", "+profile.data('firstname'));
+                $('#profileFirstName').text(profile.data('firstname'));
+                $('#profileLastName').text(profile.data('lastname'));
+                $('#profileEmail').text(email);
+                $('#profileDOB').text(profile.data('dob'));
+                $('#profileAddress').text(profile.data('address'));
+                $('#profileGender').text(profile.data('gender'));
+                $('#profileMaritalStatus').text(profile.data('maritalstatus'));
+                $('#profileHeight').text(profile.data('height'));
+                $('#profileWeight').text(profile.data('weight'));
+                $('#profileBloodType').text(profile.data('blood_type'));
+                $('#profilePhone').text(profile.data('phone'));
             })
             $("#viewUserModal").modal('show');
         }).on('click', '.alertEmail', function(e) {
@@ -161,26 +212,6 @@
             $("#alert").modal('show');
             $('#viewUserModal').modal('hide');
         });
-        /* $("li .profileName").click(function() {
-            //if (e.target !== this) return;
-            //
-            $('#viewUserModal').on('show.bs.modal', function(e) {
-                var lastName = $(event.target).closest('li').data('id');
-                $('#profileName').text(lastName);
-                $('#profileDesc').text('Patient Details.')
-            })
-            $("#viewUserModal").modal('show');
-        }); //.on('click', 'a', function(e) {
-        $("li .alertEmail").click(function() {
-
-            $('#alert').on('show.bs.modal', function(e) {
-                var email = $(event.target).closest('a').data('id');
-                $("#modalEmail").val(email);
-            })
-            $("#alert").modal('show');
-            $('#viewUserModal').modal('hide');
-        }); */
-
     });
     </script>
 </body>

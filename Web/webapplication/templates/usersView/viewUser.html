@@ -29,8 +29,8 @@
             <section class="menu-section">
                 <h3 class="menu-section-title">User</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewProfile?email={{users.email}}" class="active">View Profile</a></li>
-                    <li><a href="/usersView/editProfile?email={{users.email}}">Edit Profile</a></li>
+                    <li><a href="/usersView/viewProfile?email={{user.email}}" class="active">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{user.email}}">Edit Profile</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -64,47 +64,47 @@
                 {% csrf_token %}
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">First Name</label>
-                    <text>{{users.first_name}}</text>
+                    <text>{{user.first_name}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Last Name</label>
-                    <text>{{users.last_name}}</text>
+                    <text>{{user.last_name}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Email</label>
-                    <text>{{users.email}}</text>
+                    <text>{{user.email}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">D.O.B</label>
-                    <text>{{users.dob}}</text>
+                    <text>{{user.dob}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Address</label>
-                    <text>{{users.address}}</text>
+                    <text>{{user.address}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Gender</label>
-                    <text>{{users.gender}}</text>
+                    <text>{{user.gender}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Marital Status</label>
-                    <text>{{users.marital_status}}</text>
+                    <text>{{user.marital_status}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Height</label>
-                    <text>{{users.height}}</text>
+                    <text>{{user.height}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Weight</label>
-                    <text>{{users.weight}}</text>
+                    <text>{{user.weight}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Blood Group</label>
-                    <text>{{users.blood_type}}</text>
+                    <text>{{user.blood_type}}</text>
                 </p>
                 <p class="text-group">
                     <label class="col-xs-3 col-sm-3">Phone</label>
-                    <text>{{users.phone_number}}</text>
+                    <text>{{user.phone_number}}</text>
                 </p>
             </div>
             <br>

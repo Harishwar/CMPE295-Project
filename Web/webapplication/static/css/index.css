@@ -2,7 +2,7 @@ body {
     background-color: rgba(51, 54, 59, 0.2);
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     background-image: url(../img/backgroundminimal.jpg);
     background-size: cover;
     background-position: center center;
