@@ -1,0 +1,40 @@
+/* Center */
+
+.container {
+    height: 100vh;
+    position: relative;
+}
+
+@media screen and (min-height: 480px) {
+    .center {
+        top: 30%;
+        margin: 0;
+        position: relative;
+    }
+}
+/* Content */
+
+h1 {
+    font-size: 8em;
+}
+
+h3 {
+    color: #555;
+}
+/* Button Style */
+
+.btn-404 {
+    border-radius: 0;
+    border: 3;
+    font-size: 1.2em;
+    color: #000;
+    border-color: #000;
+    background-color: #FFF;
+}
+
+.btn-404:hover,
+.btn-404:focus,
+.btn-404:active {
+    color: #FFF;
+    background-color: #333
+}

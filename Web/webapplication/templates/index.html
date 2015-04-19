@@ -15,83 +15,14 @@
 </head>
 
 <body>
-    <!-- Banner -->
-    <div id="introBanner">
-        <div class="container">
-            <!-- Center Content-->
-            <img src="{%static 'img/ti_sensortag.png'%}" id="introBannerImg" />
-            <h1 class="text-center">FitWhiz<br><small>Wearables for Improved Healthcare and Consumer Experiences</small></h1>
-            <!-- End Center Content-->
-            <div class="loginButton">
-                <button id="loginButton" class="btn btn-primary btn-dark" href="#login">Login</button>
-            </div>
-        </div>
+    <!-- Content -->
+    <div class="container text-center">
+        <!-- Center Content-->
+        <h1 class="text-center">FitWhiz<br><small>Wearables for Improved Healthcare and Consumer Experiences</small></h1>
+        <button id="loginButton" class="btn btn-primary btn-dark">Login</button>
+        <!-- End Center Content-->
     </div>
-    <!-- End Banner -->
-    <!-- Quotes Container -->
-    <div id="quotes">
-        <div class="container">
-            <!-- Quotes -->
-            <div class="col-sm-12">
-                <div class="carousel slide" data-ride="carousel" id="testimonials-carousel">
-                    <!-- Carousel Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#testimonials-carousel" data-slide-to="1"></li>
-                        <li data-target="#testimonials-carousel" data-slide-to="2"></li>
-                    </ol>
-                    <!-- Carousel Testimonials -->
-                    <div class="carousel-inner">
-                        <!-- Quote 1 -->
-                        <div class="item active text-justify">
-                            <blockquote>
-                                <div class="row">
-                                    <i class="glyphicon glyphicon-comment"></i>
-                                    <p>Doctors can be replaced by software – 80% of them can. I’d much rather have a good machine learning system diagnose my disease than the median or average doctor.</p>
-                                    <small>Vinod Khosla – Rock Health Innovation Summit – August, 2012</small>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <!-- Quote 2 -->
-                        <div class="item text-justify">
-                            <blockquote>
-                                <div class="row">
-                                    <i class="glyphicon glyphicon-comment"></i>
-                                    <p>The biggest innovations in the world will come from the intersection of bio & tech.....The biggest innovations in the world will come from the intersection of bio & tech</p>
-                                    <small>Susan Desmond-Hellmann – UCSF Chancellor</small>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <!-- Quote 3 -->
-                        <div class="item text-justify">
-                            <blockquote>
-                                <div class="row">
-                                    <i class="glyphicon glyphicon-comment"></i>
-                                    <p>By definition, big data cannot yield complicated descriptions of causality. Especially in healthcare. Almost all of our diseases occur in the intersections of systems in the body.
-                                        <!-- For example, there is a drug that is marketed by Elan BioNeurology called TYSABRI. It was developed for MS [multiple sclerosis]. It turns out that of the people who have MS a proportion respond magnificently to TYSABRI. And others don’t. So what do you conclude from this? Is it just a mediocre drug? No. It is that there is one disease but it manifests itself in different ways. How does big data figure out what is the core of what is going on?-->
-                                    </p>
-                                    <small>Clayton Christensen</small>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <!-- Carousel Buttons Next/Prev -->
-                    <a data-slide="prev" href="#testimonials-carousel" class="left carousel-control"></a>
-                    <a data-slide="next" href="#testimonials-carousel" class="right carousel-control"></a>
-                </div>
-                <br>
-            </div>
-            <!-- End Testimonials -->
-        </div>
-    </div>
-    <!-- End Quotes Container -->
-    <!-- Big Data Container -->
-    <div id="bigdata">
-        <div class="container">
-            <!-- <h1 class="text-center">Over time, it gets better and better</h1> -->
-        </div>
-    </div>
-    <!-- End Big Data Container -->
+    <!-- End Content -->
     <!-- Login Modal -->
     <section id="login" class="modal fade">
         <div class="modal-dialog">
@@ -110,7 +41,7 @@
                             <input type="password" class="form-control" name="password" placeholder="Password">
                             <br>
                             <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
-                            <a href="#passwordform">Forgot Password?</a>
+                            <a id="loginformbutton" href="#passwordform">Forgot Password?</a>
                             <br>
                         </form>
                     </div>
@@ -122,7 +53,7 @@
                             <input type="email" class="form-control" name="email" placeholder="Email">
                             <br>
                             <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
-                            <a href="#loginform">Login</a>
+                            <a id="passwordformbutton" href="#loginform">Login</a>
                             <br>
                         </form>
                     </div>
@@ -142,12 +73,12 @@
         $("#loginButton").click(function() {
             $("#login").modal('show');
         });
-        $('#loginform').click(function() {
+        $('#loginformbutton').click(function() {
             $('#modaltitle').text('Forgot Password');
             $('#loginform').addClass('hidden');
             $('#passwordform').removeClass('hidden');
         });
-        $('#passwordform').click(function() {
+        $('#passwordformbutton').click(function() {
             $('#modaltitle').text('Login');
             $('#loginform').removeClass('hidden');
             $('#passwordform').addClass('hidden');
