@@ -9,8 +9,11 @@
     <title>Sensor History</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/pikaday.min.css'%}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/usersView/sensorHistory.css'%}">
 </head>
 
 <body>
@@ -28,14 +31,14 @@
             <section class="menu-section">
                 <h3 class="menu-section-title">User</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewProfile?email={{users.email}}">View Profile</a></li>
-                    <li><a href="/usersView/editProfile?email={{users.email}}">Edit Profile</a></li>
+                    <li><a href="/usersView/viewProfile?email={{user.email}}">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{user.email}}">Edit Profile</a></li>
                 </ul>
             </section>
             <section class="menu-section">
                 <h3 class="menu-section-title">Sensor</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/sensorHistory" class="active">History</a></li>
+                    <li><a href="/usersView/sensorHistory?email={{user.email}}" class="active">History</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -57,9 +60,23 @@
         <br>
         <div class="container">
             <br>
+            <input type="hidden" id="userEmail" value="{{user.email}}">
             <h1 class="lightGreen"><center>Sensor History</center></h1>
             <hr>
-
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th id="datepicker"></th>
+                        <th>Humidity</th>
+                        <th>Temperature</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>5:00 PM</td>
+                    <td>35</td>
+                    <td>35</td>
+                </tr>
+            </table>
         </div>
         <!-- End Content -->
     </section>
@@ -70,8 +87,28 @@
     <script src="{%static 'js/bootstrap.min.js'%}"></script>
     <!-- Slideout.js -->
     <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Pick a Day JavaScript -->
+    <script src="{%static 'js/pikaday.js'%}"></script>
+    <script src="{%static 'js/pikaday.jquery.js'%}"></script>
     <!-- Custom Initialization Script -->
     <script src="{%static 'js/init.js'%}"></script>
+    <script>
+    var today = new Date();
+    var yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
+    $('#datepicker').text(yesterday.toISOString().slice(0, 10));
+    var picker = new Pikaday({
+        maxDate: yesterday,
+        field: $('#datepicker')[0],
+        onSelect: function(date) {
+            $('#datepicker').text(date.toISOString().slice(0, 10));
+            $.getJSON('/usersView/loadSensorHistory?email={{user.email}}&date=' + date.toISOString().slice(0, 10), function(data) {
+                var jsonRes = JSON.parse(data);
+                // To-Do
+            });
+
+        }
+    });
+    </script>
 </body>
 
 </html>

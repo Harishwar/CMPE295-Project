@@ -15,7 +15,6 @@ def viewDashBoard(request):
         return render(request,'index.html')
 
 def viewUserProfile(request):
-    
     user_email =request.GET.get('email')
     #try:
     if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==2:
@@ -39,7 +38,12 @@ def editUserProfile(request):
         return render(request,'index.html')
 
 def sensorHistory(request):
-        return render(request,'usersView/sensorHistory.html')
+    print request.GET.get('email')
+    if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==2:
+        context={'user':Users.objects.get(email=request.GET.get('email'))}
+        return render(request,'usersView/sensorHistory.html', context)
+    else:
+        return render(request,'index.html')
 
 # def dashboard_req(request):
 #         #print request.method
