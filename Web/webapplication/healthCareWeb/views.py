@@ -8,6 +8,3 @@ def index(request):
         return redirect('usersView/viewDashBoard')
     else:
         return render(request,"index.html");
-
-def password(request):
-    return render(request,"password.html");

@@ -256,3 +256,8 @@ body {}
     margin-left: auto;
     margin-right: auto;
 }
+/* Modal */
+
+.modal-dialog {
+    max-width: 300px;
+}

@@ -98,22 +98,35 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
-                    <h3 class="modal-title text-center lightGreen" id="profileName">Login</h3>
+                    <h3 class="modal-title text-center lightGreen" id="modaltitle">Login</h3>
                 </div>
                 <div class="modal-body">
                     <!-- Login Form -->
-                    <form action="doctorsView/login" class="form-horizontal" method="POST" role="form">
-                    {% csrf_token %}
-
-                        <input type="email" class="form-control" name="email" placeholder="Email">
-                        <br>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
-                        <a href="/password">Forgot Password?</a>
-                        <br>
-                    </form>
+                    <div id="loginform">
+                        <form action="doctorsView/login" class="form-horizontal" method="POST" role="form">
+                            {% csrf_token %}
+                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <br>
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
+                            <a href="#passwordform">Forgot Password?</a>
+                            <br>
+                        </form>
+                    </div>
                     <!-- End Login Form -->
+                    <!-- Password Form -->
+                    <div id="passwordform" class="hidden">
+                        <form action="" class="form-horizontal" method="POST" role="form">
+                            {% csrf_token %}
+                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-dark pull-right" value=""><i class="glyphicon glyphicon-arrow-right"></i></button>
+                            <a href="#loginform">Login</a>
+                            <br>
+                        </form>
+                    </div>
+                    <!-- End Password Form -->
                 </div>
                 <br>
             </div>
@@ -129,7 +142,16 @@
         $("#loginButton").click(function() {
             $("#login").modal('show');
         });
-
+        $('#loginform').click(function() {
+            $('#modaltitle').text('Forgot Password');
+            $('#loginform').addClass('hidden');
+            $('#passwordform').removeClass('hidden');
+        });
+        $('#passwordform').click(function() {
+            $('#modaltitle').text('Login');
+            $('#loginform').removeClass('hidden');
+            $('#passwordform').addClass('hidden');
+        });
     });
     </script>
 </body>

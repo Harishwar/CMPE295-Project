@@ -67,10 +67,12 @@
             <div class="patientsList">
                 <section class="slide-fade">
                     {% for user in users %}
-                    <li class="show" data-toggle="modal" data-id={{user.last_name}}>
-                        <i class="glyphicon glyphicon-user">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
-                        <a class="show pull-right" data-toggle="modal" data-id={{user.email}}>
-                            <i class="glyphicon glyphicon-send"></i>
+                    <li class="show" data-id={{user.email}}>
+                        <a class="profileName" data-toggle="modal" data-id={{user.last_name}}>
+                            <i class="glyphicon glyphicon-user">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
+                        </a>
+                        <a class="alertEmail show pull-right" data-toggle="modal">
+                            <i class="glyphicon glyphicon-warning-sign"></i>
                         </a>
                     </li>
                     {% endfor %}
@@ -143,21 +145,41 @@
     <script type="text/javascript">
     $(function() {
         $("li").click(function() {
+            e.stopPropagation();
+        }).on('click', '.profileName', function(e) {
             $('#viewUserModal').on('show.bs.modal', function(e) {
                 var lastName = $(event.target).closest('li').data('id');
                 $('#profileName').text(lastName);
                 $('#profileDesc').text('Patient Details.')
             })
             $("#viewUserModal").modal('show');
+        }).on('click', '.alertEmail', function(e) {
+            $('#alert').on('show.bs.modal', function(e) {
+                var email = $(event.target).closest('li').data('id');
+                $("#modalEmail").val(email);
+            })
+            $("#alert").modal('show');
+            $('#viewUserModal').modal('hide');
         });
+        /* $("li .profileName").click(function() {
+            //if (e.target !== this) return;
+            //
+            $('#viewUserModal').on('show.bs.modal', function(e) {
+                var lastName = $(event.target).closest('li').data('id');
+                $('#profileName').text(lastName);
+                $('#profileDesc').text('Patient Details.')
+            })
+            $("#viewUserModal").modal('show');
+        }); //.on('click', 'a', function(e) {
+        $("li .alertEmail").click(function() {
 
-        $("li a").click(function() {
             $('#alert').on('show.bs.modal', function(e) {
                 var email = $(event.target).closest('a').data('id');
                 $("#modalEmail").val(email);
             })
             $("#alert").modal('show');
-        });
+            $('#viewUserModal').modal('hide');
+        }); */
 
     });
     </script>
