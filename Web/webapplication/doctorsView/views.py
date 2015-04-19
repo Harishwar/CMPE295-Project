@@ -334,9 +334,9 @@ def sendAlert(request):
         transaction.set_dirty()
         #last_id = connection.insert_id()
         #return HttpResponse(str(last_id))
-        return JsonResponse({"status":200,"result":"message sent successfully"})
+        return JsonResponse({"status":200,"result":"Alert sent to Patient"})
     except:
-        return JsonResponse({"status":400,"result":"No such rows"})
+        return JsonResponse({"status":400,"result":"Failure"})
 
 
 

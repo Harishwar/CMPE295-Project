@@ -154,8 +154,9 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
+                    <br>
                     <!-- Alert Message -->
-                    <form action="doctorsView/login" class="form-horizontal" method="POST" role="form">
+                    <form id="alertForm" action="doctorsView/alertUser" class="form-horizontal" method="POST" role="form">
                         {% csrf_token %}
                         <input type="email" class="form-control" name="email" id="modalEmail" placeholder="Email" value="" disabled="true">
                         <br>
@@ -167,6 +168,7 @@
                         <br>
                     </form>
                     <!-- End Alert Message -->
+                    <h3 class="modal-title text-center hidden" id="alertMessage"></h3>
                 </div>
                 <br>
             </div>
@@ -190,7 +192,7 @@
             $('#viewUserModal').on('show.bs.modal', function(e) {
                 var email = $(event.target).closest('li').data('id');
                 var profile = $(event.target).closest('a');
-                $('#profileName').text(profile.data('lastname')+", "+profile.data('firstname'));
+                $('#profileName').text(profile.data('lastname') + ", " + profile.data('firstname'));
                 $('#profileFirstName').text(profile.data('firstname'));
                 $('#profileLastName').text(profile.data('lastname'));
                 $('#profileEmail').text(email);
@@ -208,10 +210,31 @@
             $('#alert').on('show.bs.modal', function(e) {
                 var email = $(event.target).closest('li').data('id');
                 $("#modalEmail").val(email);
+                $("#message").val('');
             })
             $("#alert").modal('show');
             $('#viewUserModal').modal('hide');
+            $('#alertForm').show();
+            $('#alertMessage').addClass('hidden');
         });
+    });
+    // Alert form
+    $('#alertForm').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function(data) {
+                $('#alertForm').hide();
+                $('#alertMessage').removeClass('hidden').addClass('text-success').text(data.result);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $('#alertMessage').removeClass('hidden').addClass('text-danger').text('Status: ' + textStatus + '<br>Error: ' + errorThrown);
+            }
+        });
+
     });
     </script>
 </body>
