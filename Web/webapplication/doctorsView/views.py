@@ -320,7 +320,7 @@ def sendAlert(request):
     try:
         email=request.POST.get('email')
         message=request.POST.get('message')
-        #send_mail('HealthCareWeb Alert',message,request.session.get('user_id'),[email],fail_silently=False)
+        send_mail('HealthCareWeb Alert',message,request.session.get('user_id'),[email],fail_silently=True)
         #send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
         user = Users.objects.get(email=email).id
         print "user",user
