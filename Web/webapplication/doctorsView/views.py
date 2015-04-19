@@ -315,6 +315,28 @@ def load_all_users_data():
     except:
         return "Could not process"
 
+@csrf_exempt
+def sendAlert(request):
+    try:
+        email=request.POST.get('email')
+        message=request.POST.get('message')
+        #send_mail('HealthCareWeb Alert',message,request.session.get('user_id'),[email],fail_silently=False)
+        #send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
+        user = Users.objects.get(email=email).id
+        print "user",user
+        #usr_id=Users.objects.get(email=user_id).id
+        sensor_user_id= SensorUser.objects.get(user_id=user).sensor_id
+        print sensor_user_id
+        #print "insert into SensorResults.Alerts values('",sensor_user_id,"','",message,"','",datetime.datetime.now(),"')"
+        cursor = connection.cursor()
+        #print "insert into SensorResults.Alerts values('",sensor_user_id+"','",message,"','",datetime.datetime.now(),"')"
+        cursor.execute("insert into SensorResults.Alerts values(default,'"+sensor_user_id+"','"+message+"','"+str(datetime.datetime.now())+"')")
+        transaction.set_dirty()
+        #last_id = connection.insert_id()
+        #return HttpResponse(str(last_id))
+        return JsonResponse({"status":200,"result":"message sent successfully"})
+    except:
+        return JsonResponse({"status":400,"result":"No such rows"})
 
 #def updateUserProfile(request):
 
