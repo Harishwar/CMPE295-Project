@@ -60,11 +60,12 @@ def addPatient(request):
             registration.date_modified = datetime.datetime.now()
             registration.save()
             saved_details = Users.objects.get(id=registration.id)
+            
             send_mail('HealthCareWeb registration', 'Hi,\n You have successfully registered for Enhanced Health Care Web.Please find below the username:' + saved_details.email + ' \n password:', 'saninnovator@gmail.com', [saved_details.email], fail_silently=True)
                 #saved_details=User.objects.filter(id=created_id).values()
                 #serialized_obj = serializers.serialize('json', [ saved_details, ])
             #return JsonResponse({"email":saved_details.email,"id":saved_details.id})
-            return HttpResponseRedirect(reverse('doctorsView/addSensor')+'?email='+saved_details.email)
+            return HttpResponseRedirect(reverse('addSensor')+'?email='+saved_details.email)
         else:
             return render(request, 'index.html')
 
@@ -130,12 +131,12 @@ def getUserByLastName(request):
 def getAllergiesList(request):
     try:
             ##print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
-        if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==1:
-            context={'allergies':Allergies.objects.values('allergy_name')}
+        #if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==1:
+        context={'allergies':Allergies.objects.values('allergy_name')}
             #print 'allergies'
-            return render(request,'doctorsView/addAllergies.html',context)
+        return render(request,'doctorsView/addAllergies.html',context)
     except:
-        return HttpResponse("Service Error!!!")
+        return HttpResponse("Service ALL Error!!!")
 
 @csrf_exempt
 def addUserAllergies(request):
@@ -320,13 +321,16 @@ def sendAlert(request):
     try:
         email=request.POST.get('email')
         message=request.POST.get('message')
-        send_mail('HealthCareWeb Alert',message,request.session.get('user_id'),[email],fail_silently=True)
-        #send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
+        print 'message'
+        print email
+        #send_mail('HealthCareWeb Alert',message,+"'"+request.session.get('user_id')+"'",[email],fail_silently=True)
+        send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
+        
         user = Users.objects.get(email=email).id
         print "user",user
         #usr_id=Users.objects.get(email=user_id).id
         sensor_user_id= SensorUser.objects.get(user_id=user).sensor_id
-        print sensor_user_id
+        print "sensor",sensor_user_id
         #print "insert into SensorResults.Alerts values('",sensor_user_id,"','",message,"','",datetime.datetime.now(),"')"
         cursor = connection.cursor()
         #print "insert into SensorResults.Alerts values('",sensor_user_id+"','",message,"','",datetime.datetime.now(),"')"

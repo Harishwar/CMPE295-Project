@@ -158,7 +158,7 @@
                     <!-- Alert Message -->
                     <form id="alertForm" action="doctorsView/alertUser" class="form-horizontal" method="POST" role="form">
                         {% csrf_token %}
-                        <input type="email" class="form-control" name="email" id="modalEmail" placeholder="Email" value="" disabled="true">
+                        <input type="email" class="form-control" name="email" id="modalEmail" placeholder="Email" value="">
                         <br>
                         <div class="form-group">
                             <label for="message" class="col-xs-3 col-sm-3">Message</label>
@@ -221,6 +221,7 @@
     // Alert form
     $('#alertForm').on('submit', function(e) {
         e.preventDefault();
+        console.log(""+$(this).attr('action')+"///"+$(this).serialize());
         $.ajax({
             type: "POST",
             cache: false,
