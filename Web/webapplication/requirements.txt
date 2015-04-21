@@ -1,0 +1,4 @@
+Django==1.8
+MySQL-python==1.2.5
+django-enumfield==1.2
+wsgiref==0.1.2
