@@ -30,13 +30,9 @@ $(document).ready(function() {
     };
 
     $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
-        //console.log("user object",{{user}});
         var jsonRes = JSON.parse(data);
-        console.log(jsonRes.length);
-        console.log(jsonRes);
         data = [];
         for (i = 0; i < jsonRes.length; i++) {
-            //console.log(jsonRes[i].x);
             data.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
             data.sort();
         }

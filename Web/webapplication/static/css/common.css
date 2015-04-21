@@ -109,7 +109,7 @@ a {
 
 #menuBar {
     text-align: right;
-    padding-right: 10px;
+    /*padding-right: 10px;*/
 }
 
 input[type=text]:focus,
@@ -136,9 +136,23 @@ textarea:focus {
     display: none;
 }
 
+.slideout-menu-visible {
+    z-index: 2;
+    display: block;
+}
+
 .slideout-panel {
     position: relative;
     z-index: 1;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.slideout-panel-width {
+    width: -moz-calc(100% - 192px);
+    width: -webkit-calc(100% - 192px);
+    width: calc(100% - 192px);
+    left: 192px;
 }
 /*.slideout-open,
 .slideout-open body,

@@ -65,11 +65,11 @@
             <hr>
             <table class="table table-hover" id="tblSensorData">
                 <thead>
-                	<tr>
+                    <tr>
                         <th id="datepicker"></th>
                         <th>Humidity</th>
                         <th>Temperature</th>
-                    <tr>
+                    </tr>
                 </thead>
             </table>
         </div>
@@ -98,17 +98,17 @@
             getSensorData(date);
         }
     });
-    function getSensorData(date){
-    	$('#datepicker').text(date.toISOString().slice(0, 10));
+
+    function getSensorData(date) {
+        $('#datepicker').text(date.toISOString().slice(0, 10));
         $.getJSON('/usersView/loadSensorHistory?email={{user.email}}&date=' + date.toISOString().slice(0, 10), function(data) {
-        	var jsonRes = JSON.parse(JSON.stringify(data));
-        	console.log(JSON.stringify(jsonRes)); 
-			$("#tblSensorData").find("tr:gt(0)").remove();
-            for(var i=0; i<jsonRes.length;i++){ 	
-            	var dataAppend ='<tr><td>'+jsonRes[i].time+'</td><td>'+jsonRes[i].humidity+'</td><td>'+jsonRes[i].irt_body+'</td></tr>'; 
-            	$('#tblSensorData tr:last').after(dataAppend);
-           	}
-      	});
+            var jsonRes = JSON.parse(JSON.stringify(data));
+            $("#tblSensorData").find("tr:gt(0)").remove();
+            for (var i = 0; i < jsonRes.length; i++) {
+                var dataAppend = '<tr><td>' + jsonRes[i].time + '</td><td>' + jsonRes[i].humidity + '</td><td>' + jsonRes[i].irt_body + '</td></tr>';
+                $('#tblSensorData tr:last').after(dataAppend);
+            }
+        });
     }
     getSensorData(yesterday);
     </script>

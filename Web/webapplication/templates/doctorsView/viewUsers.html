@@ -61,7 +61,7 @@
         <!-- End Header -->
         <!-- Registration Form -->
         <br>
-        <div class="container">
+        <div class="">
             <h1 class="lightGreen"><center>Patients List</center></h1>
             <hr>
             <div class="patientsList">
@@ -221,7 +221,6 @@
     // Alert form
     $('#alertForm').on('submit', function(e) {
         e.preventDefault();
-        console.log(""+$(this).attr('action')+"///"+$(this).serialize());
         $.ajax({
             type: "POST",
             cache: false,

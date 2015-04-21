@@ -10,13 +10,11 @@
             'tolerance': 70
         });
         if (width > 960) {
-            slideout.open();
-            $('#navbar-toggle').remove();
-            $("#content").css({
-                "padding-right": '192px'
-            });
-
+            $('#navbar-toggle').addClass('hidden');
+            $('#content').addClass('slideout-panel-width');
+            $('#menu').addClass('slideout-menu-visible');
         } else if (width <= 960) {
+            $('#navbar-toggle').removeClass('hidden');
             document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
                 slideout.toggle();
                 if (slideout.isOpen()) {

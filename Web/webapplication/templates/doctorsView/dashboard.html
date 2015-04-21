@@ -31,11 +31,8 @@ $(document).ready(function() {
 
         $.getJSON('/doctorsView/getData?email=test1@test1.com', function(data) {
             var jsonRes = JSON.parse(data);
-            console.log(jsonRes.length);
-            console.log(jsonRes);
             data = [];
             for (i = 0; i < jsonRes.length; i++) {
-                //console.log(jsonRes[i].x);
                 data.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
                 data.sort();
             }
@@ -58,8 +55,6 @@ $(document).ready(function() {
         $.getJSON('doctorsView/getUsersData', function(data) {
             var jsonRes = JSON.parse(data);
             var chart1;
-            console.log(jsonRes.length);
-            //console.log(jsonRes);
             data1 = [];
             var c = 0;
             u_series = [];
@@ -69,13 +64,11 @@ $(document).ready(function() {
                     //count++;
                 }
             }
-            console.log("users count", u_series.length);
             chart1 = new Highcharts.Chart(options1);
             for (j = 0; j < u_series.length; j++) {
                 data1 = [];
                 for (i = 0; i < jsonRes.length; i++) {
                     if (u_series[j] == jsonRes[i].user_id) {
-                        console.log(jsonRes[i].x);
                         data1.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
                         data1.sort();
                     }
@@ -162,7 +155,7 @@ function testData() {
         <!-- End Header -->
         <!-- Charts -->
         <br>
-        <div class="container">
+        <div class="">
             <h1 class="lightGreen"><center>Charts</center></h1>
             <div id="container_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
             <div id="container_graph1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
