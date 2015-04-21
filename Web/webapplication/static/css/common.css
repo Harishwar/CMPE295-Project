@@ -207,6 +207,29 @@ textarea:focus {
     color: #333;
     background-color: rgba(255, 255, 255, 0.8);
 }
+/* Back to Top */
+
+.back-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 3em;
+    display: none;
+    z-index: 1000;
+    text-decoration: none;
+    border: 5;
+    color: rgba(0, 150, 100, 1);
+}
+
+.back-to-top .glyphicon {
+    border-radius: 2em;
+    background-color: #FFF;
+    text-shadow: 0 0 10px #FFF;
+}
+
+.back-to-top:hover {
+    color: rgba(0, 80, 50, 1);
+}
 /* Footer */
 
 footer {
