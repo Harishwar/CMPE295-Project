@@ -20,7 +20,7 @@ body {
 .darkGreen {
     color: rgba(0, 80, 50, 1);
 }
-/* Header */
+/* Navbar */
 
 .panel {
     background-color: #fff;
@@ -97,19 +97,10 @@ a {
 .panel-header {
     margin: 85px auto 55px;
 }
-
-@media (max-width: 768px) {
-    #header,
-    #menuBar {
-        padding-top: 4px;
-        padding-right: 4px;
-    }
-}
 /* Searchbar */
 
 #menuBar {
     text-align: right;
-    /*padding-right: 10px;*/
 }
 
 input[type=text]:focus,
@@ -136,23 +127,11 @@ textarea:focus {
     display: none;
 }
 
-.slideout-menu-visible {
-    z-index: 2;
-    display: block;
-}
-
 .slideout-panel {
     position: relative;
     z-index: 1;
     padding-right: 10px;
     padding-left: 10px;
-}
-
-.slideout-panel-width {
-    width: -moz-calc(100% - 192px);
-    width: -webkit-calc(100% - 192px);
-    width: calc(100% - 192px);
-    left: 192px;
 }
 /*.slideout-open,
 .slideout-open body,
@@ -167,6 +146,7 @@ textarea:focus {
 /* NavBar Toggle Button */
 
 #navbar-toggle {
+    display: block;
     border-radius: 0;
     border: 0;
     color: rgba(0, 150, 100, 1);
@@ -174,7 +154,23 @@ textarea:focus {
     background-color: rgba(0, 0, 0, 0.0);
     position: fixed;
     z-index: 1000;
-    padding-left: 10px;
+}
+
+@media (min-width: 960px) {
+    .slideout-menu {
+        z-index: 2;
+        display: block;
+    }
+    .slideout-panel {
+        width: 80%;
+        width: -moz-calc(100% - 192px);
+        width: -webkit-calc(100% - 192px);
+        width: calc(100% - 192px);
+        left: 192px;
+    }
+    #navbar-toggle {
+        display: none;
+    }
 }
 /* Custom Button Styles */
 

@@ -27,14 +27,6 @@
     padding-bottom: 10px;
 }
 
-.patientsList li:nth-child(odd):hover {
-    background: #BBB;
-}
-
-.patientsList li:nth-child(even):hover {
-    background: rgba(0, 80, 50, 1);
-}
-
 .patientsList li a .glyphicon {
     font-size: 1.2em;
 }
@@ -47,10 +39,6 @@
     color: #000;
 }
 
-.patientsList li a .glyphicon:hover {
-    color: rgba(0, 150, 100, 1);
-}
-
 .patientsList .slide-fade li {
     transition: all 0.4s ease-out;
     opacity: 0;
@@ -58,6 +46,63 @@
 
 .patientsList .slide-fade li.show {
     opacity: 1;
+}
+/* Icon Effect */
+
+.patientsList li a .glyphicon {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    padding-bottom: 0.7em;
+}
+
+.patientsList li a .glyphicon:before {
+    position: absolute;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.patientsList li a .glyphicon:hover:before,
+.patientsList li a .glyphicon:focus:before,
+.patientsList li a .glyphicon:active:before {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+/* Name Effect */
+
+.patientsList li a.profileName .glyphicon {
+    padding-left: 2em;
+}
+
+.patientsList li a.profileName .glyphicon:hover {
+    padding-left: 3em;
+}
+
+.patientsList li a.profileName .glyphicon:before {
+    left: 1em;
+}
+/* Email Icon Effect */
+
+.patientsList li a.alertEmail .glyphicon {
+    padding-right: 2em;
+}
+
+.patientsList li a.alertEmail .glyphicon:before {
+    right: 1em;
 }
 /* Modal Styles */
 
