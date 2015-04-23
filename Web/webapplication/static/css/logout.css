@@ -1,0 +1,35 @@
+html,
+body {
+    font-family: source-sans-pro, sans-serif;
+}
+/* Center */
+
+.container {
+    height: 100vh;
+    position: relative;
+}
+
+@media screen and (min-height: 480px) {
+    .center {
+        top: 30%;
+        margin: 0;
+        position: relative;
+    }
+}
+/* Button Style */
+
+.btn-logout {
+    border-radius: 0;
+    border: 3;
+    font-size: 1.2em;
+    color: #000;
+    border-color: #000;
+    background-color: #FFF;
+}
+
+.btn-logout:hover,
+.btn-logout:focus,
+.btn-logout:active {
+    color: #FFF;
+    background-color: #333
+}

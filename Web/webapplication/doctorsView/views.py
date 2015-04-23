@@ -60,7 +60,7 @@ def addPatient(request):
             registration.date_modified = datetime.datetime.now()
             registration.save()
             saved_details = Users.objects.get(id=registration.id)
-            
+
             send_mail('HealthCareWeb registration', 'Hi,\n You have successfully registered for Enhanced Health Care Web.Please find below the username:' + saved_details.email + ' \n password:', 'saninnovator@gmail.com', [saved_details.email], fail_silently=True)
                 #saved_details=User.objects.filter(id=created_id).values()
                 #serialized_obj = serializers.serialize('json', [ saved_details, ])
@@ -255,7 +255,8 @@ def logout_user(request):
         #print "del",request.session['role_id']
     except KeyError:
         pass
-    return HttpResponse("You're logged out.")
+    # return HttpResponse("You're logged out.")
+    return render(request,"logout.html");
 
 def dashboard_req(request):
     #print 'dashboard_req'
@@ -325,7 +326,7 @@ def sendAlert(request):
         print email
         #send_mail('HealthCareWeb Alert',message,+"'"+request.session.get('user_id')+"'",[email],fail_silently=True)
         send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
-        
+
         user = Users.objects.get(email=email).id
         print "user",user
         #usr_id=Users.objects.get(email=user_id).id

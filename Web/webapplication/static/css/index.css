@@ -1,29 +1,33 @@
-body {
+/* Background Image */
+
+.background {
     background-color: rgba(51, 54, 59, 0.2);
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     background-image: url(../img/backgroundminimal.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    overflow-y: scroll;
 }
-/* Center Content */
-
-.container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 50%;
-    height: 30%;
-    margin: auto;
-}
+/* Content */
 
 .container h1 {
+    font-size: 2em;
     font-weight: bold;
     color: rgba(0, 80, 50, 1);
+}
+
+.container h3 {
+    color: #555;
+}
+
+@media screen and (min-height: 768px) {
+    .container {
+        top: 30%;
+        position: relative;
+    }
 }
 /* Modal */
 
