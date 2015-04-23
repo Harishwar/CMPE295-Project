@@ -8,9 +8,9 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','zip','tar',
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="!passw0rd", db="CMPE295B")
+db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="*****", db="CMPE295B")
 #db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="CMPE295B")
-results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="!passw0rd", db="SensorResults")
+results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="****", db="SensorResults")
 
 #results_db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="SensorResults")
 
@@ -121,12 +121,12 @@ def analyze_sensor_data():
         cursor = db.cursor()
         if sensorId != 0:
             try:
-                cursor.execute("""select id from sensor_user where sensor_id='"""+str(sensorId)+"""'""")
+                cursor.execute("""select email from users where id=(select user_id from sensor_user where sensor_id='"""+str(sensorId)+"""')""")
                 db.commit()
-                for id in cursor:
+                for email in cursor:
                     csr = results_db.cursor()
                     query = str.format("""INSERT INTO SensorData (sensor_id, user_id, acc_x, acc_y,acc_z,step_count,irt_body, irt_ambient,gyro_x,gyro_y,gyro_z ,mag_x,mag_y,mag_z, pressure, date_logged, humidity) VALUES (\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\",\"{15}\",\"{16}\")""",
-                                sensorId,id[0],acc_xVal,acc_yVal,acc_zVal,StepCount,body_tVal,amb_tVal,gyro_xVal,gyro_yVal,gyro_zVal,mag_xVal,mag_yVal,mag_zVal,pressure_val,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')),hVal)
+                                sensorId,email[0],acc_xVal,acc_yVal,acc_zVal,StepCount,body_tVal,amb_tVal,gyro_xVal,gyro_yVal,gyro_zVal,mag_xVal,mag_yVal,mag_zVal,pressure_val,str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')),hVal)
                     csr.execute(query)
                     results_db.commit()
                     resp = make_response()
@@ -220,4 +220,4 @@ def user_not_found_response():
     return make_response(jsonify(result="error",error="User not found"),401)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0",port=80)
