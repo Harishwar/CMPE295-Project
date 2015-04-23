@@ -28,7 +28,7 @@
         </header>
         <section class="menu-section">
             <ul class="menu-section-list">
-                <li><a href="/doctorsView/dashboard.html">Dashboard</a></li>
+                <li><a href="/doctorsView/dashboard">Dashboard</a></li>
             </ul>
         </section>
         <section class="menu-section">
@@ -152,7 +152,6 @@
                     'email': document.getElementById('email').value
                 },
                 success: function(res) {
-                    alert(res);
                     location.href = '/doctorsView/addUserVaccination';
                 },
                 error: function(err) {

@@ -9,6 +9,8 @@
     <title>Add Vaccinations</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/pikaday.min.css'%}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/addallergies.css'%}">
@@ -28,7 +30,7 @@
         </header>
         <section class="menu-section">
             <ul class="menu-section-list">
-                <li><a href="/doctorsView/dashboard.html">Dashboard</a></li>
+                <li><a href="/doctorsView/dashboard">Dashboard</a></li>
             </ul>
         </section>
         <section class="menu-section">
@@ -81,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">Date Visited</label>
-                        <input type="date" class="col-xs-8 col-sm-6" name="date_visited" id="date_visited" class="form-control" value="" title="Date Visited" placeholder="mm/dd/yyyy" required>
+                        <input type="text" class="col-xs-8 col-sm-6" name="date_visited" id="date_visited" class="form-control" value="" title="Date Visited" placeholder="yyyy-mm-dd" required>
                     </div>
                     <div class="text-center">
                         <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
@@ -101,8 +103,23 @@
     <script src="{%static 'js/bootstrap.min.js'%}"></script>
     <!-- Slideout.js -->
     <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Pick a Day JavaScript -->
+    <script src="{%static 'js/pikaday.js'%}"></script>
+    <script src="{%static 'js/pikaday.jquery.js'%}"></script>
     <!-- Custom Initialization Script -->
     <script src="{%static 'js/init.js'%}"></script>
+    <script>
+    var field = $('#date_visited')[0];
+    var picker = new Pikaday({
+        field: field,
+        showMonthAfterYear: true,
+        yearRange: [2000, 2015],
+        format: 'YYYY-MM-DD',
+        onSelect: function(date) {
+            field.val(picker);
+        }
+    });
+    </script>
 </body>
 
 </html>
