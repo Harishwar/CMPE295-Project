@@ -32,8 +32,7 @@ public class ProfileUpdater extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        //String sensorId = app.getSensorId();
-        String sensorId = "Az1234567";
+        String sensorId = app.getSensorId();
         while(sensorId.equalsIgnoreCase(""))
         {
             //sensorId = app.getSensorId();
