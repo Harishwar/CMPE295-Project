@@ -36,32 +36,14 @@ public class UpdateDataHelper extends AsyncTask<String, String, String> {
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-
             HttpClient httpclient = new DefaultHttpClient();
-
             HttpPost httpPost = new HttpPost(new URI(urlString));
-
-            // ** Alternative way to convert Person object to JSON string usin Jackson Lib
-            // ObjectMapper mapper = new ObjectMapper();
-            // json = mapper.writeValueAsString(person);
-
-            // 5. set json to StringEntity
             StringEntity se = new StringEntity(jsonObject.toString());
-
-            // 6. set httpPost Entity
             httpPost.setEntity(se);
-
-            // 7. Set some headers to inform server about the type of the content
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
-
-            // 8. Execute POST request to the given URL
             HttpResponse httpResponse = httpclient.execute(httpPost);
-
-            // 9. receive response as inputStream
             InputStream inputStream = httpResponse.getEntity().getContent();
-
-            // 10. convert inputstream to string
             String result;
             if(inputStream != null)
                 return convertInputStreamToString(inputStream);
