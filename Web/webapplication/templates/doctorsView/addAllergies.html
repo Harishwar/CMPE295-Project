@@ -17,6 +17,7 @@
         document.getElementById('email').value = localStorage.getItem('patient_email');
     }
     </script>
+    <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
 </head>
 
 <body onload=getLocalUserName()>
@@ -80,6 +81,8 @@
                         <label for="email" class="col-xs-3 col-sm-3">User Email</label>
                         <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" title="Email" placeholder="Email">
                     </div>
+                    <br>
+                    <br>
                     <div class="text-center allergiesList_actionbar">
                         <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
                         <button class="allergiesList_button btn btn-lg btn-dark">Submit</button>
@@ -90,6 +93,7 @@
         </div>
         <!-- End Allergies -->
     </div>
+    <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>

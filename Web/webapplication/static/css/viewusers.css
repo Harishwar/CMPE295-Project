@@ -1,5 +1,9 @@
 /* Patients List Styles */
 
+.patientsList {
+    padding: 10px;
+}
+
 .patientsList li {
     list-style: none;
     background: rgba(0, 150, 100, 1);
@@ -27,14 +31,6 @@
     padding-bottom: 10px;
 }
 
-.patientsList li:nth-child(odd):hover {
-    background: #BBB;
-}
-
-.patientsList li:nth-child(even):hover {
-    background: rgba(0, 80, 50, 1);
-}
-
 .patientsList li a .glyphicon {
     font-size: 1.2em;
 }
@@ -47,10 +43,6 @@
     color: #000;
 }
 
-.patientsList li a .glyphicon:hover {
-    color: rgba(0, 150, 100, 1);
-}
-
 .patientsList .slide-fade li {
     transition: all 0.4s ease-out;
     opacity: 0;
@@ -59,21 +51,31 @@
 .patientsList .slide-fade li.show {
     opacity: 1;
 }
-/* Modal Styles */
+/* Name Effect */
 
-#viewUserModal #profileName {
-    color: rgba(0, 80, 50, 1);
+.patientsList li a.profileName .glyphicon {
+    padding-left: 2em;
 }
+
+.patientsList li a.profileName .glyphicon:hover {
+    padding-left: 2.5em;
+}
+
+.patientsList li a.profileName .glyphicon:before {
+    left: 1em;
+}
+/* Email Icon Effect */
+
+.patientsList li a.alertEmail .glyphicon {
+    padding-right: 2em;
+}
+
+.patientsList li a.alertEmail .glyphicon:before {
+    right: 1em;
+}
+/* Modal Styles */
 
 #viewUserModal button {
     border: 0;
-    background-color: #FFF;
-}
-
-.text-group {
-    height: 30px;
-    padding: 5px 10px;
-    font-size: 1em;
-    line-height: 1.5;
-    border-radius: 3px;
+    background-color: transparent;
 }

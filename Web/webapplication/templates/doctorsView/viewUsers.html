@@ -12,6 +12,7 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" ztype="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/viewusers.css'%}">
+    <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
 </head>
 
 <body>
@@ -61,7 +62,7 @@
         <!-- End Header -->
         <!-- Registration Form -->
         <br>
-        <div class="container">
+        <div class="">
             <h1 class="lightGreen"><center>Patients List</center></h1>
             <hr>
             <div class="patientsList">
@@ -69,10 +70,10 @@
                     {% for user in users %}
                     <li class="show" data-id={{user.email}}>
                         <a class="profileName" data-toggle="modal" data-firstname={{user.first_name}}&nbsp; data-lastname={{user.last_name}}&nbsp; data-dob={{user.dob}}&nbsp; data-address={{user.address}}&nbsp; data-gender={{user.gender}}&nbsp; data-maritalstatus={{user.marital_status}}&nbsp; data-height={{user.height}}&nbsp; data-weight={{user.weight}}&nbsp; data-bloodtype={{user.blood_type}}&nbsp; data-phone={{user.phone_number}}&nbsp;>
-                            <i class="glyphicon glyphicon-user">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
+                            <i class="glyphicon glyphicon-user icon-enlarge">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
                         </a>
                         <a class="alertEmail show pull-right" data-toggle="modal">
-                            <i class="glyphicon glyphicon-warning-sign"></i>
+                            <i class="glyphicon glyphicon-comment icon-enlarge"></i>
                         </a>
                     </li>
                     {% endfor %}
@@ -87,59 +88,60 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
-                    <h3 class="modal-title text-center text-warning" id="profileName"></h3>
+                    <h3 class="modal-title text-center" id="profileName"></h3>
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">First Name</label>
-                            <text id="profileFirstName"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Last Name</label>
-                            <text id="profileLastName"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Email</label>
-                            <text id="profileEmail"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">D.O.B</label>
-                            <text id="profileDOB"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Address</label>
-                            <text id="profileAddress"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Gender</label>
-                            <text id="profileGender"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Marital Status</label>
-                            <text id="profileMaritalStatus"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Height</label>
-                            <text id="profileHeight"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Weight</label>
-                            <text id="profileWeight"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Blood Group</label>
-                            <text id="profileBloodType"></text>
-                        </p>
-                        <p class="text-group">
-                            <label class="col-xs-3 col-sm-3">Phone</label>
-                            <text id="profilePhone"></text>
-                        </p>
+                        <br>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">First Name</label>
+                            <text id="profileFirstName" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Last Name</label>
+                            <text id="profileLastName" class="col-xs-8 col-sm-3"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Email</label>
+                            <text id="profileEmail" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">D.O.B</label>
+                            <text id="profileDOB" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Address</label>
+                            <text id="profileAddress" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Gender</label>
+                            <text id="profileGender" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Marital Status</label>
+                            <text id="profileMaritalStatus" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Height</label>
+                            <text id="profileHeight" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Weight</label>
+                            <text id="profileWeight" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Blood Group</label>
+                            <text id="profileBloodType" class="col-xs-8 col-sm-9"></text>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-4 col-sm-3">Phone</label>
+                            <text id="profilePhone" class="col-xs-8 col-sm-9"></text>
+                        </div>
                     </div>
                     <div>
-                        <button class="text-danger pull-right" title="Delete Patient"><i class="glyphicon glyphicon-remove"></i>
+                        <button class="text-danger pull-right" title="Delete Patient"><i class="glyphicon glyphicon-trash icon-enlarge"></i>
                         </button>
-                        <button class="text-success pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil"></i>
+                        <button class="text-success pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;
                         </button>
                     </div>
                 </div>
@@ -152,13 +154,15 @@
     <section id="alert" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
-                    <br>
+                    <h3 class="modal-title text-center text-warning">Send Message</h3>
+                </div>
+                <div class="modal-body">
                     <!-- Alert Message -->
                     <form id="alertForm" action="doctorsView/alertUser" class="form-horizontal" method="POST" role="form">
                         {% csrf_token %}
-                        <input type="email" class="form-control" name="email" id="modalEmail" placeholder="Email" value="">
+                        <input type="email" class="form-control" name="email" id="modalEmail" placeholder="Email" value="" readonly="readonly">
                         <br>
                         <div class="form-group">
                             <label for="message" class="col-xs-3 col-sm-3">Message</label>
@@ -175,6 +179,7 @@
         </div>
     </section>
     <!-- End Alert Modal -->
+    <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
@@ -221,7 +226,6 @@
     // Alert form
     $('#alertForm').on('submit', function(e) {
         e.preventDefault();
-        console.log(""+$(this).attr('action')+"///"+$(this).serialize());
         $.ajax({
             type: "POST",
             cache: false,

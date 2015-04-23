@@ -24,11 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '$mz7g8_*(6q%2unpee)(lq(dg1+zu3l&3627a01me4#%2r#1hq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 #AUTH_USER_MODEL='doctorsView.Users'
 
 # Application definition
@@ -67,23 +67,17 @@ DATABASES = {
         'HOST':'cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com',
         'PORT':'3306',
         'NAME': 'CMPE295B',
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
         'PASSWORD': '!passw0rd',
-        'OPTIONS': {
-          'autocommit': True,
-        },
     },
     'sensors': {
         'HOST':'cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com',
         'PORT':'3306',
         'NAME': 'SensorResults',
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
         'PASSWORD': '!passw0rd',
-        'OPTIONS': {
-          'autocommit': True,
-        },
     }
 }
 
@@ -111,6 +105,8 @@ LOGIN_URL='/doctorsView/login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, "var", "www", "static")
 
 STATIC_URL = '/static/'
 
