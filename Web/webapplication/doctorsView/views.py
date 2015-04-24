@@ -158,9 +158,9 @@ def addUserAllergies(request):
                 user_allergies.save()
                 #allergy_object=Allergies.objects.filter(allergy_name=list_allergies)
                 #for allergy in list_allergies:
-                return JsonResponse({"status":201,"result":"Allergies User Relation Added"})
-            else:
-                return render(request,'index.html')
+            return JsonResponse({"status":201,"result":"Allergies User Relation Added"})
+        else:
+            return render(request,'index.html')
     except:
         return HttpResponse("Service Error!!!")
 

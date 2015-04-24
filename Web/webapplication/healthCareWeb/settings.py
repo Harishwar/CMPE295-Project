@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '$mz7g8_*(6q%2unpee)(lq(dg1+zu3l&3627a01me4#%2r#1hq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
@@ -96,8 +96,8 @@ USE_TZ = True
 #http://stackoverflow.com/questions/11916754/djangosetting-up-email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'fitwhiz@gmail.com'
+EMAIL_HOST_PASSWORD = '!passw0rd'
 EMAIL_PORT = 587
 LOGIN_URL='/doctorsView/login'
 #LOGOUT_URL='/doctorsView/logout'
@@ -106,13 +106,13 @@ LOGIN_URL='/doctorsView/login'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "var", "www", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "var", "www")
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
+    '/var/www/',
 )
 
 #Logging enabled
