@@ -46,7 +46,7 @@ public class PressureTableOperations extends DatabaseConnector {
             double count = cursor.getDouble(0);
             double sum = cursor.getDouble(1);
             db.close();
-            return (sum/count);
+            return count == 0.0 ? sum:(sum/count);
         }
         catch (Exception ex)
         {

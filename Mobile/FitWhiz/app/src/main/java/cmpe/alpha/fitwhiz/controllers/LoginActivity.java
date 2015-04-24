@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.ti.ble.common.BluetoothLeService;
+
 import cmpe.alpha.fitwhiz.HelperLibrary.AllergiesHelper;
 import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
 import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
@@ -35,9 +37,19 @@ public class LoginActivity extends Activity
         }
         if(checkLogin())
         {
-            application.setSensorId(prefs.getString("SensorId",""));
-            //if(BluetoothLeService.getInstance() == null)
+            SharedPreferences p = getSharedPreferences("SensorId",0);
+            application.setSensorId(p.getString("SensorId",""));
+            BluetoothLeService service = BluetoothLeService.getInstance();
+            if(service == null)
             {
+                Intent i = new Intent(this, MainActivity.class);
+                if(i.resolveActivity(this.getPackageManager())!=null)
+                {
+                    startActivity(i);
+                }
+            }
+            else {
+                service.close();
                 Intent i = new Intent(this, MainActivity.class);
                 if(i.resolveActivity(this.getPackageManager())!=null)
                 {

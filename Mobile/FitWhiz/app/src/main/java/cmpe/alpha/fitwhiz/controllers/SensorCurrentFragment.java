@@ -38,6 +38,7 @@ import cmpe.alpha.fitwhiz.models.AccelerometerTableOperations;
 import cmpe.alpha.fitwhiz.models.GyroscopeTableOperations;
 import cmpe.alpha.fitwhiz.models.HumidityTableOperations;
 import cmpe.alpha.fitwhiz.models.MagnetometerTableOperations;
+import cmpe.alpha.fitwhiz.models.PressureTableOperations;
 import cmpe.alpha.fitwhiz.models.TemperatureTableOperations;
 import cmpe.alpha.fitwhiz.sensortag.BarometerCalibrationCoefficients;
 import cmpe.alpha.fitwhiz.sensortag.Sensor;
@@ -684,6 +685,7 @@ public class SensorCurrentFragment extends Fragment {
             application.setP_Hval(h);
             application.setP_val(Double.parseDouble(decimal.format(v.x/100.0f)));
             setValues(TextViewType.PRESSURE,msg);
+            new PressureTableOperations(thisActivity.getApplicationContext()).insertValue((v.x/100.0f),DateTimeHelper.getDefaultFormattedDateTime());
             PressureAnalyzerHelper p = new PressureAnalyzerHelper(v.x/100.0f,application,thisActivity.getApplicationContext());
             p.run();
         }
