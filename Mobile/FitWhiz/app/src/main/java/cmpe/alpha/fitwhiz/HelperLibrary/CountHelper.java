@@ -4,6 +4,7 @@ import android.content.Context;
 import android.hardware.SensorManager;
 
 import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
+import cmpe.alpha.fitwhiz.models.CountTableOperations;
 
 /**
  * Created by rajagopalan on 4/5/15.
@@ -101,6 +102,10 @@ public class CountHelper {
     public void AnalyzeValues(double x, double y, double z)
     {
         count = fitwhizApplication.getCount();
+        if(count == 0)
+        {
+            count = new CountTableOperations(context).getMaxCountInTable("count");
+        }
         System.out.println("Count is " + count);
         double vSum = 0;
         double[] values = {x,y,z};

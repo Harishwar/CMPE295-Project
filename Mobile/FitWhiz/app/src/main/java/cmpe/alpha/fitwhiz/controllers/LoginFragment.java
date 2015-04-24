@@ -147,6 +147,8 @@ public class LoginFragment extends Fragment
                     loginPref.putBoolean("login",true);
                     loginPref.commit();
                     //Set Application SensorId value
+                    SharedPreferences.Editor sensorId = getActivity().getSharedPreferences("SensorId",0).edit();
+                    sensorId.putString("SensorId",this.sensorID);
                     application.setSensorId(this.sensorID);
                     //Call Profile Updater
                     ProfileUpdater profileUpdater = new ProfileUpdater(application);

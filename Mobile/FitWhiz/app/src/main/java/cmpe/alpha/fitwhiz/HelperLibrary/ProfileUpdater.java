@@ -35,8 +35,8 @@ public class ProfileUpdater extends AsyncTask<String, String, String> {
         String sensorId = app.getSensorId();
         while(sensorId.equalsIgnoreCase(""))
         {
-            //sensorId = app.getSensorId();
-            return "Exception";
+            sensorId = app.getSensorId();
+            //return "Exception";
         }
         String urlString = params[0]+"/v1.0/user/profile/?SensorId="+sensorId; // URL to call
         String result = "";

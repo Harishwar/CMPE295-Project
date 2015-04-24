@@ -53,6 +53,25 @@ public class CountTableOperations extends DatabaseConnector {
         }
     }
 
+    public double getMaxCountInTable(String columnName)
+    {
+        try {
+            String sql = "select MAX("+columnName+") from '" + COUNT_TABLE + "' ";
+
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery(sql, null);
+            cursor.moveToFirst();
+            double count = cursor.getDouble(0);
+            db.close();
+            return count;
+        }
+        catch (Exception ex)
+        {
+            Log.e(this.getClass().getSimpleName(), ex.toString());
+            return 0.0;
+        }
+    }
+
     public double getMinCountForSpecifiedTimeRange(String datetimeStart, String datetimeEnd, String columnName)
     {
         try {

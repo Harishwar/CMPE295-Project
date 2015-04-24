@@ -10,8 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.AllergiesHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.ProfileUpdater;
+import cmpe.alpha.fitwhiz.HelperLibrary.PropertiesReader;
+import cmpe.alpha.fitwhiz.HelperLibrary.RecommendationsHelper;
+import cmpe.alpha.fitwhiz.HelperLibrary.ResultsUpdater;
 import cmpe.alpha.fitwhiz.R;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
 import cmpe.alpha.fitwhiz.sensortag.LicenseDialog;
+import cmpe.alpha.fitwhiz.sensortag.MainActivity;
 
 public class LoginActivity extends Activity
 {
@@ -20,6 +27,7 @@ public class LoginActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FitwhizApplication application = (FitwhizApplication)this.getApplication();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.getBoolean("firstrun", true)) {
             onLicense();
@@ -27,8 +35,29 @@ public class LoginActivity extends Activity
         }
         if(checkLogin())
         {
-            Intent dashboardIntent = new Intent(this, DashboardActivity.class);
-            this.startActivity(dashboardIntent);
+            application.setSensorId(prefs.getString("SensorId",""));
+            //if(BluetoothLeService.getInstance() == null)
+            {
+                Intent i = new Intent(this, MainActivity.class);
+                if(i.resolveActivity(this.getPackageManager())!=null)
+                {
+                    startActivity(i);
+                }
+            }
+
+            //Call Profile Updater
+            ProfileUpdater profileUpdater = new ProfileUpdater(application);
+            profileUpdater.execute(new PropertiesReader(this).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+            RecommendationsHelper rh = new RecommendationsHelper(application);
+            rh.execute(new PropertiesReader(this).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+            AllergiesHelper ah = new AllergiesHelper(application);
+            ah.execute(new PropertiesReader(this).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
+            ResultsUpdater resultsUpdater=new ResultsUpdater(application);
+            resultsUpdater.execute(new PropertiesReader(this).getProperties("Fitwhiz.properties").getProperty("FileUploadUrl"));
+
             this.finish();
         }
         if (savedInstanceState == null)

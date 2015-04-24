@@ -84,13 +84,14 @@ import com.example.ti.ble.common.BleDeviceInfo;
 import com.example.ti.ble.common.BluetoothLeService;
 import com.example.ti.util.CustomToast;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cmpe.alpha.fitwhiz.HelperLibrary.DateTimeHelper;
 import cmpe.alpha.fitwhiz.R;
 import cmpe.alpha.fitwhiz.controllers.DashboardActivity;
+import cmpe.alpha.fitwhiz.lib.FitwhizApplication;
+import cmpe.alpha.fitwhiz.models.CountTableOperations;
 
 // import android.util.Log;
 
@@ -193,15 +194,17 @@ public class MainActivity extends ViewPagerActivity {
 		if (mBluetoothLeService != null) {
 			if (mScanning)
 				scanLeDevice(false);
-			//unregisterReceiver(mReceiver);
-			//unbindService(mServiceConnection);
-			//mBluetoothLeService.close();
-			//mBluetoothLeService = null;
+			unregisterReceiver(mReceiver);
+			unbindService(mServiceConnection);
+			mBluetoothLeService.close();
+			mBluetoothLeService = null;
 		}
 		
 		mBtAdapter = null;
-
-		// Clear cache
+        String timestamp = DateTimeHelper.getDefaultFormattedDateTime();
+        CountTableOperations countTableOperations = new CountTableOperations(this);
+        countTableOperations.insertValue(((FitwhizApplication)(this.getApplication())).getCount(), timestamp);
+		/* Clear cache
 		File cache = getCacheDir();
 		String path = cache.getPath();
     try {
@@ -209,7 +212,7 @@ public class MainActivity extends ViewPagerActivity {
     } catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
-    }
+    }*/
 	}
 
 	@Override

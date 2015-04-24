@@ -10,7 +10,7 @@ import android.util.Log;
  * Created by rajagopalan on 2/21/15.
  */
 public class PressureTableOperations extends DatabaseConnector {
-    protected static final String PRESSURE_TABLE = "humidity_table";
+    protected static final String PRESSURE_TABLE = "pressure_table";
 
     ContentValues contentValues = new ContentValues();
 

@@ -26,16 +26,19 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".controllers.LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".controllers.DashboardActivity"
-            android:label="@string/title_activity_dashboard" >
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".controllers.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +57,8 @@
 
         <activity
             android:name=".controllers.LoginFailureActivity"
-            android:label="@string/title_activity_login_failure" >
+            android:label="@string/title_activity_login_failure"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--Sensor Tag-->
@@ -68,26 +72,6 @@
             android:screenOrientation="portrait" >
         </activity>
 
-        <activity
-            android:name="cmpe.alpha.fitwhiz.sensortag.DeviceActivity"
-            android:parentActivityName=".sensortag.MainActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="cmpe.alpha.fitwhiz.sensortag.FwUpdateActivity"
-            android:parentActivityName=".sensortag.DeviceActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="cmpe.alpha.fitwhiz.sensortag.FileActivity"
-            android:parentActivityName=".sensortag.FwUpdateActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="cmpe.alpha.fitwhiz.sensortag.PreferencesActivity"
-            android:parentActivityName=".sensortag.DeviceActivity"
-            android:screenOrientation="portrait"
-            android:label="Preferences"/>
     </application>
 
 </manifest>
