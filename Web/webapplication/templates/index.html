@@ -8,23 +8,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FitWhiz</title>
     <!-- Bootstrap CSS -->
-    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/bootstrap/bootstrap.min.css'%}">
+    <!-- Fullpage.js -->
+    <link rel="stylesheet" href="{%static 'css/jquery.fullPage.min.css'%}">
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
-    <link rel="stylesheet" type="text/css" href="{%static 'css/index.css'%}">
+    <link rel="stylesheet" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" href="{%static 'css/index.css'%}">
+    <!-- Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
 </head>
 
 <body>
     <!-- Content -->
-    <div class="background">
-        <div class="container text-center">
-            <!-- Center Content-->
-            <h1>FitWhiz<br><small>Wearables for Improved Healthcare and Consumer Experiences</small></h1>
-            <button id="loginButton" class="btn btn-primary btn-dark">Login</button>
-            <!-- End Center Content-->
+    <button id="loginButton" class="btn loginButton">Login</button>
+    <div id="fullpage">
+        <!-- Section 1 -->
+        <div class="section" id="section1">
+            <div class="slide imglayover">
+                <div class="container text-center">
+                    <h1>FitWhiz<br><small>Wearables for Improved Healthcare and Consumer Experiences</small></h1>
+                </div>
+            </div>
         </div>
-        <br>
+        <!-- Section 2 -->
+        <div class="section" id="section2">
+            <div class="container text-center">
+                <h1>Health Tracking</h1>
+                <h4>FitWhiz makes tracking patients easier for doctors</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <h3>Monitor Activity</h3>
+                        <i class="glyphicon glyphicon-tasks"></i>
+                        <h4>Doctors monitor patients remotely via TI Sensor Tag</h4>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 ">
+                        <h3>Insights</h3>
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                        <h4>App collects the data and patients history and provide insights </h4>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 ">
+                        <h3>Alert</h3>
+                        <i class="glyphicon glyphicon-send"></i>
+                        <h4>Send alert to the patient explaining the abnormal behavior</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Section 3 -->
+        <div class="section" id="section3">
+            <div class="container text-center">
+                <div class="slide">
+                    <h3>Doctors can be replaced by software – 80% of them can. I’d much rather have a good machine learning system diagnose my disease than the median or average doctor.</h3>
+                    <small>- Vinod Khosla – Rock Health Innovation Summit – August, 2012</small>
+                </div>
+                <div class="slide">
+                    <h3>The biggest innovations in the world will come from the intersection of bio & tech.....The biggest innovations in the world will come from the intersection of bio & tech</h3>
+                    <small>- Susan Desmond-Hellmann – UCSF Chancellor</small>
+                </div>
+                <div class="slide">
+                    <h3>By definition, big data cannot yield complicated descriptions of causality. Especially in healthcare. Almost all of our diseases occur in the intersections of systems in the body. <!-- For example, there is a drug that is marketed by Elan BioNeurology called TYSABRI. It was developed for MS [multiple sclerosis]. It turns out that of the people who have MS a proportion respond magnificently to TYSABRI. And others don’t. So what do you conclude from this? Is it just a mediocre drug? No. It is that there is one disease but it manifests itself in different ways. How does big data figure out what is the core of what is going on? --> </h3>
+                    <small>- Clayton Christensen</small>
+                </div>
+            </div>
+        </div>
+        <!-- Section 4 -->
+        <div class="section" id="section4">
+            <div class="imglayover slide">
+                <div class="container text-center">
+                    <h3>FitWhiz syncs with your connected mobile device, uses cloud technology to gather patients history and daily data to send the patient’s health analysis report to the doctor.</h3>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- End Content -->
     <!-- Login Modal -->
@@ -72,11 +126,16 @@
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <script type="text/javascript">
+    <!-- Fullpage.js -->
+    <script src="{%static 'js/jquery.fullPage.min.js'%}"></script>
+    <!-- Custom Initialization Script -->
+    <script>
     $(function() {
+        /* Login */
         $("#loginButton").click(function() {
             $("#login").modal('show');
         });
+
         $('#loginformbutton').click(function() {
             $(".modal-content").slideUp(500, function() {
                 $('#modaltitle').text('Forgot Password');
@@ -85,6 +144,7 @@
             });
             $(".modal-content").slideDown();
         });
+
         $('#passwordformbutton').click(function() {
             $(".modal-content").slideUp(500, function() {
                 $('#modaltitle').text('Login');
@@ -92,6 +152,16 @@
                 $('#passwordform').addClass('hidden');
             });
             $(".modal-content").slideDown();
+        });
+
+        /* Fullpage.js */
+        $('#fullpage').fullpage({
+            navigation: true,
+            slidesNavigation: true,
+            navigationPosition: 'right',
+            navigationColor: '#009664',
+            sectionsColor: ['whitesmoke'],
+            controlArrows: false,
         });
     });
     </script>
