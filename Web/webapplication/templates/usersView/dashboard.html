@@ -4,6 +4,7 @@
 <head>
     {% load staticfiles %}
     <meta charset="utf-8">
+<!--    <meta http-equiv="refresh" content="15">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
@@ -109,8 +110,10 @@
     <link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />
     <script type="text/javascript">
     var dataOpt;
+	var chart;
     $(document).ready(function() {
-        // setInterval(function(){
+		console.log("ready started");
+        //setInterval(function(){
         var options = {
             chart: {
                 renderTo: 'container_graph',
@@ -119,26 +122,32 @@
             xAxis: {
                 type: 'datetime'
             },
-            series: [{
-                turboThreshold: Number.MAX_VALUE
-            }]
+            series: [{ turboThreshold: Number.MAX_VALUE}]
         };
 
-        $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
-            var jsonRes = JSON.parse(data);
+        $.getJSON('/usersView/load_heat_map?email={{user.email}}', function(data) {
+		var jsonRes = JSON.parse(data);
+			console.log(data);
             data = [];
             dataOpt = "Date,Time,Temperature \n";
             for (i = 0; i < jsonRes.length; i++) {
                 var date = new Date(jsonRes[i].x);
                 dataOpt += date.toISOString().slice(0, 10) + "," + date.toISOString().slice(11, 13) + "," + parseInt(jsonRes[i].y) + "\n";
-                data.push([Date.parse(date), parseInt(jsonRes[i].y)]);
-                data.sort();
-            }
-            options.series[0].data = data;
-            var chart = new Highcharts.Chart(options);
+               }
+				console.log(dataOpt);
             document.getElementById('temperatureData').innerHTML = dataOpt;
         });
-        //},1000);
+		 
+      $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
+        var jsonRes = JSON.parse(data);
+		console.log(data);  
+        options.series[0].data = jsonRes;
+        var chart = new Highcharts.Chart(options);
+    });
+		
+    //},1000);
+
+       //},1000);
 
         (function(H) {
             var Series = H.Series,
@@ -254,7 +263,7 @@
                     turboThreshold: Number.MAX_VALUE // #3404, remove after 4.0.5 release
                 }]
             });
-        }, 1000);
+        }, 10000);
     });
 
     $('#chartTabs a').click(function(e) {

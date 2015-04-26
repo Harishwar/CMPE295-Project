@@ -19,6 +19,7 @@ import collections
 import json
 from email import email
 from httplib import HTTPResponse
+import time
 
 # Create your views here.
 
@@ -55,6 +56,13 @@ def addPatient(request):
             registration.dob = request.POST.get('dob')
             registration.address = request.POST.get('address')
             registration.password = "test"
+            registration.gender=request.POST.get('gender')
+            registration.marital_status=request.POST.get('inputMaritalStatus')
+            registration.height= request.POST.get('inputHeight')
+            registration.weight=request.POST.get('inputWeight')
+            registration.blood_type=request.POST.get('inputBloodType')
+            registration.phone_number=request.POST.get('inputPhone')
+ 
             # need to convert to a timezone as it throws an exception
             registration.date_created = datetime.datetime.now()
             registration.date_modified = datetime.datetime.now()
@@ -278,6 +286,7 @@ def dashboard_doc_req(request):
 
 def load_user_data(email):
     try:
+        
         cursor=connections['sensors'].cursor()
         cursor.execute("select user_id, date_logged,irt_ambient_avg from SensorResults.crunched_results where user_id=%s",[email])
         rows=cursor.fetchall()
@@ -286,7 +295,7 @@ def load_user_data(email):
             graph_obj=collections.OrderedDict()
             if isinstance(row[1], datetime.datetime):
                 dateVal= row[1].isoformat()
-            graph_obj['x']=dateVal
+            graph_obj['x']= dateVal
             graph_obj['y']=row[2]
             graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
@@ -296,9 +305,30 @@ def load_user_data(email):
     except:
         return "Could not process"
 
+def load_user_temp(request):
+    if request.method=='GET' and request.session.get('user_id'):
+        email=request.GET.get('email')
+        cursor=connections['sensors'].cursor()
+        cursor.execute("select date_logged,irt_ambient_avg from SensorResults.crunched_results where user_id=%s order by date_logged asc limit 1000",[email])
+        rows=cursor.fetchall()
+        rowsList=[]
+        for row in rows:
+            graph_obj=collections.OrderedDict()
+            if isinstance(row[1], datetime.datetime):
+                dateVal= row[1].isoformat()
+            graph_obj['x']=int(time.mktime(row[0].timetuple()) * 1000)
+            graph_obj['y']=row[1]
+            #graph_obj['user_id']=row[0]
+            rowsList.append(graph_obj)
+            ##print row
+        connections['sensors'].close()
+    return JsonResponse(json.dumps(rowsList),safe=False)
+
+
+
 def load_all_users_data():
     try:
-        #print "entered load users"
+        print "entered load users"
         cursor=connections['sensors'].cursor()
         cursor.execute("select * from SensorResults.crunched_results")
         rows=cursor.fetchall()
@@ -312,7 +342,7 @@ def load_all_users_data():
             graph_obj['y']=row[2]
             graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
-            ##print row
+        connections['sensors'].close()   ##print row
         return json.dumps(rowsList)
     except:
         return "Could not process"
@@ -344,6 +374,9 @@ def sendAlert(request):
         return JsonResponse({"status":400,"result":"Failure"})
 
 
+
+    
+    
 
 #def updateUserProfile(request):
 

@@ -30,10 +30,33 @@ def viewUserProfile(request):
 #         return HttpResponse("Service Error!!!")
 
 def editUserProfile(request):
-    user_email =request.GET.get('email')
     if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==2:
-        context={'user':Users.objects.get(email=request.GET.get('email'))}
+        user_email =request.GET.get('email')
+        user_obj=Users.objects.get(email=request.GET.get('email'))
+        context={'user':user_obj}
+        print user_obj.dob
+        
         return render(request,'usersView/editUser.html',context)
+    elif request.method =='POST':
+        email=request.POST.get('email')
+        editProfile =Users.objects.get(email=request.GET.get('email'))
+        editProfile.first_name = request.POST.get('FirstName')
+        editProfile.last_name = request.POST.get('LastName')
+        editProfile.email = request.POST.get('email')
+        editProfile.user_id = request.POST.get('email')
+        editProfile.dob = request.POST.get('dob')
+        editProfile.address = request.POST.get('address')
+        editProfile.gender=request.POST.get('gender')
+        editProfile.marital_status=request.POST.get('inputMaritalStatus')
+        editProfile.height= request.POST.get('inputHeight')
+        editProfile.weight=request.POST.get('inputWeight')
+        editProfile.blood_type=request.POST.get('inputBloodType')
+        editProfile.phone_number=request.POST.get('inputPhone')
+        editProfile.save()
+        
+        print email, editProfile.dob
+        
+        return JsonResponse({"status":200})     
     else:
         return render(request,'index.html')
 
@@ -73,8 +96,24 @@ def loadSensorHistory(request):
         
     #except:
      #   return HttpResponse("test1")
-
-
+def calcBmi(request):
+    email= request.GET.get('email')
+    user_obj=Users.objects.get(email=email)
+    print user_obj.height
+    ht = float(user_obj.height)
+    wt = float(user_obj.weight)
+    if ht!=0 and wt!=0:
+        bmi =float( (wt*703)/(ht*ht))
+    if bmi < 18.5:
+        message="Under Weight"
+    elif bmi>=18.5 and bmi <=24.9:
+        message ="Normal"
+    elif bmi>=24.9 and bmi <=29.9:
+        message="Over Weight"
+    else:
+        message ="Obese"        
+    return JsonResponse({"message":message},safe=False)
+        
 # def dashboard_req(request):
 #         #print request.method
 #         #print request.session.get('user_id')

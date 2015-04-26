@@ -6,10 +6,12 @@ import doctorsView
 urlpatterns = patterns('',
     #url(r'^$', views.index, name='index'),
     url(r'viewDashBoard$',views.viewDashBoard,name='viewDashboard'),
-    url(r'load_graph',doctorsView.views.dashboard_req),
+    url(r'load_graph',doctorsView.views.load_user_temp),
+    url(r'load_heat_map',doctorsView.views.dashboard_req),
     url(r'viewProfile',views.viewUserProfile,name='viewUserProfile'),
     url(r'editProfile',views.editUserProfile,name='editUserProfile'),
     url(r'sensorHistory',views.sensorHistory,name='sensorHistory'),
     url(r'loadSensorHistory',views.loadSensorHistory,name='loadSensorHistory'),
     url(r'logout',doctorsView.views.logout_user,name='logout_user'),
+    url(r'bmi', views.calcBmi)
     )
