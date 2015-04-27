@@ -27,11 +27,6 @@ public class TestLoginActivity extends ActivityInstrumentationTestCase2<LoginAct
         super(LoginActivity.class);
     }
 
-//    public TestLoginActivity(Class<LoginActivity> activityClass)
-//    {
-//        super(LoginActivity.class);
-//    }
-
     protected void setUp() throws Exception
     {
         super.setUp();
@@ -45,8 +40,6 @@ public class TestLoginActivity extends ActivityInstrumentationTestCase2<LoginAct
         loginButton = (Button) loginActivity.findViewById(R.id.login_btn);
         assertEquals("Incorrect label of the button", "Login", loginButton.getText());
         sensorId = (EditText)loginActivity.findViewById(cmpe.alpha.fitwhiz.R.id.sensor_id_edit);
-//        sensorId.requestFocus();
-//        sensorId.setText("408618");
 
         // Set up an ActivityMonitor
         Instrumentation.ActivityMonitor receiverActivityMonitor =
@@ -76,6 +69,10 @@ public class TestLoginActivity extends ActivityInstrumentationTestCase2<LoginAct
 
         // Remove the ActivityMonitor
         getInstrumentation().removeMonitor(receiverActivityMonitor);
+    }
+
+    public void tearDown() throws Exception {
+        super.tearDown();
     }
 
 }
