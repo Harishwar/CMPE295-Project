@@ -43,6 +43,7 @@ public class LoginActivity extends Activity
             if(service == null)
             {
                 Intent i = new Intent(this, MainActivity.class);
+                i.putExtra("Activity","MainActivity");
                 if(i.resolveActivity(this.getPackageManager())!=null)
                 {
                     startActivity(i);
@@ -51,6 +52,7 @@ public class LoginActivity extends Activity
             else {
                 service.close();
                 Intent i = new Intent(this, MainActivity.class);
+                i.putExtra("Activity","MainActivity");
                 if(i.resolveActivity(this.getPackageManager())!=null)
                 {
                     startActivity(i);

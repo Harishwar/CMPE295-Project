@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.Properties;
 
@@ -31,7 +32,7 @@ public class SplashScreen extends Activity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     protected boolean _active = true;
-    protected int _splashTime = 5000;
+    protected int _splashTime = 8000;
     private static final boolean AUTO_HIDE = true;
 
     /**
@@ -62,6 +63,8 @@ public class SplashScreen extends Activity {
     private PropertiesReader propertiesReader;
     private Properties properties;
     private int uploadInterval, countUpdateInterval;
+    private TextView fact;
+    private int max = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,10 @@ public class SplashScreen extends Activity {
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
+        fact = (TextView)findViewById(R.id.fact_txt_view);
 
+        int random = (int)(Math.random()*max);
+        displayFact(random);
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
@@ -223,5 +229,59 @@ public class SplashScreen extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    public void displayFact(int randomNumber)
+    {
+        System.out.println("random number="+randomNumber);
+        switch(randomNumber)
+        {
+            case 0:
+                fact.setText("“The Institute of Medicine determined that an Adequate Water Intake(AI)\n"+
+                        "for men = 13 cups (3 liters) a day. \n" +
+                        "for women = 9 cups (2.2 liters) a day.”");
+                break;
+            case 1:
+                fact.setText("“Every day, your heart creates enough energy to drive a truck for 20 miles (32 km).”");
+                break;
+            case 2:
+                fact.setText("“Inadequate sleep can increase your chances of weight gain and trigger " +
+                        "the production of gherlin, a hormone that causes hunger.”");
+                break;
+            case 3:
+                fact.setText("“Muscle can burn more calories at rest than fat. One pound of muscle " +
+                        "burns an extra 50 calories a day. So, eat healthy and try to build muscle.”");
+                break;
+            case 4:
+                fact.setText("“Your brain uses 20% of the total oxygen and blood in your body.”");
+                break;
+            case 5:
+                fact.setText("“A human baby has 60 more bones than an adult.”");
+                break;
+            case 6:
+                fact.setText("“Humans shed about 600,000 particles of skin every hour.”");
+                break;
+            case 7:
+                fact.setText("“Your nose can remember 50,000 different scents.”");
+                break;
+            case 8:
+                fact.setText("“When awake, the human brain produces enough electricity to power a small light bulb.”");
+                break;
+            case 9:
+                fact.setText("“There are more than 100 types of cancers; any part of the body can be affected.”");
+                break;
+            case 10:
+                fact.setText("“When you take one step, you are using up to 200 muscles.”");
+                break;
+            case 11:
+                fact.setText("“The highest recorded body temperature in a human being was a fever of 115.7°F (46.5°C).”");
+                break;
+            case 12:
+                fact.setText("“Your taste buds are replaced every 10 days.");
+                break;
+            default:
+                fact.setText("“Your bones are composed of 31% water and are stronger than steel.”");
+                break;
+        }
     }
 }

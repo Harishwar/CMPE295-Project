@@ -11,18 +11,33 @@
         android:textStyle="bold" android:textSize="50sp" android:gravity="center"
         android:text="@string/Splash_text" />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="fact"
+        android:layout_centerInParent="true"
+        android:id="@+id/fact_txt_view"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="100dp"/>
+
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:layout_gravity="center_horizontal|bottom">
 
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
+        <RelativeLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            tools:ignore="UselessParent"
+            >
 
-        </LinearLayout>
+        </RelativeLayout>
+
+
     </FrameLayout>
 
 </FrameLayout>

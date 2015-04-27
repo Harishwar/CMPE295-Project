@@ -8,9 +8,9 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','zip','tar',
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="*****", db="CMPE295B")
+db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="!passw0rd", db="CMPE295B")
 #db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="CMPE295B")
-results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="****", db="SensorResults")
+results_db = MySQLdb.connect(host="cmpe295b.cynriidclhwl.us-west-1.rds.amazonaws.com", user="root", passwd="!passw0rd", db="SensorResults")
 
 #results_db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="SensorResults")
 
