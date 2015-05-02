@@ -13,6 +13,15 @@
     <link rel="stylesheet" ztype="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/viewusers.css'%}">
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+	<script>
+	var genericEmail; 
+	function test(){
+			confirm("Are you sure you want to delete Patient??Please note all information will be lost");
+				  //+document.getElementById('profileEmail'));
+			window.location.href='doctorsView/deleteUser?email='+genericEmail;
+		}
+	
+	</script>
 </head>
 
 <body>
@@ -72,9 +81,14 @@
                         <a class="profileName" data-toggle="modal" data-firstname={{user.first_name}}&nbsp; data-lastname={{user.last_name}}&nbsp; data-dob={{user.dob}}&nbsp; data-address={{user.address}}&nbsp; data-gender={{user.gender}}&nbsp; data-maritalstatus={{user.marital_status}}&nbsp; data-height={{user.height}}&nbsp; data-weight={{user.weight}}&nbsp; data-bloodtype={{user.blood_type}}&nbsp; data-phone={{user.phone_number}}&nbsp;>
                             <i class="glyphicon glyphicon-user icon-enlarge">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
                         </a>
-                        <a class="alertEmail show pull-right" data-toggle="modal">
+                         <a class="show pull-right" href="asn?email={{user.email}}">
+                            <i class="glyphicon glyphicon glyphicon-picture icon-enlarge"></i>
+                        </a>
+						
+						<a class="alertEmail show pull-right" data-toggle="modal">
                             <i class="glyphicon glyphicon-comment icon-enlarge"></i>
                         </a>
+						
                     </li>
                     {% endfor %}
                 </section>
@@ -139,10 +153,19 @@
                         </div>
                     </div>
                     <div>
-                        <button class="text-danger pull-right" title="Delete Patient"><i class="glyphicon glyphicon-trash icon-enlarge"></i>
+					<button class="text-success pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						
+					<button class="text-danger pull-right" title="Delete Patient"  onclick="test(this)"><i class="glyphicon glyphicon-trash icon-enlarge"></i></button>
+							
+<!--
+						<form method ="post">
+							                        {% csrf_token %}
+                        <button class="text-danger pull-right" title="Delete Patient" type ="submit" onsubmit="test()"><i class="glyphicon glyphicon-trash icon-enlarge"></i>
                         </button>
-                        <button class="text-success pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;
-                        </button>
+                       
+						</form>	
+-->
                     </div>
                 </div>
                 <br>
@@ -190,12 +213,15 @@
     <!-- Custom Initialization Script -->
     <script src="{%static 'js/init.js'%}"></script>
     <script type="text/javascript">
+		
+		
     $(function() {
         $("li").click(function() {
             e.stopPropagation();
         }).on('click', '.profileName', function(e) {
             $('#viewUserModal').on('show.bs.modal', function(e) {
                 var email = $(event.target).closest('li').data('id');
+				genericEmail=email;
                 var profile = $(event.target).closest('a');
                 $('#profileName').text(profile.data('lastname') + ", " + profile.data('firstname'));
                 $('#profileFirstName').text(profile.data('firstname'));
@@ -207,7 +233,7 @@
                 $('#profileMaritalStatus').text(profile.data('maritalstatus'));
                 $('#profileHeight').text(profile.data('height'));
                 $('#profileWeight').text(profile.data('weight'));
-                $('#profileBloodType').text(profile.data('blood_type'));
+                $('#profileBloodType').text(profile.data('bloodtype'));
                 $('#profilePhone').text(profile.data('phone'));
             })
             $("#viewUserModal").modal('show');

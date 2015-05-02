@@ -32,6 +32,12 @@ def index(request):
 def search(request):
     return render(request,"list.html");
 
+def dashboard_user(request):
+    
+    print 'Entered myview'
+    context={'user':request.GET.get('email')}
+    return render(request,"doctorsView/asn.html",context)
+
 def dashboard(request):
     if request.method=="GET" and request.session.get('user_id') and request.session.get('role_id')==1:
         return render(request,"doctorsView/dashboard.html")
@@ -195,10 +201,16 @@ def addUserVaccination(request):
 
 def deleteUser(request):
     try:
-        user_id=request.POST.get('email')
+        user_id=request.GET.get('email')
+        cursor=connections['sensors'].cursor()
+        cursor.execute("delete from SensorResults.crunched_results where user_id=%s",[user_id])
+        cursor.execute("delete from SensorResults.SensorData where user_id=%s",[user_id])
+        connections['sensors'].commit()
+        print Users.objects.filter(email=user_id).values()
+        connections['sensors'].close()
         Users.objects.filter(email=user_id).delete();
-        #print user_id
-        return JsonResponse({'status':204,"result":"User Deleted Successfully"})
+        return redirect('viewUsers')
+        #JsonResponse({'status':204,"result":"User Deleted Successfully"})
     except:
         return HttpResponse("Service Error!!!")
 
@@ -366,7 +378,7 @@ def sendAlert(request):
         cursor = connection.cursor()
         #print "insert into SensorResults.Alerts values('",sensor_user_id+"','",message,"','",datetime.datetime.now(),"')"
         cursor.execute("insert into SensorResults.Alerts values(default,'"+sensor_user_id+"','"+message+"','"+str(datetime.datetime.now())+"')")
-        transaction.set_dirty()
+        #transaction.set_dirty()
         #last_id = connection.insert_id()
         #return HttpResponse(str(last_id))
         return JsonResponse({"status":200,"result":"Alert sent to Patient"})

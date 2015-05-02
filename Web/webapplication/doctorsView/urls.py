@@ -20,5 +20,6 @@ urlpatterns = patterns('',
     url(r'getData',views.load_user_temp,name='graph_load'),
     url(r'dashboard',views.dashboard,name='dashboard'),
     url(r'getUsersData',views.dashboard_doc_req,name='graph_load_all'),
-    url(r'alertUser',views.sendAlert,name='alertUser')
+    url(r'alertUser',views.sendAlert,name='alertUser'),
+    url(r'asn',views.dashboard_user,name='asn')
 )

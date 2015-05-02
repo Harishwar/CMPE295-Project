@@ -78,7 +78,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
-						<text>{{user.dob|date:"Y-m-d"}}</text>
+						
                      <input type="datetime" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value={{user.dob|date:"Y-m-d"}} title="Date of Birth" min="1950-01-01" max="2015-12-31" placeholder="yyyy-mm-dd" >
 						
                     </div>
@@ -148,11 +148,11 @@
     $(document).ready(function() {
         // Select Gender
         gender = $('#gender').val();
-        if (gender == "M") {
+        if (gender == "M"|| gender == "Male") {
             $('input:radio[name="gender"][value="Male"]').prop('checked', true);
-        } else if (gender == "F") {
+        } else if (gender == "F" || gender == "Female") {
             $('input:radio[name="gender"][value="Female"]').prop('checked', true);
-        } else if (gender == " ") {
+        } else if (gender == " "|| gender == "Other") {
             $('input:radio[name="gender"][value="Other"]').prop('checked', true);
         }
 
