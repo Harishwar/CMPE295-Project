@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from doctorsView.models import Users
+from doctorsView.models import Users, SensorUser
 from django.db import transaction, connection,connections
 import collections
 import datetime
@@ -53,10 +53,10 @@ def editUserProfile(request):
         editProfile.blood_type=request.POST.get('inputBloodType')
         editProfile.phone_number=request.POST.get('inputPhone')
         editProfile.save()
-        
+        context={'user':Users.objects.get(email=email)}
         print email, editProfile.dob
         
-        return JsonResponse({"status":200})     
+        return render(request,'usersView/viewUser.html',context)    
     else:
         return render(request,'index.html')
 
@@ -113,6 +113,19 @@ def calcBmi(request):
     else:
         message ="Obese"        
     return JsonResponse({"message":message},safe=False)
+
+
+def showAlerts(request):
+    email= request.GET.get('email')
+    print email
+    user_obj = Users.objects.get(email=email)
+    print "user id",user_obj.user_id
+    sensor_obj =SensorUser.objects.get(user_id=user_obj.id)
+    print sensor_obj.user_id
+    cursor=connections['sensors'].cursor()
+    cursor.execute("select message from SensorResults.Alerts where SensorId=%s order by datetime_logged desc limit 10",[sensor_obj.sensor_id]) 
+    rows=cursor.fetchall()
+    return JsonResponse(json.dumps(rows),safe=False)
         
 # def dashboard_req(request):
 #         #print request.method

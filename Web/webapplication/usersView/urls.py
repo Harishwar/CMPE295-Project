@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'sensorHistory',views.sensorHistory,name='sensorHistory'),
     url(r'loadSensorHistory',views.loadSensorHistory,name='loadSensorHistory'),
     url(r'logout',doctorsView.views.logout_user,name='logout_user'),
-    url(r'bmi', views.calcBmi)
+    url(r'bmi', views.calcBmi),
+    url(r'showalerts', views.showAlerts),
     )
