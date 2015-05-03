@@ -192,7 +192,8 @@ def addUserVaccination(request):
             user_vaccination.date_created=datetime.datetime.now()
             user_vaccination.date_modified=datetime.datetime.now()
             user_vaccination.save()
-            return JsonResponse({"status":201,"result":"User Vaccination Added"})
+            return redirect('viewUsers')
+            #JsonResponse({"status":201,"result":"User Vaccination Added"})
         else:
             return render(request,'index.html')
     except:
@@ -252,7 +253,7 @@ def login_user(request):
             request.session['user_id']=user.email
             request.session['role_id']=2
             context={'user':Users.objects.get(email=user.email)}
-            return redirect('/usersView/viewDashBoard',context)
+            return redirect('/usersView/',context)
         else:
             return HttpResponse("Invalid user");
 
