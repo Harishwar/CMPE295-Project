@@ -4,8 +4,8 @@ from usersView import views
 import doctorsView
 
 urlpatterns = patterns('',
-    #url(r'^$', views.index, name='index'),
-    url(r'viewDashBoard$',views.viewDashBoard,name='viewDashboard'),
+    url(r'^$', views.index, name='index'),
+    url(r'viewCharts$',views.viewCharts,name='viewCharts'),
     url(r'load_graph',doctorsView.views.load_user_temp),
     url(r'load_heat_map',doctorsView.views.dashboard_req),
     url(r'viewProfile',views.viewUserProfile,name='viewUserProfile'),
@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'sensorHistory',views.sensorHistory,name='sensorHistory'),
     url(r'loadSensorHistory',views.loadSensorHistory,name='loadSensorHistory'),
     url(r'logout',doctorsView.views.logout_user,name='logout_user'),
-    url(r'bmi', views.calcBmi),
-    url(r'showalerts', views.showAlerts),
+    url(r'loadBMI',views.loadBMI,name='loadBMI'),
+    url(r'loadTemperature',views.loadTemperature,name='loadTemperature'),
+    url(r'loadalerts',views.loadAlerts,name='loadAlerts'),
     )

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FitWhiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/usersView/home.css'%}">
+    <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+</head>
+
+<body>
+    <section>
+        <!-- NavBar -->
+        <nav id="menu" class="menu">
+            <header class="menu-header">
+                <span class="menu-header-title">FitWhiz</span>
+            </header>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView" class="active">Home</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewCharts">Charts</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">User</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewProfile?email={{user.email}}">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{user.email}}">Edit Profile</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">Sensor</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/sensorHistory?email={{user.email}}">History</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/logout">Logout</a></li>
+                </ul>
+            </section>
+        </nav>
+    </section>
+    <!-- End NavBar -->
+    <!-- Content -->
+    <section id="content" class="panel">
+        <!-- Header -->
+        <header id="header">
+            <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+            <p class="lightGreen pull-right">Hello {{user.first_name}}!</p>
+        </header>
+        <!-- End Header -->
+        <!-- Alerts -->
+        <br>
+        <br>
+        <div class="container">
+            <div id="suggestions">
+                <div class="BMI jumbotron text-center col-xs-5 col-md-offset-2 col-md-3">
+                    <h2>BMI</h2>
+                    <div class="circle">
+                        <h3 id="BMI">0.0</h3>
+                    </div>
+                    <h4 id="BMISuggestion">...</h4>
+                </div>
+                <div class="Temperature jumbotron text-center col-xs-offset-2 col-xs-5 col-md-offset-2 col-md-3">
+                    <h2>Temperature</h2>
+                    <div class="circle">
+                        <h3 id="Temperature">0.0</h3>
+                    </div>
+                    <h4 id="TemperatureSuggestion">...</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Notification -->
+        <h1 class="lightGreen">Notifications</h1>
+        <hr>
+        <div class="container">
+            <div id="notifications">
+            </div>
+        </div>
+        <hr>
+        <!-- End Alerts -->
+    </section>
+    <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
+    <!-- End Content -->
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
+    <script>
+    $(document).ready(function() {
+        // Get Notifications
+        $.getJSON('/usersView/loadalerts?email={{user.email}}', function(response) {
+            data = JSON.parse(response);
+            for (i = 0; i < data.length; i++) {
+                $("#notifications").append('<div class="notification-box"><text>' + data[i] + '</text><i class="glyphicon glyphicon-remove pull-right icon-enlarge remove"></i></div>');
+            }
+        }).done(function() {
+            $("#notifications .remove").click(function() {
+                $(this).parent().slideUp('fast', function() {
+                    $(this).remove();
+                });
+            });
+        });
+
+        // Get BMI Value
+        var BMIvalue;
+        $.getJSON('/usersView/loadBMI?email={{user.email}}', function(response) {
+            BMIvalue = JSON.parse(response).toFixed(2);
+
+        }).done(function() {
+            $("#BMI").text(BMIvalue);
+            // Underweight < 18.4 Yellow
+            // Optimal 18.5 - 25  Green
+            // Overweight 25.1 - 30 Orange
+            // Obese > 30.1 Red
+            if (BMIvalue <= 18.5 && BMIvalue > 0) {
+                $(".BMI .circle").addClass('animate yellow');
+                $("#BMISuggestion").text('Underweight');
+            } else if (BMIvalue <= 25 && BMIvalue > 18.5) {
+                $(".BMI .circle").addClass('animate green');
+                $("#BMISuggestion").text('Normal weight');
+            } else if (BMIvalue <= 30 && BMIvalue > 25) {
+                $(".BMI .circle").addClass('animate orange');
+                $("#BMISuggestion").text('Over weight');
+            } else if (BMIvalue > 30) {
+                $(".BMI .circle").addClass('animate red');
+                $("#BMISuggestion").text('Obese');
+            } else {
+                $("#BMISuggestion").text('Invalid Data');
+            }
+        });
+
+        // Get Temperature
+        var TemperatureValue;
+        $.getJSON('/usersView/loadTemperature?email={{user.email}}', function(response) {
+            TemperatureValue = JSON.parse(response[0]);
+        }).done(function() {
+            $("#Temperature").text(TemperatureValue);
+            if (TemperatureValue <= 35 && TemperatureValue > 0) {
+                $(".Temperature .circle").addClass('animate blue');
+                $("#TemperatureSuggestion").text('Low Temperature');
+            } else if (TemperatureValue <= 40 && TemperatureValue > 35) {
+                $(".Temperature .circle").addClass('animate green');
+                $("#TemperatureSuggestion").text('Normal Temperature');
+            } else if (TemperatureValue <= 100 && TemperatureValue > 40) {
+                $(".Temperature .circle").addClass('animate red');
+                $("#BMISuggestion").text('High Temperature');
+            } else {
+                $("#TemperatureSuggestion").text('Invalid Data');
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

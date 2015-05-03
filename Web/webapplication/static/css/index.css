@@ -1,33 +1,128 @@
 /* Background Image */
 
-.background {
-    background-color: rgba(51, 54, 59, 0.2);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-image: url(../img/backgroundminimal.jpg);
+#fullpage > .section:nth-child(1) {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../img/backgroundbigdata.jpg), url(../img/backgroundbigdata.jpg);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundbigdata.jpg);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.5)), color-stop(100%, rgba(255, 255, 255, 0.5))), url(../img/backgroundbigdata.jpg);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundbigdata.jpg);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundbigdata.jpg);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundbigdata.jpg);
+    background: linear-gradient(top bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundbigdata.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    overflow-y: scroll;
+}
+
+#fullpage > .section:nth-child(3) {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../img/backgroundpc.jpg), url(../img/backgroundpc.jpg);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundpc.jpg);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.5)), color-stop(100%, rgba(255, 255, 255, 0.5))), url(../img/backgroundpc.jpg);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundpc.jpg);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundpc.jpg);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundpc.jpg);
+    background: linear-gradient(top bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundpc.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#fullpage > .section:nth-child(4) {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../img/backgroundsmartcities.jpg), url(../img/backgroundsmartcities.jpg);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundsmartcities.jpg);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.5)), color-stop(100%, rgba(255, 255, 255, 0.5))), url(../img/backgroundsmartcities.jpg);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundsmartcities.jpg);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundsmartcities.jpg);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundsmartcities.jpg);
+    background: linear-gradient(top bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), url(../img/backgroundsmartcities.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.imglayover {
+    width: inherit;
+    height: inherit;
+    background-image: url("../img/mesh.png");
+}
+
+.fp-tableCell {
+    padding: 20px;
+}
+
+#fp-nav ul li a span {
+    background: #005032;
+}
+
+#fullpage > .section .fp-slidesNav ul li a span {
+    opacity: 0;
+}
+
+#fullpage > .section:nth-child(3) .fp-slidesNav ul li a span {
+    opacity: 0.5;
 }
 /* Content */
 
 .container h1 {
-    font-size: 2em;
+    opacity: 1;
+    font-size: 3em;
     font-weight: bold;
     color: rgba(0, 80, 50, 1);
+    /*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9;*/
 }
 
-.container h3 {
-    color: #555;
+.container h1 small {
+    font-size: 0.5em;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
-@media screen and (min-height: 768px) {
-    .container {
-        top: 30%;
-        position: relative;
-    }
+#section2 h1 {
+    border-bottom: 2px solid #005032;
+}
+
+#section2 h3 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#section2 .glyphicon {
+    font-size: 5em;
+    color: #009664;
+}
+
+#section2 .glyphicon {
+    font-size: 2em;
+    color: #009664;
+}
+
+#section4 h3,
+#section3 h3 {
+    color: #000;
+    font-weight: bold;
+    /*text-shadow: 0 1px 0 #ccc, 0 1px 0 #c9c9c9, -1px 1px 0 #ccc, 0 2px 0 #bbb, 0 2px 0 #b9b9b9, 0 3px 0 #aaa;*/
+}
+/* Login Button */
+
+.loginButton {
+    border: 5;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    color: #FFF;
+    position: fixed;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: #005032;
+    background-color: rgba(0, 80, 50, 0.9);
+}
+
+.loginButton:hover,
+.loginButton:focus,
+.loginButton:active {
+    color: #FFF;
+    background-color: rgba(0, 80, 50, 1);
 }
 /* Modal */
 

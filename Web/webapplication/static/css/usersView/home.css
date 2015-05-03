@@ -1,0 +1,93 @@
+/* Notification Box */
+
+.notification-box {
+    color: #555;
+    margin: 10px;
+    border-radius: 0;
+    border: 1px solid #a6ca8a;
+    padding: 10px 15px 10px 15px;
+}
+
+.notification-box .glyphicon {
+    right: 10px;
+    bottom: 10px;
+}
+
+.notification-box .glyphicon:hover {
+    color: red;
+}
+/* Content */
+
+#content h1 {
+    padding-left: 40px;
+}
+
+#suggestions .jumbotron {
+    border-style: solid;
+    border: 10px;
+    border-color: black;
+}
+/* Circle */
+
+.circle {
+    border: 10px solid #DDD;
+    border-top-color: #009664;
+    text-align: center;
+    width: 85px;
+    height: 85px;
+    margin: 0 auto;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    border-radius: 200px;
+    position: relative;
+    opacity: 0.7;
+}
+
+.animate {
+    -webkit-animation: turning_cw 2s;
+    -moz-animation: turning_cw 2s;
+    animation: turning_cw 2s;
+}
+
+.red {
+    border-top-color: red;
+}
+
+.yellow {
+    border-top-color: yellow;
+}
+
+.orange {
+    border-top-color: orange;
+}
+
+.blue {
+    border-top-color: blue;
+}
+
+@-webkit-keyframes turning_cw {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes turning_cw {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@keyframes turning_cw {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

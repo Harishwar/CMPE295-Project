@@ -6,11 +6,19 @@ import datetime
 import json
 from django.http.response import JsonResponse,HttpResponse
 
-def viewDashBoard(request):
+def index(request):
     if request.session.get('user_id') and request.session.get('role_id')==2:
         #print "session id",request.session.get('role_id')
         context={'user':Users.objects.get(email=request.session.get('user_id'))}
-        return render(request,'usersView/dashboard.html',context)
+        return render(request,'usersView/home.html',context)
+    else:
+        return render(request,'index.html')
+
+def viewCharts(request):
+    if request.session.get('user_id') and request.session.get('role_id')==2:
+        #print "session id",request.session.get('role_id')
+        context={'user':Users.objects.get(email=request.session.get('user_id'))}
+        return render(request,'usersView/charts.html',context)
     else:
         return render(request,'index.html')
 
@@ -35,7 +43,7 @@ def editUserProfile(request):
         user_obj=Users.objects.get(email=request.GET.get('email'))
         context={'user':user_obj}
         print user_obj.dob
-        
+
         return render(request,'usersView/editUser.html',context)
     elif request.method =='POST':
         email=request.POST.get('email')
@@ -55,8 +63,8 @@ def editUserProfile(request):
         editProfile.save()
         context={'user':Users.objects.get(email=email)}
         print email, editProfile.dob
-        
-        return render(request,'usersView/viewUser.html',context)    
+
+        return render(request,'usersView/viewUser.html',context)
     else:
         return render(request,'index.html')
 
@@ -67,15 +75,12 @@ def sensorHistory(request):
         return render(request,'usersView/sensorHistory.html', context)
     else:
         return render(request,'index.html')
-    
+
 def loadSensorHistory(request):
     #try:
         #print "entered load users"
         email = request.GET.get('email')
         date_logged = request.GET.get('date')+'%'
-        print email
-        print date_logged
-        print "select date_logged, irt_body, humidity from SensorResults.SensorData where user_id=%s and date_logged like %s",[email,date_logged]
         cursor=connection.cursor()
         cursor.execute("select date_logged, humidity,irt_body from SensorResults.SensorData where user_id=%s and date_logged like %s",[email,date_logged])
         rows=cursor.fetchall()
@@ -93,40 +98,34 @@ def loadSensorHistory(request):
             rowsList.append(sensor_obj)
             ##print row
         return JsonResponse(rowsList,safe=False)
-        
-    #except:
-     #   return HttpResponse("test1")
-def calcBmi(request):
+
+def loadBMI(request):
     email= request.GET.get('email')
     user_obj=Users.objects.get(email=email)
-    print user_obj.height
     ht = float(user_obj.height)
     wt = float(user_obj.weight)
     if ht!=0 and wt!=0:
         bmi =float( (wt*703)/(ht*ht))
-    if bmi < 18.5:
-        message="Under Weight"
-    elif bmi>=18.5 and bmi <=24.9:
-        message ="Normal"
-    elif bmi>=24.9 and bmi <=29.9:
-        message="Over Weight"
     else:
-        message ="Obese"        
-    return JsonResponse({"message":message},safe=False)
+        bmi = 0
+    return JsonResponse(bmi,safe=False)
 
+def loadTemperature(request):
+    email = request.GET.get('email')
+    cursor=connection.cursor()
+    cursor.execute("select irt_ambient_avg from SensorResults.crunched_results where user_id=%s",[email])
+    rows=cursor.fetchall()
+    return JsonResponse(rows,safe=False)
 
-def showAlerts(request):
+def loadAlerts(request):
     email= request.GET.get('email')
-    print email
     user_obj = Users.objects.get(email=email)
-    print "user id",user_obj.user_id
     sensor_obj =SensorUser.objects.get(user_id=user_obj.id)
-    print sensor_obj.user_id
     cursor=connections['sensors'].cursor()
-    cursor.execute("select message from SensorResults.Alerts where SensorId=%s order by datetime_logged desc limit 10",[sensor_obj.sensor_id]) 
+    cursor.execute("select message from SensorResults.Alerts where SensorId=%s order by datetime_logged desc limit 10",[sensor_obj.sensor_id])
     rows=cursor.fetchall()
     return JsonResponse(json.dumps(rows),safe=False)
-        
+
 # def dashboard_req(request):
 #         #print request.method
 #         #print request.session.get('user_id')

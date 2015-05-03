@@ -28,7 +28,12 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewDashBoard" class="active">Dashboard</a>
+                    <li><a href="/usersView">Home</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewCharts" class="active">Charts</a>
                     </li>
                 </ul>
             </section>
@@ -137,14 +142,14 @@
 				console.log(dataOpt);
             document.getElementById('temperatureData').innerHTML = dataOpt;
         });
-		 
+
       $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
         var jsonRes = JSON.parse(data);
-		console.log(data);  
+		console.log(data);
         options.series[0].data = jsonRes;
         var chart = new Highcharts.Chart(options);
     });
-		
+
     //},1000);
 
        //},1000);
