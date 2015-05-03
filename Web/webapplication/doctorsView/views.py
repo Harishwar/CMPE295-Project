@@ -33,7 +33,7 @@ def search(request):
     return render(request,"list.html");
 
 def dashboard_user(request):
-    
+
     print 'Entered myview'
     context={'user':request.GET.get('email')}
     return render(request,"doctorsView/asn.html",context)
@@ -68,7 +68,7 @@ def addPatient(request):
             registration.weight=request.POST.get('inputWeight')
             registration.blood_type=request.POST.get('inputBloodType')
             registration.phone_number=request.POST.get('inputPhone')
- 
+
             # need to convert to a timezone as it throws an exception
             registration.date_created = datetime.datetime.now()
             registration.date_modified = datetime.datetime.now()
@@ -298,7 +298,7 @@ def dashboard_doc_req(request):
 
 def load_user_data(email):
     try:
-        
+
         cursor=connections['sensors'].cursor()
         cursor.execute("select user_id, date_logged,irt_ambient_avg from SensorResults.crunched_results where user_id=%s",[email])
         rows=cursor.fetchall()
@@ -385,10 +385,8 @@ def sendAlert(request):
     except:
         return JsonResponse({"status":400,"result":"Failure"})
 
-
-
-    
-    
+def settings(request):
+    return render(request,'doctorsView/settings.html')
 
 #def updateUserProfile(request):
 

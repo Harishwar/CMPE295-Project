@@ -17,67 +17,70 @@
 <script>
 $(document).ready(function() {
 
-   // setInterval(function() {
-        var options = {
-            chart: {
-                renderTo: 'container_graph',
-                type: 'spline'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
+    // setInterval(function() {
+    var options = {
+        chart: {
+            renderTo: 'container_graph',
+            type: 'spline'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
 
-            series: [{}]
-        };
+        series: [{}]
+    };
 
-       $.getJSON('/doctorsView/getData?email=test2@test2.com', function(data) {
+    $.getJSON('/doctorsView/getData?email=test2@test2.com', function(data) {
         var jsonRes = JSON.parse(data);
-		console.log(data);  
+        console.log(data);
         options.series[0].data = jsonRes;
         var chart = new Highcharts.Chart(options);
     });
-		
-        var options1 = {
-            chart: {
-                renderTo: 'container_graph1',
-                type: 'line'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
-            series: [{name:'',data:[]}]
-        };
 
-        $.getJSON('doctorsView/getUsersData', function(data) {
-            var jsonRes = JSON.parse(data);
-			console.log("data",data);
-            var chart1;
+    var options1 = {
+        chart: {
+            renderTo: 'container_graph1',
+            type: 'line'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        series: [{
+            name: '',
+            data: []
+        }]
+    };
+
+    $.getJSON('doctorsView/getUsersData', function(data) {
+        var jsonRes = JSON.parse(data);
+        console.log("data", data);
+        var chart1;
+        data1 = [];
+        var c = 0;
+        u_series = [];
+        for (i = 0; i < jsonRes.length; i++) {
+            if (u_series.indexOf(jsonRes[i].user_id) == -1) {
+                u_series.push(jsonRes[i].user_id);
+                //count++;
+            }
+        }
+        chart1 = new Highcharts.Chart(options1);
+        for (j = 0; j < u_series.length; j++) {
             data1 = [];
-            var c = 0;
-            u_series = [];
             for (i = 0; i < jsonRes.length; i++) {
-                if (u_series.indexOf(jsonRes[i].user_id) == -1) {
-                    u_series.push(jsonRes[i].user_id);
-                    //count++;
+                if (u_series[j] == jsonRes[i].user_id) {
+                    data1.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
+                    data1.sort();
                 }
             }
-            chart1 = new Highcharts.Chart(options1);
-            for (j = 0; j < u_series.length; j++) {
-                data1 = [];
-                for (i = 0; i < jsonRes.length; i++) {
-                    if (u_series[j] == jsonRes[i].user_id) {
-                        data1.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
-                        data1.sort();
-                    }
-                }
-                chart1.addSeries({
-                    name: u_series[j],
-                    data: data1
-                }, false);
-            }
-            chart1.redraw();
-        });
-  //  }, 5000);
+            chart1.addSeries({
+                name: u_series[j],
+                data: data1
+            }, false);
+        }
+        chart1.redraw();
+    });
+    //  }, 5000);
 
 });
 
@@ -117,6 +120,12 @@ function testData() {
                     <li><a href="/doctorsView/addPatient">Add Patients</a>
                     </li>
                     <li><a href="/doctorsView/viewUsers">View Patients</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/doctorsView/settings">Settings</a>
                     </li>
                 </ul>
             </section>
