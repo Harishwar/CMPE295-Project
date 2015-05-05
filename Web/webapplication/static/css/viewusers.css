@@ -35,6 +35,10 @@
     font-size: 1.2em;
 }
 
+.patientsList .pull-right a:nth-child(1) {
+    margin-right: 30px;
+}
+
 .patientsList li:nth-child(even) a .glyphicon {
     color: #FFF;
 }
@@ -78,4 +82,8 @@
 #viewUserModal button {
     border: 0;
     background-color: transparent;
+}
+
+#viewUserModal .pull-right button:nth-child(1) {
+    margin-right: 10px;
 }

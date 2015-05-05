@@ -207,10 +207,6 @@ textarea:focus {
     color: #333;
     background-color: rgba(255, 255, 255, 0.8);
 }
-
-.back-to-top:hover {
-    color: rgba(0, 80, 50, 1);
-}
 /*
  * Pre loader
  * http://connoratherton.com/loaders
@@ -218,12 +214,12 @@ textarea:focus {
 
 .preloader_wrapper {
     position: fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#fff;
-    z-index:1010;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 1010;
 }
 
 @-webkit-keyframes preloader {
@@ -290,7 +286,7 @@ textarea:focus {
 }
 
 .modal-header {
-    border-bottom: 1px solid #555;
+    border-bottom: 0;
 }
 
 .modal-header .close {

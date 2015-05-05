@@ -64,32 +64,27 @@
         <!-- Alerts -->
         <br>
         <br>
-        <div class="container">
-            <div id="suggestions">
-                <div class="BMI jumbotron text-center col-xs-5 col-md-offset-2 col-md-3">
-                    <h2>BMI</h2>
-                    <div class="circle">
-                        <h3 id="BMI">0.0</h3>
-                    </div>
-                    <h4 id="BMISuggestion">...</h4>
+        <div id="suggestions">
+            <div class="BMI jumbotron text-center col-xs-5 col-md-offset-2 col-md-3">
+                <h2>BMI</h2>
+                <div class="circle">
+                    <h3 id="BMI">0.0</h3>
                 </div>
-                <div class="Temperature jumbotron text-center col-xs-offset-2 col-xs-5 col-md-offset-2 col-md-3">
-                    <h2>Temperature</h2>
-                    <div class="circle">
-                        <h3 id="Temperature">0.0</h3>
-                    </div>
-                    <h4 id="TemperatureSuggestion">...</h4>
+                <h4 id="BMISuggestion">...</h4>
+            </div>
+            <div class="Temperature jumbotron text-center col-xs-offset-2 col-xs-5 col-md-offset-2 col-md-3">
+                <h2>Temperature</h2>
+                <div class="circle">
+                    <h3 id="Temperature">0.0</h3>
                 </div>
+                <h4 id="TemperatureSuggestion">...</h4>
             </div>
         </div>
         <!-- Notification -->
         <h1 class="lightGreen">Notifications</h1>
         <hr>
-        <div class="container">
-            <div id="notifications">
-            </div>
+        <div id="notifications">
         </div>
-        <hr>
         <!-- End Alerts -->
     </section>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
@@ -149,7 +144,7 @@
         // Get Temperature
         var TemperatureValue;
         $.getJSON('/usersView/loadTemperature?email={{user.email}}', function(response) {
-            TemperatureValue = JSON.parse(response[0]);
+            TemperatureValue = JSON.parse(response[0]).toFixed(2);
         }).done(function() {
             $("#Temperature").text(TemperatureValue);
             if (TemperatureValue <= 35 && TemperatureValue > 0) {

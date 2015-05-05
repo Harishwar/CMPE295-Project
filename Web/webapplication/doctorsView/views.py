@@ -32,11 +32,9 @@ def index(request):
 def search(request):
     return render(request,"list.html");
 
-def dashboard_user(request):
-
-    print 'Entered myview'
+def viewUserChart(request):
     context={'user':request.GET.get('email')}
-    return render(request,"doctorsView/asn.html",context)
+    return render(request,"doctorsView/viewUserChart.html",context)
 
 def dashboard(request):
     if request.method=="GET" and request.session.get('user_id') and request.session.get('role_id')==1:
@@ -200,6 +198,7 @@ def addUserVaccination(request):
         return HttpResponse("Service Error!!!")
 #def updateUser(request):
 
+@csrf_exempt
 def deleteUser(request):
     try:
         user_id=request.GET.get('email')
@@ -207,11 +206,10 @@ def deleteUser(request):
         cursor.execute("delete from SensorResults.crunched_results where user_id=%s",[user_id])
         cursor.execute("delete from SensorResults.SensorData where user_id=%s",[user_id])
         connections['sensors'].commit()
-        print Users.objects.filter(email=user_id).values()
         connections['sensors'].close()
         Users.objects.filter(email=user_id).delete();
-        return redirect('viewUsers')
-        #JsonResponse({'status':204,"result":"User Deleted Successfully"})
+        #return redirect('viewUsers')
+        return JsonResponse({'status':204,"result":"User Deleted Successfully"})
     except:
         return HttpResponse("Service Error!!!")
 
@@ -341,7 +339,7 @@ def load_user_temp(request):
 
 def load_all_users_data():
     try:
-        print "entered load users"
+        #print "entered load users"
         cursor=connections['sensors'].cursor()
         cursor.execute("select * from SensorResults.crunched_results")
         rows=cursor.fetchall()
@@ -365,16 +363,16 @@ def sendAlert(request):
     try:
         email=request.POST.get('email')
         message=request.POST.get('message')
-        print 'message'
-        print email
+        #print 'message'
+        #print email
         #send_mail('HealthCareWeb Alert',message,+"'"+request.session.get('user_id')+"'",[email],fail_silently=True)
         send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
 
         user = Users.objects.get(email=email).id
-        print "user",user
+        #print "user",user
         #usr_id=Users.objects.get(email=user_id).id
         sensor_user_id= SensorUser.objects.get(user_id=user).sensor_id
-        print "sensor",sensor_user_id
+        #print "sensor",sensor_user_id
         #print "insert into SensorResults.Alerts values('",sensor_user_id,"','",message,"','",datetime.datetime.now(),"')"
         cursor = connection.cursor()
         #print "insert into SensorResults.Alerts values('",sensor_user_id+"','",message,"','",datetime.datetime.now(),"')"
@@ -388,6 +386,13 @@ def sendAlert(request):
 
 def settings(request):
     return render(request,'doctorsView/settings.html')
+
+def loadAllergies(request):
+    print request.GET.get('email')
+    return JsonResponse({"allergies":"1,2,3"})
+
+def loadVaccinations(request):
+    return JsonResponse({"vaccinations":"1,2,3"})
 
 #def updateUserProfile(request):
 
