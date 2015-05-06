@@ -12,10 +12,12 @@ body {
 
 .darkBackground {
     background-color: rgba(0, 80, 50, 1);
+    /* #005032 */
 }
 
 .lightGreen {
     color: rgba(0, 150, 100, 1);
+    /* #009664 */
 }
 
 .darkGreen {
@@ -205,9 +207,72 @@ textarea:focus {
     color: #333;
     background-color: rgba(255, 255, 255, 0.8);
 }
+/*
+ * Pre loader
+ * http://connoratherton.com/loaders
+ */
 
-.back-to-top:hover {
-    color: rgba(0, 80, 50, 1);
+.preloader_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 1010;
+}
+
+@-webkit-keyframes preloader {
+    80% {
+        -webkit-transform: scaley(0.3);
+        transform: scaley(0.3);
+    }
+}
+
+@keyframes preloader {
+    80% {
+        -webkit-transform: scaley(0.3);
+        transform: scaley(0.3);
+    }
+}
+
+.preloader > div {
+    background-color: rgba(0, 150, 100, 1);
+    width: 4px;
+    height: 35px;
+    border-radius: 2px;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block;
+    -webkit-animation: preloader 0.9s -0.5s infinite cubic-bezier(.11, .49, .38, .78);
+    animation: preloader 0.9s -0.5s infinite cubic-bezier(.11, .49, .38, .78);
+}
+
+.preloader > div:nth-child(2),
+.preloader > div:nth-child(4) {
+    -webkit-animation-delay: -0.25s !important;
+    animation-delay: -0.25s !important;
+}
+
+.preloader > div:nth-child(1),
+.preloader > div:nth-child(5) {
+    -webkit-animation-delay: 0s !important;
+    animation-delay: 0s !important;
+}
+/* Datepicker */
+
+.pika-button:hover {
+    background: rgba(0, 80, 50, 1) !important;
+}
+
+.is-selected .pika-button {
+    background: rgba(0, 150, 100, 1);
+    box-shadow: inset 0 1px 3px rgba(0, 80, 50, 1);
+}
+
+.is-today .pika-button {
+    color: rgba(0, 150, 100, 1);
 }
 /* Custom Modal */
 
@@ -221,7 +286,7 @@ textarea:focus {
 }
 
 .modal-header {
-    border-bottom: 1px solid #555;
+    border-bottom: 0;
 }
 
 .modal-header .close {
@@ -442,7 +507,6 @@ textarea:focus {
 .back-to-top .glyphicon {
     border-radius: 2em;
     background-color: #FFF;
-    text-shadow: 0 0 10px #FFF;
 }
 
 .back-to-top:hover {

@@ -9,9 +9,23 @@
     <title>Edit Profile</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/pikaday.min.css'%}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Pick a Day JavaScript -->
+    <script src="{%static 'js/pikaday.js'%}"></script>
+    <script src="{%static 'js/pikaday.jquery.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body>
@@ -23,7 +37,12 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewDashBoard">Dashboard</a></li>
+                    <li><a href="/usersView">Home</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewCharts">Charts</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -52,6 +71,7 @@
         <!-- Header -->
         <header id="header">
             <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+            <p class="lightGreen pull-right">Hello {{user.first_name}}!</p>
         </header>
         <!-- End Header -->
         <!-- Edit Profile Form -->
@@ -77,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dob" class="col-xs-3 col-sm-3">D.O.B</label>
-                        <input type="date" class="col-xs-8 col-sm-6" name="dob" id="dob" class="form-control" value="{{user.dob}}" title="Date of Birth" min="1950-01-01" max="2015-12-31" placeholder="mm/dd/yyyy" required>
+                        <input type="text" class="col-xs-8 col-sm-6" id="datepicker" name="dob" id="dob" class="form-control" value="{{user.dob}}" title="Date of Birth" placeholder="yyyy-mm-dd" required>
                     </div>
                     <div class="form-group">
                         <label for="address" class="col-xs-3 col-sm-3">Address</label>
@@ -133,23 +153,24 @@
     </section>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
     <script>
     $(document).ready(function() {
+        // Datepicker
+        var today = new Date();
+        var yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
+        $('#datepicker').text(today.toISOString().slice(0, 10));
+        var picker = new Pikaday({
+            maxDate: today,
+            field: $('#datepicker')[0]
+        });
+
         // Select Gender
         gender = $('#gender').val();
-        if (gender == "M") {
+        if (gender == "M" || gender == "Male") {
             $('input:radio[name="gender"][value="Male"]').prop('checked', true);
-        } else if (gender == "F") {
+        } else if (gender == "F" || gender == "Female") {
             $('input:radio[name="gender"][value="Female"]').prop('checked', true);
-        } else if (gender == " ") {
+        } else if (gender == " " || gender == "Other") {
             $('input:radio[name="gender"][value="Other"]').prop('checked', true);
         }
 

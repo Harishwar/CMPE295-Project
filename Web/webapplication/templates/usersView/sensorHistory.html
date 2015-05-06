@@ -14,7 +14,19 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/usersView/sensorHistory.css'%}">
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Pick a Day JavaScript -->
+    <script src="{%static 'js/pikaday.js'%}"></script>
+    <script src="{%static 'js/pikaday.jquery.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body>
@@ -26,7 +38,12 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewDashBoard">Dashboard</a></li>
+                    <li><a href="/usersView">Home</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewCharts">Charts</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -55,6 +72,7 @@
         <!-- Header -->
         <header id="header">
             <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+            <p class="lightGreen pull-right">Hello {{user.first_name}}!</p>
         </header>
         <!-- End Header -->
         <!-- Content -->
@@ -78,23 +96,12 @@
     </section>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Pick a Day JavaScript -->
-    <script src="{%static 'js/pikaday.js'%}"></script>
-    <script src="{%static 'js/pikaday.jquery.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
     <script>
     var today = new Date();
     var yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
-    $('#datepicker').text(yesterday.toISOString().slice(0, 10));
+    $('#datepicker').text(today.toISOString().slice(0, 10));
     var picker = new Pikaday({
-        maxDate: yesterday,
+        maxDate: today,
         field: $('#datepicker')[0],
         onSelect: function(date) {
             getSensorData(date);
@@ -112,7 +119,7 @@
             }
         });
     }
-    getSensorData(yesterday);
+    getSensorData(today);
     </script>
 </body>
 

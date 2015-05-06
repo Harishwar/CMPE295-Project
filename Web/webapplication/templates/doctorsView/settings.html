@@ -6,26 +6,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Sensor</title>
+    <title>Settings</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
-    <script>
-    function test() {
-        localStorage.setItem('patient_email', document.getElementById('email').value);
-    }
-    </script>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/slider.css'%}">
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{%static 'js/bootstrap.min.js'%}"></script>
     <!-- Slideout.js -->
     <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
     <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body>
@@ -43,13 +39,13 @@
             <section class="menu-section">
                 <h3 class="menu-section-title">Patients</h3>
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/addPatient" class="active">Add Patients</a></li>
+                    <li><a href="/doctorsView/addPatient">Add Patients</a></li>
                     <li><a href="/doctorsView/viewUsers">View Patients</a></li>
                 </ul>
             </section>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/settings">Settings</a>
+                    <li><a href="/doctorsView/settings" class="active">Settings</a>
                     </li>
                 </ul>
             </section>
@@ -59,8 +55,9 @@
                 </ul>
             </section>
         </nav>
-        <!-- End NavBar -->
     </section>
+    <!-- End NavBar -->
+    <!-- Content -->
     <section id="content" class="panel">
         <!-- Header -->
         <header id="header">
@@ -78,33 +75,36 @@
             </div>
         </header>
         <!-- End Header -->
-        <!-- Registration Form -->
+        <!-- Settings -->
+        <br>
         <div class="container">
-            <h1 class="lightGreen"><center>Add SensorID</center></h1>
-            <form method="POST" action="addSensor" class="form-horizontal" role="form">
-                <legend></legend>
-                <div class="container">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="SensorId" class="col-xs-3 col-sm-3">Sensor ID</label>
-                        <input type="text" class="col-xs-8 col-sm-6" name="SensorID" id="sensor_id" class="form-control" value="" title="Sensor ID" placeholder="Sensor ID" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-xs-3 col-sm-3">User Email</label>
-                        <input type="email" class="col-xs-8 col-sm-6" name="email" id="email" class="form-control" value="" required="required" title="Email" placeholder="Email">
-                    </div>
-                    <div class="text-center">
-                        <input type="reset" value="Reset" class="btn btn-lg btn-light">&emsp;
-                        <input type="submit" value="Add Sensor" class="btn btn-lg btn-dark" onclick=test()>
-                    </div>
-                </div>
-                <br>
-            </form>
+            <h1 class="lightGreen text-center">Settings</h1>
+            <hr>
+            <div class="input-group">
+                <label for="temperatureSetting">Temperature Threshold: </label>
+                <output id="temperatureValue">37</output>
+                <input type="range" min="22" max="52" value="37" id="temperatureSetting" onchange="temperatureValue.value=value" oninput="updateTemperature()">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="humiditySetting">Humidity Threshold: </label>
+                <output id="humidityValue">60</output>
+                <input type="range" min="0" max="100" value="60" id="humiditySetting" onchange="humidityValue.value=value" oninput="updateHumidity()">
+            </div>
         </div>
-        <!-- End Registration Form -->
+        <!-- End Settings -->
     </section>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
+    <script>
+    function updateTemperature() {
+        console.log($('#temperatureSetting').val());
+    }
+
+    function updateHumidity() {
+        console.log($('#humiditySetting').val());
+    }
+    </script>
 </body>
 
 </html>

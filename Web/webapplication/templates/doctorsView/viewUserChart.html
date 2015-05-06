@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>User Chart</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- jQuery -->
     <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
     <!-- Bootstrap JavaScript -->
@@ -39,7 +40,7 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/dashboard" class="active">Dashboard</a>
+                    <li><a href="doctorsView/dashboard">Dashboard</a>
                     </li>
                 </ul>
             </section>
@@ -48,7 +49,7 @@
                 <ul class="menu-section-list">
                     <li><a href="/doctorsView/addPatient">Add Patients</a>
                     </li>
-                    <li><a href="/doctorsView/viewUsers">View Patients</a>
+                    <li><a href="/doctorsView/viewUsers" class="active">View Patients</a>
                     </li>
                 </ul>
             </section>
@@ -91,7 +92,8 @@
         <!-- Charts -->
         <br>
         <div class="">
-            <h1 class="lightGreen"><center>Charts</center></h1>
+            <h1 class="lightGreen"><center>{{user}} Charts</center></h1>
+            <div id="container_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
             <div id="container_graph1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         </div>
         <!-- End Charts -->
@@ -101,52 +103,28 @@
     <script>
     $(document).ready(function() {
         // setInterval(function() {
-        var options1 = {
+        var options = {
             chart: {
-                renderTo: 'container_graph1',
-                type: 'line'
+                renderTo: 'container_graph',
+                type: 'spline'
             },
             xAxis: {
                 type: 'datetime'
             },
             title: {
-                text: 'Temperature for Existing Patients'
+                text: 'Temperature'
             },
-            /*  series: [{
-                  name: '',
-                  data: []
-              }]*/
+            series: [{
+                turboThreshold: Number.MAX_VALUE
+            }]
         };
 
-        $.getJSON('doctorsView/getUsersData', function(data) {
+        $.getJSON('/doctorsView/getData?email={{user}}', function(data) {
             var jsonRes = JSON.parse(data);
-            var chart1;
-            data1 = [];
-            var c = 0;
-            u_series = [];
-            for (i = 0; i < jsonRes.length; i++) {
-                if (u_series.indexOf(jsonRes[i].user_id) == -1) {
-                    u_series.push(jsonRes[i].user_id);
-                    //count++;
-                }
-            }
-            chart1 = new Highcharts.Chart(options1);
-            for (j = 0; j < u_series.length; j++) {
-                data1 = [];
-                for (i = 0; i < jsonRes.length; i++) {
-                    if (u_series[j] == jsonRes[i].user_id) {
-                        data1.push([Date.parse(jsonRes[i].x), parseInt(jsonRes[i].y)]);
-                        data1.sort();
-                    }
-                }
-                chart1.addSeries({
-                    name: u_series[j],
-                    data: data1
-                }, false);
-            }
-            chart1.redraw();
+            options.series[0].data = jsonRes;
+            var chart = new Highcharts.Chart(options);
         });
-        //  }, 5000);
+        // }, 5000);
     });
     </script>
 </body>

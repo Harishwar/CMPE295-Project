@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 from doctorsView import views
 
 urlpatterns = patterns('',
-    #url(r'^$', views.index, name='index'),
+    url(r'^$', views.dashboard, name='index'),
     url(r'addPatient$',views.addPatient,name='addPatient'),
     url(r'registerUser',views.addPatient,name='registerUser'),
     url(r'addSensor',views.addSensor,name='addSensor'),
@@ -17,8 +17,12 @@ urlpatterns = patterns('',
     url(r'deleteUserAllergy',views.deleteUserAllergy,name='deleteUserAllergy'),
     url(r'login',views.login_user,name='login_user'),
     url(r'logout',views.logout_user,name='logout_doctor'),
-    url(r'getData',views.dashboard_req,name='graph_load'),
+    url(r'getData',views.load_user_temp,name='graph_load'),
     url(r'dashboard',views.dashboard,name='dashboard'),
     url(r'getUsersData',views.dashboard_doc_req,name='graph_load_all'),
-    url(r'alertUser',views.sendAlert,name='alertUser')
+    url(r'alertUser',views.sendAlert,name='alertUser'),
+    url(r'settings',views.settings,name='settings'),
+    url(r'viewUserChart',views.viewUserChart,name='viewUserChart'),
+    url(r'loadAllergies',views.loadAllergies,name='loadAllergies'),
+    url(r'loadVaccinations',views.loadVaccinations,name='loadVaccinations'),
 )

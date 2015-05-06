@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <!--    <meta http-equiv="refresh" content="15">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!--  Font -->
+    <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
+    <!-- Highcharts -->
+    <script src="{%static 'js/highcharts.js'%}"></script>
+    <script src="{%static 'js/data.js'%}"></script>
+    <script src="{%static 'js/exporting.js'%}"></script>
+    <script src="http://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide-full.min.js"></script>
+    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide.config.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />
+</head>
+
+<body>
+    <section>
+        <!-- NavBar -->
+        <nav id="menu" class="menu">
+            <header class="menu-header">
+                <span class="menu-header-title">FitWhiz</span>
+            </header>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView">Home</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewCharts" class="active">Charts</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">User</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewProfile?email={{user.email}}">View Profile</a></li>
+                    <li><a href="/usersView/editProfile?email={{user.email}}">Edit Profile</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <h3 class="menu-section-title">Sensor</h3>
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/sensorHistory?email={{user.email}}">History</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="usersView/logout">Logout</a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </section>
+    <!-- End NavBar -->
+    <!-- Content -->
+    <section id="content" class="panel">
+        <!-- Header -->
+        <header id="header">
+            <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i>
+            </button>
+            <p class="lightGreen pull-right">Hello {{user.first_name}}!</p>
+        </header>
+        <!-- End Header -->
+        <div id="chartTabs" class="col-xs-offset" style="padding-top: 40px">
+            <ul class="nav nav-tabs">
+                <li class="nav active"><a href="#chart0" data-toggle="tab">Humidity Chart</a></li>
+                <li class="nav "><a href="#chart1" data-toggle="tab">Temperature Chart</a></li>
+                <li class="nav"><a href="#chart2" data-toggle="tab">Temperature HeatMap</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div id="chart0" class="tab-pane fade in active">
+                <!-- Chart -->
+                <h1 class="lightGreen"><center>Humidity Chart</center></h1>
+                <div id="container_graph_humid"></div>
+                <!-- End Chart -->
+            </div>
+            <!-- First Tab -->
+            <div id="chart1" class="tab-pane fade">
+                <!-- Chart -->
+                <h1 class="lightGreen"><center>Chart</center></h1>
+                <div id="container_graph"></div>
+                <!-- End Chart -->
+            </div>
+            <!-- End First Tab -->
+            <!-- Second Tab -->
+            <div id="chart2" class="tab-pane fade">
+                <!-- Chart -->
+                <h1 class="lightGreen"><center>Temperature Chart</center></h1>
+                <pre id="temperatureData" class="hidden"></pre>
+                <div id="temperature_graph"></div>
+                <!-- End Chart -->
+            </div>
+            <!-- End Second Tab -->
+        </div>
+    </section>
+    <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
+    <!-- End Content -->
+    <script type="text/javascript">
+    var dataOpt;
+    var chart;
+    $(document).ready(function() {
+        //setInterval(function(){
+        var options = {
+            chart: {
+                renderTo: 'container_graph',
+                type: 'spline'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            title: {
+                text: 'Temperature'
+            },
+            series: [{
+                turboThreshold: Number.MAX_VALUE
+            }]
+        };
+        var options_humid = {
+            chart: {
+                renderTo: 'container_graph_humid',
+                type: 'spline'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            title: {
+                text: 'Humidity'
+            },
+            series: [{
+                turboThreshold: Number.MAX_VALUE
+            }]
+        };
+
+        $.getJSON('/usersView/load_heat_map?email={{user.email}}', function(data) {
+            var jsonRes = JSON.parse(data);
+            data = [];
+            dataOpt = "Date,Time,Temperature \n";
+            for (i = 0; i < jsonRes.length; i++) {
+                var date = new Date(jsonRes[i].x);
+                dataOpt += date.toISOString().slice(0, 10) + "," + date.toISOString().slice(11, 13) + "," + parseInt(jsonRes[i].y) + "\n";
+            }
+            document.getElementById('temperatureData').innerHTML = dataOpt;
+        });
+
+        $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
+            var jsonRes = JSON.parse(data);
+            options.series[0].data = jsonRes;
+            var chart = new Highcharts.Chart(options);
+            chart.legend.allItems[0].update({
+                name: 'Temperature'
+            });
+        });
+        setInterval(function() {
+            $.getJSON('/usersView/load_humidity?email={{user.email}}', function(data) {
+                var jsonRes = JSON.parse(data);
+                options_humid.series[0].data = jsonRes;
+                var chart = new Highcharts.Chart(options_humid);
+                chart.legend.allItems[0].update({
+                    name: 'Humidity'
+                });
+            });
+        }, 3000);
+        //},1000);
+
+        (function(H) {
+            var Series = H.Series,
+                each = H.each,
+                wrap = H.wrap,
+                seriesTypes = H.seriesTypes;
+            Series.prototype.getContext = function() {
+                if (!this.canvas) {
+                    this.canvas = document.createElement('canvas');
+                    this.canvas.setAttribute('width', this.chart.chartWidth);
+                    this.canvas.setAttribute('height', this.chart.chartHeight);
+                    this.image = this.chart.renderer.image('', 0, 0, this.chart.chartWidth, this.chart.chartHeight).add(this.group);
+                    this.ctx = this.canvas.getContext('2d');
+                }
+                return this.ctx;
+            };
+            Series.prototype.canvasToSVG = function() {
+                this.image.attr({
+                    href: this.canvas.toDataURL('image/png')
+                });
+            };
+            H.wrap(H.seriesTypes.heatmap.prototype, 'drawPoints', function(proceed) {
+                var ctx = this.getContext();
+                if (ctx) {
+                    each(this.points, function(point) {
+                        var plotY = point.plotY,
+                            shapeArgs;
+                        if (plotY !== undefined && !isNaN(plotY) && point.y !== null) {
+                            shapeArgs = point.shapeArgs;
+                            ctx.fillStyle = point.pointAttr[''].fill;
+                            ctx.fillRect(shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height);
+                        }
+                    });
+                    this.canvasToSVG();
+                } else {
+                    this.chart.showLoading("Your browser doesn't support HTML5 canvas, <br>please use a modern browser");
+                }
+            });
+        }(Highcharts));
+
+        setTimeout(function() {
+            $('#temperature_graph').highcharts({
+                data: {
+                    csv: document.getElementById('temperatureData').innerHTML
+                },
+                chart: {
+                    type: 'heatmap',
+                    margin: [60, 10, 80, 50]
+                },
+                title: {
+                    text: 'Temperature',
+                    align: 'left',
+                    x: 40
+                },
+                subtitle: {
+                    text: 'Temperature variation by day',
+                    align: 'left',
+                    x: 40
+                },
+                xAxis: {
+                    type: 'datetime',
+                    min: Date.UTC(2015, 3, 10),
+                    max: Date.UTC(2015, 4, 10),
+                    labels: {
+                        align: 'left',
+                        x: 5,
+                        y: 14,
+                        format: '{value:%B %d}' // long month
+                    },
+                    showLastLabel: false,
+                    tickLength: 2
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        format: '{value}:00'
+                    },
+                    minPadding: 0,
+                    maxPadding: 0,
+                    startOnTick: false,
+                    endOnTick: false,
+                    tickPositions: [0, 6, 12, 18, 24],
+                    tickWidth: 1,
+                    min: 0,
+                    max: 23,
+                    reversed: true
+                },
+                colorAxis: {
+                    stops: [
+                        [0, '#3060cf'],
+                        [0.5, '#fffbbc'],
+                        [0.9, '#c4463a'],
+                        [1, '#c4463a']
+                    ],
+                    min: 22,
+                    max: 52,
+                    startOnTick: false,
+                    endOnTick: false,
+                    labels: {
+                        format: '{value}℃'
+                    }
+                },
+                series: [{
+                    borderWidth: 0,
+                    nullColor: '#EFEFEF',
+                    colsize: 24 * 36e5, // one day
+                    tooltip: {
+                        headerFormat: 'Temperature<br/>',
+                        pointFormat: '{point.x:%e %b, %Y} {point.y}:00: <b>{point.value} ℃</b>'
+                    },
+                    turboThreshold: Number.MAX_VALUE // #3404, remove after 4.0.5 release
+                }]
+            });
+        }, 10000);
+    });
+
+    $('#chartTabs a').click(function(e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+    </script>
+</body>
+
+</html>

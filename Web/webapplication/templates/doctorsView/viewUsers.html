@@ -9,10 +9,23 @@
     <title>View Patients</title>
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Sweetalert CSS -->
+    <link href="{%static 'css/sweetalert.min.css'%}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" ztype="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/viewusers.css'%}">
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Sweetalert.js -->
+    <script src="{%static 'js/sweetalert.min.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body>
@@ -24,7 +37,7 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/doctorsView/dashboard.html">Dashboard</a></li>
+                    <li><a href="/doctorsView/dashboard">Dashboard</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -32,6 +45,12 @@
                 <ul class="menu-section-list">
                     <li><a href="/doctorsView/addPatient">Add Patients</a></li>
                     <li><a href="/doctorsView/viewUsers" class="active">View Patients</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/doctorsView/settings">Settings</a>
+                    </li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -72,9 +91,14 @@
                         <a class="profileName" data-toggle="modal" data-firstname={{user.first_name}}&nbsp; data-lastname={{user.last_name}}&nbsp; data-dob={{user.dob}}&nbsp; data-address={{user.address}}&nbsp; data-gender={{user.gender}}&nbsp; data-maritalstatus={{user.marital_status}}&nbsp; data-height={{user.height}}&nbsp; data-weight={{user.weight}}&nbsp; data-bloodtype={{user.blood_type}}&nbsp; data-phone={{user.phone_number}}&nbsp;>
                             <i class="glyphicon glyphicon-user icon-enlarge">&nbsp;{{ user.last_name }}&#44;&nbsp;{{ user.first_name }}</i>
                         </a>
-                        <a class="alertEmail show pull-right" data-toggle="modal">
-                            <i class="glyphicon glyphicon-comment icon-enlarge"></i>
-                        </a>
+                        <div class="pull-right">
+                            <a href="viewUserChart?email={{user.email}}">
+                                <i class="glyphicon glyphicon glyphicon-picture icon-enlarge"></i>
+                            </a>
+                            <a class="alertEmail " data-toggle="modal">
+                                <i class="glyphicon glyphicon-comment icon-enlarge"></i>
+                            </a>
+                        </div>
                     </li>
                     {% endfor %}
                 </section>
@@ -83,66 +107,90 @@
         <!-- End Registration Form -->
     </section>
     <!-- Patient Modal -->
-    <div id="viewUserModal" class="modal fade">
+    <div id="viewUserModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close">&times;</button>
                     <h3 class="modal-title text-center" id="profileName"></h3>
+                    <!-- Tabs -->
+                    <div id="userTabs" class="col-xs-offset" style="padding-top: 40px">
+                        <ul class="nav nav-tabs">
+                            <li class="nav active"><a href="#UserDetails" data-toggle="tab">Details</a></li>
+                            <li class="nav"><a href="#userAllergies" data-toggle="tab">Allergies</a></li>
+                            <li class="nav"><a href="#userVaccinations" data-toggle="tab">Vaccinations</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-                        <br>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">First Name</label>
-                            <text id="profileFirstName" class="col-xs-8 col-sm-9"></text>
+                    <div class="tab-content">
+                        <!-- Tab1 -->
+                        <div id="UserDetails" class="tab-pane fade in active">
+                            <br>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">First Name</label>
+                                <text id="profileFirstName" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Last Name</label>
+                                <text id="profileLastName" class="col-xs-8 col-sm-3"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Email</label>
+                                <text id="profileEmail" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">D.O.B</label>
+                                <text id="profileDOB" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Address</label>
+                                <text id="profileAddress" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Gender</label>
+                                <text id="profileGender" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Marital Status</label>
+                                <text id="profileMaritalStatus" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Height</label>
+                                <text id="profileHeight" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Weight</label>
+                                <text id="profileWeight" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Blood Group</label>
+                                <text id="profileBloodType" class="col-xs-8 col-sm-9"></text>
+                            </div>
+                            <div class="row">
+                                <label class="col-xs-4 col-sm-3">Phone</label>
+                                <text id="profilePhone" class="col-xs-8 col-sm-9"></text>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Last Name</label>
-                            <text id="profileLastName" class="col-xs-8 col-sm-3"></text>
+                        <!-- Tab2 -->
+                        <div id="userAllergies" class="tab-pane fade">
+                            <h3 class="modal-title text-center">Allergies</h3>
+                            <div id="userAllergiesList">
+                                <p>...</p>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Email</label>
-                            <text id="profileEmail" class="col-xs-8 col-sm-9"></text>
+                        <!-- Tab3 -->
+                        <div id="userVaccinations" class="tab-pane fade">
+                            <h3 class="modal-title text-center">Vaccinations</h3>
+                            <div id="userVaccinationsList">
+                                <p>...</p>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">D.O.B</label>
-                            <text id="profileDOB" class="col-xs-8 col-sm-9"></text>
+                        <!-- Buttons -->
+                        <div class="pull-right">
+                            <!-- <button class="text-success" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;</button> -->
+                            <button id="deletePatient" class="text-danger" title="Delete Patient"><i class="glyphicon glyphicon-trash icon-enlarge"></i></button>
                         </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Address</label>
-                            <text id="profileAddress" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Gender</label>
-                            <text id="profileGender" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Marital Status</label>
-                            <text id="profileMaritalStatus" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Height</label>
-                            <text id="profileHeight" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Weight</label>
-                            <text id="profileWeight" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Blood Group</label>
-                            <text id="profileBloodType" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                        <div class="row">
-                            <label class="col-xs-4 col-sm-3">Phone</label>
-                            <text id="profilePhone" class="col-xs-8 col-sm-9"></text>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="text-danger pull-right" title="Delete Patient"><i class="glyphicon glyphicon-trash icon-enlarge"></i>
-                        </button>
-                        <button class="text-success pull-right" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;
-                        </button>
                     </div>
                 </div>
                 <br>
@@ -181,14 +229,6 @@
     <!-- End Alert Modal -->
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
     <script type="text/javascript">
     $(function() {
         $("li").click(function() {
@@ -196,6 +236,7 @@
         }).on('click', '.profileName', function(e) {
             $('#viewUserModal').on('show.bs.modal', function(e) {
                 var email = $(event.target).closest('li').data('id');
+                genericEmail = email;
                 var profile = $(event.target).closest('a');
                 $('#profileName').text(profile.data('lastname') + ", " + profile.data('firstname'));
                 $('#profileFirstName').text(profile.data('firstname'));
@@ -207,7 +248,7 @@
                 $('#profileMaritalStatus').text(profile.data('maritalstatus'));
                 $('#profileHeight').text(profile.data('height'));
                 $('#profileWeight').text(profile.data('weight'));
-                $('#profileBloodType').text(profile.data('blood_type'));
+                $('#profileBloodType').text(profile.data('bloodtype'));
                 $('#profilePhone').text(profile.data('phone'));
             })
             $("#viewUserModal").modal('show');
@@ -239,7 +280,59 @@
                 $('#alertMessage').removeClass('hidden').addClass('text-danger').text('Status: ' + textStatus + '<br>Error: ' + errorThrown);
             }
         });
+    });
+    // Tab Navigation
+    $('#userTabs a').click(function() {
+        $(this).tab('show');
+        $('#userAllergiesList').empty();
+        $('#userVaccinationsList').empty();
+        if ($(this).attr('href') == "#userAllergies") {
+            $.getJSON("loadAllergies?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
+                var jsonRes = JSON.parse(response);
+                for (i = 1; i <= jsonRes.length; i++) {
+                    $('#userAllergiesList').append("<p><strong>Allergy " + i + ": </strong>" + jsonRes[i - 1] + "</p>");
+                }
+            });
+        } else if ($(this).attr('href') == "#userVaccinations") {
+            $.getJSON("loadVaccinations?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
+                var jsonRes2 = JSON.parse(response);
+                $('#userVaccinationsList').append("<p><strong>Date Visited: </strong>" + new Date(jsonRes2[0].date_visited).toISOString().slice(0, 10) + "</p><p><strong>Description: </strong>" + jsonRes2[0].desc + "</p><br>");
+            });
+        }
+    });
 
+    // Delete Patient
+    $('#deletePatient').on('click', function(e) {
+        sweetAlert({
+            title: "Are you sure you want to delete this Patient?",
+            text: "You will not be able to recover information!",
+            showCancelButton: true,
+            confirmButtonColor: "#009664",
+            confirmButtonText: "Yes!",
+            closeOnConfirm: false,
+            html: false
+        }, function() {
+            url = "deleteUser?email=" + $("#profileEmail").text();
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: url,
+                success: function(data) {
+                    swal({
+                        title: "Deleted!",
+                        text: "Patient is removed",
+                        type: "success"
+                    }, function() {
+                        window.location.reload();
+                    });
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    swal("Failure!",
+                        "Service Error",
+                        "warning");
+                }
+            });
+        });
     });
     </script>
 </body>

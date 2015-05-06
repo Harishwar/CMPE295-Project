@@ -12,7 +12,16 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/usersView/viewUser.css'%}">
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body>
@@ -24,7 +33,12 @@
             </header>
             <section class="menu-section">
                 <ul class="menu-section-list">
-                    <li><a href="/usersView/viewDashBoard">Dashboard</a></li>
+                    <li><a href="/usersView">Home</a></li>
+                </ul>
+            </section>
+            <section class="menu-section">
+                <ul class="menu-section-list">
+                    <li><a href="/usersView/viewCharts">Charts</a></li>
                 </ul>
             </section>
             <section class="menu-section">
@@ -53,75 +67,118 @@
         <!-- Header -->
         <header id="header">
             <button id="navbar-toggle" class="js-slideout-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+            <p class="lightGreen pull-right">Hello {{user.first_name}}!</p>
         </header>
         <!-- End Header -->
-        <!-- Registration Form -->
-        <br>
-        <div class="container">
-            <br>
-            <h1 class="lightGreen"><center>View Profile</center></h1>
-            <hr>
-            <div class="container">
-                {% csrf_token %}
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">First Name</label>
-                    <text>{{user.first_name}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Last Name</label>
-                    <text>{{user.last_name}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Email</label>
-                    <text>{{user.email}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">D.O.B</label>
-                    <text>{{user.dob}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Address</label>
-                    <text>{{user.address}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Gender</label>
-                    <text>{{user.gender}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Marital Status</label>
-                    <text>{{user.marital_status}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Height</label>
-                    <text>{{user.height}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Weight</label>
-                    <text>{{user.weight}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Blood Group</label>
-                    <text>{{user.blood_type}}</text>
-                </p>
-                <p class="text-group">
-                    <label class="col-xs-3 col-sm-3">Phone</label>
-                    <text>{{user.phone_number}}</text>
-                </p>
-            </div>
-            <br>
+        <!-- Tabs -->
+        <div id="userTabs" class="col-xs-offset" style="padding-top: 40px">
+            <ul class="nav nav-tabs">
+                <li class="nav active"><a href="#UserDetails" data-toggle="tab">Profile</a></li>
+                <li class="nav"><a href="#userAllergies" data-toggle="tab">Allergies</a></li>
+                <li class="nav"><a href="#userVaccinations" data-toggle="tab">Vaccinations</a></li>
+            </ul>
         </div>
-        <!-- End Registration Form -->
+        <div class="tab-content">
+            <!-- Tab1 -->
+            <div id="UserDetails" class="tab-pane fade in active">
+                <!-- Registration Form -->
+                <h1 class="lightGreen"><center>View Profile</center></h1>
+                <hr>
+                <div class="container">
+                    {% csrf_token %}
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">First Name</label>
+                        <text>{{user.first_name}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Last Name</label>
+                        <text>{{user.last_name}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Email</label>
+                        <text>{{user.email}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">D.O.B</label>
+                        <text>{{user.dob}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Address</label>
+                        <text>{{user.address}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Gender</label>
+                        <text>{{user.gender}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Marital Status</label>
+                        <text>{{user.marital_status}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Height</label>
+                        <text>{{user.height}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Weight</label>
+                        <text>{{user.weight}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Blood Group</label>
+                        <text>{{user.blood_type}}</text>
+                    </p>
+                    <p class="text-group">
+                        <label class="col-xs-3 col-sm-3">Phone</label>
+                        <text>{{user.phone_number}}</text>
+                    </p>
+                </div>
+                <!-- End Registration Form -->
+                <br>
+            </div>
+            <!-- Tab2 -->
+            <div id="userAllergies" class="tab-pane fade">
+                <h1 class="lightGreen"><center>View Allergies</center></h1>
+                <hr>
+                <div class="container">
+                    <div id="userAllergiesList">
+                        <p>...</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Tab3 -->
+            <div id="userVaccinations" class="tab-pane fade">
+                <h1 class="lightGreen"><center>View Vaccinations</center></h1>
+                <hr>
+                <div class="container">
+                    <div id="userVaccinationsList">
+                        <p>...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
+    <script>
+    // Tab Navigation
+    $('#userTabs a').click(function() {
+        $(this).tab('show');
+        $('#userAllergiesList').empty();
+        $('#userVaccinationsList').empty();
+        if ($(this).attr('href') == "#userAllergies") {
+            $.getJSON("loadAllergies?email={{user.email}}", function(response) {
+                var jsonRes = JSON.parse(response);
+                for (i = 1; i <= jsonRes.length; i++) {
+                    $('#userAllergiesList').append("<strong>Allergy " + i + ": </strong>" + jsonRes[i - 1] + "<br>");
+                }
+            });
+        } else if ($(this).attr('href') == "#userVaccinations") {
+            $.getJSON("loadVaccinations?email={{user.email}}", function(response) {
+                var jsonRes2 = JSON.parse(response);
+                $('#userVaccinationsList').append("<strong>Date Visited: </strong>" + new Date(jsonRes2[0].date_visited).toISOString().slice(0, 10) + "<br><strong>Description: </strong>" + jsonRes2[0].desc + "<br><br>");
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>
