@@ -58,7 +58,6 @@ ROOT_URLCONF = 'healthCareWeb.urls'
 
 WSGI_APPLICATION = 'healthCareWeb.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -105,7 +104,6 @@ LOGIN_URL='/doctorsView/login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_ROOT = os.path.join(BASE_DIR, "var", "www")
 
 STATIC_URL = '/static/'

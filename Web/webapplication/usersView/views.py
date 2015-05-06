@@ -72,7 +72,7 @@ def loadSensorHistory(request):
         for row in rows:
             sensor_obj=collections.OrderedDict()
             if isinstance(row[0], datetime.datetime):
-                dateVal= str(row[0].time())       
+                dateVal= str(row[0].time())
             sensor_obj['time']=dateVal
             sensor_obj['humidity']=row[1]
             sensor_obj['irt_body']=row[2]

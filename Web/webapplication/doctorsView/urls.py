@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 from doctorsView import views
 
 urlpatterns = patterns('',
-    #url(r'^$', views.index, name='index'),
+    url(r'^$', views.dashboard, name='index'),
     url(r'addPatient$',views.addPatient,name='addPatient'),
     url(r'registerUser',views.addPatient,name='registerUser'),
     url(r'addSensor',views.addSensor,name='addSensor'),

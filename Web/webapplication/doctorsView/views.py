@@ -106,15 +106,13 @@ def addSensor(request):
 def viewUsers(request):
     try:
         if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==1:
-            print {'users':Users.objects.filter(role_type='2')}
             context={'users':Users.objects.filter(role_type='2')}
             return render(request,'doctorsView/viewUsers.html',context)
         else:
             return render(request,'index.html')
-
     except:
         return HttpResponse("Service Error!!!")
-    
+
 #Fetches users by lastname
 @csrf_exempt
 def getUserByLastName(request):
@@ -202,7 +200,6 @@ def deleteUserAllergy(request):
     UserAllergies.objects.get(user_id=usr_id,allergy_id=allergy_id).delete();
     return JsonResponse({'status':204,"result":"User Allergy Deleted Successfully"})
 
-
 def login_user(request):
     if request.session.get('user_id') and request.session.get('role_id')==1:
         context={'users':Users.objects.filter()}
@@ -226,7 +223,6 @@ def login_user(request):
             return redirect('/usersView/',context)
         else:
             return HttpResponse("Invalid user");
-
 
 def authenticate(username,password):
     try:
@@ -371,9 +367,5 @@ def load_user_humidity(request):
             graph_obj_humid['y']=round(float(row[1]),2)
             #graph_obj['user_id']=row[0]
             rowsList.append(graph_obj_humid)
-            
         connections['sensors'].close()
     return JsonResponse(json.dumps(rowsList),safe=False)
-
-
-

@@ -16,6 +16,49 @@
     <link rel="stylesheet" href="{%static 'css/index.css'%}">
     <!-- Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Fullpage.js -->
+    <script src="{%static 'js/jquery.fullPage.min.js'%}"></script>
+    <!-- Custom Initialization Script -->
+    <script>
+    $(function() {
+        /* Login */
+        $("#loginButton").click(function() {
+            $("#login").modal('show');
+        });
+
+        $('#loginformbutton').click(function() {
+            $(".modal-content").slideUp(500, function() {
+                $('#modaltitle').text('Forgot Password');
+                $('#loginform').addClass('hidden');
+                $('#passwordform').removeClass('hidden');
+            });
+            $(".modal-content").slideDown();
+        });
+
+        $('#passwordformbutton').click(function() {
+            $(".modal-content").slideUp(500, function() {
+                $('#modaltitle').text('Login');
+                $('#loginform').removeClass('hidden');
+                $('#passwordform').addClass('hidden');
+            });
+            $(".modal-content").slideDown();
+        });
+
+        /* Fullpage.js */
+        $('#fullpage').fullpage({
+            navigation: true,
+            slidesNavigation: true,
+            navigationPosition: 'right',
+            navigationColor: '#009664',
+            sectionsColor: ['whitesmoke'],
+            controlArrows: false,
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -122,49 +165,6 @@
         </div>
     </section>
     <!-- End Login Modal -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Fullpage.js -->
-    <script src="{%static 'js/jquery.fullPage.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script>
-    $(function() {
-        /* Login */
-        $("#loginButton").click(function() {
-            $("#login").modal('show');
-        });
-
-        $('#loginformbutton').click(function() {
-            $(".modal-content").slideUp(500, function() {
-                $('#modaltitle').text('Forgot Password');
-                $('#loginform').addClass('hidden');
-                $('#passwordform').removeClass('hidden');
-            });
-            $(".modal-content").slideDown();
-        });
-
-        $('#passwordformbutton').click(function() {
-            $(".modal-content").slideUp(500, function() {
-                $('#modaltitle').text('Login');
-                $('#loginform').removeClass('hidden');
-                $('#passwordform').addClass('hidden');
-            });
-            $(".modal-content").slideDown();
-        });
-
-        /* Fullpage.js */
-        $('#fullpage').fullpage({
-            navigation: true,
-            slidesNavigation: true,
-            navigationPosition: 'right',
-            navigationColor: '#009664',
-            sectionsColor: ['whitesmoke'],
-            controlArrows: false,
-        });
-    });
-    </script>
 </body>
 
 </html>

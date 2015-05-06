@@ -12,56 +12,24 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{%static 'css/common.css'%}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
+    <!-- HighCharts -->
+    <script src="{%static 'js/highcharts.js'%}"></script>
+    <script src="{%static 'js/data.js'%}"></script>
+    <script src="{%static 'js/exporting.js'%}"></script>
+    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide-full.min.js"></script>
+    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide.config.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />
 </head>
-<script>
-$(document).ready(function() {
-
-    // setInterval(function() {
-    var options = {
-        chart: {
-
-            renderTo: 'container_graph',
-            type: 'spline'
-        },
-        xAxis: {
-            type: 'datetime'
-        },
-        title: {
-            text: 'Temperature'
-        },
-
-        series: [{}]
-    };
-
-    $.getJSON('/doctorsView/getData?email={{user}}', function(data) {
-        var jsonRes = JSON.parse(data);
-        console.log(data);
-        options.series[0].data = jsonRes;
-        var chart = new Highcharts.Chart(options);
-    });
-
-
-    //  }, 5000);
-
-});
-
-function testData() {
-    //        $.ajax({
-    //            url: "/doctorsView/getData?email=test1@test1.com",
-    //            type: "GET",
-    //            data: "",
-    //            success: function(data) {
-    //                alert(JSON.stringify(data));
-    //
-    //            },
-    //            error: function(err) {
-    //                alert(JSON.stringify(err));
-    //            }
-    //        });
-}
-</script>
-<!--<body onload="testData()"> -->
 
 <body>
     <section>
@@ -132,20 +100,33 @@ function testData() {
     </section>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
-    <script src="{%static 'js/highcharts.js'%}"></script>
-    <script src="{%static 'js/data.js'%}"></script>
-    <script src="{%static 'js/exporting.js'%}"></script>
-    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide-full.min.js"></script>
-    <script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide.config.js" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />
+    <script>
+    $(document).ready(function() {
+        // setInterval(function() {
+        var options = {
+            chart: {
+                renderTo: 'container_graph',
+                type: 'spline'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            title: {
+                text: 'Temperature'
+            },
+            series: [{
+                turboThreshold: Number.MAX_VALUE
+            }]
+        };
+
+        $.getJSON('/doctorsView/getData?email={{user}}', function(data) {
+            var jsonRes = JSON.parse(data);
+            options.series[0].data = jsonRes;
+            var chart = new Highcharts.Chart(options);
+        });
+        // }, 5000);
+    });
+    </script>
 </body>
 
 </html>

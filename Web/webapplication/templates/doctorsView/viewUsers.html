@@ -14,7 +14,18 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" ztype="text/css" href="{%static 'css/common.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'css/viewusers.css'%}">
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Sweetalert.js -->
+    <script src="{%static 'js/sweetalert.min.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body>
@@ -218,16 +229,6 @@
     <!-- End Alert Modal -->
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Sweetalert.js -->
-    <script src="{%static 'js/sweetalert.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
     <script type="text/javascript">
     $(function() {
         $("li").click(function() {
@@ -289,13 +290,13 @@
             $.getJSON("loadAllergies?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
                 var jsonRes = JSON.parse(response);
                 for (i = 1; i <= jsonRes.length; i++) {
-                    $('#userAllergiesList').append("<strong>Allergy " + i + ": </strong>" + jsonRes[i - 1] + "<br>");
+                    $('#userAllergiesList').append("<p><strong>Allergy " + i + ": </strong>" + jsonRes[i - 1] + "</p>");
                 }
             });
         } else if ($(this).attr('href') == "#userVaccinations") {
             $.getJSON("loadVaccinations?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
                 var jsonRes2 = JSON.parse(response);
-                $('#userVaccinationsList').append("<strong>Date Visited: </strong>" + new Date(jsonRes2[0].date_visited).toISOString().slice(0, 10) + "<br><strong>Description: </strong>" + jsonRes2[0].desc + "<br><br>");
+                $('#userVaccinationsList').append("<p><strong>Date Visited: </strong>" + new Date(jsonRes2[0].date_visited).toISOString().slice(0, 10) + "</p><p><strong>Description: </strong>" + jsonRes2[0].desc + "</p><br>");
             });
         }
     });

@@ -17,7 +17,18 @@
         document.getElementById('email').value = localStorage.getItem('patient_email');
     }
     </script>
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Slideout.js -->
+    <script src="{%static 'js/slideout.min.js'%}"></script>
+    <!-- Selectonic JavaScript -->
+    <script src="{%static 'js/selectonic.min.js'%}"></script>
+    <!--  Font -->
     <script src="http://use.edgefonts.net/source-sans-pro.js"></script>
+    <!-- Custom Initialization Script -->
+    <script src="{%static 'js/init.js'%}"></script>
 </head>
 
 <body onload=getLocalUserName()>
@@ -101,17 +112,7 @@
     </div>
     <a href="#" class="back-to-top" title="Back to Top"><i class="glyphicon glyphicon-circle-arrow-up"></i></a>
     <!-- End Content -->
-    <!-- jQuery -->
-    <script src="{%static 'js/jquery-2.1.1.min.js'%}"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="{%static 'js/bootstrap.min.js'%}"></script>
-    <!-- Slideout.js -->
-    <script src="{%static 'js/slideout.min.js'%}"></script>
-    <!-- Custom Initialization Script -->
-    <script src="{%static 'js/init.js'%}"></script>
-    <!-- Selectonic JavaScript -->
-    <script src="{%static 'js/selectonic.min.js'%}"></script>
-    <script type="text/javascript">
+    <script>
     (function($) {
         'use strict';
         var $el = $('#allergiesList'),
@@ -148,8 +149,6 @@
 
         actions.on('click', 'button', function() {
             // Get selected items from list
-            // doAction(list.selectonic('getSelected'));
-            // csrf_token = "{{ csrf_token }}";
             $.ajax({
                 type: "POST",
                 url: "/doctorsView/addUserAllergies",
@@ -164,8 +163,6 @@
                     console.log(err);
                 }
             });
-            //console.log(data);
-            console.log(toObject(list.selectonic('getSelected')));
         });
 
         function onFocusin() {
@@ -205,13 +202,6 @@
         }
         toggleActions(true);
     })(jQuery);
-    // Function lo load list of allergies
-    // function getAllergiesList() {
-    //     var options = new Array("Allergy 1", "Allergy 2", "Allergy 3", "Allergy 4");
-    //     for (var i = 0; i < options.length; i++) {
-    //         $("#allergiesList_group").append('<li class="allergiesList_option">' + options[i] + '</li>');
-    //     }
-    // }
     </script>
 </body>
 
