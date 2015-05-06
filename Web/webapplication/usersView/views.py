@@ -93,7 +93,7 @@ def loadBMI(request):
 def loadTemperature(request):
     email = request.GET.get('email')
     cursor=connection.cursor()
-    cursor.execute("select irt_ambient_avg from SensorResults.crunched_results where user_id=%s",[email])
+    cursor.execute("select irt_body_avg from SensorResults.crunched_results where user_id=%s order by date_logged desc",[email])
     rows=cursor.fetchall()
     return JsonResponse(rows,safe=False)
 
