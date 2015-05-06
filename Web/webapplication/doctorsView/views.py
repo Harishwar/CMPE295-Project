@@ -20,12 +20,11 @@ import json
 from email import email
 from httplib import HTTPResponse
 import time
-
-# Create your views here.
+from django.core import serializers
 
 logger = logging.getLogger()
 
-#first view to show the index
+# First View
 def index(request):
     return render(request,"doctorsView/dashboard.html");
 
@@ -43,8 +42,6 @@ def dashboard(request):
         return render(request,'usersView/dashboard.html')
     else:
         return render(request,'index.html')
-# def addPatient(request):
-#     return render(request,"registerUser.html");
 
 def addPatient(request):
     try:
@@ -66,13 +63,11 @@ def addPatient(request):
             registration.weight=request.POST.get('inputWeight')
             registration.blood_type=request.POST.get('inputBloodType')
             registration.phone_number=request.POST.get('inputPhone')
-
             # need to convert to a timezone as it throws an exception
             registration.date_created = datetime.datetime.now()
             registration.date_modified = datetime.datetime.now()
             registration.save()
             saved_details = Users.objects.get(id=registration.id)
-
             send_mail('HealthCareWeb registration', 'Hi,\n You have successfully registered for Enhanced Health Care Web.Please find below the username:' + saved_details.email + ' \n password:', 'saninnovator@gmail.com', [saved_details.email], fail_silently=True)
                 #saved_details=User.objects.filter(id=created_id).values()
                 #serialized_obj = serializers.serialize('json', [ saved_details, ])
@@ -80,15 +75,9 @@ def addPatient(request):
             return HttpResponseRedirect(reverse('addSensor')+'?email='+saved_details.email)
         else:
             return render(request, 'index.html')
-
     except HTTPError:
                 logger.debug("Error Handling Registration")
                 return "Error"
-
-
-
-#redirect(doctorsView.views.addSensor, saved_details.email)
-
 
 #Method to handle the user sensor data
 #@login_required(login_url='/doctorsView/login/')
@@ -99,8 +88,6 @@ def addSensor(request):
         elif request.method=='POST' and request.session.get('user_id') and request.session.get('role_id')==1:
             sensor_details = SensorUser()
             email=request.POST.get('email')
-            #print email
-            #print'Entered Here'
             user_object=Users.objects.get(email=email)
             sensor_details.user_id=user_object
             sensor_details.sensor_id=request.POST.get('SensorID')
@@ -126,6 +113,7 @@ def viewUsers(request):
 
     except:
         return HttpResponse("Service Error!!!")
+    
 #Fetches users by lastname
 @csrf_exempt
 def getUserByLastName(request):
@@ -142,10 +130,8 @@ def getUserByLastName(request):
 #returns the list of allergies
 def getAllergiesList(request):
     try:
-            ##print serializers.serialize("json", Allergies.objects.all(),fields=('allergy_name'))
         #if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==1:
         context={'allergies':Allergies.objects.values('allergy_name')}
-            #print 'allergies'
         return render(request,'doctorsView/addAllergies.html',context)
     except:
         return HttpResponse("Service ALL Error!!!")
@@ -154,14 +140,10 @@ def getAllergiesList(request):
 def addUserAllergies(request):
     try:
         if request.method=='POST' and request.session.get('user_id') and request.session.get('role_id')==1:
-            #print request.POST.get('email')
             email=request.POST.get('email')
             user_object=Users.objects.get(email=email)
-            #print "db",user_object.email
-            #print request.POST.getlist('allergy[]')
             for allergy_name in request.POST.getlist('allergy[]'):
                 user_allergies=UserAllergies();
-                #print Allergies.objects.get(allergy_name=allergy_name)
                 allergy_object=Allergies.objects.get(allergy_name=allergy_name)
                 user_allergies.user_id=user_object
                 user_allergies.allergy_id=allergy_object
@@ -169,7 +151,6 @@ def addUserAllergies(request):
                 user_allergies.date_modified=datetime.datetime.now()
                 user_allergies.save()
                 #allergy_object=Allergies.objects.filter(allergy_name=list_allergies)
-                #for allergy in list_allergies:
             return JsonResponse({"status":201,"result":"Allergies User Relation Added"})
         else:
             return render(request,'index.html')
@@ -182,7 +163,6 @@ def addUserVaccination(request):
             return render(request,'doctorsView/vaccination.html')
         elif(request.method=='POST' and request.session.get('user_id')):
             user_object=Users.objects.get(email=request.POST.get('email'))
-            #print 'email from add sensor',request.POST.get('email')
             user_vaccination=UserVaccination()
             user_vaccination.vaccination_desc=request.POST.get('vaccination')
             user_vaccination.user_id=user_object
@@ -196,7 +176,6 @@ def addUserVaccination(request):
             return render(request,'index.html')
     except:
         return HttpResponse("Service Error!!!")
-#def updateUser(request):
 
 @csrf_exempt
 def deleteUser(request):
@@ -219,32 +198,24 @@ def deleteUserAllergy(request):
     allergy_name=request.POST.get('allergy_name')
     usr_id=Users.objects.get(email=user_id).id
     allergy_id=Allergies.objects.get(allergy_name=allergy_name).id
-    #print usr_id
-    #print allergy_id
     UserAllergies.objects.get(user_id=usr_id,allergy_id=allergy_id).delete();
     return JsonResponse({'status':204,"result":"User Allergy Deleted Successfully"})
 
 
 def login_user(request):
     if request.session.get('user_id') and request.session.get('role_id')==1:
-        #print "session"+request.session.get('user_id')
         context={'users':Users.objects.filter()}
         return render(request,'doctorsView/dashboard.html',context)
     elif request.session.get('user_id') and request.session.get('role_id')==2:
-        #print "session"+request.session.get('user_id')
         context={'user':Users.objects.get(email=request.session.get('user_id'))}
         return render(request,'usersView/dashboard.html',context)
     else:
         username=request.POST['email']
-        #print username
         password=request.POST['password']
-        #print password
         user=authenticate(username=username,password=password)
-        #print user.role_type
         if user is not None and user.role_type==1:
             request.session['user_id']=user.email
             request.session['role_id']=1
-            #print "session"+request.session.get('user_id')
             context={'users':Users.objects.filter()}
             return render(request,'doctorsView/dashboard.html',context)
         elif user is not None and user.role_type==2:
@@ -261,43 +232,27 @@ def authenticate(username,password):
         return Users.objects.get(email=username,password=password)
     except Users.DoesNotExist:
         return None
-    ##print Users.objects.get(email=username,password=password)
-
 
 def logout_user(request):
     try:
-        #print request.session['user_id']
-        #print request.session['role_id']
         del request.session['user_id']
         del request.session['role_id']
-        #print "del", request.session['user_id']
-        #print "del",request.session['role_id']
     except KeyError:
         pass
-    # return HttpResponse("You're logged out.")
     return render(request,"logout.html");
 
 def dashboard_req(request):
-    #print 'dashboard_req'
     if request.method=='GET' and request.session.get('user_id'):
         email=request.GET.get('email')
-        ##print '-------->'
-        ##print load_user_data(email)
-        #return HTTPResponse("hiii")
         return JsonResponse(load_user_data(email),safe=False)
 
 @csrf_exempt
 def dashboard_doc_req(request):
     if request.method=='GET' and request.session.get('user_id'):
-        #print '-------->'
-        #print"Hiiii"
-        ##print load_all_users_data()
-
         return JsonResponse(load_all_users_data(),safe=False)
 
 def load_user_data(email):
     try:
-
         cursor=connections['sensors'].cursor()
         cursor.execute("select user_id, date_logged,irt_ambient_avg from SensorResults.crunched_results where user_id=%s",[email])
         rows=cursor.fetchall()
@@ -310,7 +265,6 @@ def load_user_data(email):
             graph_obj['y']=row[2]
             graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
-            ##print row
         connections['sensors'].close()
         return json.dumps(rowsList)
     except:
@@ -320,7 +274,7 @@ def load_user_temp(request):
     if request.method=='GET' and request.session.get('user_id'):
         email=request.GET.get('email')
         cursor=connections['sensors'].cursor()
-        cursor.execute("select date_logged,irt_ambient_avg from SensorResults.crunched_results where user_id=%s order by date_logged asc limit 1000",[email])
+        cursor.execute("select date_logged,irt_body_avg from SensorResults.crunched_results where user_id=%s order by date_logged asc limit 1000",[email])
         rows=cursor.fetchall()
         rowsList=[]
         for row in rows:
@@ -331,19 +285,14 @@ def load_user_temp(request):
             graph_obj['y']=row[1]
             #graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
-            ##print row
         connections['sensors'].close()
     return JsonResponse(json.dumps(rowsList),safe=False)
 
-
-
 def load_all_users_data():
     try:
-        #print "entered load users"
         cursor=connections['sensors'].cursor()
         cursor.execute("select * from SensorResults.crunched_results")
         rows=cursor.fetchall()
-        ##print rows
         rowsList=[]
         for row in rows:
             graph_obj=collections.OrderedDict()
@@ -353,7 +302,7 @@ def load_all_users_data():
             graph_obj['y']=row[2]
             graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
-        connections['sensors'].close()   ##print row
+        connections['sensors'].close()
         return json.dumps(rowsList)
     except:
         return "Could not process"
@@ -363,19 +312,12 @@ def sendAlert(request):
     try:
         email=request.POST.get('email')
         message=request.POST.get('message')
-        #print 'message'
-        #print email
         #send_mail('HealthCareWeb Alert',message,+"'"+request.session.get('user_id')+"'",[email],fail_silently=True)
         send_mail('HealthCareWeb Alert',message,'sanatom.sjsu@gmail.com',[email],fail_silently=False)
-
         user = Users.objects.get(email=email).id
-        #print "user",user
         #usr_id=Users.objects.get(email=user_id).id
         sensor_user_id= SensorUser.objects.get(user_id=user).sensor_id
-        #print "sensor",sensor_user_id
-        #print "insert into SensorResults.Alerts values('",sensor_user_id,"','",message,"','",datetime.datetime.now(),"')"
         cursor = connection.cursor()
-        #print "insert into SensorResults.Alerts values('",sensor_user_id+"','",message,"','",datetime.datetime.now(),"')"
         cursor.execute("insert into SensorResults.Alerts values(default,'"+sensor_user_id+"','"+message+"','"+str(datetime.datetime.now())+"')")
         #transaction.set_dirty()
         #last_id = connection.insert_id()
@@ -388,15 +330,30 @@ def settings(request):
     return render(request,'doctorsView/settings.html')
 
 def loadAllergies(request):
-    print request.GET.get('email')
-    return JsonResponse({"allergies":"1,2,3"})
+    email= request.GET.get('email')
+    email=request.GET.get('email') 
+    user_allergy_id= Users.objects.get(email=email).id
+    user_allergies = UserAllergies.objects.filter(user_id=user_allergy_id).values()
+    all_list=[];
+    for i in user_allergies:
+        all_list.append(Allergies.objects.get(id=i['allergy_id_id']).allergy_name)
+    #serialized_obj = serializers.serialize('json', user_allergies)
+    #jsonObj=json.loads(serialized_obj)
+    #data = json.dumps(jsonObj[0])
+    return JsonResponse(json.dumps(all_list), safe=False)
 
 def loadVaccinations(request):
-    return JsonResponse({"vaccinations":"1,2,3"})
+    email= request.GET.get('email')
+    email=request.GET.get('email') 
+    user_vaccination_id= Users.objects.get(email=email).id
+    user_vaccinations = UserVaccination.objects.filter(user_id=user_vaccination_id).values()
+    all_list=[];
+    for i in user_vaccinations:
+        vacc_obj=collections.OrderedDict()
+        if isinstance(i['date_visited'], datetime.datetime):
+            date_visited= i['date_visited'].isoformat()
+        vacc_obj['desc'] = i['vaccination_desc']
+        vacc_obj['date_visited'] = date_visited
+        all_list.append(vacc_obj)
+    return JsonResponse(json.dumps(all_list), safe=False)
 
-#def updateUserProfile(request):
-
-#edit users
-#patient visit history
-#login module
-#password encryption

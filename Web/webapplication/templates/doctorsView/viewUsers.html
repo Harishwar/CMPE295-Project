@@ -287,12 +287,12 @@
         if ($(this).attr('href') == "#userAllergies") {
             $('#userAllergiesList').empty();
             $.getJSON("loadAllergies?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
-                $('#userAllergiesList').append('<p>Allergy</p>');
+                $('#userAllergiesList').append(response);
             });
         } else if ($(this).attr('href') == "#userVaccinations") {
             $('#userVaccinationsList').empty();
             $.getJSON("loadVaccinations?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
-                $('#userVaccinationsList').append('<p>Vaccination</p>');
+                $('#userVaccinationsList').append(response);
             });
         }
     });

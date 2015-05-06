@@ -26,6 +26,9 @@ $(document).ready(function() {
         xAxis: {
             type: 'datetime'
         },
+         title: {
+            text: 'Temperature'
+        },
 
         series: [{}]
     };
@@ -45,10 +48,13 @@ $(document).ready(function() {
         xAxis: {
             type: 'datetime'
         },
-        series: [{
+        title: {
+            text: 'Temperature for Existing Patients'
+        },
+      /*  series: [{
             name: '',
             data: []
-        }]
+        }]*/
     };
 
     $.getJSON('doctorsView/getUsersData', function(data) {
