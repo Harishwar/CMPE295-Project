@@ -254,7 +254,7 @@ def dashboard_doc_req(request):
 def load_user_data(email):
     try:
         cursor=connections['sensors'].cursor()
-        cursor.execute("select user_id, date_logged,irt_ambient_avg from SensorResults.crunched_results where user_id=%s",[email])
+        cursor.execute("select user_id, date_logged,irt_body_avg from SensorResults.crunched_results where user_id=%s",[email])
         rows=cursor.fetchall()
         rowsList=[]
         for row in rows:
@@ -282,7 +282,7 @@ def load_user_temp(request):
             if isinstance(row[1], datetime.datetime):
                 dateVal= row[1].isoformat()
             graph_obj['x']=int(time.mktime(row[0].timetuple()) * 1000)
-            graph_obj['y']=row[1]
+            graph_obj['y']=round(float(row[1]),2)
             #graph_obj['user_id']=row[0]
             rowsList.append(graph_obj)
         connections['sensors'].close()
@@ -356,4 +356,27 @@ def loadVaccinations(request):
         vacc_obj['date_visited'] = date_visited
         all_list.append(vacc_obj)
     return JsonResponse(json.dumps(all_list), safe=False)
+
+def load_user_humidity(request):
+    if request.method=='GET' and request.session.get('user_id'):
+        email=request.GET.get('email')
+        cursor=connections['sensors'].cursor()
+        cursor.execute("select date_logged,humidity from SensorResults.SensorData where user_id=%s order by date_logged desc limit 100",[email])
+        rows=cursor.fetchall()
+        rowsList=[]
+        #print rows.length
+        print rows
+        for row in reversed(rows):
+            graph_obj_humid=collections.OrderedDict()
+            if isinstance(row[1], datetime.datetime):
+                dateVal= row[1].isoformat()
+            graph_obj_humid['x']=int(time.mktime(row[0].timetuple()) * 1000)
+            graph_obj_humid['y']=round(float(row[1]),2)
+            #graph_obj['user_id']=row[0]
+            rowsList.append(graph_obj_humid)
+            
+        connections['sensors'].close()
+    return JsonResponse(json.dumps(rowsList),safe=False)
+
+
 

@@ -70,13 +70,20 @@
         <!-- End Header -->
         <div id="chartTabs" class="col-xs-offset" style="padding-top: 40px">
             <ul class="nav nav-tabs">
-                <li class="nav active"><a href="#chart1" data-toggle="tab">Chart</a></li>
-                <li class="nav"><a href="#chart2" data-toggle="tab">Temperature Chart</a></li>
+            	<li class="nav active"><a href="#chart0" data-toggle="tab">Humidity Chart</a></li>
+                <li class="nav "><a href="#chart1" data-toggle="tab">Temperature Chart</a></li>
+                <li class="nav"><a href="#chart2" data-toggle="tab">Temperature HeatMap</a></li>
             </ul>
         </div>
         <div class="tab-content">
+        	<div id="chart0" class="tab-pane fade in active">
+                <!-- Chart -->
+            <h1 class="lightGreen"><center>Humidity Chart</center></h1>
+                <div id="container_graph_humid"></div>
+                <!-- End Chart -->
+            </div>
             <!-- First Tab -->
-            <div id="chart1" class="tab-pane fade in active">
+            <div id="chart1" class="tab-pane fade">
                 <!-- Chart -->
                 <h1 class="lightGreen"><center>Chart</center></h1>
                 <div id="container_graph"></div>
@@ -132,7 +139,20 @@
         },
             series: [{ turboThreshold: Number.MAX_VALUE}]
         };
-
+		 var options_humid = {
+            chart: {
+                renderTo: 'container_graph_humid',
+                type: 'spline'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+             title: {
+            text: 'Humidity'
+        },
+            series: [{ turboThreshold: Number.MAX_VALUE}]
+        };
+		
         $.getJSON('/usersView/load_heat_map?email={{user.email}}', function(data) {
 		var jsonRes = JSON.parse(data);
 			console.log(data);
@@ -148,11 +168,19 @@
 
       $.getJSON('/usersView/load_graph?email={{user.email}}', function(data) {
         var jsonRes = JSON.parse(data);
-		console.log(data);
         options.series[0].data = jsonRes;
         var chart = new Highcharts.Chart(options);
+        chart.legend.allItems[0].update({name:'Temperature'});
     });
-
+		setInterval(function(){
+	  $.getJSON('/usersView/load_humidity?email={{user.email}}', function(data) {
+        var jsonRes = JSON.parse(data);
+        options_humid.series[0].data = jsonRes;
+        var chart = new Highcharts.Chart(options_humid);
+        chart.legend.allItems[0].update({name:'Humidity'});
+    });
+	},3000);
+		
     //},1000);
 
        //},1000);
