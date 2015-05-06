@@ -106,7 +106,8 @@ def addSensor(request):
 def viewUsers(request):
     try:
         if request.method=='GET' and request.session.get('user_id') and request.session.get('role_id')==1:
-            context={'users':Users.objects.filter()}
+            print {'users':Users.objects.filter(role_type='2')}
+            context={'users':Users.objects.filter(role_type='2')}
             return render(request,'doctorsView/viewUsers.html',context)
         else:
             return render(request,'index.html')
@@ -331,7 +332,6 @@ def settings(request):
 
 def loadAllergies(request):
     email= request.GET.get('email')
-    email=request.GET.get('email') 
     user_allergy_id= Users.objects.get(email=email).id
     user_allergies = UserAllergies.objects.filter(user_id=user_allergy_id).values()
     all_list=[];
@@ -344,7 +344,6 @@ def loadAllergies(request):
 
 def loadVaccinations(request):
     email= request.GET.get('email')
-    email=request.GET.get('email') 
     user_vaccination_id= Users.objects.get(email=email).id
     user_vaccinations = UserVaccination.objects.filter(user_id=user_vaccination_id).values()
     all_list=[];
@@ -364,8 +363,6 @@ def load_user_humidity(request):
         cursor.execute("select date_logged,humidity from SensorResults.SensorData where user_id=%s order by date_logged desc limit 100",[email])
         rows=cursor.fetchall()
         rowsList=[]
-        #print rows.length
-        print rows
         for row in reversed(rows):
             graph_obj_humid=collections.OrderedDict()
             if isinstance(row[1], datetime.datetime):

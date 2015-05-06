@@ -164,22 +164,21 @@
                         <!-- Tab2 -->
                         <div id="userAllergies" class="tab-pane fade">
                             <h3 class="modal-title text-center">Allergies</h3>
-                            <div id="userAllergiesList"><p>...</p></div>
+                            <div id="userAllergiesList">
+                                <p>...</p>
+                            </div>
                         </div>
                         <!-- Tab3 -->
                         <div id="userVaccinations" class="tab-pane fade">
                             <h3 class="modal-title text-center">Vaccinations</h3>
-                            <div id="userVaccinationsList"><p>...</p></div>
+                            <div id="userVaccinationsList">
+                                <p>...</p>
+                            </div>
                         </div>
                         <!-- Buttons -->
                         <div class="pull-right">
-                            <button class="text-success" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;</button>
+                            <!-- <button class="text-success" title="Edit Patient Details"><i class="glyphicon glyphicon-pencil icon-enlarge"></i>&emsp;&emsp;</button> -->
                             <button id="deletePatient" class="text-danger" title="Delete Patient"><i class="glyphicon glyphicon-trash icon-enlarge"></i></button>
-                            <!-- <form method="post">
-                            {% csrf_token %}
-                            <button class="text-danger pull-right" title="Delete Patient" type="submit" onsubmit="test()"><i class="glyphicon glyphicon-trash icon-enlarge"></i>
-                            </button>
-                        </form> -->
                         </div>
                     </div>
                 </div>
@@ -284,15 +283,19 @@
     // Tab Navigation
     $('#userTabs a').click(function() {
         $(this).tab('show');
+        $('#userAllergiesList').empty();
+        $('#userVaccinationsList').empty();
         if ($(this).attr('href') == "#userAllergies") {
-            $('#userAllergiesList').empty();
             $.getJSON("loadAllergies?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
-                $('#userAllergiesList').append(response);
+                var jsonRes = JSON.parse(response);
+                for (i = 1; i <= jsonRes.length; i++) {
+                    $('#userAllergiesList').append("<strong>Allergy " + i + ": </strong>" + jsonRes[i - 1] + "<br>");
+                }
             });
         } else if ($(this).attr('href') == "#userVaccinations") {
-            $('#userVaccinationsList').empty();
             $.getJSON("loadVaccinations?email=" + $(this).closest('#viewUserModal').find('#profileEmail').text(), function(response) {
-                $('#userVaccinationsList').append(response);
+                var jsonRes2 = JSON.parse(response);
+                $('#userVaccinationsList').append("<strong>Date Visited: </strong>" + new Date(jsonRes2[0].date_visited).toISOString().slice(0, 10) + "<br><strong>Description: </strong>" + jsonRes2[0].desc + "<br><br>");
             });
         }
     });

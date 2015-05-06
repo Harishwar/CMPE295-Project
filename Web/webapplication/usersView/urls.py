@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'loadBMI',views.loadBMI,name='loadBMI'),
     url(r'loadTemperature',views.loadTemperature,name='loadTemperature'),
     url(r'loadalerts',views.loadAlerts,name='loadAlerts'),
+    url(r'loadAllergies',doctorsView.views.loadAllergies,name='loadAllergies'),
+    url(r'loadVaccinations',doctorsView.views.loadVaccinations,name='loadVaccinations'),
     )
